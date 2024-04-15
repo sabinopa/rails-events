@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Supplier authenticates' do
   it 'successfully' do
-    Suppler.create!(email: 'priscila@email.com', password: '12345678')
+    Supplier.create!(email: 'priscila@email.com', password: '12345678')
     visit root_path
     click_on 'Entrar como Fornecedor'
     within 'form' do

@@ -152,7 +152,7 @@ pt-BR:
     submit:
       sign_in: Criar conta
       log_in: Entrar
-      supplier_log_in: Entrar como dono de buffet
+      supplier_log_in: Entrar como Fornecedor
       log_out: Sair
       create: Criar
       submit: Salvar
