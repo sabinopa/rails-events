@@ -7,13 +7,19 @@
           null
         ]
       },
+      "/home/sabino/SABINO/TREINA_DEV12/PROJETO_INDIVIDUAL/rails-events/app/controllers/home_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/home/sabino/SABINO/TREINA_DEV12/PROJETO_INDIVIDUAL/rails-events/app/controllers/application_controller.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       },
       "/home/sabino/SABINO/TREINA_DEV12/PROJETO_INDIVIDUAL/rails-events/app/models/application_record.rb": {
         "lines": [
@@ -25,6 +31,6 @@
         }
       }
     },
-    "timestamp": 1713214280
+    "timestamp": 1713215313
   }
 }
