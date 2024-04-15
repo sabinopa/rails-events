@@ -152,7 +152,7 @@ pt-BR:
     submit:
       sign_in: Criar conta
       log_in: Entrar
-      owner_log_in: Entrar como dono de buffet
+      supplier_log_in: Entrar como dono de buffet
       log_out: Sair
       create: Criar
       submit: Salvar
@@ -230,5 +230,5 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: pm
   actions:
-    force_restaurant_creation_for_owners:
+    force_restaurant_creation_for_supplier:
       redirect: "Você deve criar um restaurante antes de acessar outras páginas."

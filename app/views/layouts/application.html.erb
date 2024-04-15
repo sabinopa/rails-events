@@ -13,11 +13,11 @@
     <header>
       <nav>
         <%= link_to 'Cadê Buffet?', root_path %>
-        <% if owner_signed_in? %>
-          <%= render 'layouts/owner_authenticated' %>
+        <% if supplier_signed_in? %>
+          <%= render 'layouts/supplier_authenticated' %>
         <% else %>
-          <%= link_to t('helpers.submit.owner_log_in'), new_owner_session_path %>
-          <%= link_to t('helpers.submit.sign_in'), new_owner_registration_path %>
+          <%= link_to t('helpers.submit.supplier_log_in'), new_supplier_session_path %>
+          <%= link_to t('helpers.submit.sign_in'), new_supplier_registration_path %>
         <% end %>
       </nav>
     </header>

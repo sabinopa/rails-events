@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe Owner, type: :model do
+RSpec.describe Supplier, type: :model do
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :owners, controllers: {
-    sessions: 'owners/sessions',
-    registrations: 'owners/registrations'
+  devise_for :suppliers, controllers: {
+    sessions: 'suppliers/sessions',
+    registrations: 'suppliers/registrations'
   }
 
   root 'home#index'
