@@ -11,8 +11,18 @@
 
   <body>
     <header>
-      <%= link_to 'Cadê Buffet?', root_path %>
+      <nav>
+        <%= link_to 'Cadê Buffet?', root_path %>
+        <% if owner_signed_in? %>
+          <%= render 'layouts/owner_authenticated' %>
+        <% else %>
+          <%= link_to t('helpers.submit.owner_log_in'), new_owner_session_path %>
+          <%= link_to t('helpers.submit.sign_in'), new_owner_registration_path %>
+        <% end %>
+      </nav>
     </header>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
