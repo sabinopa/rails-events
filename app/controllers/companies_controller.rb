@@ -7,6 +7,10 @@ class CompaniesController < ApplicationController
   end
 
   def new
+    if current_supplier.company.present?
+      flash[:alert] = t('.error')
+      redirect_to root_path
+    end
     @company = Company.new
   end
 

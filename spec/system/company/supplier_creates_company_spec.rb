@@ -126,4 +126,22 @@ describe 'Supplier creates company' do
     expect(page).to have_content 'Endereço: Rua das Oliveiras, 5678 - Jardim Amor, Rio de Janeiro - RJ, 21000-000'
     expect(page).to have_content 'Pagamentos por: PIX | Cartão de Crédito | Cartão de Débito'
   end
+
+  it 'already has a company registered' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    debito = PaymentMethod.create!(method: 'Cartão de Débito')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                              registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                              address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                              description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                              company.payment_methods << [pix, debito]
+                                    company.payment_methods << [pix, credito, debito]
+    login_as(supplier, :scope => :supplier)
+    visit new_company_path
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você já possui uma empresa cadastrada.'
+  end
 end
