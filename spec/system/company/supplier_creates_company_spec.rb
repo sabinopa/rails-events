@@ -83,4 +83,15 @@ describe 'Supplier creates company' do
     expect(page).to have_content 'CEP não pode ficar em branco'
     expect(page).to have_content 'Descrição não pode ficar em branco'
   end
+
+  it 'and cant visit homepage before registering a company' do
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+
+    login_as(supplier, :scope => :supplier)
+    visit root_path
+
+    expect(current_path).to eq new_company_path
+    expect(page).to have_content 'Você deve criar uma empresa antes de acessar outras páginas.'
+  end
+
 end

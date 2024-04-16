@@ -1,5 +1,10 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create]
+  before_action :force_company_creation_for_suppliers, only: [:show]
+
+  def show
+    @company = Company.find(params[:id])
+  end
 
   def new
     @company = Company.new

@@ -230,5 +230,5 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: pm
   actions:
-    force_restaurant_creation_for_supplier:
-      redirect: "Você deve criar um restaurante antes de acessar outras páginas."
+    force_company_creation_for_suppliers:
+      redirect: "Você deve criar uma empresa antes de acessar outras páginas."
