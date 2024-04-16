@@ -24,6 +24,8 @@ pt-BR:
     create:
       success: "%{brand_name}: Criado com sucesso!"
       error: Empresa não cadastrada.
+    edit:
+      error: Apenas o proprietário pode editar essa empresa.
     update:
       success: "%{brand_name}: Atualizado com sucesso!"
       error: Não foi possível atualizar os dados da empresa.
