@@ -1,4 +1,5 @@
 pt-BR:
+  company: Empresa
   activerecord:
     models:
       companies:

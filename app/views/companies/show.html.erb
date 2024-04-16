@@ -1,4 +1,5 @@
-<h1><%= @company.brand_name %></h1>
+
+<h1><small><%= t('company') %></small> <%= @company.brand_name %></h1>
 <p><%= @company.description %></p>
 <div>
   <dl>
@@ -24,4 +25,5 @@
 <% if supplier_signed_in? && @company.supplier == current_supplier %>
   <%= link_to t('helpers.submit.edit'), edit_company_path(@company) %><br>
 <% end %>
+<hr />
 <%= link_to t('helpers.buttons.back'), root_path %>
