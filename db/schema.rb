@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_002916) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_16_170836) do
   create_table "companies", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -36,6 +36,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_002916) do
     t.index ["payment_method_id", "company_id"], name: "idx_on_payment_method_id_company_id_83dd18334b"
   end
 
+  create_table "event_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "min_attendees"
+    t.integer "max_attendees"
+    t.integer "duration"
+    t.text "menu_description"
+    t.boolean "alcohol_available"
+    t.boolean "decoration_available"
+    t.boolean "parking_service_available"
+    t.integer "location_type"
+    t.integer "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_event_types_on_company_id"
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "method"
     t.datetime "created_at", null: false
@@ -57,4 +74,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_002916) do
   end
 
   add_foreign_key "companies", "suppliers"
+  add_foreign_key "event_types", "companies"
 end
