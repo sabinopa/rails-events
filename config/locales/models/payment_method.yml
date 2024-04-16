@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      payment_method: Métodos de Pagamento
+    attributes:
+      payment_method:
+        bank_transfer: PIX
+        credit_card: Cartão de Crédito
+        debit_card: Cartão de Débito
+        cash: Dinheiro
+        accepts: Aceita
+        refuses: Não Aceita
+  views:
+    new:
+      payment_method_acceptance: Métodos de pagamentos aceitos
+      payment_by: Pagamentos por

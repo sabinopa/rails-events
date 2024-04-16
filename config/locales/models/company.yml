@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      companies:
+        one: Empresa
+        other: Empresas
+    attributes:
+      company:
+        brand_name: Nome Fantasia
+        corporate_name: Razão Social
+        registration_number: CNPJ
+        phone_number: Telefone
+        email: E-mail
+        address: Endereço
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+        zipcode: CEP
+        description: Descrição
+  views:
+    new:
+      register: Cadastre sua empresa
+      payment_method_acceptance: Métodos de pagamentos aceitos
