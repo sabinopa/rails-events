@@ -19,4 +19,8 @@
   </dl><br>
   <p><strong><%= t('views.new.payment_by')%></strong>: <%= @company.payment_methods.map(&:method).join(' | ') %></p>
 </div>
+
+<% if supplier_signed_in? && @company.supplier == current_supplier %>
+  <%= link_to t('helpers.submit.edit'), edit_company_path(@company) %><br>
+<% end %>
 <%= link_to t('helpers.buttons.back'), root_path %>

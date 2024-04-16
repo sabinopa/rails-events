@@ -1,0 +1,78 @@
+<h1><%= t('views.edit.title') %></h1>
+
+<% if(@company.errors.any?) %>
+  <p><%= t('errors.messages.verify_error') %></p>
+  <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @company do |form| %>
+  <div>
+    <%= form.label :brand_name %>
+    <%= form.text_field :brand_name %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :corporate_name %>
+    <%= form.text_field :corporate_name %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :registration_number %>
+    <%= form.text_field :registration_number %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :neighborhood %>
+    <%= form.text_field :neighborhood %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <br>
+  <h2><%= t('views.new.payment_method_acceptance')%></h2>
+
+  <% PaymentMethod.all.each do |payment_method| %>
+    <div>
+      <%= check_box_tag "company[payment_method_ids][]", payment_method.id, false, id: "payment_method_#{payment_method.id}" %>
+      <%= label_tag "payment_method_#{payment_method.id}", payment_method.method %>
+    </div>
+  <% end %>
+  <br>
+  <%= form.submit t('helpers.submit.submit') %>
+<% end %>

@@ -24,7 +24,12 @@ pt-BR:
     create:
       success: "%{brand_name}: Criado com sucesso!"
       error: Empresa não cadastrada.
+    update:
+      success: "%{brand_name}: Atualizado com sucesso!"
+      error: Não foi possível atualizar os dados da empresa.
   views:
     new:
       register: Cadastre sua empresa
       payment_method_acceptance: Métodos de pagamentos aceitos
+    edit:
+      title: Edite os dados da sua empresa

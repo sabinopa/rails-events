@@ -27,9 +27,18 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @company = Company.find(params[:id])
   end
 
   def update
+    @company = Company.find(params[:id])
+    if @company.update(company_params)
+      flash[:notice] = t('.success', brand_name: @company.brand_name)
+      redirect_to @company
+    else
+      flash.now[:alert] = t('.error')
+      render :edit
+    end
   end
 
   private
