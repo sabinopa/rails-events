@@ -17,6 +17,13 @@ pt-BR:
         state: Estado
         zipcode: CEP
         description: Descrição
+  companies:
+    new:
+      redirect: Você deve criar uma empresa antes de acessar outras páginas.
+      error: Você já possui uma empresa cadastrada.
+    create:
+      success: "%{brand_name}: Criado com sucesso!"
+      error: Empresa não cadastrada.
   views:
     new:
       register: Cadastre sua empresa

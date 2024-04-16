@@ -1,5 +1,14 @@
 <h1><%= t('views.new.register') %></h1>
 
+<% if(@company.errors.any?) %>
+  <p><%= t('errors.messages.verify_error') %></p>
+  <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @company do |form| %>
   <div>
     <%= form.label :brand_name %>
