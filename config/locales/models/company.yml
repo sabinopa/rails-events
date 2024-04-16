@@ -35,3 +35,5 @@ pt-BR:
       payment_method_acceptance: Métodos de pagamentos aceitos
     edit:
       title: Edite os dados da sua empresa
+    show:
+      create_event: Criar novo tipo de evento

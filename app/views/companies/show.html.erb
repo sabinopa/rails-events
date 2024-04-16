@@ -2,7 +2,8 @@
 <p><%= @company.description %></p>
 <div>
   <dl>
-    <% if supplier_signed_in?  && current_supplier.company.present? && current_supplier == @company.supplier %>
+    <% if supplier_signed_in? && current_supplier.company.present? && current_supplier == @company.supplier %>
+      <%= link_to t('views.show.create_event'), new_company_event_type_path(@company) %>
       <dt><%= Company.human_attribute_name(:corporate_name) %>:</dt>
       <dd><%= @company.corporate_name %></dd>
       <dt><%= Company.human_attribute_name(:registration_number) %>:</dt>

@@ -1,0 +1,25 @@
+<h2><b><%= t('views.show.see', name: @event_type.name) %></b></h2>
+<p><%= @event_type.description %></p>
+
+<% if supplier_signed_in? && @company.supplier == current_supplier %>
+<% end %>
+
+ <dl>
+    <dt><%= EventType.human_attribute_name(:name) %>:</dt>
+    <dd><%= @event_type.name %></dd>
+    <dt><%= EventType.human_attribute_name(:description) %>:</dt>
+    <dd><%= @event_type.description %></dd>
+    <dt><%= EventType.human_attribute_name(:min_attendees) %>:</dt>
+    <dd><%= @event_type.min_attendees %></dd> <%= t('views.show.people') %>
+    <dt><%= EventType.human_attribute_name(:max_attendees) %>:</dt>
+    <dd><%= @event_type.max_attendees %></dd> <%= t('views.show.people') %>
+    <dt><%= EventType.human_attribute_name(:duration) %>:</dt>
+    <dd><%= @event_type.duration %></dd> <%= t('views.show.minutes') %>
+    <dt><%= EventType.human_attribute_name(:menu_description) %>:</dt>
+    <dd><%= @event_type.menu_description %></dd>
+    <dd><%= @event_type.alcohol_available ?  t('event_type.alcohol') : t('event_type.no_alcohol') %></dd>
+    <dd><%= @event_type.decoration_available ?  t('event_type.decoration') : t('event_type.no_decoration') %></dd>
+    <dd><%= @event_type.parking_service_available ?  t('event_type.parking') : t('event_type.no_parking') %></dd>
+  </dl>
+<hr />
+<%= link_to t('helpers.buttons.back'), company_path(@company) %>

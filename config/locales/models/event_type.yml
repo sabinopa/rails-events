@@ -1,0 +1,40 @@
+pt-BR:
+  activerecord:
+    models:
+      event_types:
+        one: Tipo de Evento
+        other: Tipos de Eventos
+    attributes:
+      event_type:
+        name: Nome
+        description: Descrição
+        min_attendees: Mínimo de convidados
+        max_attendees: Máximo de convidados
+        duration: Duração
+        menu_description: Menu
+        alcohol_available: Bebidas alcoólicas
+        decoration_available: Decoração
+        parking_service_available: Estacionamento
+        location_type: Local
+  event_type:
+    on_site: Salão próprio
+    off_site: Salão de terceiro
+    alcohol: Inclui bebidas alcoólicas
+    no_alcohol: Não inclui bebidas alcoólicas
+    decoration: Fornece decoração
+    no_decoration: Não fornece decoração
+    parking: Possui estacionamento para convidados
+    no_parking: Não possui estacionamento
+  event_types:
+    new:
+      error: Apenas o proprietário pode criar tipos de evento para essa empresa.
+    create:
+      success: "%{name}: Criado com sucesso!"
+      error: Tipo de evento não cadastrado.
+  views:
+    new:
+      new_event_type: "Criar novo tipo de evento para %{brand_name}"
+    show:
+      see: "%{name}"
+      minutes: minutos
+      people: pessoas

@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :companies, only: [:new, :create, :edit, :update, :show]
+  resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
+    resources :event_types, only: [:new, :create, :show]
+  end
 end
