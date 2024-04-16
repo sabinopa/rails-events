@@ -1,7 +1,5 @@
-<div>
-  <%= current_supplier.email %>
-  <% if @company&.persisted? %>
-      <%= link_to 'Minha Empresa', company_path(@company) %>
-  <% end %>
-</div>
-<%= button_to t('helpers.submit.log_out'), destroy_supplier_session_path, method: :delete %>
+<%= current_supplier.email %>
+<% if @company&.persisted? %>
+  <%= link_to 'Minha Empresa', company_path(@company) %>
+<% end %>
+<%= button_to t('helpers.submit.log_out'), destroy_supplier_session_path, method: :delete, class: "btn btn-outline-secondary" %>
