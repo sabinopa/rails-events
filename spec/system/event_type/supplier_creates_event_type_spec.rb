@@ -85,7 +85,7 @@ describe 'Supplier creates event type' do
     uncheck 'Bebidas alcoólicas'
     check 'Decoração'
     check 'Estacionamento'
-    select 'Salão próprio', from: 'Local'
+    select 'Exclusivamente no próprio local', from: 'Local'
     click_on 'Salvar'
 
     expect(current_path).to eq event_type_path(company)

@@ -1,7 +1,7 @@
 class EventType < ApplicationRecord
   belongs_to :company
 
-  enum location_type: { on_site: 0, off_site: 1 }
+  enum location_type: { on_site: 0, off_site: 1, on_off_site: 2 }
 
   validates :name, :description, :min_attendees, :max_attendees,
   :duration, :menu_description, presence: true

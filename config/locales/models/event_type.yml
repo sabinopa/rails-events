@@ -15,10 +15,11 @@ pt-BR:
         alcohol_available: Bebidas alcoólicas
         decoration_available: Decoração
         parking_service_available: Estacionamento
-        location_type: Local
+        location_type: Local da festa
   event_type:
-    on_site: Salão próprio
-    off_site: Salão de terceiro
+    on_site: 'Exclusivamente no próprio local'
+    on_off_site: 'No próprio local ou em local externo'
+    off_site: 'Exclusivamente em local externo'
     alcohol: Inclui bebidas alcoólicas
     no_alcohol: Não inclui bebidas alcoólicas
     decoration: Fornece decoração
