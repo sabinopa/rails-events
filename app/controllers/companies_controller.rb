@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_supplier!, only: [:new, :create]
+  before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
   before_action :force_company_creation_for_suppliers, only: [:show]
 
   def show
@@ -23,6 +23,12 @@ class CompaniesController < ApplicationController
       flash.now[:alert] = t('.error')
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private
