@@ -94,4 +94,36 @@ describe 'Supplier creates company' do
     expect(page).to have_content 'Você deve criar uma empresa antes de acessar outras páginas.'
   end
 
+  it 'successfully' do
+    PaymentMethod.create!(method: 'PIX')
+    PaymentMethod.create!(method: 'Cartão de Crédito')
+    PaymentMethod.create!(method: 'Cartão de Débito')
+    PaymentMethod.create!(method: 'Dinheiro')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+
+    login_as(supplier, :scope => :supplier)
+    visit new_company_path
+    fill_in 'Nome Fantasia', with: 'Eternos Laços'
+    fill_in 'Razão Social', with: 'Eternos Laços Cerimônias Especiais Ltda'
+    fill_in 'CNPJ', with: '98.765.432/0001-11'
+    fill_in 'Telefone', with: '(11) 99876-5432'
+    fill_in 'E-mail', with: 'contato@eternoslacos.com.br'
+    fill_in 'Endereço', with: 'Rua das Oliveiras, 5678'
+    fill_in 'Bairro', with: 'Jardim Amor'
+    fill_in 'Cidade', with: 'Rio de Janeiro'
+    fill_in 'Estado', with: 'RJ'
+    fill_in 'CEP', with: '21000-000'
+    fill_in 'Descrição', with: 'O Eternos Laços é especialista em transformar sonhos de casamento em realidade. '
+    check 'PIX'
+    check 'Cartão de Crédito'
+    check 'Cartão de Débito'
+    click_on 'Salvar'
+
+    expect(current_path).to eq company_path(supplier.reload.company.id)
+    expect(page).to have_content 'Eternos Laços: Criado com sucesso!'
+    expect(page).to have_content 'Telefone: (11) 99876-5432'
+    expect(page).to have_content 'E-mail: contato@eternoslacos.com.br'
+    expect(page).to have_content 'Endereço: Rua das Oliveiras, 5678 - Jardim Amor, Rio de Janeiro - RJ, 21000-000'
+    expect(page).to have_content 'Pagamentos por: PIX | Cartão de Crédito | Cartão de Débito'
+  end
 end

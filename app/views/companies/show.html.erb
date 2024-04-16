@@ -1,0 +1,22 @@
+<h1><%= @company.brand_name %></h1>
+<p><%= @company.description %></p>
+<div>
+  <dl>
+    <% if supplier_signed_in?  && current_supplier.company.present? && current_supplier == @company.supplier %>
+      <dt><%= Company.human_attribute_name(:corporate_name) %>:</dt>
+      <dd><%= @company.corporate_name %></dd>
+      <dt><%= Company.human_attribute_name(:registration_number) %>:</dt>
+      <dd><%= @company.registration_number %></dd>
+    <% end %>
+    <dt><%= Company.human_attribute_name(:brand_name) %>:</dt>
+    <dd><%= @company.brand_name %></dd>
+    <dt><%= Company.human_attribute_name(:phone_number) %>:</dt>
+    <dd><%= @company.phone_number %></dd>
+    <dt><%= Company.human_attribute_name(:email) %>:</dt>
+    <dd><%= @company.email %></dd>
+    <dt><%= Company.human_attribute_name(:address) %>:</dt>
+    <dd><%= @company.address %> - <%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></dd>
+  </dl><br>
+  <p><strong><%= t('views.new.payment_by')%></strong>: <%= @company.payment_methods.map(&:method).join(' | ') %></p>
+</div>
+<%= link_to t('helpers.buttons.back'), root_path %>
