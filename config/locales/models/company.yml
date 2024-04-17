@@ -1,5 +1,6 @@
 pt-BR:
   company: Empresa
+  your_company: Sua empresa
   activerecord:
     models:
       companies:
@@ -36,5 +37,6 @@ pt-BR:
       payment_method_acceptance: Métodos de pagamentos aceitos
     edit:
       title: Edite os dados da sua empresa
+      edit: Editar Empresa
     show:
-      create_event: Criar novo tipo de evento
+      create_event: Novo Tipo de Evento

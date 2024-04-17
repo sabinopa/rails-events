@@ -151,6 +151,7 @@ pt-BR:
       back: Voltar
     submit:
       sign_in: Criar conta
+      supplier_sign_in: Seja um Fornecedor
       log_in: Entrar
       supplier_log_in: Entrar como Fornecedor
       log_out: Sair
@@ -232,3 +233,6 @@ pt-BR:
   actions:
     force_company_creation_for_suppliers:
       redirect: "Você deve criar uma empresa antes de acessar outras páginas."
+  views:
+    home:
+      cade_buffet: Cadê Buffet?

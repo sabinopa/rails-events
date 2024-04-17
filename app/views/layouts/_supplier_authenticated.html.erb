@@ -1,5 +1,11 @@
-<%= current_supplier.email %>
+<li class="nav-item">
+  <%= link_to current_supplier.email, "#", class: "nav-link disabled", aria: { current: "page" } %>
+</li>
 <% if @company&.persisted? %>
-  <%= link_to 'Minha Empresa', company_path(@company) %>
+  <li class="nav-item">
+    <%= link_to 'Minha Empresa', company_path(@company), class: "nav-link" %>
+  </li>
 <% end %>
-<%= button_to t('helpers.submit.log_out'), destroy_supplier_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+<li class="nav-item">
+  <%= button_to t('helpers.submit.log_out'), destroy_supplier_session_path, method: :delete, class: "nav-link btn btn-outline-secondary" %>
+</li>

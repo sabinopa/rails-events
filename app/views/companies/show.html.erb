@@ -1,29 +1,41 @@
+<div class="row gx-5 justify-content-center">
+  <div class="col-lg-11 col-xl-9 col-xxl-8">
+    <section>
+      <div class="mb-4">
+        <h2 class="text-primary fw-bolder mb-0"><%= @company.brand_name %></h2>
+        <% if supplier_signed_in? && current_supplier.company.present? && current_supplier == @company.supplier %>
+          <h3 class="small text-muted"><%= @company.corporate_name %></h3>
+          <h4 class="small text-muted"><%= @company.registration_number %></h4>
+          <div>
+            <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>
+            <%= link_to t('views.edit.edit'), edit_company_path(@company), class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card shadow border-0 rounded-4 mb-5">
+        <div class="card-body p-5">
+          <div class="row align-items-center gx-5">
+            <div class="col text-center text-lg-start mb-4 mb-lg-0">
+              <div class="bg-light p-4 rounded-4">
+                <div class="text-primary fw-bolder mb-2"><%= @company.phone_number %></div>
+                <div class="small fw-bolder"><%= @company.email %></div>
+                <div class="small text-muted"><%= @company.address %></div>
+                <div class="small text-muted"><small><%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></small></div>
+                <br />
+                <div class="small text-muted"><strong><%= t('views.new.payment_by') %></strong>:<br />
+                  <%= @company.payment_methods.map(&:method).join(' | ') %>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div><%= @company.description %></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<h1><small><%= t('company') %></small> <%= @company.brand_name %></h1>
-<p><%= @company.description %></p>
-<div>
-  <dl>
-    <% if supplier_signed_in? && current_supplier.company.present? && current_supplier == @company.supplier %>
-      <%= link_to t('views.show.create_event'), new_company_event_type_path(@company) %>
-      <dt><%= Company.human_attribute_name(:corporate_name) %>:</dt>
-      <dd><%= @company.corporate_name %></dd>
-      <dt><%= Company.human_attribute_name(:registration_number) %>:</dt>
-      <dd><%= @company.registration_number %></dd>
-    <% end %>
-    <dt><%= Company.human_attribute_name(:brand_name) %>:</dt>
-    <dd><%= @company.brand_name %></dd>
-    <dt><%= Company.human_attribute_name(:phone_number) %>:</dt>
-    <dd><%= @company.phone_number %></dd>
-    <dt><%= Company.human_attribute_name(:email) %>:</dt>
-    <dd><%= @company.email %></dd>
-    <dt><%= Company.human_attribute_name(:address) %>:</dt>
-    <dd><%= @company.address %> - <%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></dd>
-  </dl><br>
-  <p><strong><%= t('views.new.payment_by')%></strong>: <%= @company.payment_methods.map(&:method).join(' | ') %></p>
+      <hr />
+      <%= link_to t('helpers.buttons.back'), root_path, class: "small" %>
+    </section>
+  </div>
 </div>
-
-<% if supplier_signed_in? && @company.supplier == current_supplier %>
-  <%= link_to t('helpers.submit.edit'), edit_company_path(@company) %><br>
-<% end %>
-<hr />
-<%= link_to t('helpers.buttons.back'), root_path %>
