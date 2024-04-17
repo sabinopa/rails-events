@@ -1,0 +1,18 @@
+<h1><%= t('views.show.price', name: @event_type.name) %></h1>
+
+<%= @event_pricing.weekend ? t('views.show.weekend') : t('views.show.week_days') %>
+<br>
+<%= t('views.show.base_price') %>:
+<%= @event_pricing.base_price %>
+<br>
+<%= t('views.show.base_attendees') %>:
+<%= @event_pricing.base_attendees %>
+<br>
+<%= t('views.show.additional_guest_price') %>:
+<%= @event_pricing.additional_guest_price %>
+<br>
+<%= t('views.show.extra_hour_price') %>:
+<%= @event_pricing.extra_hour_price %>
+
+<hr />
+<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>

@@ -23,10 +23,10 @@ pt-BR:
     # no_parking: Não possui estacionamento
   event_pricings:
     new:
-      error: Apenas o proprietário pode criar tipos de evento para essa empresa.
+      error: Apenas o proprietário precificar esse evento.
     create:
-      success: "%{name}: Criado com sucesso!"
-      error: Tipo de evento não cadastrado.
+      success: Novo preço criado com sucesso!
+      error: Preço não cadastrado.
   views:
     new:
       new_event_pricing: "Defina os valores de %{name}"
@@ -34,6 +34,11 @@ pt-BR:
       week_days: Dias Úteis
       pricing_for: Precificação para
     show:
-      see: "%{name}"
-      minutes: minutos
-      people: pessoas
+      price: "Preço para %{name}"
+      weekend: Preço para Finais de Semana ou Feriados
+      week_days: Preço para Dias Úteis
+      base_price: Preço Base
+      base_attendees: Número Base de Convidados
+      additional_guest_price: Preço por Convidado Adicional
+      extra_hour_price: Preço por Hora Extra
+
