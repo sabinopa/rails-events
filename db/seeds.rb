@@ -21,10 +21,10 @@ p "Created #{Supplier.count} suppliers"
 
 # Empresas
 celebracao_alegre = Company.create(supplier_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
-                              registration_number: '12.345.678/0001-99',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
-                              address: 'Rua das Flores, 123', neighborhood: 'Jardim Primavera', city: 'São Paulo', state: 'SP', zipcode: '01234-567',
-                              description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.')
-                              celebracao_alegre.payment_methods << [pix, debito]
+                                  registration_number: '12.345.678/0001-99',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
+                                  address: 'Rua das Flores, 123', neighborhood: 'Jardim Primavera', city: 'São Paulo', state: 'SP', zipcode: '01234-567',
+                                  description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.')
+                                  celebracao_alegre.payment_methods << [pix, debito]
 
 festim_sonhos = Company.create(supplier_id: pedro.id, brand_name: 'Festim dos Sonhos', corporate_name: 'Festim dos Sonhos Eventos S.A.',
                               registration_number: '11.000.222/0001-33',  phone_number: '(21) 4444-5555', email: 'sonhos@festim.com.br',
@@ -51,4 +51,72 @@ sabores_mundo = Company.create(supplier_id: livia.id, brand_name: 'Sabores do Mu
                               sabores_mundo.payment_methods << [credito, debito]
 
 p "Created #{Company.count} companies"
+
+# Para a empresa Celebração Alegre
+casamento = EventType.create(company_id: celebracao_alegre.id, name: 'Casamento dos Sonhos',
+                            description: 'O nosso pacote "Casamento dos Sonhos" é o ápice da sofisticação e do romance. Com um serviço de buffet personalizado, decoração floral deslumbrante e uma equipe dedicada a tornar cada detalhe perfeito, garantimos que seu dia especial seja inesquecível.',
+                            min_attendees: 50, max_attendees: 300, duration: 480,
+                            menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
+
+corporativo = EventType.create(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
+                            description: 'Nossa Gala Corporativa Elegante é a escolha perfeita para empresas que desejam impressionar. Oferecemos um ambiente sofisticado, com serviço de buffet de alto padrão, apresentações audiovisuais de última geração e uma equipe pronta para atender todas as necessidades empresariais.',
+                            min_attendees: 100, max_attendees: 500, duration: 300,
+                            menu_description: 'Um buffet exclusivo que inclui canapés gourmet, estações de comida ao vivo, pratos internacionais elaborados e uma ampla seleção de bebidas premium, incluindo coquetéis personalizados e vinhos selecionados.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+
+# Para a empresa Festim dos Sonhos
+jantar_gourmet = EventType.create(company_id: festim_sonhos.id, name: 'Jantar de Gala Gourmet',
+                            description: 'O Jantar de Gala Gourmet do Festim dos Sonhos é uma experiência culinária de alto nível, perfeito para ocasiões especiais. Com um menu exclusivo criado por nossos chefs renomados, cada prato é uma obra de arte, acompanhado de uma seleção impecável de vinhos e ambientação sofisticada.',
+                            min_attendees: 20, max_attendees: 80, duration: 240,
+                            menu_description: 'Menu de cinco pratos, incluindo amuse-bouche, entrada, prato principal, sobremesa e mignardises. Ingredientes frescos e da estação, com opções para necessidades dietéticas específicas.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
+
+brunch_network = EventType.create(company_id: festim_sonhos.id, name: 'Brunch Empresarial de Networking',
+                            description: 'Nosso Brunch Empresarial oferece uma atmosfera descontraída e elegante para networking e reuniões de negócios. Com uma variedade de opções gastronômicas que agradam todos os paladares, este evento promove a interação em um ambiente propício ao desenvolvimento de relações profissionais.',
+                            min_attendees: 50, max_attendees: 100, duration: 180,
+                            menu_description: 'Uma seleção diversificada de itens de brunch, incluindo estações de omeletes, variedades de pães artesanais, frutas frescas, queijos finos, carnes frias, e uma ampla escolha de bebidas, desde cafés especiais até sucos naturais e mimosas.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 2)
+
+# Para a empresa Gastronomia Estelar
+noite_organica = EventType.create(company_id: gastronomia_estelar.id, name: 'Noite de Degustação Orgânica',
+                            description: ' Uma experiência culinária única onde os convidados têm a oportunidade de degustar uma variedade de pratos feitos exclusivamente com ingredientes orgânicos e sustentáveis. Acompanhado de uma seleção de vinhos naturais e orgânicos, este evento é uma celebração dos sabores autênticos e da culinária consciente.',
+                            min_attendees: 20, max_attendees: 100, duration: 180,
+                            menu_description: 'Cardápio degustação em cinco etapas, com pratos que destacam os ingredientes da estação. Inclui aperitivos, entradas, prato principal, sobremesa e uma seleção especial de queijos artesanais locais.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 1)
+
+piquenique = EventType.create(company_id: gastronomia_estelar.id, name: 'Piquenique Gourmet Sustentável',
+                            description: 'Um evento ao ar livre que combina o prazer de comer ao fresco com a consciência ecológica. Ideal para grupos que buscam uma experiência gastronômica diferente, nosso piquenique gourmet inclui cestas repletas de delícias orgânicas, cobertores e jogos de campo, tudo com o menor impacto ambiental possível.',
+                            min_attendees: 10, max_attendees: 50, duration: 240,
+                            menu_description: 'Cestas de piquenique individuais com sanduíches gourmet, saladas frescas, frutas da estação, sucos prensados a frio e sobremesas naturais. Todos os itens são preparados com ingredientes orgânicos e embalados de forma ecológica.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: false, location_type: 1)
+
+# Para a empresa Banquete Real
+casamento_luxo = EventType.create(company_id: banquete_real.id, name: 'Cerimônia de Casamento Luxuosa',
+                            description: 'Nossa Cerimônia de Casamento Luxuosa é o epítome da elegância e sofisticação. Com um serviço de buffet exclusivo, decoração opulenta e atenção meticulosa a todos os detalhes, garantimos que seu casamento seja uma ocasião verdadeiramente real e inesquecível.',
+                            min_attendees: 100, max_attendees: 500, duration: 480,
+                            menu_description: 'Um banquete digno da realeza, incluindo uma vasta seleção de canapés finos, pratos principais gourmet, uma deslumbrante torre de sobremesas e um bar completo com as melhores bebidas.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+
+gala_premiacao = EventType.create(company_id: banquete_real.id, name: 'Gala de Premiação Estelar',
+                            description: 'Ideal para eventos de premiação e celebrações corporativas, a Gala de Premiação Estelar oferece um ambiente sofisticado e serviços de primeira linha. Nosso buffet de gala é acompanhado de uma decoração impecável, criando um cenário perfeito para homenagear os conquistadores da noite.',
+                            min_attendees: 150, max_attendees: 1000, duration: 360,
+                            menu_description: 'Um esplêndido buffet composto por estações de comida internacional, pratos assinados por chefs renomados, e uma extensa carta de vinhos e coquetéis premium.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+
+# Para a empresa Sabores do Mundo
+noite_gastronomica = EventType.create(company_id: sabores_mundo.id, name: 'Volta ao Mundo em 80 Pratos',
+                            description: 'Uma experiência gastronômica inesquecível que leva seus convidados a uma jornada culinária ao redor do globo. Este evento oferece uma degustação de pratos típicos de diversos países, cada um cuidadosamente preparado para representar sua região de origem.',
+                            min_attendees: 50, max_attendees: 200, duration: 400,
+                            menu_description: 'Uma seleção diversificada que inclui desde tapas espanholas, sushi japonês, até pratos tradicionais brasileiros e sobremesas francesas. Acompanha uma seleção de bebidas internacionais.',
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 0)
+
+food_truck = EventType.create(company_id: sabores_mundo.id, name: 'Festival Internacional de Food Trucks',
+                            description: 'Levamos a diversidade culinária das ruas do mundo para o seu evento. Este festival apresenta uma série de food trucks, cada um oferecendo uma especialidade internacional diferente, criando uma atmosfera casual e interativa para os convidados explorarem.',
+                            min_attendees: 100, max_attendees: 500, duration: 240,
+                            menu_description: 'Food trucks especializados em uma variedade de cozinhas, incluindo italiana, mexicana, indiana, e tailandesa. Opções para todos os gostos, desde pratos picantes até sobremesas geladas e refrescantes.',
+                            alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1)
+
+p "Created #{EventType.count} event types"
 p "All done! :)"
+
