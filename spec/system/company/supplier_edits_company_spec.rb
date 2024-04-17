@@ -67,7 +67,7 @@ describe 'Supplier edits company' do
     login_as(supplier, :scope => :supplier)
     visit edit_company_path(company.id)
 
-    expect(page).to have_content 'Edite os dados da sua empresa'
+    expect(page).to have_content 'Editar Empresa'
     expect(page).to have_field 'Nome Fantasia'
     expect(page).to have_field 'Razão Social'
     expect(page).to have_field 'CNPJ'

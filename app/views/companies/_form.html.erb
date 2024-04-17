@@ -1,0 +1,83 @@
+ <% if @company.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <p><%= t('errors.messages.verify_error') %></p>
+          <ul>
+            <% @company.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @company, class: "row g-3" do |form| %>
+        <div class="col-12">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :brand_name, class: "form-label" %>
+          <%= form.text_field :brand_name, class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :corporate_name , class: "form-label" %>
+          <%= form.text_field :corporate_name , class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :registration_number , class: "form-label" %>
+          <%= form.text_field :registration_number , class: "form-control", placeholder: "00.000.000/0000-00"  %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :phone_number , class: "form-label" %>
+          <%= form.text_field :phone_number , class: "form-control", placeholder: "(00) 00000-0000" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "exemplo@email.com" %>
+        </div>
+
+        <div class="col-6">
+          <%= form.label :address, class: "form-label" %>
+          <%= form.text_field :address, class: "form-control", placeholder: "Rua, 123" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :neighborhood, class: "form-label" %>
+          <%= form.text_field :neighborhood, class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= form.label :city, class: "form-label" %>
+          <%= form.text_field :city, class: "form-control" %>
+        </div>
+
+        <div class="col-md-2">
+          <%= form.label :state, class: "form-label" %>
+          <%= form.text_field :state, class: "form-control" %>
+        </div>
+
+        <div class="col-sm-2">
+          <%= form.label :zipcode, class: "form-label" %>
+          <%= form.text_field :zipcode, class: "form-control", placeholder: "000000-000" %>
+        </div>
+
+        <div class="col-6">
+          <h5 class="text-primary fw-bolder mb-0"><%= t('views.new.payment_method_acceptance') %></h5>
+          <% PaymentMethod.all.each do |payment_method| %>
+            <div class="form-check">
+              <%= check_box_tag "company[payment_method_ids][]", payment_method.id, @company.payment_method_ids.include?(payment_method.id), id: "payment_method_#{payment_method.id}" %>
+              <%= label_tag "payment_method_#{payment_method.id}", payment_method.method %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-12">
+          <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <hr />
+      <%= link_to t('helpers.buttons.back'), root_path %>
