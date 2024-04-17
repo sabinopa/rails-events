@@ -5,4 +5,8 @@ class Supplier < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :company
+
+  def description
+    "#{name} #{lastname} - #{email}"
+  end
 end

@@ -16,7 +16,7 @@ describe 'Supplier creates an account' do
     within 'nav' do
       expect(page).not_to have_link 'Entrar como Fornecedor'
       expect(page).to have_button 'Sair'
-      expect(page).to have_content 'priscila@email.com'
+      expect(page).to have_content 'Priscila Sabino - priscila@email.com'
     end
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
   end

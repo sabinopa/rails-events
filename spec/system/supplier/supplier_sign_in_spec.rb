@@ -4,7 +4,7 @@ describe 'Supplier authenticates' do
   it 'successfully' do
     pix = PaymentMethod.create!(method: 'PIX')
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
-    supplier = Supplier.create!(email: 'priscila@email.com', password: '12345678')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                               registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
@@ -20,7 +20,7 @@ describe 'Supplier authenticates' do
     within 'nav' do
       expect(page).not_to have_link 'Entrar'
       expect(page).to have_button 'Sair'
-      expect(page).to have_content 'priscila@email.com'
+      expect(page).to have_content 'Priscila Sabino - priscila@email.com'
     end
     expect(page).to have_content 'Login efetuado com sucesso.'
   end
