@@ -6,6 +6,8 @@ class Supplier < ApplicationRecord
 
   has_one :company
 
+  validates :name, :lastname, presence: true
+
   def description
     "#{name} #{lastname} - #{email}"
   end

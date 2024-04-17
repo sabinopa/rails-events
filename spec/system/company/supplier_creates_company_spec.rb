@@ -131,7 +131,6 @@ describe 'Supplier creates company' do
 
   it 'already has a company registered' do
     pix = PaymentMethod.create!(method: 'PIX')
-    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
@@ -139,7 +138,6 @@ describe 'Supplier creates company' do
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                               description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                               company.payment_methods << [pix, debito]
-                                    company.payment_methods << [pix, credito, debito]
     login_as(supplier, :scope => :supplier)
     visit new_company_path
 
