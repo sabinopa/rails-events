@@ -1,0 +1,19 @@
+<h1><%= t('views.show.price', name: @event_type.name) %></h1>
+<% @event_type.event_pricings.each do |pricing| %>
+  <%= t("views.show.day_options.#{pricing.day_options}") %>
+  <br>
+  <%= t('views.show.base_price') %>:
+  <%= pricing.base_price %>
+  <br>
+  <%= t('views.show.base_attendees') %>:
+  <%= pricing.base_attendees %>
+  <br>
+  <%= t('views.show.additional_attendee_price') %>:
+  <%= pricing.additional_attendee_price %>
+  <br>
+  <%= t('views.show.extra_hour_price') %>:
+  <%= pricing.extra_hour_price %>
+<hr>
+<% end %>
+<hr />
+<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>

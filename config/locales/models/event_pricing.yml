@@ -8,9 +8,9 @@ pt-BR:
       event_pricing:
         base_price: Preço Base
         base_attendees: Número Base de Convidados
-        additional_guest_price: Preço por Convidado Adicional
+        additional_attendee_price: Preço por Convidado Adicional
         extra_hour_price: Preço por Hora Extra
-        weekend: Final de Semana
+        days_options: Para os dias
   event_pricing:
     # on_site: 'Exclusivamente no próprio local'
     # on_off_site: 'No próprio local ou em local externo'
@@ -25,20 +25,24 @@ pt-BR:
     new:
       error: Apenas o proprietário precificar esse evento.
     create:
+      duplicate_day_option: Já existe um preço cadastrado para este tipo de dia.
       success: Novo preço criado com sucesso!
       error: Preço não cadastrado.
   views:
     new:
       new_event_pricing: "Defina os valores de %{name}"
-      weekend: Finais de Semana ou Feriados
+      weekend: Finais de Semana
+      holiday: Feriados
       week_days: Dias Úteis
       pricing_for: Precificação para
     show:
       price: "Preço para %{name}"
-      weekend: Preço para Finais de Semana ou Feriados
-      week_days: Preço para Dias Úteis
+      day_options:
+        weekday: Preço para Dias Úteis
+        weekend: Preço para Finais de Semana
+        holiday: Preço para Feriados
       base_price: Preço Base
       base_attendees: Número Base de Convidados
-      additional_guest_price: Preço por Convidado Adicional
+      additional_attendee_price: Preço por Convidado Adicional
       extra_hour_price: Preço por Hora Extra
 

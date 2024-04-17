@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_17_125329) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_17_191902) do
   create_table "companies", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -40,9 +40,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_17_125329) do
     t.integer "event_type_id", null: false
     t.decimal "base_price", precision: 10, scale: 2
     t.integer "base_attendees"
-    t.decimal "additional_guest_price", precision: 10, scale: 2
+    t.decimal "additional_attendee_price", precision: 10, scale: 2
     t.decimal "extra_hour_price", precision: 10, scale: 2
-    t.boolean "weekend"
+    t.integer "day_options"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_type_id"], name: "index_event_pricings_on_event_type_id"
