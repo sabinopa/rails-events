@@ -5,6 +5,7 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @event_types = @company.event_types
     @supplier = current_supplier
   end
 

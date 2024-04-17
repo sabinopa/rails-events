@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
-    resources :event_types, only: [:new, :create, :show]
+    resources :event_types, only: [:new, :create, :show] do
+      resources :event_pricings, only: [:new, :create, :show]
+    end
   end
 end

@@ -40,3 +40,8 @@ pt-BR:
       edit: Editar Empresa
     show:
       create_event: Novo Tipo de Evento
+      event_types: Tipos de Evento
+      attendees: Número de convidados
+      duration: Duração
+      minutes: minutos
+      menu: Menu

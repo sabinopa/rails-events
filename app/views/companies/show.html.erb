@@ -33,9 +33,9 @@
           </div>
         </div>
       </div>
-
+      <%= render partial: 'event_types', locals: { event_types: @event_types } %>
       <hr />
-      <%= link_to t('helpers.buttons.back'), root_path, class: "small" %>
+      <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
     </section>
   </div>
 </div>

@@ -1,5 +1,7 @@
 class EventType < ApplicationRecord
   belongs_to :company
+  has_many :event_pricings
+  accepts_nested_attributes_for :event_pricings
 
   enum location_type: { on_site: 0, off_site: 1, on_off_site: 2 }
 

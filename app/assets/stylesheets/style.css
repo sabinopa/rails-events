@@ -1,0 +1,13 @@
+.event-title {
+    color: #FFA1D8;
+  }
+.btn-outline-rosa {
+  color: #D457A0;
+  border-color: #D457A0;
+}
+
+.btn-outline-rosa:hover {
+  color: white;
+  background-color: #D457A0;
+  border-color: #D457A0;
+}

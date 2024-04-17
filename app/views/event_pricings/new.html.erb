@@ -1,0 +1,38 @@
+<h1><%= t('views.new.new_event_pricing', name: @event_type.name) %></h1>
+
+<%= form_with model: [@event_type, @event_pricing], class: "container" do |form| %>
+  <div class="row g-3">
+    <div class="col-12">
+      <%= form.label :weekend, t('views.new.pricing_for'), class: "form-label d-block" %>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :weekend, true, class: "form-check-input" %>
+        <%= form.label :weekend, t('views.new.weekend'), value: true, class: "form-check-label" %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :weekend, false, class: "form-check-input" %>
+        <%= form.label :weekend, t('views.new.week_days'), value: false, class: "form-check-label" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :base_price, class: "form-label" %>
+      <%= form.number_field :base_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+      <%= form.label :base_attendees, class: "form-label" %>
+      <%= form.number_field :base_attendees, placeholder: "00", class: "form-control mb-3" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :additional_guest_price, class: "form-label" %>
+      <%= form.number_field :additional_guest_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+      <%= form.label :extra_hour_price, class: "form-label" %>
+      <%= form.number_field :extra_hour_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+    </div>
+  </div>
+  <div class="col-12">
+    <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+  </div>
+<% end %>
+  <hr />
+  <%= link_to t('helpers.buttons.back'), root_path %>
+
+
