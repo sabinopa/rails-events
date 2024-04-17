@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Supplier creates an account' do
   it 'successfully' do
     visit root_path
-    click_on 'Criar conta'
+    click_on 'Seja um Fornecedor'
     within 'form' do
       fill_in 'Nome', with: 'Priscila'
       fill_in 'Sobrenome', with: 'Sabino'

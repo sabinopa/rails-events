@@ -31,7 +31,7 @@ describe 'Supplier creates event type' do
     within 'nav' do
       click_on 'Minha Empresa'
     end
-    click_on 'Criar novo tipo de evento'
+    click_on 'Novo Tipo de Evento'
 
     expect(current_path).to eq new_company_event_type_path(company.id)
   end

@@ -9,7 +9,7 @@ describe 'Supplier creates company' do
 
   it 'by being redirected after registration' do
     visit root_path
-    click_on 'Criar conta'
+    click_on 'Seja um Fornecedor'
     within 'form' do
       fill_in 'Nome', with: 'Priscila'
       fill_in 'Sobrenome', with: 'Sabino'
@@ -121,10 +121,12 @@ describe 'Supplier creates company' do
 
     expect(current_path).to eq company_path(supplier.reload.company.id)
     expect(page).to have_content 'Eternos Laços: Criado com sucesso!'
-    expect(page).to have_content 'Telefone: (11) 99876-5432'
-    expect(page).to have_content 'E-mail: contato@eternoslacos.com.br'
-    expect(page).to have_content 'Endereço: Rua das Oliveiras, 5678 - Jardim Amor, Rio de Janeiro - RJ, 21000-000'
-    expect(page).to have_content 'Pagamentos por: PIX | Cartão de Crédito | Cartão de Débito'
+    expect(page).to have_content '(11) 99876-5432'
+    expect(page).to have_content 'contato@eternoslacos.com.br'
+    expect(page).to have_content 'Rua das Oliveiras, 5678'
+    expect(page).to have_content 'Jardim Amor, Rio de Janeiro - RJ, 21000-000'
+    expect(page).to have_content 'Pagamentos por:'
+    expect(page).to have_content 'PIX | Cartão de Crédito | Cartão de Débito'
   end
 
   it 'already has a company registered' do

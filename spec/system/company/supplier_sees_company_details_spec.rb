@@ -22,8 +22,9 @@ describe 'Owner sees restaurant details' do
     expect(page).to have_content 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.'
     expect(page).to have_content 'Estrelas Mágicas Buffet Infantil Ltda'
     expect(page).to have_content '12.333.456/0001-78'
-    expect(page).to have_content 'Alameda dos Sonhos, 404 - Vila Feliz, São Paulo - SP, 05050-050'
-    expect(page).to have_content 'Pagamentos por: PIX | Cartão de Crédito | Cartão de Débito'
+    expect(page).to have_content 'Alameda dos Sonhos, 404'
+    expect(page).to have_content 'Vila Feliz, São Paulo - SP, 05050-050'
+    expect(page).to have_content 'PIX | Cartão de Crédito | Cartão de Débito'
   end
 
   it 'and returns to homepage' do

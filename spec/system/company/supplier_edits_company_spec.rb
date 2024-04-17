@@ -118,11 +118,12 @@ describe 'Supplier edits company' do
     expect(current_path).to eq company_path(supplier.reload.company.id)
     expect(page).to have_content 'Fantasia Aventura: Atualizado com sucesso!'
     expect(page).to have_content 'Na Fantasia Aventura, especializamo-nos em criar festas infantis inesquecíveis, cheias de aventura e fantasia.'
-    expect(page).to have_content 'CNPJ: 10.200.300/0001-40'
-    expect(page).to have_content 'Telefone: (11) 5566-7788'
-    expect(page).to have_content 'E-mail: contato@fantasiaaventura.com.br'
-    expect(page).to have_content 'Endereço: Caminho do Arco-Íris, 88 - Terra dos Sonhos, Salvador - BA, 41700-000'
-    expect(page).to have_content 'Pagamentos por: Cartão de Crédito | Cartão de Débito'
+    expect(page).to have_content '10.200.300/0001-40'
+    expect(page).to have_content '(11) 5566-7788'
+    expect(page).to have_content 'contato@fantasiaaventura.com.br'
+    expect(page).to have_content 'Caminho do Arco-Íris, 88'
+    expect(page).to have_content 'Terra dos Sonhos, Salvador - BA, 41700-000'
+    expect(page).to have_content 'Cartão de Crédito | Cartão de Débito'
   end
 
   it 'with incomplete data' do
