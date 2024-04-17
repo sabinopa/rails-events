@@ -3,3 +3,7 @@
     <%= link_to 'Minha Empresa', company_path(@company), class: "btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"%>
   </div>
 <% end %>
+
+<% @event_types.each do |event| %>
+  <%= link_to "#{event.name} - #{@company.city}", event %><br>
+<% end %>

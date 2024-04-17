@@ -5,5 +5,6 @@ class HomeController < ApplicationController
     if supplier_signed_in?
       @company = current_supplier.company
     end
+    @event_types = EventType.all
   end
 end
