@@ -32,9 +32,16 @@ pt-BR:
     create:
       success: "%{name}: Criado com sucesso!"
       error: Tipo de evento não cadastrado.
+    edit:
+      error: Apenas o proprietário pode editar esse evento.
+    update:
+      success: "%{name}: Atualizado com sucesso!"
+      error: Não foi possível atualizar os dados do evento.
   views:
     new:
       new_event_type: "Criar novo tipo de evento para %{brand_name}"
+    edit:
+      edit_event_type: Editar Evento
     show:
       see: "%{name}"
       minutes: minutos

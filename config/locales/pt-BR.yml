@@ -158,7 +158,8 @@ pt-BR:
       create: Criar
       submit: Salvar
       update: Atualizar
-      edit: Editar
+      edit_company: Editar empresa
+      edit_event_type: Editar evento
   number:
     currency:
       format:

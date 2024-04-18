@@ -37,7 +37,8 @@ pt-BR:
       payment_method_acceptance: Métodos de pagamentos aceitos
     edit:
       title: Edite os dados da sua empresa
-      edit: Editar Empresa
+      edit_company: Editar Empresa
+      edit_event: Editar Evento
     show:
       create_event: Novo Tipo de Evento
       event_types: Tipos de Evento
@@ -51,3 +52,5 @@ pt-BR:
       any_site: Realizado tanto no próprio salão de festas da empresa quanto em salões de terceiros
       parking_service_available: Possui estacionamento
       decoration_available: Fornece decoração
+      prices: Ver Preços
+      new_price: Novo Preço

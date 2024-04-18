@@ -8,7 +8,7 @@
           <h4 class="small text-muted"><%= @company.registration_number %></h4>
           <div>
             <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>
-            <%= link_to t('views.edit.edit'), edit_company_path(@company), class: "btn btn-secondary" %>
+            <%= link_to t('views.edit.edit_company'), edit_company_path(@company), class: "btn btn-secondary" %>
           </div>
         <% end %>
       </div>

@@ -1,0 +1,64 @@
+<% if(@event_type.errors.any?) %>
+  <p><%= t('errors.messages.verify_error') %></p>
+  <ul>
+    <% @event_type.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% form_url = @event_type.persisted? ? event_type_path(@event_type) : company_event_types_path(@company) %>
+<%= form_with model: @event_type, url: form_url  do |form| %>
+  <div>
+    <%= form.label :name %>:
+    <%= form.text_field :name %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :description %>:
+    <%= form.text_area :description %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :min_attendees %>:
+    <%= form.number_field :min_attendees %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :max_attendees %>:
+    <%= form.number_field :max_attendees %>
+  </div>
+  <br>
+    <div>
+    <%= form.label :duration %>:
+    <%= form.number_field :duration %>
+  </div>
+  <br>
+    <div>
+    <%= form.label :menu_description %>:
+    <%= form.text_area :menu_description %>
+  </div>
+  <br>
+  <div>
+    <%= form.check_box :alcohol_available %>
+    <%= form.label :alcohol_available %>
+  </div>
+  <div>
+    <%= form.check_box :decoration_available %>
+    <%= form.label :decoration_available %>
+  </div>
+  <br>
+  <div>
+    <%= form.check_box :parking_service_available %>
+    <%= form.label :parking_service_available %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :location_type %>:
+    <%= form.select :location_type, options_for_select(EventType.location_types.map { |key, _| [I18n.t("event_type.#{key}"), key] }, @event_type.location_type), {}, { class: 'select' } %>
+  </div>
+
+  <%= form.submit t('helpers.submit.submit') %>
+<% end %>
+<hr />
+<%= link_to t('helpers.buttons.back'), company_path(@company) %>

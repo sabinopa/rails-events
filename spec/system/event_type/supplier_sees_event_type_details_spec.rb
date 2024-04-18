@@ -11,12 +11,12 @@ describe 'Owner sees event type details' do
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
-    event_type_one = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
+    event_type_one = EventType.create!(company_id: company.id, name: 'Festa Temática de Piratas',
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    event_type_two = EventType.create!(company_id: supplier.id, name: 'Festa Encantada do Jardim Secreto',
+    event_type_two = EventType.create!(company_id: company.id, name: 'Festa Encantada do Jardim Secreto',
                             description: 'Mergulhe em um mundo de fantasia com nossa Festa Encantada do Jardim Secreto. Este evento especial convida crianças e adultos a explorar um jardim mágico, onde flores gigantes, borboletas coloridas e criaturas míticas se tornam parte de uma aventura interativa e encantadora.',
                             min_attendees: 15, max_attendees: 40, duration: 180,
                             menu_description: 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.',
@@ -55,12 +55,12 @@ describe 'Owner sees event type details' do
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
-    event_type_one = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
+    event_type_one = EventType.create!(company_id: company.id, name: 'Festa Temática de Piratas',
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    event_type_two = EventType.create!(company_id: supplier.id, name: 'Festa Encantada do Jardim Secreto',
+    event_type_two = EventType.create!(company_id: company.id, name: 'Festa Encantada do Jardim Secreto',
                             description: 'Mergulhe em um mundo de fantasia com nossa Festa Encantada do Jardim Secreto. Este evento especial convida crianças e adultos a explorar um jardim mágico, onde flores gigantes, borboletas coloridas e criaturas míticas se tornam parte de uma aventura interativa e encantadora.',
                             min_attendees: 15, max_attendees: 40, duration: 180,
                             menu_description: 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.',

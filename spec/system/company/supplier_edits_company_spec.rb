@@ -31,7 +31,7 @@ describe 'Supplier edits company' do
     within 'nav' do
       click_on 'Minha Empresa'
     end
-    click_on 'Editar'
+    click_on 'Editar Empresa'
 
     expect(current_path).to eq edit_company_path(company.id)
   end
@@ -48,7 +48,7 @@ describe 'Supplier edits company' do
                             company.payment_methods << [pix, credito, debito]
     login_as(supplier, :scope => :supplier)
     visit company_path(company.id)
-    click_on 'Editar'
+    click_on 'Editar Empresa'
 
     expect(current_path).to eq edit_company_path(company.id)
   end
