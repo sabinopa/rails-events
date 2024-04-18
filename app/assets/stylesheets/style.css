@@ -11,3 +11,9 @@
   background-color: #D457A0;
   border-color: #D457A0;
 }
+.custom-text-size {
+  font-size: 0.85rem;
+}
+.description-text {
+  font-size: 0.9rem;
+}

@@ -45,3 +45,9 @@ pt-BR:
       duration: Duração
       minutes: minutos
       menu: Menu
+      on_site: Realizado no próprio salão de festas da empresa
+      off_site: Realizado em salão de festas de terceiros
+      any_site: Realizado tanto no próprio salão de festas da empresa quanto em salões de terceiros
+      any_site: Realizado tanto no próprio salão de festas da empresa quanto em salões de terceiros
+      parking_service_available: Possui estacionamento
+      decoration_available: Fornece decoração

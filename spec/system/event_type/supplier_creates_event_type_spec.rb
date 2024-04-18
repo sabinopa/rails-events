@@ -88,14 +88,14 @@ describe 'Supplier creates event type' do
     select 'Exclusivamente no próprio local', from: 'Local'
     click_on 'Salvar'
 
-    expect(current_path).to eq event_type_path(company)
+    expect(current_path).to eq company_path(company)
     expect(page).to have_content 'Festa de Aniversário Temática: Criado com sucesso!'
-    expect(page).to have_content 'Mínimo de convidados: 20 pessoas'
-    expect(page).to have_content 'Máximo de convidados: 100 pessoas'
+    expect(page).to have_content 'Número de convidados: 20 - 100'
     expect(page).to have_content 'Duração: 180 minutos'
     expect(page).to have_content 'Menu: Buffet completo com opções de salgadinhos, doces tradicionais e personalizados conforme o tema, além de bebidas não alcoólicas.'
     expect(page).to have_content 'Fornece decoração'
-    expect(page).to have_content 'Possui estacionamento para convidados'
+    expect(page).to have_content 'Possui estacionamento'
+    expect(page).to have_content 'Realizado no próprio salão de festas da empresa'
   end
 
   it 'with incomplete data' do

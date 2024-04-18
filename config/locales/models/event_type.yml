@@ -18,7 +18,7 @@ pt-BR:
         location_type: Local da festa
   event_type:
     on_site: 'Exclusivamente no próprio local'
-    on_off_site: 'No próprio local ou em local externo'
+    any_site: 'No próprio local ou em local externo'
     off_site: 'Exclusivamente em local externo'
     alcohol: Inclui bebidas alcoólicas
     no_alcohol: Não inclui bebidas alcoólicas
