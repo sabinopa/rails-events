@@ -1,15 +1,15 @@
 .event-title {
-    color: #FFA1D8;
+    color: #EA7DA8;
   }
 .btn-outline-rosa {
-  color: #D457A0;
-  border-color: #D457A0;
+  color: #FA488F;
+  border-color: #FA488F;
 }
 
 .btn-outline-rosa:hover {
   color: white;
-  background-color: #D457A0;
-  border-color: #D457A0;
+  background-color: #FA488F;
+  border-color: #FA488F;
 }
 .custom-text-size {
   font-size: 0.85rem;
