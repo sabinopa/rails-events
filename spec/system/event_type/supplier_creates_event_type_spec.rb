@@ -85,7 +85,7 @@ describe 'Supplier creates event type' do
     uncheck 'Bebidas alcoólicas'
     check 'Decoração'
     check 'Estacionamento'
-    select 'Exclusivamente no próprio local', from: 'Local'
+    select 'Salão de festas da empresa', from: 'Local'
     click_on 'Salvar'
 
     expect(current_path).to eq company_path(company)
@@ -95,7 +95,7 @@ describe 'Supplier creates event type' do
     expect(page).to have_content 'Menu: Buffet completo com opções de salgadinhos, doces tradicionais e personalizados conforme o tema, além de bebidas não alcoólicas.'
     expect(page).to have_content 'Fornece decoração'
     expect(page).to have_content 'Possui estacionamento'
-    expect(page).to have_content 'Realizado no próprio salão de festas da empresa'
+    expect(page).to have_content 'Salão de festas da empresa'
   end
 
   it 'with incomplete data' do

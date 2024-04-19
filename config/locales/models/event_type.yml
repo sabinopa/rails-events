@@ -17,9 +17,9 @@ pt-BR:
         parking_service_available: Estacionamento
         location_type: Local da festa
   event_type:
-    on_site: 'Exclusivamente no próprio local'
-    any_site: 'No próprio local ou em local externo'
-    off_site: 'Exclusivamente em local externo'
+    on_site: 'Salão de festas da empresa'
+    any_site: 'Salão de festas da empresa ou salão de terceiros'
+    off_site: 'Salão de festas de terceiros'
     alcohol: Inclui bebidas alcoólicas
     no_alcohol: Não inclui bebidas alcoólicas
     decoration: Fornece decoração

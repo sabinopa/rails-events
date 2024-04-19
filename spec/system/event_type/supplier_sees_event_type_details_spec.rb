@@ -42,7 +42,7 @@ describe 'Owner sees event type details' do
     expect(page).to have_content 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.'
     expect(page).to have_content 'Fornece decoração'
     expect(page).to have_content 'Possui estacionamento'
-    expect(page).to have_content 'Realizado no próprio salão de festas da empresa'
+    expect(page).to have_content 'Salão de festas da empresa'
   end
 
   it 'and returns to homepage' do

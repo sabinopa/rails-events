@@ -29,7 +29,7 @@ class EventTypesController < ApplicationController
   def update
     if @event_type.update(event_type_params)
       flash[:notice] = t('.success', name: @event_type.name)
-      redirect_to @event_type
+      redirect_to @company
     else
       flash.now[:alert] = t('.error')
       render :edit
