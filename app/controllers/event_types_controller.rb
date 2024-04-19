@@ -2,7 +2,7 @@ class EventTypesController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
   before_action :set_event_type, only: [:edit, :update, :show]
   before_action :set_company, only: [:new, :create, :edit, :update]
-  before_action :check_owner, only: [:new, :create]
+  before_action :check_owner, only: [:new, :create, :edit, :update]
 
   def show
     @event_type = EventType.find(params[:id])
