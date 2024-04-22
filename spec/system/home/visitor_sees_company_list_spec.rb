@@ -2,10 +2,6 @@ require 'rails_helper'
 
 describe 'Visitor sees companies list' do
   it 'from home page' do
-    pix = PaymentMethod.create!(method: 'PIX')
-    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
-    debito = PaymentMethod.create!(method: 'Cartão de Débito')
-
     supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                               registration_number: '12.333.456/0001-78', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
