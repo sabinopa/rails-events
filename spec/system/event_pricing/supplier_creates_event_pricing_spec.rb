@@ -42,6 +42,7 @@ describe 'Supplier creates event pricing' do
     within 'nav' do
       click_on 'Minha Empresa'
     end
+    click_on 'Ver detalhes'
     click_on 'Novo Preço'
 
     expect(current_path).to eq new_event_type_event_pricing_path(event_type)
@@ -102,7 +103,7 @@ describe 'Supplier creates event pricing' do
     click_on 'Salvar'
 
     new_event_pricing = EventPricing.last
-    expect(current_path).to eq event_type_event_pricings_path(new_event_pricing)
+    expect(current_path).to eq event_type_path(new_event_pricing)
     expect(page).to have_content 'Novo preço criado com sucesso!'
     expect(page).to have_content 'Preço para Dias Úteis'
     expect(page).to have_content 'Preço Base: 900.0'

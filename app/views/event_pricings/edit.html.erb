@@ -1,0 +1,12 @@
+<div class="row gx-5 justify-content-center">
+  <div class="col-lg-11 col-xl-9 col-xxl-8">
+    <section>
+      <div class="mb-4">
+        <h2 class="text-primary fw-bolder mb-0"><%= t('views.edit.edit_prices', name: @event_type.name) %></h2>
+      </div>
+      <%= render partial: 'form', locals: { event_pricing: @event_pricing } %>
+    </section>
+  </div>
+</div>
+<hr />
+<%= link_to t('helpers.buttons.back'), event_type_path(@event_type) %>

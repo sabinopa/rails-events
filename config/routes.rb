@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
     resources :event_types, only: [:new, :create, :show, :edit, :update] do
-      resources :event_pricings, only: [:new, :create, :show, :index]
+      resources :event_pricings, only: [:new, :create, :show, :edit, :update]
     end
   end
 end

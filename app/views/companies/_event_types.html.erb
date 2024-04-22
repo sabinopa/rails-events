@@ -42,12 +42,6 @@
                 </div>
               </small>
               <%= link_to t('views.show.details') , event_type_path(event), class: 'btn btn-outline-rosa mt-3' %>
-              <% if supplier_signed_in? && current_supplier == @company.supplier %>
-                <%= link_to t('views.edit.edit_event'), edit_event_type_path(event), class: 'btn btn-outline-rosa mt-3' %>
-                <% if event.event_pricings.count < 2 %>
-                  <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(event), class: 'btn btn-outline-rosa mt-3' %>
-                <% end %>
-              <% end %>
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ class EventTypesController < ApplicationController
   before_action :check_owner, only: [:new, :create, :edit, :update]
 
   def show
-    @event_type = EventType.find(params[:id])
     @company = @event_type.company
   end
   def new

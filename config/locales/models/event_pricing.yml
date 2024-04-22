@@ -28,6 +28,11 @@ pt-BR:
       duplicate_day_option: Já existe um preço cadastrado para este tipo de dia.
       success: Novo preço criado com sucesso!
       error: Preço não cadastrado.
+    edit:
+      error: Apenas o proprietário pode editar as precificações.
+    update:
+      success: "%{name}: Atualizado com sucesso!"
+      error: Não foi possível atualizar as precificações do evento.
   views:
     new:
       new_event_pricing: "Defina os valores de %{name}"
@@ -36,7 +41,7 @@ pt-BR:
       week_days: Dias Úteis
       pricing_for: Precificação para
     show:
-      price: "Preço para %{name}"
+      price: "Preços para %{name}"
       day_options:
         weekday: Preço para Dias Úteis
         weekend: Preço para Finais de Semana
@@ -45,4 +50,6 @@ pt-BR:
       base_attendees: Número Base de Convidados
       additional_attendee_price: Preço por Convidado Adicional
       extra_hour_price: Preço por Hora Extra
+    edit:
+      edit_prices: "Edite os valores de %{name}"
 

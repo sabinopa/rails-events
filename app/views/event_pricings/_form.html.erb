@@ -1,0 +1,40 @@
+<% if(@event_pricing.errors.any?) %>
+  <p><%= t('errors.messages.verify_error') %></p>
+  <ul>
+    <% @event_pricing.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% form_url = @event_pricing.persisted? ? event_pricing_path(@event_pricing) : event_type_event_pricings_path(@event_type) %>
+<%= form_with model: @event_pricing, url: form_url  do |form| %>
+  <div class="row g-3">
+    <div class="col-12">
+      <%= form.label :day_options, t('views.new.pricing_for'), class: "form-label d-block" %>
+      <%= form.radio_button :day_options, 'weekday', class: "form-check-input" %>
+      <%= form.label :day_options_weekday, t('views.new.week_days'), class: "form-check-label" %>
+      <%= form.radio_button :day_options, 'weekend', class: "form-check-input" %>
+      <%= form.label :day_options_weekend, t('views.new.weekend'), class: "form-check-label" %>
+      <%= form.radio_button :day_options, 'holiday', class: "form-check-input" %>
+      <%= form.label :day_options_holiday, t('views.new.holiday'), class: "form-check-label" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :base_price, class: "form-label" %>
+      <%= form.number_field :base_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+      <%= form.label :base_attendees, class: "form-label" %>
+      <%= form.number_field :base_attendees, placeholder: "00", class: "form-control mb-3" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :additional_attendee_price, class: "form-label" %>
+      <%= form.number_field :additional_attendee_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+      <%= form.label :extra_hour_price, class: "form-label" %>
+      <%= form.number_field :extra_hour_price, step: "0.01", placeholder: "0.00", class: "form-control mb-3" %>
+    </div>
+  </div>
+  <div class="col-12">
+    <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+  </div>
+<% end %>
