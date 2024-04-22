@@ -43,6 +43,7 @@ pt-BR:
       create_event: Novo Tipo de Evento
       event_types: Tipos de Evento
       attendees: Número de convidados
+      people: pessoas
       duration: Duração
       minutes: minutos
       menu: Menu
@@ -51,5 +52,5 @@ pt-BR:
       any_site: 'Salão de festas da empresa ou salão de terceiros'
       parking_service_available: Possui estacionamento
       decoration_available: Fornece decoração
-      prices: Ver Preços
+      details: Ver detalhes
       new_price: Novo Preço

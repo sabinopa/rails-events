@@ -132,7 +132,7 @@ describe 'Supplier edits event type' do
     select 'Salão de festas da empresa'
     click_on 'Salvar'
 
-    expect(current_path).to eq company_path(supplier.reload.company.id)
+    expect(current_path).to eq event_type_path(supplier.reload.company.id)
     expect(page).to have_content 'Festa Encantada do Jardim Secreto: Atualizado com sucesso!'
     expect(page).to have_content 'Mergulhe em um mundo de fantasia com nossa Festa Encantada do Jardim Secreto. Este evento especial convida crianças e adultos a explorar um jardim mágico, onde flores gigantes, borboletas coloridas e criaturas míticas se tornam parte de uma aventura interativa e encantadora.'
     expect(page).to have_content 'Número de convidados: 15 - 40'

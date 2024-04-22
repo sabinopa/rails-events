@@ -88,7 +88,8 @@ describe 'Supplier creates event type' do
     select 'Salão de festas da empresa', from: 'Local'
     click_on 'Salvar'
 
-    expect(current_path).to eq company_path(company)
+    new_event_type = EventType.last
+    expect(current_path).to eq event_type_path(new_event_type)
     expect(page).to have_content 'Festa de Aniversário Temática: Criado com sucesso!'
     expect(page).to have_content 'Número de convidados: 20 - 100'
     expect(page).to have_content 'Duração: 180 minutos'
