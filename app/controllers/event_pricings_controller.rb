@@ -1,14 +1,9 @@
 class EventPricingsController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
   before_action :set_event_pricing, only: [:edit, :update]
-  before_action :set_event_type, only: [:new, :create, :edit, :update, :index]
+  before_action :set_event_type, only: [:new, :create, :edit, :update]
   before_action :set_company, only: [:new, :create, :edit, :update]
   before_action :check_owner, only: [:new, :create, :edit, :update]
-
-  def index
-    @event_pricings = @event_type.event_pricings
-    @company = @event_type.company
-  end
 
   def new
     @event_pricing = EventPricing.new
@@ -44,11 +39,7 @@ class EventPricingsController < ApplicationController
   private
 
   def set_company
-    if params[:company_id]
-      @company = Company.find(params[:company_id])
-    else
-      @company = @event_type.company
-    end
+    @company = @event_type.company
   end
 
   def set_event_type
