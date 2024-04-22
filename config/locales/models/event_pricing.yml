@@ -43,9 +43,9 @@ pt-BR:
     show:
       price: "Preços para %{name}"
       day_options:
-        weekday: Preço para Dias Úteis
-        weekend: Preço para Finais de Semana
-        holiday: Preço para Feriados
+        weekday: Dias Úteis
+        weekend: Finais de Semana
+        holiday: Feriados
       base_price: Preço Base
       base_attendees: Número Base de Convidados
       additional_attendee_price: Preço por Convidado Adicional

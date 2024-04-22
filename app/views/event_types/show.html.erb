@@ -1,78 +1,77 @@
 <h2 class="event-title fw-bolder"><%= @event_type.name %></h2>
-<div class="col-md-6 mb-4">
-<% if supplier_signed_in? && current_supplier == @company.supplier %>
-  <%= link_to t('views.edit.edit_event'), edit_event_type_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
-  <% if @event_type.event_pricings.count < 3 %>
-    <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
+<div class="container-fluid">
+  <% if supplier_signed_in? && current_supplier == @company.supplier %>
+    <%= link_to t('views.edit.edit_event'), edit_event_type_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
+    <% if @event_type.event_pricings.count < 3 %>
+      <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
+    <% end %>
   <% end %>
-<% end %>
   <div class="description-text">
     <%= @event_type.description %>
   </div>
-  <div class="custom-text-size">
-    <div class="row">
-      <div class="col-md-12">
-        <small>
-          <% if @event_type.on_site? %>
-            <div class="badge bg-primary">
-              <%= t('views.show.on_site') %>
-            </div>
-          <% end %>
-          <% if @event_type.off_site? %>
-            <div class="badge bg-primary">
-              <%= t('views.show.off_site') %>
-            </div>
-          <% end %>
-          <% if @event_type.any_site? %>
-            <div class="badge bg-primary">
-              <%= t('views.show.any_site') %>
-            </div>
-          <% end %>
-          <% if @event_type.parking_service_available? %>
-            <div class="badge bg-primary">
-              <%= t('views.show.parking_service_available') %>
-            </div>
-          <% end %>
-          <% if @event_type.decoration_available? %>
-            <div class="badge bg-primary">
-              <%= t('views.show.decoration_available') %>
-            </div>
-          <% end %>
-          <div class="mt-2">
-            <strong><%= t('views.show.attendees') %></strong>: <%= @event_type.min_attendees %> - <%= @event_type.max_attendees %><br>
-            <strong><%= t('views.show.duration') %></strong>: <%= @event_type.duration %> <%= t('views.show.minutes') %><br>
-            <strong><%= t('views.show.menu') %></strong>: <%= @event_type.menu_description %><br>
-            <h6 class="event-title fw-bolder"><%= t('views.show.price', name: @event_type.name) %></h6>
-            <% @event_type.event_pricings.each do |pricing| %>
-              <div class="col-md-12 mb-4">
-                <div class="card shadow border-0 rounded-4">
-                  <div class="card-body">
-                    <h6 class="price-title fw-bolder">
-                      <strong><%= t("views.show.day_options.#{pricing.day_options}") %></strong>
-                    </h6>
-                    <% if supplier_signed_in? && current_supplier == @company.supplier %>
-                      <%= link_to t('views.show.edit_prices'), edit_event_pricing_path(pricing), class: 'btn btn-outline-rosa mt-3 btn-sm' %>
-                    <% end %>
-                    <br>
-                    <strong><%= t('views.show.base_price') %>:</strong>
-                    <%= pricing.base_price %>
-                    <br>
-                    <strong><%= t('views.show.base_attendees') %>:</strong>
-                    <%= pricing.base_attendees %>
-                    <br>
-                    <strong><%= t('views.show.additional_attendee_price') %>:</strong>
-                    <%= pricing.additional_attendee_price %>
-                    <br>
-                    <strong><%= t('views.show.extra_hour_price') %>:</strong>
-                    <%= pricing.extra_hour_price %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </small>
+  <div>
+    <small>
+      <% if @event_type.on_site? %>
+        <div class="badge bg-primary">
+          <%= t('views.show.on_site') %>
+        </div>
+      <% end %>
+      <% if @event_type.off_site? %>
+        <div class="badge bg-primary">
+          <%= t('views.show.off_site') %>
+        </div>
+      <% end %>
+      <% if @event_type.any_site? %>
+        <div class="badge bg-primary">
+          <%= t('views.show.any_site') %>
+        </div>
+      <% end %>
+      <% if @event_type.parking_service_available? %>
+        <div class="badge bg-primary">
+          <%= t('views.show.parking_service_available') %>
+        </div>
+      <% end %>
+      <% if @event_type.decoration_available? %>
+        <div class="badge bg-primary">
+          <%= t('views.show.decoration_available') %>
+        </div>
+      <% end %>
+      <div class="mt-2">
+        <strong><%= t('views.show.attendees') %></strong>: <%= @event_type.min_attendees %> - <%= @event_type.max_attendees %><br>
+        <strong><%= t('views.show.duration') %></strong>: <%= @event_type.duration %> <%= t('views.show.minutes') %><br>
+        <strong><%= t('views.show.menu') %></strong>: <%= @event_type.menu_description %><br>
       </div>
+    <div class="row mt-4">
+      <h6 class="event-title fw-bolder"><%= t('views.show.price', name: @event_type.name) %></h6>
+      <% @event_type.event_pricings.each do |pricing| %>
+        <div class="col-md-4">
+          <div class="card shadow border-0 rounded-4">
+            <div class="card-body">
+              <h6 class="price-title fw-bolder">
+                <strong><%= t("views.show.day_options.#{pricing.day_options}") %></strong>
+              </h6>
+              <% if supplier_signed_in? && current_supplier == @company.supplier %>
+                <%= link_to t('views.show.edit_prices'), edit_event_pricing_path(pricing), class: 'btn btn-outline-rosa mt-3 btn-sm' %>
+              <% end %>
+              <br>
+              <strong><%= t('views.show.base_price') %>:</strong>
+              <%= pricing.base_price %>
+              <br>
+              <strong><%= t('views.show.base_attendees') %>:</strong>
+              <%= pricing.base_attendees %>
+              <br>
+              <strong><%= t('views.show.additional_attendee_price') %>:</strong>
+              <%= pricing.additional_attendee_price %>
+              <br>
+              <strong><%= t('views.show.extra_hour_price') %>:</strong>
+              <%= pricing.extra_hour_price %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
+    </small>
   </div>
+  <hr>
+  <%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>
 </div>
-<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>
