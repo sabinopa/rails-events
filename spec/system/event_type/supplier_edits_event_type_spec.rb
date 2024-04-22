@@ -41,6 +41,7 @@ describe 'Supplier edits event type' do
     within 'nav' do
       click_on 'Minha Empresa'
     end
+    click_on 'Ver detalhes'
     click_on 'Editar Evento'
 
     expect(current_path).to eq edit_event_type_path(event_type.id)
@@ -65,6 +66,7 @@ describe 'Supplier edits event type' do
     login_as(supplier, :scope => :supplier)
     visit company_path(company.id)
 
+    click_on 'Ver detalhes'
     click_on 'Editar Evento'
 
     expect(current_path).to eq edit_event_type_path(event_type.id)
