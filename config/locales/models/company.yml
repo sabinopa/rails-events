@@ -40,6 +40,7 @@ pt-BR:
       edit_company: Editar Empresa
       edit_event: Editar Evento
     show:
+      my_company: Minha Empresa
       create_event: Novo Tipo de Evento
       event_types: Tipos de Evento
       attendees: Número de convidados
@@ -52,5 +53,7 @@ pt-BR:
       any_site: 'Salão de festas da empresa ou salão de terceiros'
       parking_service_available: Possui estacionamento
       decoration_available: Fornece decoração
+      find_here: Encontre o buffet ideal para seu evento
+      see_more: Ver mais
       details: Ver detalhes
       new_price: Novo Preço

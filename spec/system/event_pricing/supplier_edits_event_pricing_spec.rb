@@ -139,7 +139,8 @@ describe 'Supplier edits event pricing' do
 
     expect(current_path).to eq event_type_path(supplier.reload.company.id)
     expect(page).to have_content 'Festa Temática de Piratas: Atualizado com sucesso!'
-    expect(page).to have_content 'Preço para Dias Úteis'
+    expect(page).to have_content 'Preços para Festa Temática de Piratas'
+    expect(page).to have_content 'Dias Úteis'
     expect(page).to have_content 'Preço Base: 800.0'
     expect(page).to have_content 'Preço por Convidado Adicional: 30.0'
     expect(page).to have_content 'Número Base de Convidados: 30'

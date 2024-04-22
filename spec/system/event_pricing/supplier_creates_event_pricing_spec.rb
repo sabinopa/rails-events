@@ -105,7 +105,8 @@ describe 'Supplier creates event pricing' do
     new_event_pricing = EventPricing.last
     expect(current_path).to eq event_type_path(new_event_pricing)
     expect(page).to have_content 'Novo preço criado com sucesso!'
-    expect(page).to have_content 'Preço para Dias Úteis'
+    expect(page).to have_content 'Preços para Festa Temática de Piratas'
+    expect(page).to have_content 'Dias Úteis'
     expect(page).to have_content 'Preço Base: 900.0'
     expect(page).to have_content 'Número Base de Convidados: 50'
     expect(page).to have_content 'Preço por Hora Extra: 75.0'
