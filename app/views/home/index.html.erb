@@ -14,14 +14,9 @@
           <div class="card-body p-4">
             <div class="text-center">
               <p class="text-primary fw-bolder mb-0">
-                <%= "#{company.brand_name}" %>
-                <small><%= "#{company.city}, #{company.state}" %></small>
+                <%= link_to "#{company.brand_name}", company_path(company) %>
               </p>
-            </div>
-          </div>
-          <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-              <%= link_to t('views.show.see_more'), company_path(company), class: 'btn btn-outline-rosa mt-2 btn-sm' %>
+                <div class="small text-muted"><small><%= "#{company.city}, #{company.state}" %></small></div>
             </div>
           </div>
         </div>

@@ -3,9 +3,9 @@
     <section>
       <div class="mb-4">
         <h2 class="text-primary fw-bolder mb-0"><%= @company.brand_name %></h2>
-        <h4 class="small text-muted"><%= @company.registration_number %></h4>
+        <h3 class="small text-muted"><%= @company.registration_number %></h4>
         <% if supplier_signed_in? && current_supplier.company.present? && current_supplier == @company.supplier %>
-          <h3 class="small text-muted"><%= @company.corporate_name %></h3>
+          <h4 class="small text-muted"><%= @company.corporate_name %></h3>
           <div>
             <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>
             <%= link_to t('views.edit.edit_company'), edit_company_path(@company), class: "btn btn-secondary" %>
