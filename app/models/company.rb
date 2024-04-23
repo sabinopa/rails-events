@@ -13,6 +13,6 @@ class Company < ApplicationRecord
     query = "%#{query_params}%"
     Company.left_joins(:event_types)
            .where("companies.brand_name LIKE :query OR companies.city LIKE :query OR event_types.name LIKE :query", query: query)
-           .distinct
+           .distinct.order(:brand_name)
   end
 end

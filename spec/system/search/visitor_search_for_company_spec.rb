@@ -173,6 +173,41 @@ describe 'User searches for a company' do
     expect(page).not_to have_link 'Casamento e Festa'
   end
 
+  it 'returns companies in alphabetical order by brand_name' do
+    supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Sonhos de Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
+                              registration_number: '23.444.567/0001-89', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
+                              address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
+                              description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
+
+    supplier2 = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet do Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
+                              registration_number: '23.444.567/0001-89', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
+                              address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
+                              description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
+
+    supplier3 = Supplier.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
+    company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
+                              registration_number: '34.555.678/0001-90', phone_number: '(11) 4455-6677', email: 'alegrias@festas.com.br',
+                              address: 'Avenida da Alegria, 750', neighborhood: 'Cidade Feliz', city: 'Curitiba', state: 'PR', zipcode: '07070-070',
+                              description: 'Especializados em eventos corporativos e sociais, Alegrias e Festas oferece experiências gastronômicas únicas.')
+
+    supplier4 = Supplier.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
+    company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Gourmet Celebration e Casamentos', corporate_name: 'Gourmet Celebration Buffet Ltda',
+                              registration_number: '45.666.789/0001-01', phone_number: '(11) 5566-7788', email: 'contato@gourmetcelebration.com',
+                              address: 'Praça dos Eventos, 300', neighborhood: 'Gourmet Ville', city: 'Salvador', state: 'BA', zipcode: '08080-080',
+                              description: 'Gourmet Celebration é sinônimo de elegância e sofisticação em buffets para casamentos e eventos corporativos.')
+
+    visit root_path
+    fill_in 'Busque aqui...', with: 'Casamento'
+    click_on 'Buscar'
+
+    results = Company.search('Casamento').map(&:brand_name)
+    expected_results = [company1, company3, company2, company4].map(&:brand_name).sort
+
+    expect(results).to eq(expected_results)
+  end
+
   it 'and does not find any company' do
     visit root_path
     fill_in 'Busque aqui...', with: 'Salvador'
