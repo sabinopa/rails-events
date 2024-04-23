@@ -15,7 +15,12 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: 'exemplo@email.com'  %>
+    <%= f.email_field :email, autocomplete: "email", placeholder: 'exemplo@email.com' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :document_number %><br />
+    <%= f.text_field :document_number, autocomplete: "document_number", placeholder: '000.000.000-00' %>
   </div>
 
   <div class="field">

@@ -12,12 +12,22 @@
         <li class="nav-item">
           <%= render 'layouts/supplier_authenticated' %>
         </li>
+      <% elsif client_signed_in? %>
+        <li class="nav-item">
+          <%= render 'layouts/client_authenticated' %>
+        </li>
       <% else %>
+        <li class="nav-item">
+          <%= link_to t('helpers.submit.client_sign_in'), new_client_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('helpers.submit.supplier_sign_in'), new_supplier_registration_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to t('helpers.submit.supplier_log_in'), new_supplier_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to t('helpers.submit.supplier_sign_in'), new_supplier_registration_path, class: "nav-link" %>
+          <%= link_to t('helpers.submit.client_log_in'), new_client_session_path, class: "nav-link" %>
         </li>
       <% end %>
     </ul>

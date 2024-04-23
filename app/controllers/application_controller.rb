@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :lastname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :lastname, :email, :document_number, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :lastname, :email, :document_number, :password, :password_confirmation, :current_password])
   end
 
   def force_company_creation_for_suppliers

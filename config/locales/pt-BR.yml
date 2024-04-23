@@ -108,6 +108,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      document_number_format: "deve ter 11 números."
       accepted: deve ser aceito
       blank: não pode ficar em branco
       confirmation: não é igual a %{attribute}
@@ -152,8 +153,10 @@ pt-BR:
     submit:
       sign_in: Criar conta
       supplier_sign_in: Seja um Fornecedor
+      client_sign_in: Seja um Cliente
       log_in: Entrar
       supplier_log_in: Entrar como Fornecedor
+      client_log_in: Entrar como Cliente
       log_out: Sair
       create: Criar
       submit: Salvar
