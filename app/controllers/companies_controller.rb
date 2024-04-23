@@ -43,6 +43,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def search
+    @query_params = params["query"]
+    @companies = Company.search(@query_params)
+  end
+
   private
 
   def company_params

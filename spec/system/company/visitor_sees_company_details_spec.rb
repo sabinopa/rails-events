@@ -13,6 +13,7 @@ describe 'Visitor sees company details' do
                               company.payment_methods << [pix, credito, debito]
     visit root_path
     click_on 'Buffet dos Sonhos'
+
     expect(current_path).to eq company_path(company.id)
     expect(page).to have_content 'Buffet dos Sonhos'
     expect(page).to have_content 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.'

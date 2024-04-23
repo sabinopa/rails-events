@@ -4,7 +4,7 @@ describe 'Supplier creates an account' do
   it 'successfully' do
     visit root_path
     click_on 'Seja um Fornecedor'
-    within 'form' do
+    within 'main form' do
       fill_in 'Nome', with: 'Priscila'
       fill_in 'Sobrenome', with: 'Sabino'
       fill_in 'E-mail', with: 'priscila@email.com'

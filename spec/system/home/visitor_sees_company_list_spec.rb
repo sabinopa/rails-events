@@ -34,15 +34,15 @@ describe 'Visitor sees companies list' do
 
     visit root_path
 
-    expect(page).to have_content 'Estrelas Mágicas'
+    expect(page).to have_link 'Estrelas Mágicas'
     expect(page).to have_content 'São Paulo, SP'
-    expect(page).to have_content 'Buffet dos Sonhos'
+    expect(page).to have_link 'Buffet dos Sonhos'
     expect(page).to have_content 'Rio de Janeiro, RJ'
-    expect(page).to have_content 'Alegrias e Festas'
+    expect(page).to have_link 'Alegrias e Festas'
     expect(page).to have_content 'Curitiba, PR'
-    expect(page).to have_content 'Gourmet Celebration'
+    expect(page).to have_link 'Gourmet Celebration'
     expect(page).to have_content 'Salvador, BA'
-    expect(page).to have_content 'Buffet Encantado'
+    expect(page).to have_link 'Buffet Encantado'
     expect(page).to have_content 'Belo Horizonte, MG'
   end
 end

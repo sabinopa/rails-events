@@ -1,0 +1,15 @@
+<h3><%= t('views.search.results') %> <%= @query_params %></h3>
+
+<% if @companies.empty? %>
+    <p><%= t('views.search.none_found') %></p>
+<% else %>
+  <div>
+    <p><%= t('views.search.count_companies', count_companies: @companies.count) %></p>
+<% @companies.each do |company| %>
+  <span><%= link_to company.brand_name, company_path(company.id) %></span><br>
+<% end %>
+  </div>
+<% end %>
+  <hr>
+  <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
+</div>

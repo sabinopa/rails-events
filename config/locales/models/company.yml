@@ -31,6 +31,8 @@ pt-BR:
     update:
       success: "%{brand_name}: Atualizado com sucesso!"
       error: Não foi possível atualizar os dados da empresa.
+    search:
+      error: Nenhuma empresa encontrada, tente novamente.
   views:
     new:
       register: Cadastre sua empresa
@@ -57,3 +59,7 @@ pt-BR:
       see_more: Ver mais
       details: Ver detalhes
       new_price: Novo Preço
+    search:
+      results: 'Resultados da busca por:'
+      count_companies: '%{count_companies} empresas encontradas!'
+      none_found: 'Nenhuma empresa encontrada.'

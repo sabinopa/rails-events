@@ -10,27 +10,9 @@
     <%= stylesheet_link_tag "application" %>
   </head>
   <body class="d-flex flex-column h-100">
+    <%= render 'layouts/navbar' %>
     <main class="flex-shrink-0">
       <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-          <%= link_to t('views.home.cade_buffet'), root_path, class: "navbar-brand" %>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-              <% if supplier_signed_in? %>
-                <li class="nav-item">
-                  <%= render 'layouts/supplier_authenticated' %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to t('helpers.submit.supplier_log_in'), new_supplier_session_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to t('helpers.submit.supplier_sign_in'), new_supplier_registration_path, class: "nav-link" %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
         <% if alert %>
           <div class="alert alert-danger" role="alert"><%= alert %></div>
         <% end %>

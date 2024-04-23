@@ -4,7 +4,8 @@ class HomeController < ApplicationController
   def index
     if supplier_signed_in?
       @company = current_supplier.company
+    else
+      @companies = Company.all
     end
-    @companies = Company.all
   end
 end

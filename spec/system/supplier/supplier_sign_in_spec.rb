@@ -12,7 +12,7 @@ describe 'Supplier authenticates' do
                               company.payment_methods << [pix, debito]
     visit root_path
     click_on 'Entrar como Fornecedor'
-    within 'form' do
+    within 'main form' do
       fill_in 'E-mail', with: 'priscila@email.com'
       fill_in 'Senha', with: '12345678'
       click_on 'Entrar'
