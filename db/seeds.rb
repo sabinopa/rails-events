@@ -19,6 +19,15 @@ livia = Supplier.create(name: 'Livia', lastname: 'Alves', email: 'livia@email.co
 
 p "Created #{Supplier.count} suppliers"
 
+# Clientes
+joao = Client.create(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '123.456.789-00', password: 'senha123')
+maria = Client.create(name: 'Maria', lastname: 'Fernandes', email: 'maria@email.com', document_number: '987.654.321-00', password: 'senha321')
+carlos = Client.create(name: 'Carlos', lastname: 'Machado', email: 'carlos@email.com', document_number: '456.789.123-00', password: 'senha456')
+ana = Client.create(name: 'Ana', lastname: 'Pereira', email: 'ana@email.com', document_number: '321.654.987-00', password: 'senha654')
+lucas = Client.create(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com', document_number: '234.567.890-00', password: 'senha234')
+
+p "Created #{Client.count} clients"
+
 # Empresas
 celebracao_alegre = Company.create(supplier_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
                                   registration_number: '12.345.678/0001-99',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
@@ -62,7 +71,7 @@ casamento = EventType.create(company_id: celebracao_alegre.id, name: 'Casamento 
 corporativo = EventType.create(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
                             description: 'Nossa Gala Corporativa Elegante é a escolha perfeita para empresas que desejam impressionar. Oferecemos um ambiente sofisticado, com serviço de buffet de alto padrão, apresentações audiovisuais de última geração e uma equipe pronta para atender todas as necessidades empresariais.',
                             min_attendees: 100, max_attendees: 500, duration: 300,
-                            menu_description: 'Um buffet exclusivo que inclui canapés gourmet, estações de comida ao vivo, pratos internacionais elaborados e uma ampla seleção de bebidas premium, incluindo coquetéis personalizados e vinhos selecionados.',
+                            menu_description: 'Um buffet exclusivo que inclui canapés gourmet, estações de comida ao vivo, pratos internacionais elaborados e uma ampla seleção de bebidas holiday, incluindo coquetéis personalizados e vinhos selecionados.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
 
 # Para a empresa Festim dos Sonhos
@@ -101,7 +110,7 @@ casamento_luxo = EventType.create(company_id: banquete_real.id, name: 'Cerimôni
 gala_premiacao = EventType.create(company_id: banquete_real.id, name: 'Gala de Premiação Estelar',
                             description: 'Ideal para eventos de premiação e celebrações corporativas, a Gala de Premiação Estelar oferece um ambiente sofisticado e serviços de primeira linha. Nosso buffet de gala é acompanhado de uma decoração impecável, criando um cenário perfeito para homenagear os conquistadores da noite.',
                             min_attendees: 150, max_attendees: 1000, duration: 360,
-                            menu_description: 'Um esplêndido buffet composto por estações de comida internacional, pratos assinados por chefs renomados, e uma extensa carta de vinhos e coquetéis premium.',
+                            menu_description: 'Um esplêndido buffet composto por estações de comida internacional, pratos assinados por chefs renomados, e uma extensa carta de vinhos e coquetéis holiday.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
 
 # Para a empresa Sabores do Mundo
@@ -118,5 +127,128 @@ food_truck = EventType.create(company_id: sabores_mundo.id, name: 'Festival Inte
                             alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1)
 
 p "Created #{EventType.count} event types"
+
+# Pricing para Casamentos no Fim de Semana da empresa Celebração Alegre
+weekend_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1200.0, base_attendees: 50,
+                                      additional_attendee_price: 100.0, extra_hour_price: 100.0, day_options: :weekend)
+
+# Pricing para Casamentos durante a Semana
+weekday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 800.0, base_attendees: 50,
+                                      additional_attendee_price: 75.0,extra_hour_price: 80.0, day_options: :weekday)
+
+# Pricing Premium para Casamentos em Feriados
+holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
+                                      additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
+
+# Pricing para Galas Corporativas durante a Semana
+weekday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, base_price: 2000.0, base_attendees: 100,
+                                                additional_attendee_price: 80.0,extra_hour_price: 150.0, day_options: :weekday)
+
+# Pricing para Galas Corporativas no Fim de Semana
+weekend_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, base_price: 2500.0, base_attendees: 100,
+                                                additional_attendee_price: 100.0,extra_hour_price: 200.0, day_options: :weekend)
+
+# Pricing Premium para Galas Corporativas em Feriados
+holiday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id,base_price: 3000.0, base_attendees: 100,
+                                                additional_attendee_price: 120.0, extra_hour_price: 250.0,day_options: :holiday)
+
+# Pricing para Jantares Gourmet durante a Semana
+weekday_gourmet_pricing = EventPricing.create!(event_type_id: jantar_gourmet.id, base_price: 1800.0, base_attendees: 20,
+                                              additional_attendee_price: 90.0, extra_hour_price: 100.0, day_options: :weekday)
+
+# Pricing para Jantares Gourmet no Fim de Semana
+weekend_gourmet_pricing = EventPricing.create!(event_type_id: jantar_gourmet.id, base_price: 2200.0, base_attendees: 20,
+                                              additional_attendee_price: 110.0, extra_hour_price: 150.0, day_options: :weekend)
+
+# Pricing Premium para Jantares Gourmet em Feriados
+holiday_gourmet_pricing = EventPricing.create!(event_type_id: jantar_gourmet.id, base_price: 2500.0, base_attendees: 20,
+                                              additional_attendee_price: 120.0, extra_hour_price: 200.0, day_options: :holiday)
+
+# Pricing para Brunch Empresarial durante a Semana
+weekday_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_network.id, base_price: 1500.0, base_attendees: 50,
+                                                        additional_attendee_price: 30.0, extra_hour_price: 70.0, day_options: :weekday)
+
+# Pricing para Brunch Empresarial no Fim de Semana
+weekend_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_network.id, base_price: 1800.0, base_attendees: 50,
+                                                        additional_attendee_price: 40.0,extra_hour_price: 90.0, day_options: :weekend)
+
+# Pricing Premium para Brunch Empresarial em Feriados
+holiday_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_network.id, base_price: 2000.0, base_attendees: 50,
+                                                        additional_attendee_price: 50.0, extra_hour_price: 100.0, day_options: :holiday)
+
+# Pricing para Noite de Degustação Orgânica durante a Semana
+weekday_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_organica.id, base_price: 1600.0, base_attendees: 20,
+                                                      additional_attendee_price: 80.0, extra_hour_price: 100.0, day_options: :weekday)
+
+# Pricing para Noite de Degustação Orgânica no Fim de Semana
+weekend_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_organica.id, base_price: 2000.0, base_attendees: 20,
+                                                      additional_attendee_price: 100.0,extra_hour_price: 120.0, day_options: :weekend)
+
+# Pricing Premium para Noite de Degustação Orgânica em Feriados
+holiday_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_organica.id,base_price: 2400.0,base_attendees: 20,
+                                                      additional_attendee_price: 120.0, extra_hour_price: 150.0,day_options: :holiday)
+
+# Pricing para Piquenique Gourmet durante a Semana
+weekday_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base_price: 1200.0, base_attendees: 10,
+                                              additional_attendee_price: 50.0,extra_hour_price: 50.0, day_options: :weekday)
+
+# Pricing para Piquenique Gourmet no Fim de Semana
+weekend_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base_price: 1500.0, base_attendees: 10,
+                                              additional_attendee_price: 70.0,extra_hour_price: 75.0, day_options: :weekend)
+
+# Pricing Premium para Piquenique Gourmet em Feriados
+holiday_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base_price: 1800.0, base_attendees: 10,
+                                              additional_attendee_price: 100.0,extra_hour_price: 100.0, day_options: :holiday)
+
+# Pricing para Cerimônia de Casamento Luxuosa durante a Semana
+weekday_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 5000.0, base_attendees: 100,
+                                                      additional_attendee_price: 150.0,extra_hour_price: 200.0, day_options: :weekday)
+
+# Pricing para Cerimônia de Casamento Luxuosa no Fim de Semana
+weekend_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 7000.0, base_attendees: 100,
+                                                      additional_attendee_price: 200.0,extra_hour_price: 250.0, day_options: :weekend)
+
+# Pricing Premium para Cerimônia de Casamento Luxuosa em Feriados
+holiday_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 9000.0, base_attendees: 100,
+                                                      additional_attendee_price: 250.0,extra_hour_price: 300.0, day_options: :holiday)
+
+# Pricing para Gala de Premiação durante a Semana
+weekday_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.id, base_price: 8000.0, base_attendees: 150,
+                                                  additional_attendee_price: 100.0,extra_hour_price: 500.0, day_options: :weekday)
+
+# Pricing para Gala de Premiação no Fim de Semana
+weekend_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.id, base_price: 10000.0, base_attendees: 150,
+                                                  additional_attendee_price: 150.0,extra_hour_price: 600.0, day_options: :weekend)
+
+# Pricing Premium para Gala de Premiação em Feriados
+holiday_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.id, base_price: 12000.0, base_attendees: 150,
+                                                  additional_attendee_price: 200.0,extra_hour_price: 700.0, day_options: :holiday)
+
+# Pricing para Noite Gastronômica durante a Semana
+weekday_global_dining_pricing = EventPricing.create!(event_type_id: noite_gastronomica.id, base_price: 3000.0, base_attendees: 50,
+                                                    additional_attendee_price: 80.0,extra_hour_price: 200.0, day_options: :weekday)
+
+# Pricing para Noite Gastronômica no Fim de Semana
+weekend_global_dining_pricing = EventPricing.create!(event_type_id: noite_gastronomica.id, base_price: 3500.0, base_attendees: 50,
+                                                    additional_attendee_price: 100.0,extra_hour_price: 250.0, day_options: :weekend)
+
+# Pricing Premium para Noite Gastronômica em Feriados
+holiday_global_dining_pricing = EventPricing.create!(event_type_id: noite_gastronomica.id,base_price: 4000.0,base_attendees: 50,
+                                                    additional_attendee_price: 120.0,extra_hour_price: 300.0,day_options: :holiday)
+
+# Pricing para Festival de Food Trucks durante a Semana
+weekday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 2500.0, base_attendees: 100,
+                                                          additional_attendee_price: 20.0,extra_hour_price: 150.0, day_options: :weekday)
+
+# Pricing para Festival de Food Trucks no Fim de Semana
+weekend_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3000.0, base_attendees: 100,
+                                                          additional_attendee_price: 25.0,extra_hour_price: 200.0, day_options: :weekend)
+
+# Pricing Premium para Festival de Food Trucks em Feriados
+holiday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3500.0, base_attendees: 100,
+                                                          additional_attendee_price: 30.0,extra_hour_price: 250.0, day_options: :holiday)
+
+p "Created #{EventPricing.count} event types"
+
 p "All done! :)"
 

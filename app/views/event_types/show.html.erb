@@ -43,6 +43,10 @@
       </div>
     <div class="row mt-4">
       <h6 class="event-title fw-bolder"><%= t('views.show.price', name: @event_type.name) %></h6>
+        <% if @event_type.event_pricings.empty? %>
+        <p><%= t('views.show.no_prices_registered')%></p>
+        <br>
+        <% end %>
       <% @event_type.event_pricings.each do |pricing| %>
         <div class="col-md-4">
           <div class="card shadow border-0 rounded-4">
@@ -53,7 +57,6 @@
               <% if supplier_signed_in? && current_supplier == @company.supplier %>
                 <%= link_to t('views.show.edit_prices'), edit_event_pricing_path(pricing), class: 'btn btn-outline-rosa mt-3 btn-sm' %>
               <% end %>
-              <br>
               <strong><%= t('views.show.base_price') %>:</strong>
               <%= pricing.base_price %>
               <br>

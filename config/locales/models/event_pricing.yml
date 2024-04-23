@@ -50,6 +50,7 @@ pt-BR:
       base_attendees: Número Base de Convidados
       additional_attendee_price: Preço por Convidado Adicional
       extra_hour_price: Preço por Hora Extra
+      no_prices_registered: Ainda não há preços cadastrados para esse evento.
     edit:
       edit_prices: "Edite os valores de %{name}"
 
