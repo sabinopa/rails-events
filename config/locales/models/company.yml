@@ -60,6 +60,8 @@ pt-BR:
       details: Ver detalhes
       new_price: Novo Preço
     search:
-      results: 'Resultados da busca por:'
+      search: Buscar
+      search_here: 'Busque aqui...'
+      results: 'Resultados da busca por: %{query}'
       count_companies: '%{count_companies} empresas encontradas!'
       none_found: 'Nenhuma empresa encontrada.'

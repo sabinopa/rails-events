@@ -1,13 +1,27 @@
-<h3><%= t('views.search.results') %> <%= @query_params %></h3>
+<h4 class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.results', query: @query_params) %></h4>
 
 <% if @companies.empty? %>
-    <p><%= t('views.search.none_found') %></p>
+    <p class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.none_found') %></p>
 <% else %>
-  <div>
-    <p><%= t('views.search.count_companies', count_companies: @companies.count) %></p>
-<% @companies.each do |company| %>
-  <span><%= link_to company.brand_name, company_path(company.id) %></span><br>
-<% end %>
+  <div class="container px-2 px-lg-5 mt-5">
+    <p class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.count_companies', count_companies: @companies.count) %></p>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <% @companies.each do |company| %>
+        <div class="col mb-5">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="<%= company.brand_name %>" />
+            <div class="card-body p-4">
+              <div class="text-center">
+                <p class="text-primary fw-bolder mb-0">
+                  <%= link_to company.brand_name, company_path(company) %><br>
+                  <div class="small text-muted"><small><%= "#{company.city}, #{company.state}" %></small></div>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
   <hr>

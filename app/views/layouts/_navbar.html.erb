@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
   <%= link_to t('views.home.cade_buffet'), root_path, class: "navbar-brand" %>
   <div class="collapse navbar-collapse">
-  <%= form_with url: search_companies_path, method: :get do |form| %>
-    <%= form.text_field :query, placeholder: "Busque aqui..." %>
-    <%= form.submit "Buscar" %>
-  <% end %>
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <%= form_with url: search_companies_path, method: :get, class: "d-flex" do |form| %>
+        <%= form.text_field :query, placeholder: t('views.search.search_here'), class: "form-control bg-light border-0 small custom-text-size" %>
+        <%= form.submit t('views.search.search'), class: "btn btn-outline-rosa btn-sm ml-2" %>
+      <% end %>
+    </div>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
       <% if supplier_signed_in? %>
         <li class="nav-item">
