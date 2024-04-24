@@ -57,6 +57,10 @@
     <%= form.label :location_type %>:
     <%= form.select :location_type, options_for_select(EventType.location_types.map { |key, _| [I18n.t("event_type.#{key}"), key] }, @event_type.location_type), {}, { class: 'select' } %>
   </div>
+  <div>
+    <%= form.label :picture %>:
+    <%= form.file_field :pictures, multiple: true %>
+  </div>
 
   <%= form.submit t('helpers.submit.submit') %>
 <% end %>

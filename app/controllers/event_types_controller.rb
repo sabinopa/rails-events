@@ -55,7 +55,7 @@ class EventTypesController < ApplicationController
                                       :max_attendees, :duration, :menu_description,
                                       :alcohol_available, :decoration_available,
                                       :parking_service_available,
-                                      :location_type, :company_id)
+                                      :location_type, :pictures, :company_id)
   end
 
   def check_owner

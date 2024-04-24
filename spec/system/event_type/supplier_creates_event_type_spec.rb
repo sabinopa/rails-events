@@ -86,6 +86,7 @@ describe 'Supplier creates event type' do
     check 'Decoração'
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
+    attach_file 'Fotos', Rails.root.join('spec', 'support', 'contos_de_terramar.jpg')
     click_on 'Salvar'
 
     new_event_type = EventType.last
@@ -97,6 +98,7 @@ describe 'Supplier creates event type' do
     expect(page).to have_content 'Fornece decoração'
     expect(page).to have_content 'Possui estacionamento'
     expect(page).to have_content 'Salão de festas da empresa'
+    expect(page).to have_css('img[src*="contos_de_terramar.jpg"]')
   end
 
   it 'with incomplete data' do

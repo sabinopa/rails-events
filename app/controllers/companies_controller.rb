@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
-  before_action :force_company_creation_for_suppliers, only: [:show]
+  before_action :force_company_creation_for_suppliers, only: [:show, :search, :edit, :update]
   before_action :check_owner, only: [:edit, :update]
 
   def show
