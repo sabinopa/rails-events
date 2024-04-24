@@ -108,7 +108,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
-      document_number_format: "deve ter 11 números."
+      document_number_format: 'não é válido. Reescreva no formato específico (000.000.000-00).'
       accepted: deve ser aceito
       blank: não pode ficar em branco
       confirmation: não é igual a %{attribute}

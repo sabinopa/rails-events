@@ -41,4 +41,21 @@ describe 'Client creates an account' do
     expect(page).to have_content 'Não foi possível salvar cliente: 1 erro'
     expect(page).to have_content 'CPF já está em uso'
   end
+
+  it 'document number must follow the specified format' do
+    visit root_path
+    click_on 'Seja um Cliente'
+    within 'main form' do
+      fill_in 'Nome', with: 'Priscila'
+      fill_in 'Sobrenome', with: 'Sabino'
+      fill_in 'CPF', with: '12345678923'
+      fill_in 'E-mail', with: 'pri@email.com'
+      fill_in 'Senha', with: '12345678'
+      fill_in 'Confirme sua senha', with: '12345678'
+      click_on 'Criar conta'
+    end
+
+    expect(page).to have_content 'Não foi possível salvar cliente: 1 erro'
+    expect(page).to have_content 'CPF não é válido. Reescreva no formato específico (000.000.000-00).'
+  end
 end
