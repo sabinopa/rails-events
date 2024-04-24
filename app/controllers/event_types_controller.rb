@@ -51,11 +51,11 @@ class EventTypesController < ApplicationController
 
 
   def event_type_params
-    params.require(:event_type).permit(:name, :description, :min_attendees,
+    params.require(:event_type).permit(:company_id, :name, :description, :min_attendees,
                                       :max_attendees, :duration, :menu_description,
                                       :alcohol_available, :decoration_available,
                                       :parking_service_available,
-                                      :location_type, :pictures, :company_id)
+                                      :location_type, photos: [])
   end
 
   def check_owner

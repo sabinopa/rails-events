@@ -56,6 +56,7 @@ describe 'Supplier creates event type' do
     expect(page).to have_field 'Máximo de convidados'
     expect(page).to have_field 'Duração'
     expect(page).to have_field 'Menu'
+    expect(page).to have_field 'Fotos'
     expect(page).to have_content 'Bebidas alcoólicas'
     expect(page).to have_content 'Decoração'
     expect(page).to have_content 'Estacionamento'
@@ -86,7 +87,7 @@ describe 'Supplier creates event type' do
     check 'Decoração'
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
-    attach_file 'Fotos', Rails.root.join('spec', 'support', 'contos_de_terramar.jpg')
+    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
     click_on 'Salvar'
 
     new_event_type = EventType.last
@@ -98,7 +99,49 @@ describe 'Supplier creates event type' do
     expect(page).to have_content 'Fornece decoração'
     expect(page).to have_content 'Possui estacionamento'
     expect(page).to have_content 'Salão de festas da empresa'
-    expect(page).to have_css('img[src*="contos_de_terramar.jpg"]')
+    expect(page).to have_css('img[src*="festa_aniversario_tematica.jpg"]')
+  end
+
+  it 'and add several photos' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    debito = PaymentMethod.create!(method: 'Cartão de Débito')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            company.payment_methods << [pix, credito, debito]
+    login_as(supplier, :scope => :supplier)
+    visit new_company_event_type_path(company)
+
+    fill_in 'Nome', with: 'Festa de Aniversário Temática'
+    fill_in 'Descrição', with: 'Uma festa de aniversário inesquecível com decoração temática à escolha do cliente. Inclui animação, jogos, e um bolo personalizado conforme o tema.'
+    fill_in 'Mínimo de convidados', with: '20'
+    fill_in 'Máximo de convidados', with: '100'
+    fill_in 'Duração', with: '180'
+    fill_in 'Menu', with: 'Buffet completo com opções de salgadinhos, doces tradicionais e personalizados conforme o tema, além de bebidas não alcoólicas.'
+    uncheck 'Bebidas alcoólicas'
+    check 'Decoração'
+    check 'Estacionamento'
+    select 'Salão de festas da empresa', from: 'Local'
+    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
+    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg')
+    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')
+    click_on 'Salvar'
+
+    new_event_type = EventType.last
+    expect(current_path).to eq event_type_path(new_event_type)
+    expect(page).to have_content 'Festa de Aniversário Temática: Criado com sucesso!'
+    expect(page).to have_content 'Número de convidados: 20 - 100'
+    expect(page).to have_content 'Duração: 180 minutos'
+    expect(page).to have_content 'Menu: Buffet completo com opções de salgadinhos, doces tradicionais e personalizados conforme o tema, além de bebidas não alcoólicas.'
+    expect(page).to have_content 'Fornece decoração'
+    expect(page).to have_content 'Possui estacionamento'
+    expect(page).to have_content 'Salão de festas da empresa'
+    expect(page).to have_css('img[src*="festa_aniversario_tematica.jpg"]')
+    expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
+    expect(page).to have_css('img[src*="festa_aniversario_decoracao.jpg"]')
   end
 
   it 'with incomplete data' do
