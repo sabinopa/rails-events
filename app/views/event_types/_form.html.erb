@@ -59,18 +59,23 @@
   </div>
   <br>
   <div>
-    <%= form.label :photos %>:
-    <br>
-    <% if @event_type.photos.attached? %>
-      <% @event_type.photos.each do |photo| %>
-        <% form.hidden_field :photos, multiple: true, value: photo.signed_id %>
-        <%= image_tag(photo, class: 'event-image') %>
-      <% end %>
-    <% end %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
+  <%= form.label :photos %>:
+  <% @event_type.photos.each do |photo| %>
+    <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
+  <% end %>
+  <%= form.file_field :photos, multiple: true %>
+  <div>
   <br>
   <%= form.submit t('helpers.submit.submit') %>
 <% end %>
+<br>
+<% if @event_type.photos.attached? %>
+  <h2 class="text-primary fw-bolder mb-0"><%= t('views.edit.event_photos') %></h2>
+  <% @event_type.photos.each do |photo| %>
+    <%= image_tag(photo, class: 'event-image') %>
+    <%= button_to t('helpers.submit.delete'), remove_photo_event_type_path(@event_type, photo_id: photo.id), method: :delete %>
+  <% end %>
+<% end %>
+
 <hr />
 <%= link_to t('helpers.buttons.back'), company_path(@company) %>

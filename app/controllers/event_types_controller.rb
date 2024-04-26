@@ -1,12 +1,13 @@
 class EventTypesController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
-  before_action :set_event_type, only: [:edit, :update, :show]
-  before_action :set_company, only: [:new, :create, :edit, :update]
-  before_action :check_owner, only: [:new, :create, :edit, :update]
+  before_action :set_event_type, only: [:edit, :update, :show, :remove_photo]
+  before_action :set_company, only: [:new, :create, :edit, :update, :remove_photo]
+  before_action :check_owner, only: [:new, :create, :edit, :update, :remove_photo]
 
   def show
     @company = @event_type.company
   end
+
   def new
     @event_type = EventType.new
   end
@@ -33,6 +34,12 @@ class EventTypesController < ApplicationController
       flash.now[:alert] = t('.error')
       render :edit
     end
+  end
+
+  def remove_photo
+    @photo = ActiveStorage::Attachment.find(params[:photo_id])
+    @photo.purge
+    redirect_to edit_event_type_path(@event_type)
   end
 
   private

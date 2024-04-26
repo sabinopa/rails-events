@@ -16,7 +16,7 @@ pt-BR:
         decoration_available: Decoração
         parking_service_available: Estacionamento
         location_type: Local da festa
-        photos: Fotos
+        photos: Adicionar fotos
   event_type:
     on_site: 'Salão de festas da empresa'
     any_site: 'Salão de festas da empresa ou salão de terceiros'
@@ -42,7 +42,8 @@ pt-BR:
     new:
       new_event_type: "Criar novo tipo de evento para %{brand_name}"
     edit:
-      edit_event_type: Editar Evento
+      edit_event_type: 'Editar %{name}'
+      event_photos: Fotos do evento
     show:
       see: "%{name}"
       minutes: minutos

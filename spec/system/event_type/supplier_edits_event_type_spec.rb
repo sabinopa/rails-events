@@ -91,7 +91,7 @@ describe 'Supplier edits event type' do
     login_as(supplier, :scope => :supplier)
     visit edit_event_type_path(event_type.id)
 
-    expect(page).to have_content 'Editar Evento'
+    expect(page).to have_content 'Editar Festa Temática de Piratas'
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Mínimo de convidados'
@@ -102,6 +102,7 @@ describe 'Supplier edits event type' do
     expect(page).to have_content 'Decoração'
     expect(page).to have_content 'Estacionamento'
     expect(page).to have_content 'Local da festa'
+    expect(page).to have_content 'Adicionar fotos'
     expect(page).to have_button 'Salvar'
   end
 
@@ -132,6 +133,7 @@ describe 'Supplier edits event type' do
     fill_in 'Menu', with: 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.'
     check 'Estacionamento'
     select 'Salão de festas da empresa'
+    attach_file 'Adicionar fotos', Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg')
     click_on 'Salvar'
 
     expect(current_path).to eq event_type_path(supplier.reload.company.id)
@@ -142,6 +144,34 @@ describe 'Supplier edits event type' do
     expect(page).to have_content 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.'
     expect(page).to have_content 'Possui estacionamento'
     expect(page).to have_content 'Salão de festas da empresa'
+    expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
+  end
+
+  it 'and delete photo' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    debito = PaymentMethod.create!(method: 'Cartão de Débito')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            company.payment_methods << [pix, credito, debito]
+    event_type = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            event_type.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+
+    login_as(supplier, :scope => :supplier)
+    visit edit_event_type_path(event_type.id)
+
+    click_on 'Remover'
+    click_on 'Salvar'
+
+    expect(current_path).to eq event_type_path(supplier.reload.company.id)
+    expect(page).not_to have_css('img[src*="festa_aniversario_decoracao.jpg"]')
   end
 
   it 'with incomplete data' do
@@ -191,11 +221,6 @@ describe 'Supplier edits event type' do
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company_priscila.payment_methods << [pix, credito, debito]
-    event_type_priscila = EventType.create!(company_id: company_priscila.id, name: 'Festa Temática de Piratas',
-                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
-                            min_attendees: 20, max_attendees: 50, duration: 240,
-                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     company_pedro = Company.create(supplier_id: pedro.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
                             registration_number: '01.234.567/0001-89',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
                             address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',

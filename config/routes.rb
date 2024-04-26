@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get 'search', on: :collection
 
     resources :event_types, only: [:new, :create, :show, :edit, :update] do
+      member do
+        delete :remove_photo
+      end
       resources :event_pricings, only: [:new, :create, :show, :edit, :update]
     end
   end

@@ -56,7 +56,7 @@ describe 'Supplier creates event type' do
     expect(page).to have_field 'Máximo de convidados'
     expect(page).to have_field 'Duração'
     expect(page).to have_field 'Menu'
-    expect(page).to have_field 'Fotos'
+    expect(page).to have_field 'Adicionar fotos'
     expect(page).to have_content 'Bebidas alcoólicas'
     expect(page).to have_content 'Decoração'
     expect(page).to have_content 'Estacionamento'
@@ -87,7 +87,7 @@ describe 'Supplier creates event type' do
     check 'Decoração'
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
-    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
+    attach_file 'Adicionar fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
     click_on 'Salvar'
 
     new_event_type = EventType.last
@@ -125,9 +125,11 @@ describe 'Supplier creates event type' do
     check 'Decoração'
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
-    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
-    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg')
-    attach_file 'Fotos', Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')
+    attach_file 'Adicionar fotos', [
+      Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg'),
+      Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg'),
+      Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')
+    ]
     click_on 'Salvar'
 
     new_event_type = EventType.last
