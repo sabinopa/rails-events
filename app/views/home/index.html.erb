@@ -3,6 +3,7 @@
     <%= link_to t('views.show.my_company'), company_path(@company), class: "btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" %>
   </div>
 <% end %>
+
 <% if @companies.present? %>
   <div class="container px-2 px-lg-5 mt-5">
     <h4 class="text-primary fw-bolder mb-4 text-center"><%= t('views.show.find_here') %></h4>
@@ -10,13 +11,18 @@
       <% @companies.each do |company| %>
         <div class="col mb-5">
           <div class="card h-100">
-            <img class="card-img-top" src="https://shorturl.at/kGN46" alt="Imagem da Empresa" />
+            <% if company.event_types.any? %>
+              <% first_photo = company.event_types.first.photos.first %>
+              <% if first_photo %>
+                <%= image_tag first_photo, class: 'event-image' %>
+              <% end %>
+            <% end %>
             <div class="card-body p-4">
               <div class="text-center">
                 <p class="text-primary fw-bolder mb-0">
                   <%= link_to "#{company.brand_name}", company_path(company) %>
                 </p>
-                  <div class="small text-muted"><small><%= "#{company.city}, #{company.state}" %></small></div>
+                <div class="small text-muted"><small><%= "#{company.city}, #{company.state}" %></small></div>
               </div>
             </div>
           </div>
@@ -25,3 +31,4 @@
     </div>
   </div>
 <% end %>
+
