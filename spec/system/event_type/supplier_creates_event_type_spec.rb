@@ -87,7 +87,7 @@ describe 'Supplier creates event type' do
     check 'Decoração'
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
-    attach_file 'Adicionar fotos', Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg')
+    attach_file 'Adicionar fotos', Rails.root.join('spec', 'files', 'festa_aniversario_tematica.jpg')
     click_on 'Salvar'
 
     new_event_type = EventType.last
@@ -126,9 +126,9 @@ describe 'Supplier creates event type' do
     check 'Estacionamento'
     select 'Salão de festas da empresa', from: 'Local'
     attach_file 'Adicionar fotos', [
-      Rails.root.join('spec', 'support', 'festa_aniversario_tematica.jpg'),
-      Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg'),
-      Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')
+      Rails.root.join('spec', 'files', 'festa_aniversario_tematica.jpg'),
+      Rails.root.join('spec', 'files', 'festa_aniversario_detalhe.jpg'),
+      Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')
     ]
     click_on 'Salvar'
 

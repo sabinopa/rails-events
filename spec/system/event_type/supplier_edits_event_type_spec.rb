@@ -133,7 +133,7 @@ describe 'Supplier edits event type' do
     fill_in 'Menu', with: 'Delicie-se com nosso buffet inspirado na natureza, incluindo sanduíches em forma de flor, frutas esculpidas como borboletas, sucos mágicos e um bolo encantador no formato de um grande cogumelo. Opções veganas e sem lactose disponíveis.'
     check 'Estacionamento'
     select 'Salão de festas da empresa'
-    attach_file 'Adicionar fotos', Rails.root.join('spec', 'support', 'festa_aniversario_detalhe.jpg')
+    attach_file 'Adicionar fotos', Rails.root.join('spec', 'files', 'festa_aniversario_detalhe.jpg')
     click_on 'Salvar'
 
     expect(current_path).to eq event_type_path(supplier.reload.company.id)
@@ -146,6 +146,35 @@ describe 'Supplier edits event type' do
     expect(page).to have_content 'Salão de festas da empresa'
     expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
   end
+
+  it 'and add one more photo' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    debito = PaymentMethod.create!(method: 'Cartão de Débito')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+    company.payment_methods << [pix, credito, debito]
+    event_type = EventType.create!(company_id: company.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+    event_type.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+
+    login_as(supplier, :scope => :supplier)
+    visit edit_event_type_path(event_type.id)
+
+    attach_file('Adicionar fotos', Rails.root.join('spec', 'files', 'festa_aniversario_detalhe.jpg'))
+    click_button 'Salvar'
+
+    expect(current_path).to eq event_type_path(event_type)
+    expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
+    expect(page).to have_css('img[src*="festa_aniversario_decoracao.jpg"]')
+  end
+
 
   it 'and delete photo' do
     pix = PaymentMethod.create!(method: 'PIX')
@@ -162,7 +191,7 @@ describe 'Supplier edits event type' do
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-                            event_type.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+                            event_type.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
 
     login_as(supplier, :scope => :supplier)
     visit edit_event_type_path(event_type.id)
