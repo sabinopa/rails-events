@@ -24,7 +24,8 @@ describe 'Client creates an account' do
   end
 
   it 'document number has to be unique' do
-    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '525.202.290-98', email: 'priscila@email.com', password: '12345678')
+    client = Client.create!(name: 'Priscila', lastname: 'Sabino',
+                            document_number: '525.202.290-98', email: 'priscila@email.com', password: '12345678')
 
     visit root_path
     click_on 'Seja um Cliente'

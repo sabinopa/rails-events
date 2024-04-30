@@ -2,10 +2,13 @@ require 'rails_helper'
 
 describe 'Client authenticates' do
   it 'successfully' do
-    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '525.202.290-98', email: 'priscila@email.com', password: '12345678')
+    client = Client.create!(name: 'Priscila', lastname: 'Sabino', document_number: '525.202.290-98',
+                            email: 'priscila@email.com', password: '12345678')
 
     visit root_path
-    click_on 'Entrar como Cliente'
+    within 'nav' do
+      click_on 'Entrar como Cliente'
+    end
     within 'main form' do
       fill_in 'E-mail', with: 'priscila@email.com'
       fill_in 'Senha', with: '12345678'

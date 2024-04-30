@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Client sign out' do
   it 'successfully' do
-    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '525.202.290-98', email: 'priscila@email.com', password: '12345678')
+    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '525.202.290-98',
+                            email: 'priscila@email.com', password: '12345678')
 
     login_as(client, :scope => :client)
     visit root_path

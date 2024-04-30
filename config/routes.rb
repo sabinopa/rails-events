@@ -18,6 +18,8 @@ Rails.application.routes.draw do
         delete :remove_photo
       end
       resources :event_pricings, only: [:new, :create, :show, :edit, :update]
+      resources :orders, only: [:new, :create]
     end
   end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_24_193019) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_170740) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,6 +109,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_193019) do
     t.index ["company_id"], name: "index_event_types_on_company_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "event_type_id", null: false
+    t.date "date"
+    t.integer "attendees_number"
+    t.text "details"
+    t.string "local"
+    t.string "code"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_orders_on_company_id"
+    t.index ["event_type_id"], name: "index_orders_on_event_type_id"
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "method"
     t.datetime "created_at", null: false
@@ -134,4 +149,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_193019) do
   add_foreign_key "companies", "suppliers"
   add_foreign_key "event_pricings", "event_types"
   add_foreign_key "event_types", "companies"
+  add_foreign_key "orders", "companies"
+  add_foreign_key "orders", "event_types"
 end
