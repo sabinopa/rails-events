@@ -9,6 +9,9 @@ class Company < ApplicationRecord
             :email, :address, :neighborhood, :city, :state, :zipcode, :description,
             presence: true
 
+  validates_cnpj_format_of :registration_number
+
+
   def self.search(query_params)
     query = "%#{query_params}%"
     Company.left_joins(:event_types)

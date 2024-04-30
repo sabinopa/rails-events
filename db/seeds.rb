@@ -70,9 +70,9 @@ casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento
                             min_attendees: 50, max_attendees: 300, duration: 480,
                             menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'support', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
 
 corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
                             description: 'Nossa Gala Corporativa Elegante é a escolha perfeita para empresas que desejam impressionar. Oferecemos um ambiente sofisticado, com serviço de buffet de alto padrão, apresentações audiovisuais de última geração e uma equipe pronta para atender todas as necessidades empresariais.',
