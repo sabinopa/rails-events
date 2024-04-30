@@ -6,6 +6,7 @@
       <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
     <% end %>
   <% end %>
+  <%= link_to t('views.show.make_order'), new_event_type_order_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
   <div class="description-text">
     <%= @event_type.description %>
   </div>

@@ -1,0 +1,39 @@
+<div class="row gx-5 justify-content-center">
+  <div class="col-lg-11 col-xl-9 col-xxl-8">
+    <section>
+      <div class="mb-4">
+        <h2 class="text-primary fw-bolder mb-0"><%= t('views.new.new_order', name: @event_type.name) %></h2>
+        <% if(@order.errors.any?) %>
+          <p><%= t('errors.messages.verify_error') %></p>
+          <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+          </ul>
+        <% end %>
+
+<%= form_with model: [@company, @event_type, @order], local: true do |form| %>
+  <%= form.hidden_field :company_id, value: @company.id %>
+  <div>
+    <%= form.label :date %>:
+    <%= form.date_field :date %>
+  </div>
+  <div>
+    <%= form.label :attendees_number %>:
+    <%= form.number_field :attendees_number %>
+  </div>
+  <div>
+    <%= form.label :details %>:
+    <%= form.text_area :details %>
+  </div>
+  <div>
+    <%= form.label :local %>:
+    <%= form.text_field :local %>
+  </div>
+  <%= form.submit t('helpers.submit.check_with_supplier') %>
+<% end %>
+
+      </div>
+    </section>
+  </div>
+</div>
