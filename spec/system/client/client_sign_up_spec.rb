@@ -7,7 +7,7 @@ describe 'Client creates an account' do
     within 'main form' do
       fill_in 'Nome', with: 'Priscila'
       fill_in 'Sobrenome', with: 'Sabino'
-      fill_in 'CPF', with: '123.456.789-99'
+      fill_in 'CPF', with: '525.202.290-98'
       fill_in 'E-mail', with: 'priscila@email.com'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirme sua senha', with: '12345678'
@@ -24,14 +24,14 @@ describe 'Client creates an account' do
   end
 
   it 'document number has to be unique' do
-    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '123.456.789-23', email: 'priscila@email.com', password: '12345678')
+    client = Client.create!(name: 'Priscila', lastname: 'Sabino',document_number: '525.202.290-98', email: 'priscila@email.com', password: '12345678')
 
     visit root_path
     click_on 'Seja um Cliente'
     within 'main form' do
       fill_in 'Nome', with: 'Pri'
       fill_in 'Sobrenome', with: 'Sabino'
-      fill_in 'CPF', with: '123.456.789-23'
+      fill_in 'CPF', with: '525.202.290-98'
       fill_in 'E-mail', with: 'pri@email.com'
       fill_in 'Senha', with: '12345678'
       fill_in 'Confirme sua senha', with: '12345678'
@@ -56,6 +56,6 @@ describe 'Client creates an account' do
     end
 
     expect(page).to have_content 'Não foi possível salvar cliente: 1 erro'
-    expect(page).to have_content 'CPF não é válido. Reescreva no formato específico (000.000.000-00).'
+    expect(page).to have_content 'CPF não é um CPF válido'
   end
 end

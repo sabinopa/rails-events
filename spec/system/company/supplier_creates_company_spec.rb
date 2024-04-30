@@ -105,7 +105,7 @@ describe 'Supplier creates company' do
     visit new_company_path
     fill_in 'Nome Fantasia', with: 'Eternos Laços'
     fill_in 'Razão Social', with: 'Eternos Laços Cerimônias Especiais Ltda'
-    fill_in 'CNPJ', with: '98.765.432/0001-11'
+    fill_in 'CNPJ', with: '58.934.722/0001-01'
     fill_in 'Telefone', with: '(11) 99876-5432'
     fill_in 'E-mail', with: 'contato@eternoslacos.com.br'
     fill_in 'Endereço', with: 'Rua das Oliveiras, 5678'
@@ -134,7 +134,7 @@ describe 'Supplier creates company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                              registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                              registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                               description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                               company.payment_methods << [pix, debito]

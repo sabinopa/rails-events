@@ -7,7 +7,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -22,7 +22,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -42,7 +42,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -59,7 +59,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -92,7 +92,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -101,7 +101,7 @@ describe 'Supplier edits company' do
 
     fill_in 'Nome Fantasia', with: 'Fantasia Aventura'
     fill_in 'Razão Social', with: 'Fantasia Aventura Entretenimento Infantil S.A.'
-    fill_in 'CNPJ', with: '10.200.300/0001-40'
+    fill_in 'CNPJ', with: '48.881.973/0001-03'
     fill_in 'Telefone', with: '(11) 5566-7788'
     fill_in 'E-mail', with: 'contato@fantasiaaventura.com.br'
     fill_in 'Endereço', with: 'Caminho do Arco-Íris, 88'
@@ -118,7 +118,7 @@ describe 'Supplier edits company' do
     expect(current_path).to eq company_path(supplier.reload.company.id)
     expect(page).to have_content 'Fantasia Aventura: Atualizado com sucesso!'
     expect(page).to have_content 'Na Fantasia Aventura, especializamo-nos em criar festas infantis inesquecíveis, cheias de aventura e fantasia.'
-    expect(page).to have_content '10.200.300/0001-40'
+    expect(page).to have_content '48.881.973/0001-03'
     expect(page).to have_content '(11) 5566-7788'
     expect(page).to have_content 'contato@fantasiaaventura.com.br'
     expect(page).to have_content 'Caminho do Arco-Íris, 88'
@@ -132,7 +132,7 @@ describe 'Supplier edits company' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company.payment_methods << [pix, credito, debito]
@@ -173,12 +173,12 @@ describe 'Supplier edits company' do
     priscila = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     pedro = Supplier.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
     company_priscila = Company.create(supplier_id: priscila.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                            registration_number: '12.333.456/0001-78',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
                             company_priscila.payment_methods << [pix, credito, debito]
     company_pedro = Company.create(supplier_id: pedro.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
-                            registration_number: '01.234.567/0001-89',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
+                            registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
                             address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
                             description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
                             company_pedro.payment_methods << [pix, debito]
