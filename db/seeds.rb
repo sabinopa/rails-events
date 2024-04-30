@@ -23,41 +23,41 @@ livia = Supplier.create!(name: 'Livia', lastname: 'Alves', email: 'livia@email.c
 p "Created #{Supplier.count} suppliers"
 
 # Clientes
-joao = Client.create!(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '123.456.789-00', password: 'senha123')
-maria = Client.create!(name: 'Maria', lastname: 'Fernandes', email: 'maria@email.com', document_number: '987.654.321-00', password: 'senha321')
-carlos = Client.create!(name: 'Carlos', lastname: 'Machado', email: 'carlos@email.com', document_number: '456.789.123-00', password: 'senha456')
-ana = Client.create!(name: 'Ana', lastname: 'Pereira', email: 'ana@email.com', document_number: '321.654.987-00', password: 'senha654')
-lucas = Client.create!(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com', document_number: '234.567.890-00', password: 'senha234')
+joao = Client.create!(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '926.020.550-69', password: 'senha123')
+maria = Client.create!(name: 'Maria', lastname: 'Fernandes', email: 'maria@email.com', document_number: '607.560.260-75', password: 'senha321')
+carlos = Client.create!(name: 'Carlos', lastname: 'Machado', email: 'carlos@email.com', document_number: '954.511.300-60', password: 'senha456')
+ana = Client.create!(name: 'Ana', lastname: 'Pereira', email: 'ana@email.com', document_number: '496.830.670-93', password: 'senha654')
+lucas = Client.create!(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com', document_number: '194.917.200-74', password: 'senha234')
 
 p "Created #{Client.count} clients"
 
 # Empresas
 celebracao_alegre = Company.create!(supplier_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
-                                  registration_number: '12.345.678/0001-99',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
+                                  registration_number: '58.934.722/0001-01',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
                                   address: 'Rua das Flores, 123', neighborhood: 'Jardim Primavera', city: 'São Paulo', state: 'SP', zipcode: '01234-567',
                                   description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.')
                                   celebracao_alegre.payment_methods << [pix, debito]
 
 festim_sonhos = Company.create!(supplier_id: pedro.id, brand_name: 'Festim dos Sonhos', corporate_name: 'Festim dos Sonhos Eventos S.A.',
-                              registration_number: '11.000.222/0001-33',  phone_number: '(21) 4444-5555', email: 'sonhos@festim.com.br',
+                              registration_number: '63.112.924/0001-08',  phone_number: '(21) 4444-5555', email: 'sonhos@festim.com.br',
                               address: 'Avenida Central, 456', neighborhood: 'Centro', city: 'Rio de Janeiro', state: 'RJ', zipcode: '21000-000',
                               description: 'Com uma equipe de chefs renomados, proporcionamos uma experiência culinária inesquecível para seu evento.')
                               festim_sonhos.payment_methods << [credito, debito]
 
 gastronomia_estelar = Company.create!(supplier_id: guilherme.id, brand_name: 'Gastronomia Estelar', corporate_name: 'Gastronomia Estelar Ltda',
-                              registration_number: '99.888.777/0001-66',  phone_number: '(31) 6666-7777', email: 'contato@gastronomiaestelar.com.br',
+                              registration_number: '54.457.025/0001-48',  phone_number: '(31) 6666-7777', email: 'contato@gastronomiaestelar.com.br',
                               address: 'Praça da Liberdade, 789', neighborhood: 'Savassi', city: 'Belo Horizonte', state: 'MG', zipcode: '30140-010',
                               description: 'Oferecemos um serviço exclusivo de buffet e catering com foco em ingredientes orgânicos e sustentáveis.')
                               gastronomia_estelar.payment_methods << [pix, credito, debito]
 
 banquete_real = Company.create!(supplier_id: isabel.id, brand_name: 'Banquete Real', corporate_name: 'Banquete Real Buffet S.A.',
-                              registration_number: '12.345.678/0001-90',  phone_number: '(41) 8888-9999', email: 'real@banquetebuffet.com.br',
+                              registration_number: '26.876.789/0001-32',  phone_number: '(41) 8888-9999', email: 'real@banquetebuffet.com.br',
                               address: 'Rua Majestosa, 1010', neighborhood: 'Batel', city: 'Curitiba', state: 'PR', zipcode: '80420-000',
                               description: 'Transformamos seu evento em um verdadeiro banquete real, com serviços de buffet e decoração de alto padrão')
                               banquete_real.payment_methods << [credito, debito]
 
 sabores_mundo = Company.create!(supplier_id: livia.id, brand_name: 'Sabores do Mundo', corporate_name: 'Sabores do Mundo Buffet Internacional Eireli',
-                              registration_number: '30.333.333/0001-33',  phone_number: '(51) 1010-2020', email: 'contato@saboresdomundo.com.br',
+                              registration_number: '24.282.155/0001-26',  phone_number: '(51) 1010-2020', email: 'contato@saboresdomundo.com.br',
                               address: 'Rua da Paz, 1313', neighborhood: 'Moinhos de Vento', city: 'Porto Alegre', state: 'RS', zipcode: '90500-000',
                               description: 'Especializados em culinária internacional, nosso buffet traz sabores únicos de diferentes partes do mundo para seu evento.')
                               sabores_mundo.payment_methods << [credito, debito]
@@ -70,15 +70,18 @@ casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento
                             min_attendees: 50, max_attendees: 300, duration: 480,
                             menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
-casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_1.jpg')), filename: 'casamento_1.jpg')
+                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_2.jpg')), filename: 'casamento_2.jpg')
+                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_3.jpg')), filename: 'casamento_3.jpg')
 
 corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
                             description: 'Nossa Gala Corporativa Elegante é a escolha perfeita para empresas que desejam impressionar. Oferecemos um ambiente sofisticado, com serviço de buffet de alto padrão, apresentações audiovisuais de última geração e uma equipe pronta para atender todas as necessidades empresariais.',
                             min_attendees: 100, max_attendees: 500, duration: 300,
                             menu_description: 'Um buffet exclusivo que inclui canapés gourmet, estações de comida ao vivo, pratos internacionais elaborados e uma ampla seleção de bebidas holiday, incluindo coquetéis personalizados e vinhos selecionados.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_1.jpg')), filename: 'corporativo_1.jpg')
+                            corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_2.jpg')), filename: 'corporativo_2.jpg')
+                            corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_3.jpg')), filename: 'corporativo_3.jpg')
 
 # Para a empresa Festim dos Sonhos
 jantar_gourmet = EventType.create!(company_id: festim_sonhos.id, name: 'Jantar de Gala Gourmet',
