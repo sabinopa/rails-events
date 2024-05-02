@@ -2,37 +2,51 @@
   <div class="col-lg-11 col-xl-9 col-xxl-8">
     <section>
       <div class="mb-4">
-        <h2 class="text-primary fw-bolder mb-0"><%= t('views.new.new_order', name: @event_type.name) %></h2>
-        <% if(@order.errors.any?) %>
+        <h2 class="text-primary fw-bolder mb-0">
+          <%= t('views.new.new_order', name: @event_type.name) %>
+        </h2>
+        <% if @order.errors.any? %>
           <p><%= t('errors.messages.verify_error') %></p>
           <ul>
-          <% @order.errors.full_messages.each do |msg| %>
+            <% @order.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
-          <% end %>
+            <% end %>
           </ul>
         <% end %>
 
-<%= form_with model: [@company, @event_type, @order], local: true do |form| %>
-  <%= form.hidden_field :company_id, value: @company.id %>
-  <div>
-    <%= form.label :date %>:
-    <%= form.date_field :date %>
-  </div>
-  <div>
-    <%= form.label :attendees_number %>:
-    <%= form.number_field :attendees_number %>
-  </div>
-  <div>
-    <%= form.label :details %>:
-    <%= form.text_area :details %>
-  </div>
-  <div>
-    <%= form.label :local %>:
-    <%= form.text_field :local %>
-  </div>
-  <%= form.submit t('helpers.submit.check_with_supplier') %>
-<% end %>
+        <%= form_with model: [@event_type, @order], local: true do |form| %>
+          <%= form.hidden_field :company_id, value: @company.id %>
+          <div>
+            <%= form.label :date %>:
+            <%= form.date_field :date %>
+          </div>
+          <div>
+            <%= form.label :attendees_number %>:
+            <%= form.number_field :attendees_number %>
+          </div>
+          <div>
+            <%= form.label :details %>:
+            <%= form.text_area :details %>
+          </div>
+          <div>
+            <% if @event_type.on_site? %>
+              <%= t('views.show.company_location', adress: @company.address) %>
+            <% elsif @event_type.off_site? %>
+              <%= form.label :local, t('views.show.insert_event_address') %>:
+              <%= form.text_field :local %>
+            <% else %>
+              <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company' %>
+              <%= form.label :location_company, t('views.show.company_address', address: @event_type.company.address) %>
+              <br>
+              <%= form.radio_button :location_choice, 'custom', id: 'location_custom' %>
+              <%= form.label :location_custom, t('views.show.other_address') %>
 
+              <%= form.text_field :local %>
+            <% end %>
+            <br>
+            <%= form.submit t('helpers.submit.check_with_supplier') %>
+          </div>
+        <% end %>
       </div>
     </section>
   </div>

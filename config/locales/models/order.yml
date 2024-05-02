@@ -6,31 +6,31 @@ pt-BR:
         other: Pedidos
     attributes:
       order:
+        status:
+          waiting_confirmation: Aguardando Confirmação
+          order_confirmed: Pedido Confirmado
+          order_cancelled: Pedido Cancelado
         date: Data
         attendees_number: Número de convidados
         details: Conte-nos detalhes do seu evento e como podemos ajudar
         local: Localização
-  order:
-    # on_site: 'Salão de festas da empresa'
-    # any_site: 'Salão de festas da empresa ou salão de terceiros'
-    # off_site: 'Salão de festas de terceiros'
-    # alcohol: Inclui bebidas alcoólicas
-    # no_alcohol: Não inclui bebidas alcoólicas
-    # decoration: Fornece decoração
-    # no_decoration: Não fornece decoração
-    # parking: Possui estacionamento para convidados
-    # no_parking: Não possui estacionamento
   orders:
-    new:
-      #error: Apenas o proprietário pode criar tipos de evento para essa empresa.
     create:
-      success: "%{code}: Enviado com sucesso!"
+      success: "Solicitação %{code}: Enviado com sucesso!"
       error: Pedido não enviado.
-    # edit:
-    #   error: Apenas o proprietário pode editar esse evento.
-    # update:
-    #   success: "%{name}: Atualizado com sucesso!"
-    #   error: Não foi possível atualizar os dados do evento.
   views:
     new:
       new_order: "Criar pedido para %{name}"
+    show:
+      company_contact: Dados da empresa
+      request: "Solicitação de buffet para %{brand_name}"
+      order_details: 'Detalhes do pedido'
+      choosen_date: Data
+      attendees: Número de convidados
+      local: Local
+      insert_event_address: Insira o endereço do evento
+      choose_event_address: Qual será o local do evento?
+      company_address: "Endereço da empresa: %{address}"
+      other_address: Outro endereço
+      company_location: 'Local: Salão de festa da empresa - %{adress}'
+      order_status: 'Local: Salão de festa da empresa - %{adress}'
