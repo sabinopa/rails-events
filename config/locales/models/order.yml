@@ -25,7 +25,7 @@ pt-BR:
       new_order: "Criar pedido para %{name}"
     show:
       company_contact: Dados da empresa
-      request: "Solicitação de buffet para %{brand_name}"
+      request: "Pedido de buffet para %{brand_name}"
       order_details: 'Detalhes do pedido'
       choosen_date: Data
       attendees: Número de convidados
@@ -36,6 +36,7 @@ pt-BR:
       other_address: Outro endereço
       company_location: 'Local: Salão de festa da empresa - %{adress}'
       order_status: 'Local: Salão de festa da empresa - %{adress}'
+      has_conflict: 'Atenção! Existe outro evento agendado para esta data.'
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.

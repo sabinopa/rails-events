@@ -25,6 +25,8 @@ class OrdersController < ApplicationController
   end
 
   def show
+    conflicting_orders = Order.where(company_id: @order.company_id, date: @order.date).where.not(id: @order.id)
+    @has_conflict = conflicting_orders.exists?
   end
 
   def my_orders

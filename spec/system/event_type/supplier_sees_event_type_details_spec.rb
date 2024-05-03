@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Owner sees event type details' do
+describe 'Supplier sees event type details' do
   it 'from any page through the navigation bar' do
     pix = PaymentMethod.create!(method: 'PIX')
     credito = PaymentMethod.create!(method: 'Cartão de Crédito')

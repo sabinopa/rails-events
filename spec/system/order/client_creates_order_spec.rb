@@ -118,7 +118,7 @@ describe 'Client creates order' do
     order = Order.last
     expect(current_path).to eq order_path(order)
     expect(page).to have_content "Solicitação #{order.code}: Enviado com sucesso!"
-    expect(page).to have_content 'Solicitação de buffet para Estrelas Mágicas'
+    expect(page).to have_content 'Pedido de buffet para Estrelas Mágicas'
     expect(page).to have_content '58.934.722/0001-01'
     expect(page).to have_content 'Aguardando Confirmação'
     expect(page).to have_content 'Dados da empresa:'
@@ -165,7 +165,7 @@ describe 'Client creates order' do
     order = Order.last
     expect(current_path).to eq order_path(order)
     expect(page).to have_content "Solicitação #{order.code}: Enviado com sucesso!"
-    expect(page).to have_content 'Solicitação de buffet para Estrelas Mágicas'
+    expect(page).to have_content 'Pedido de buffet para Estrelas Mágicas'
     expect(page).to have_content '58.934.722/0001-01'
     expect(page).to have_content 'Aguardando Confirmação'
     expect(page).to have_content 'Dados da empresa:'

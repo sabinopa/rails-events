@@ -303,7 +303,7 @@ order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                             local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0)
 
 order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                              date: 100.days.from_now, attendees_number: 200, details: 'Casamento dos sonhos com buffet personalizado.',
+                              date: 30.days.from_now, attendees_number: 200, details: 'Casamento dos sonhos com buffet personalizado.',
                               local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1)
 
 order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
