@@ -265,11 +265,15 @@ order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
 
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
                             date: 60.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentação de projetos.',
-                            local: 'Centro de Convenções - Avenida Empresarial, 123', status: 2)
+                            local: 'Rua das Flores, 123', status: 2)
 
 order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
                             date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
                             local: 'Palácio Real - Rua da Realeza, 456',status: 1)
+
+order_joao4 = Order.create!(client_id: joao.id, company_id: sabores_mundo.id, event_type_id: volta_ao_mundo.id,
+                        date: 120.days.from_now, attendees_number: 100, details: 'Jantar temático com pratos de várias culturas.',
+                        local: 'Rua da Paz, 1313',status: 0)
 
 # Pedidos de Maria
 order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
@@ -282,7 +286,11 @@ order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estela
 
 order_maria3 = Order.create!(client_id: maria.id, company_id: sabores_mundo.id, event_type_id: noite_gastronomica.id,
                             date: 70.days.from_now, attendees_number: 120, details: 'Evento temático com pratos internacionais.',
-                            local: 'Restaurante Global - Rua Internacional, 101',status: 2)
+                            local: 'Rua da Paz, 1313',status: 2)
+
+order_maria4 = Order.create!(client_id: maria.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
+                        date: 130.days.from_now, attendees_number: 250, details: 'Evento de gala para homenagear parceiros.',
+                        local: 'Centro de Eventos - Rua da Cerimônia, 909', status: 0)
 
 
 # Pedidos de Carlos
@@ -298,6 +306,10 @@ order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegr
                               date: 100.days.from_now, attendees_number: 200, details: 'Casamento dos sonhos com buffet personalizado.',
                               local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1)
 
+order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
+                              date: 90.days.from_now, attendees_number: 60, details: 'Jantar gourmet com degustação especial.',
+                              local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0)
+
 
 # Pedidos de Ana
 order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
@@ -306,16 +318,20 @@ order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id
 
 order_ana2 = Order.create!(client_id: ana.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                         date: 45.days.from_now, attendees_number: 100, details: 'Festival de food trucks com culinária internacional.',
-                        local: 'Parque Gastronômico - Alameda do Sabor, 404', status: 0)
+                        local: 'Rua da Paz, 1313', status: 0)
 
 order_ana3 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: piquenique.id,
                         date: 80.days.from_now, attendees_number: 30, details: 'Piquenique sustentável ao ar livre.',
                         local: 'Parque Natural - Rua do Sol, 505', status: 2)
 
+order_ana4 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                          date: 75.days.from_now, attendees_number: 35, details: 'Noite de degustação orgânica ao ar livre.',
+                          local: 'Restaurante Ecológico - Alameda Verde, 1111',status: 0)
+
 # Pedidos de Lucas
 order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                       date: 50.days.from_now, attendees_number: 200, details: 'Festival gastronômico com várias cozinhas.',
-                      local: 'Parque da Diversão - Avenida do Lazer, 202',status: 0)
+                      local: 'Rua da Paz, 1313',status: 0)
 
 order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                             date: 30.days.from_now, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
@@ -324,6 +340,10 @@ order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, 
 order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                             date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
                             local: 'Teatro Real - Rua dos Campeões, 707', status: 2)
+
+order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_corporativa.id,
+                            date: 150.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentações.',
+                            local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0)
 
 p "Created #{Order.count} orders"
 
