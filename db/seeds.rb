@@ -137,7 +137,7 @@ food_truck = EventType.create!(company_id: sabores_mundo.id, name: 'Festival Int
 
 p "Created #{EventType.count} event types"
 
-# Pricing para Casamentos no Fim de Semana da empresa Celebração Alegre
+# Pricing para Casamentos no Fim de Semana
 weekend_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1200.0, base_attendees: 50,
                                       additional_attendee_price: 100.0, extra_hour_price: 100.0, day_options: :weekend)
 
@@ -257,6 +257,75 @@ weekend_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_t
 holiday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3500.0, base_attendees: 100,
                                                           additional_attendee_price: 30.0,extra_hour_price: 250.0, day_options: :holiday)
 p "Created #{EventPricing.count} event pricings"
+
+# Pedidos de João
+order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
+                            date: 30.days.from_now, attendees_number: 150, details: 'Decoração clássica e banda ao vivo.',
+                            local: 'Salão de festas Beleza Infinita - Rua das Flores, 123',status: 0)
+
+order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
+                            date: 60.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentação de projetos.',
+                            local: 'Centro de Convenções - Avenida Empresarial, 123', status: 2)
+
+order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
+                            date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
+                            local: 'Palácio Real - Rua da Realeza, 456',status: 1)
+
+# Pedidos de Maria
+order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
+                      date: 20.days.from_now, attendees_number: 50, details: 'Jantar formal com música instrumental.',
+                      local: 'Restaurante Elegante - Avenida do Luxo, 456', status: 0)
+
+order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                            date: 40.days.from_now, attendees_number: 80, details: 'Jantar de degustação orgânica com amigos.',
+                            local: 'Restaurante Orgânico - Alameda Verde, 789', status: 1)
+
+order_maria3 = Order.create!(client_id: maria.id, company_id: sabores_mundo.id, event_type_id: noite_gastronomica.id,
+                            date: 70.days.from_now, attendees_number: 120, details: 'Evento temático com pratos internacionais.',
+                            local: 'Restaurante Global - Rua Internacional, 101',status: 2)
+
+
+# Pedidos de Carlos
+order_carlos1 = Order.create!(client_id: carlos.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
+                            date: 60.days.from_now, attendees_number: 300, details: 'Evento de premiação para funcionários.',
+                            local: 'Teatro Magnífico - Rua do Esplendor, 789', status: 2)
+
+order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: brunch_network.id,
+                            date: 35.days.from_now, attendees_number: 60, details: 'Brunch empresarial para networking.',
+                            local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0)
+
+order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
+                              date: 100.days.from_now, attendees_number: 200, details: 'Casamento dos sonhos com buffet personalizado.',
+                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1)
+
+
+# Pedidos de Ana
+order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                          date: 15.days.from_now, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
+                          local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 1)
+
+order_ana2 = Order.create!(client_id: ana.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
+                        date: 45.days.from_now, attendees_number: 100, details: 'Festival de food trucks com culinária internacional.',
+                        local: 'Parque Gastronômico - Alameda do Sabor, 404', status: 0)
+
+order_ana3 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: piquenique.id,
+                        date: 80.days.from_now, attendees_number: 30, details: 'Piquenique sustentável ao ar livre.',
+                        local: 'Parque Natural - Rua do Sol, 505', status: 2)
+
+# Pedidos de Lucas
+order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
+                      date: 50.days.from_now, attendees_number: 200, details: 'Festival gastronômico com várias cozinhas.',
+                      local: 'Parque da Diversão - Avenida do Lazer, 202',status: 0)
+
+order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
+                            date: 30.days.from_now, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
+                            local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 1)
+
+order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
+                            date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
+                            local: 'Teatro Real - Rua dos Campeões, 707', status: 2)
+
+p "Created #{Order.count} orders"
 
 p "All done! :)"
 
