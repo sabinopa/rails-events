@@ -4,8 +4,11 @@
       <div class="mb-4">
         <h2 class="text-primary fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
         <h3 class="small text-muted"><%= @company.registration_number %></h4>
-        <% if @has_conflict %>
-          <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
+        <% if supplier_signed_in? %>
+          <% if @has_conflict && supplier_signed_in? %>
+            <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
+          <% end %>
+          <%= link_to "Revisar Pedido", approve_order_path(@order), class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="card shadow border-0 rounded-4 mb-5">

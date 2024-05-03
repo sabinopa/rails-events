@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_supplier!, only: [:my_company_orders]
+  before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
   before_action :authenticate_client!, only: [:new, :create, :my_orders]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: [:show, :approve]
   before_action :set_event_type, only: [:new, :create, :show]
   before_action :set_company, only: [:new, :create, :show]
 
@@ -38,6 +38,34 @@ class OrdersController < ApplicationController
     @waiting_confirmation_orders = @company.orders.where(status: 'waiting_confirmation').order(:created_at)
     @confirmed_orders = @company.orders.where(status: 'order_confirmed').order(:updated_at)
     @cancelled_orders = @company.orders.where(status: 'order_cancelled').order(:updated_at)
+  end
+
+  def approve
+    if @order.present? && params[:order].present?
+      final_price = calculate_final_price(@order, params[:order][:extra_charge], params[:order][:discount])
+      approval = @order.build_order_approval(
+        supplier: current_supplier,
+        final_price: final_price,
+        validity_date: params[:order][:validity_date],
+        extra_charge: params[:order][:extra_charge],
+        discount: params[:order][:discount],
+        charge_description: params[:order][:charge_description],
+        payment_method: params[:order][:payment_method],
+        approved_at: Time.current
+      )
+
+      if approval.save
+        @order.update(status: 'order_confirmed')
+        flash[:notice] = "Pedido aprovado com sucesso."
+        redirect_to @order
+      else
+        flash.now[:alert] = "Erro ao aprovar o pedido."
+        render :approve
+      end
+    else
+      @final_price = @order.calculate_default_price
+      render :approve
+    end
   end
 
   private

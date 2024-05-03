@@ -1,0 +1,22 @@
+<h1>Aprovação de Pedido</h1>
+
+<p>Data do Evento: <%= @order.date.strftime('%d/%m/%Y') %></p>
+<p>Local: <%= @order.local %></p>
+
+<p>Preço Total: <%= @final_price %></p>
+
+<%= form_with(model: @order, url: approve_order_path(@order), method: :post) do |form| %>
+  <%= form.label :extra_charge, "Taxa Extra" %>
+  <%= form.text_field :extra_charge %>
+
+  <%= form.label :discount, "Desconto" %>:
+  <%= form.text_field :discount %>
+
+<%= form.label :charge_description, "Descrição da cobrança" %>:
+  <%= form.text_field :charge_description %>
+
+  <%= form.label :payment_method_id, "Método de Pagamento" %>
+  <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method %>
+
+  <%= form.submit "Aprovar Pedido" %>
+<% end %>
