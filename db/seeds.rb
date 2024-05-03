@@ -271,7 +271,7 @@ order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, ev
                             date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
                             local: 'Palácio Real - Rua da Realeza, 456',status: 1)
 
-order_joao4 = Order.create!(client_id: joao.id, company_id: sabores_mundo.id, event_type_id: volta_ao_mundo.id,
+order_joao4 = Order.create!(client_id: joao.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                         date: 120.days.from_now, attendees_number: 100, details: 'Jantar temático com pratos de várias culturas.',
                         local: 'Rua da Paz, 1313',status: 0)
 
@@ -341,7 +341,7 @@ order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, 
                             date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
                             local: 'Teatro Real - Rua dos Campeões, 707', status: 2)
 
-order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_corporativa.id,
+order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_premiacao.id,
                             date: 150.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentações.',
                             local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0)
 
