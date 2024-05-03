@@ -39,3 +39,4 @@ pt-BR:
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.
+      order: Pedido

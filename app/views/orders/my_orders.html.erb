@@ -4,31 +4,17 @@
   <% @orders.each do |order| %>
     <div class="col-md-6 mb-4">
       <div class="card shadow border-0 rounded-4">
-        <div class="card-header description-text">
-          <h5 class="card-title event-title fw-bolder"><%= order.event_type.name %></h5>
-          <p class="custom-text-size"><%= order.company.brand_name %></p>
+        <div class="card-body custom-text-size">
+          <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
           <p class="custom-text-size"><%= I18n.t("activerecord.attributes.order.status.#{order.status}") %></p>
-        </div>
-        <div class="card-body custom-text-size text-center">
-          <div class="row">
-            <div class="col-md-12">
-              <small>
-                <div class="mt-2">
                   <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
-                  <strong><%= t('views.show.attendees') %></strong>: <%= order.attendees_number %><br>
-                  <strong><%= t('views.show.duration') %></strong>: <%= order.details %><br>
-                  <strong><%= t('views.show.localização') %></strong>: <%= order.local %><br>
-                </div>
-              </small>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   <% end %>
 <% else %>
   <p><%= t('views.my_orders.no_orders') %></p>
-</div>
 <% end %>
+</div>
 <hr />
 <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>

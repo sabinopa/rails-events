@@ -60,6 +60,8 @@ describe 'Client sees orders list' do
     visit my_orders_path
 
     expect(page).to have_content 'Meus Pedidos'
+    expect(page).to have_content order1.code
+    expect(page).to have_content order2.code
     expect(page).to have_content 'Festa Temática de Piratas'
     expect(page).to have_content 'Festa de Contos de Fadas'
     expect(page).to have_content 'Estrelas Mágicas'
