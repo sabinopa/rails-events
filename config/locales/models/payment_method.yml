@@ -13,4 +13,5 @@ pt-BR:
   views:
     new:
       payment_method_acceptance: Métodos de pagamentos aceitos
-      payment_by: Pagamentos por
+      payments_by: Pagamentos por
+      payment_by: Pagamento por

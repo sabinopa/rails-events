@@ -34,9 +34,11 @@ pt-BR:
       choose_event_address: Qual será o local do evento?
       company_address: "Endereço da empresa: %{address}"
       other_address: Outro endereço
-      company_location: 'Local: Salão de festa da empresa - %{adress}'
-      order_status: 'Local: Salão de festa da empresa - %{adress}'
+      company_location: 'Local: Salão de festa da empresa - %{address}'
+      order_status: 'Local: Salão de festa da empresa - %{address}'
       has_conflict: 'Atenção! Existe outro evento agendado para esta data.'
+      payment_method: 'Método de pagamento escolhido'
+      not_yet_selected: Método de pagamento ainda não definido
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.

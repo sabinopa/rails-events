@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :company
   belongs_to :event_type
   belongs_to :client
+  belongs_to :payment_method, optional: true
 
   validates :date, :attendees_number, :details, :local, presence: true
   validates :attendees_number, numericality: { greater_than: 0 }

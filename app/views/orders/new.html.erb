@@ -30,7 +30,7 @@
           </div>
           <div>
             <% if @event_type.on_site? %>
-              <%= t('views.show.company_location', adress: @company.address) %>
+              <%= t('views.show.company_location', address: @company.address) %>
             <% elsif @event_type.off_site? %>
               <%= form.label :local, t('views.show.insert_event_address') %>:
               <%= form.text_field :local %>
@@ -43,9 +43,13 @@
 
               <%= form.text_field :local %>
             <% end %>
-            <br>
-            <%= form.submit t('helpers.submit.check_with_supplier') %>
           </div>
+          <div>
+            <%= form.label :payment_method_id, t('views.new.payment_by') %>:
+            <%= form.collection_select :payment_method_id, @company.payment_methods, :id, :method, include_blank: true  %>
+          </div>
+          <br>
+          <%= form.submit t('helpers.submit.check_with_supplier') %>
         <% end %>
       </div>
     </section>

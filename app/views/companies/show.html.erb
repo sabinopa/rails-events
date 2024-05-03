@@ -22,7 +22,7 @@
                 <div class="small text-muted"><%= @company.address %></div>
                 <div class="small text-muted"><small><%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></small></div>
                 <br />
-                <div class="small text-muted"><strong><%= t('views.new.payment_by') %></strong>:<br />
+                <div class="small text-muted"><strong><%= t('views.new.payments_by') %></strong>:<br />
                   <%= @company.payment_methods.map(&:method).join(' | ') %>
                 </div>
               </div>

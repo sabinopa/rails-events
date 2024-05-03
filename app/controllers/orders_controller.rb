@@ -43,7 +43,8 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number, :details)
+    params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number,
+                                  :details, :payment_method_id)
   end
 
   def determine_local(location_choice)

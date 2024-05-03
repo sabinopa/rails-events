@@ -113,6 +113,7 @@ describe 'Client creates order' do
     fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_custom').click
     fill_in 'order_local', with: 'Rua das Palmeiras, 10'
+    select 'PIX', from: 'Pagamento por'
     click_on 'Verificar disponibilidade com fornecedor'
 
     order = Order.last
@@ -126,7 +127,8 @@ describe 'Client creates order' do
     expect(page).to have_content 'festas@estrelasmagicas.com.br'
     expect(page).to have_content 'Alameda dos Sonhos, 404'
     expect(page).to have_content 'Vila Feliz, São Paulo - SP, 05050-050'
-    expect(page).to have_content 'Pagamentos por: PIX'
+    expect(page).to have_content 'Método de pagamento escolhido:'
+    expect(page).to have_content 'PIX'
     expect(page).to have_content 'Detalhes do pedido:'
     expect(page).to have_content "#{order.code}"
     expect(page).to have_content 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
@@ -141,12 +143,13 @@ describe 'Client creates order' do
 
   it 'successfuly with company location' do
     pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                             registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                             description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
-                            company.payment_methods << [pix]
+                            company.payment_methods << [pix, credito]
     event_type = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
@@ -160,6 +163,7 @@ describe 'Client creates order' do
     fill_in 'Número de convidados', with: '35'
     fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_company').click
+    select 'Cartão de Crédito', from: 'Pagamento por'
     click_on 'Verificar disponibilidade com fornecedor'
 
     order = Order.last
@@ -170,10 +174,11 @@ describe 'Client creates order' do
     expect(page).to have_content 'Aguardando Confirmação'
     expect(page).to have_content 'Dados da empresa:'
     expect(page).to have_content '(11) 2233-4455'
+    expect(page).to have_content 'Método de pagamento escolhido:'
+    expect(page).to have_content 'Cartão de Crédito'
     expect(page).to have_content 'festas@estrelasmagicas.com.br'
     expect(page).to have_content 'Alameda dos Sonhos, 404'
     expect(page).to have_content 'Vila Feliz, São Paulo - SP, 05050-050'
-    expect(page).to have_content 'Pagamentos por: PIX'
     expect(page).to have_content 'Detalhes do pedido:'
     expect(page).to have_content "#{order.code}"
     expect(page).to have_content 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
