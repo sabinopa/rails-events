@@ -14,38 +14,11 @@
       <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-5">
           <div class="row align-items-center gx-5">
+          <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
             <% if client_signed_in? %>
-              <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                <div class="bg-light p-4 rounded-4">
-                  <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.company_contact') %>:</h4>
-                  <div class="text-primary fw-bolder mb-2"><%= @company.phone_number %></div>
-                  <div class="small fw-bolder"><%= @company.email %></div>
-                  <div class="small text-muted"><%= @company.address %></div>
-                  <div class="small text-muted"><small><%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></small></div>
-                  <br />
-                </div>
-              </div>
+              <%= render partial: 'company_contact' %>
             <% end %>
-            <div class="col-lg-6">
-              <div><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></div>
-              <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
-              <h6 class="text-primary fw-bolder mb-0"><%= @order.code %></h6>
-              <div><%= @order.details %></div>
-              <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.choosen_date') %>:</h6>
-              <div><%= @order.date.strftime('%d/%m/%Y') %></div>
-              <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.attendees') %>:</h6>
-              <div><%= @order.attendees_number %></div>
-              <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
-              <div><%= @order.local %></div>
-              <div>
-              <% if @order.payment_method %>
-                <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
-                <div><%= @order.payment_method.method %></div>
-              <% else %>
-                <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
-              <% end %>
-              </div>
-            </div>
+            <%= render partial: 'order_details' %>
           </div>
         </div>
       </div>

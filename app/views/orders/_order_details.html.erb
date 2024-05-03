@@ -1,0 +1,19 @@
+<div class="col-lg-6">
+  <div><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></div>
+  <h6 class="text-primary fw-bolder mb-0"><%= @order.code %></h6>
+  <div><%= @order.details %></div>
+  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.choosen_date') %>:</h6>
+  <div><%= @order.date.strftime('%d/%m/%Y') %></div>
+  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.attendees') %>:</h6>
+  <div><%= @order.attendees_number %></div>
+  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
+  <div><%= @order.local %></div>
+  <div>
+  <% if @order.payment_method %>
+    <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
+    <div><%= @order.payment_method.method %></div>
+  <% else %>
+    <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
+  <% end %>
+  </div>
+</div>

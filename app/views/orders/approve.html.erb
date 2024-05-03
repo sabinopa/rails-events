@@ -1,22 +1,28 @@
-<h1>Aprovação de Pedido</h1>
+<h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
+<%= render partial: 'order_details' %>
+<p><strong><%= @order.date.strftime('%d/%m/%Y') %></strong><br></p>
+<p><%= t('views.show.local') %>: <%= @order.local %></p>
 
-<p>Data do Evento: <%= @order.date.strftime('%d/%m/%Y') %></p>
-<p>Local: <%= @order.local %></p>
+<p><%= t('views.approve.total_price') %>: <%= @final_price %></p>
+<p><%= t('views.show.payment_method') %>: <%= @order.payment_method.method %></p>
 
-<p>Preço Total: <%= @final_price %></p>
+<%= form_with model: @order, url: approve_order_path(@order), method: :post , class: "row g-3" do |form| %>
+  <div class="col-4">
+    <%= form.label :extra_charge, t('views.approve.extra_charge'), class: "form-label" %>:
+    <%= form.text_field :extra_charge, class: "form-control"  %>
+  </div>
 
-<%= form_with(model: @order, url: approve_order_path(@order), method: :post) do |form| %>
-  <%= form.label :extra_charge, "Taxa Extra" %>
-  <%= form.text_field :extra_charge %>
+  <div class="col-md-4">
+    <%= form.label :discount, t('views.approve.discount'), class: "form-label" %>:
+    <%= form.text_field :discount, class: "form-control" %>
+  </div>
 
-  <%= form.label :discount, "Desconto" %>:
-  <%= form.text_field :discount %>
+  <div class="col-md-8">
+    <%= form.label :charge_description, t('views.approve.charge_description'), class: "form-label" %>:
+    <%= form.text_area :charge_description, class: "form-control", rows: 4, cols: 50 %>
+  </div>
 
-<%= form.label :charge_description, "Descrição da cobrança" %>:
-  <%= form.text_field :charge_description %>
-
-  <%= form.label :payment_method_id, "Método de Pagamento" %>
-  <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method %>
-
-  <%= form.submit "Aprovar Pedido" %>
+  <div class="col-12">
+    <%= form.submit t('views.approve.approve_order'), class: "btn btn-primary" %>
+  </div>
 <% end %>

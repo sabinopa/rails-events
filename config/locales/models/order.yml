@@ -46,3 +46,10 @@ pt-BR:
       no_waiting_confirmation_orders: Não há pedido aguardando confirmação.
       no_confirmed_orders: Não há pedidos confirmados.
       no_cancelled_orders: Não há pedidos cancelados.
+    approve:
+      evaluate_order: Avaliar pedido
+      total_price: Preço total
+      extra_charge: Taxa extra
+      discount: Desconto
+      charge_description: Descrição da cobrança
+      approve_order: Aprovar pedido
