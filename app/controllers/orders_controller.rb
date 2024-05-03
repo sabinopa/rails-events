@@ -33,7 +33,9 @@ class OrdersController < ApplicationController
 
   def my_company_orders
     @company = current_supplier.company
-    @orders = @company.orders
+    @waiting_confirmation_orders = @company.orders.where(status: 'waiting_confirmation').order(:created_at)
+    @confirmed_orders = @company.orders.where(status: 'order_confirmed').order(:updated_at)
+    @cancelled_orders = @company.orders.where(status: 'order_cancelled').order(:updated_at)
   end
 
   private

@@ -40,3 +40,6 @@ pt-BR:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.
       order: Pedido
+      no_waiting_confirmation_orders: Não há pedido aguardando confirmação.
+      no_confirmed_orders: Não há pedidos confirmados.
+      no_cancelled_orders: Não há pedidos cancelados.

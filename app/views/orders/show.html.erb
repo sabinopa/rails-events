@@ -4,25 +4,27 @@
       <div class="mb-4">
         <h2 class="text-primary fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
         <h3 class="small text-muted"><%= @company.registration_number %></h4>
-        <div><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></div>
       </div>
       <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-5">
           <div class="row align-items-center gx-5">
-            <div class="col text-center text-lg-start mb-4 mb-lg-0">
-              <div class="bg-light p-4 rounded-4">
-                <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.company_contact') %>:</h4>
-                <div class="text-primary fw-bolder mb-2"><%= @company.phone_number %></div>
-                <div class="small fw-bolder"><%= @company.email %></div>
-                <div class="small text-muted"><%= @company.address %></div>
-                <div class="small text-muted"><small><%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></small></div>
-                <br />
-                <div class="small text-muted"><strong><%= t('views.new.payment_by') %></strong>:<br />
-                  <%= @company.payment_methods.map(&:method).join(' | ') %>
+            <% if client_signed_in? %>
+              <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                <div class="bg-light p-4 rounded-4">
+                  <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.company_contact') %>:</h4>
+                  <div class="text-primary fw-bolder mb-2"><%= @company.phone_number %></div>
+                  <div class="small fw-bolder"><%= @company.email %></div>
+                  <div class="small text-muted"><%= @company.address %></div>
+                  <div class="small text-muted"><small><%= @company.neighborhood %>, <%= @company.city %> - <%= @company.state %>, <%= @company.zipcode %></small></div>
+                  <br />
+                  <div class="small text-muted"><strong><%= t('views.new.payment_by') %></strong>:<br />
+                    <%= @company.payment_methods.map(&:method).join(' | ') %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
             <div class="col-lg-6">
+              <div><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></div>
               <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
               <h6 class="text-primary fw-bolder mb-0"><%= @order.code %></h6>
               <div><%= @order.details %></div>
@@ -37,7 +39,11 @@
         </div>
       </div>
       <hr />
-      <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
+      <% if client_signed_in? %>
+        <%= link_to t('helpers.buttons.back'), my_orders_path, class: "btn btn-secondary" %>
+      <% elsif supplier_signed_in? %>
+        <%= link_to t('helpers.buttons.back'), my_company_orders_path, class: "btn btn-secondary" %>
+      <% end %>
     </section>
   </div>
 </div>
