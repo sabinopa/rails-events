@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
   before_action :force_company_creation_for_suppliers, only: [:show, :search, :edit, :update]
-  before_action :check_owner, only: [:edit, :update]
+  before_action :check_supplier, only: [:edit, :update]
 
   def show
     @company = Company.find(params[:id])
@@ -51,17 +51,16 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:owner_id,:brand_name, :corporate_name, :registration_number,
+    params.require(:company).permit(:supplier_id,:brand_name, :corporate_name, :registration_number,
                                     :phone_number, :email, :address, :neighborhood, :city,
                                     :state, :zipcode, :description, payment_method_ids: [])
   end
 
-  def check_owner
+  def check_supplier
     @company = Company.find(params[:id])
     if current_supplier != @company.supplier
       flash[:alert] = t('.error')
       redirect_to root_path
     end
   end
-
 end

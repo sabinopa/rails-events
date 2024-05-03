@@ -18,6 +18,8 @@ pt-BR:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"
       error: Pedido não enviado.
+    my_orders:
+      error: 'Você não pode acessar essa tela.'
   views:
     new:
       new_order: "Criar pedido para %{name}"
@@ -36,3 +38,4 @@ pt-BR:
       order_status: 'Local: Salão de festa da empresa - %{adress}'
     my_orders:
       my_orders: Meus Pedidos
+      no_orders: Você ainda não tem pedidos.

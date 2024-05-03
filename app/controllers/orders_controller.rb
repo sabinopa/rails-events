@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_client!, only: [:new, :create, :my_orders]
-  before_action :set_order, only: :show
+  before_action :set_order, only: [:show]
   before_action :set_event_type, only: [:new, :create, :show]
   before_action :set_company, only: [:new, :create, :show]
 
