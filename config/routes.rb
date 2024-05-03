@@ -22,4 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  scope :client do
+    get :my_orders, to: 'orders#my_orders'
+  end
+
 end

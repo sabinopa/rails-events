@@ -2,5 +2,8 @@
   <%= link_to current_client.description, "#", class: "nav-link disabled", aria: { current: "page" } %>
 </li>
 <li class="nav-item">
+  <%= link_to t('views.my_orders.my_orders'), my_orders_path, class: "nav-link" %>
+</li>
+<li class="nav-item">
   <%= button_to t('helpers.submit.log_out'), destroy_client_session_path, method: :delete, class: "nav-link btn btn-outline-secondary" %>
 </li>

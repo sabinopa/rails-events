@@ -27,10 +27,12 @@ pt-BR:
       order_details: 'Detalhes do pedido'
       choosen_date: Data
       attendees: Número de convidados
-      local: Local
+      local: Localização
       insert_event_address: Insira o endereço do evento
       choose_event_address: Qual será o local do evento?
       company_address: "Endereço da empresa: %{address}"
       other_address: Outro endereço
       company_location: 'Local: Salão de festa da empresa - %{adress}'
       order_status: 'Local: Salão de festa da empresa - %{adress}'
+    my_orders:
+      my_orders: Meus Pedidos

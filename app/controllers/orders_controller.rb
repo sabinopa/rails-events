@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_client!, only: [:new, :create]
+  before_action :authenticate_client!, only: [:new, :create, :my_orders]
   before_action :set_order, only: :show
   before_action :set_event_type, only: [:new, :create, :show]
   before_action :set_company, only: [:new, :create, :show]
@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = @event_type.orders.new(order_params)
+    @order.client = current_client
     @order.location_choice = params[:order][:location_choice]
     @order.local = determine_local(@order.location_choice)
 
@@ -23,6 +24,10 @@ class OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  def my_orders
+    @orders = current_client.orders
   end
 
   private

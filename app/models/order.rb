@@ -3,9 +3,9 @@ class Order < ApplicationRecord
 
   belongs_to :company
   belongs_to :event_type
+  belongs_to :client
 
-  validates :date, :attendees_number, :details, presence: true
-  validates :local, presence: true
+  validates :date, :attendees_number, :details, :local, presence: true
   validates :attendees_number, numericality: { greater_than: 0 }
   validates :code, uniqueness: true
 

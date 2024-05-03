@@ -4,6 +4,8 @@ class Client < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :orders
+
   validates :name, :lastname, :document_number, presence: true
   validates :document_number, uniqueness: true
   validates_cpf_format_of :document_number

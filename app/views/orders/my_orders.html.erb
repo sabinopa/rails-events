@@ -1,0 +1,29 @@
+<h2 class="event-title mb-4"><strong><%= t('views.my_orders.my_orders')%></strong></h2>
+<div class="row">
+  <% @orders.each do |order| %>
+    <div class="col-md-6 mb-4">
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-header description-text">
+          <h5 class="card-title event-title fw-bolder"><%= order.company %></h5>
+          <p class="custom-text-size"><%= order.event_type %></p>
+          <p class="custom-text-size"><%= order.status %></p>
+        </div>
+        <div class="card-body custom-text-size text-center">
+          <div class="row">
+            <div class="col-md-12">
+              <small>
+                <div class="mt-2">
+                  <strong><%= t('views.show.attendees') %></strong>: <%= order.date %><br>
+                  <strong><%= t('order.status.attendees_number') %></strong>: <%= order.attendees_number %><br>
+                  <strong><%= t('views.show.duration') %></strong>: <%= order.details %><br>
+                  <strong><%= t('views.show.localização') %></strong>: <%= order.local %><br>
+                </div>
+              </small>
+              <%= link_to t('views.show.details'), event_type_path(event), class: 'btn btn-outline-rosa mt-3' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
