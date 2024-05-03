@@ -1,9 +1,19 @@
 .event-title {
     color: #EA7DA8;
   }
+
+.order-title {
+  color: #73AE62;
+}
+
 .price-title {
     color: #7C9DEB;
   }
+
+.date-title {
+  color: #50803D;
+}
+
 .btn-outline-rosa {
   color: #FA488F;
   border-color: #FA488F;
@@ -14,9 +24,22 @@
   background-color: #FA488F;
   border-color: #FA488F;
 }
+
+.btn-outline-green {
+  color: #8AAD71;
+  border-color: #55AD44;
+}
+
+.btn-outline-green:hover {
+  color: white;
+  background-color: #55AD44;
+  border-color: #8AAD71;
+}
+
 .custom-text-size {
   font-size: 0.85rem;
 }
+
 .description-text {
   font-size: 0.9rem;
 }
@@ -41,5 +64,4 @@
   margin: 3px;
   margin-top: 3px
 }
-
 

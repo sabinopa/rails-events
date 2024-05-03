@@ -76,6 +76,5 @@ describe 'Supplier evaluates order' do
 
     expect(current_path).to eq approve_order_path(order.id)
     expect(page).to have_content 'blablblabal'
-
   end
 end
