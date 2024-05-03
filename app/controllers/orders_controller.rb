@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_supplier!, only: [:my_company_orders]
   before_action :authenticate_client!, only: [:new, :create, :my_orders]
   before_action :set_order, only: [:show]
   before_action :set_event_type, only: [:new, :create, :show]
@@ -28,6 +29,11 @@ class OrdersController < ApplicationController
 
   def my_orders
     @orders = current_client.orders
+  end
+
+  def my_company_orders
+    @company = current_supplier.company
+    @orders = @company.orders
   end
 
   private

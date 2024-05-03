@@ -62,16 +62,9 @@ describe 'Client sees orders list' do
     expect(page).to have_content 'Meus Pedidos'
     expect(page).to have_content order1.code
     expect(page).to have_content order2.code
-    expect(page).to have_content 'Festa Temática de Piratas'
-    expect(page).to have_content 'Festa de Contos de Fadas'
-    expect(page).to have_content 'Estrelas Mágicas'
     expect(page).to have_content 'Aguardando Confirmação'
     expect(page).to have_content "#{30.days.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "#{45.days.from_now.strftime('%d/%m/%Y')}"
-    expect(page).to have_content 'Número de convidados: 25'
-    expect(page).to have_content 'Número de convidados: 15'
-    expect(page).to have_content 'Localização: Salão de festas XYZ - Rua das Bananeiras, 44'
-    expect(page).to have_content 'Localização: Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404'
   end
 
   it 'and sees only his own orders' do

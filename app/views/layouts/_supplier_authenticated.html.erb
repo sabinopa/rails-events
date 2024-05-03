@@ -3,7 +3,10 @@
 </li>
 <% if @company&.persisted? %>
   <li class="nav-item">
-    <%= link_to 'Minha Empresa', company_path(@company), class: "nav-link" %>
+    <%= link_to t('views.home.company'), company_path(@company), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t('views.home.orders'), my_company_orders_path(@company), class: "nav-link" %>
   </li>
 <% end %>
 <li class="nav-item">

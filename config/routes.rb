@@ -26,4 +26,7 @@ Rails.application.routes.draw do
     get :my_orders, to: 'orders#my_orders'
   end
 
+  scope :supplier do
+    get :my_company_orders, to: 'orders#my_company_orders'
+  end
 end
