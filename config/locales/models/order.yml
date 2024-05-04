@@ -33,17 +33,18 @@ pt-BR:
       local: Localização
       insert_event_address: Insira o endereço do evento
       choose_event_address: Qual será o local do evento?
-      company_address: "Endereço da empresa: %{address}"
+      company_address: "Endereço da %{company}: %{address}"
       other_address: Outro endereço
       company_location: 'Local: Salão de festa da empresa - %{address}'
       order_status: 'Local: Salão de festa da empresa - %{address}'
       has_conflict: 'Atenção! Existe outro evento agendado para esta data.'
       payment_method: 'Método de pagamento escolhido'
       not_yet_selected: Método de pagamento ainda não definido
-      select_payment_method_with_current: "Deseja alterar método de pagamento? (atual: %{current_method}) Para alterar, selecione:"
-      select_payment_method_prompt: "Selecione um método"
+      select_payment_method: "Deseja alterar método de pagamento? Para alterar, selecione:"
       none: Nenhum
       save_changes: Salvar alterações
+      approval: Revisar Pedido
+      final_price: Preço final
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.
@@ -62,4 +63,5 @@ pt-BR:
       extra_charge: Taxa extra
       discount: Desconto
       charge_description: Descrição da cobrança
-      approve_order: Aprovar pedido
+      approve_order: Enviar para Confirmação
+      send_approve: Enviar para Confirmação

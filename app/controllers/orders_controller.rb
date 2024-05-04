@@ -44,19 +44,10 @@ class OrdersController < ApplicationController
   def approve
     if @order.present? && params[:order].present?
       final_price = calculate_final_price(@order, params[:order][:extra_charge], params[:order][:discount])
-      approval = @order.build_order_approval(
-        supplier: current_supplier,
-        final_price: final_price,
-        validity_date: params[:order][:validity_date],
-        extra_charge: params[:order][:extra_charge],
-        discount: params[:order][:discount],
-        charge_description: params[:order][:charge_description],
-        payment_method: params[:order][:payment_method],
-        approved_at: Time.current
-      )
+      approval = @order.build_order_approval(order_approval_params)
 
       if approval.save
-        @order.update(status: 'order_confirmed')
+        @order.update(status: 'negotiating')
         flash[:notice] = "Pedido aprovado com sucesso."
         redirect_to @order
       else
@@ -74,6 +65,16 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number,
                                   :details, :payment_method_id)
+  end
+
+  def order_approval_params
+    params.require(:order).permit(supplier: current_supplier, final_price: final_price,
+                                  validity_date: params[:order][:validity_date],
+                                  extra_charge: params[:order][:extra_charge],
+                                  discount: params[:order][:discount],
+                                  charge_description: params[:order][:charge_description],
+                                  payment_method: params[:order][:payment_method],
+                                  approved_at: Time.current)
   end
 
   def determine_local(location_choice)

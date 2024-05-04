@@ -1,18 +1,14 @@
 <h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
-<%= render partial: 'order_details' %>
-<p><strong><%= @order.date.strftime('%d/%m/%Y') %></strong><br></p>
-<p><%= t('views.show.local') %>: <%= @order.local %></p>
 
-<p><%= t('views.approve.total_price') %>: <%= @final_price %></p>
+<%= render partial: 'order_details' %>
 
 <%= form_with model: @order, url: approve_order_path(@order), method: :post , class: "row g-3" do |form| %>
 
   <div class="mb-3">
-    <%= form.label :payment_method_id,
-      t('views.show.select_payment_method_with_current', current_method: @order.payment_method.method || t('views.show.none')) %>
+<%= t('views.show.select_payment_method',
+       current_method: @order.payment_method ? @order.payment_method.method : t('views.show.none')) %>
     <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method,
-      selected: @order.payment_method_id,
-      prompt: t('views.show.select_payment_method_prompt') %>
+      selected: @order.payment_method_id %>
   </div>
 
   <div class="col-4">
@@ -31,6 +27,10 @@
   </div>
 
   <div class="col-12">
-    <%= form.submit t('views.approve.approve_order'), class: "btn btn-primary" %>
+    <%= form.submit t('views.approve.send_approve'), class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<hr />
+
+<%= link_to t('helpers.buttons.back'), my_company_orders_path, class: "btn btn-secondary" %>

@@ -9,11 +9,13 @@
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
   <div>
     <% if @order.local == 'company' %>
-      <%= t('views.show.company_location', address: @order.event_type.company.address) %>
+      <%= t('views.show.select_payment_method_with_current', current_method: (@order.payment_method&.method || t('views.show.none'))) %>
     <% elsif @order.local.present? %>
       <%= @order.local %>
     <% end %>
   </div>
+  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
+  <div><%= format_currency(@final_price) %></div>
   <div>
     <% if @order.payment_method %>
       <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>

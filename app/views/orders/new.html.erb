@@ -36,7 +36,7 @@
               <%= form.text_field :local %>
             <% else %>
               <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company' %>
-              <%= form.label :location_company, t('views.show.company_address', address: @event_type.company.address) %>
+              <%= form.label :location_company, t('views.show.company_address', company: @company.brand_name, address: @company.address) %>
               <br>
               <%= form.radio_button :location_choice, 'custom', id: 'location_custom' %>
               <%= form.label :location_custom, t('views.show.other_address') %>
