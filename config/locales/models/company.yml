@@ -45,6 +45,7 @@ pt-BR:
       my_company: Minha Empresa
       create_event: Novo Tipo de Evento
       event_types: Tipos de Evento
+      no_events: Essa empresa ainda não possui eventos cadastrados.
       attendees: Número de convidados
       people: pessoas
       duration: Duração

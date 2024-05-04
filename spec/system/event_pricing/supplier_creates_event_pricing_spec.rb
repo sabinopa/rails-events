@@ -187,7 +187,7 @@ describe 'Supplier creates event pricing' do
                                   min_attendees: 20, max_attendees: 50, duration: 240,
                                   menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                                   alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1)
-    EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                                         extra_hour_price: 60.0, day_options: :weekend)
 
     login_as(supplier, :scope => :supplier)
