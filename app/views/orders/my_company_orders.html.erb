@@ -1,21 +1,40 @@
 <h2 class="event-title mb-4"><strong><%= t('views.my_orders.my_orders')%></strong></h2>
 
 <div class="row">
-    <% if @waiting_confirmation_orders.present? %>
-        <h3><%= t('views.my_orders.waiting_confirmation') %></h3>
-        <% @waiting_confirmation_orders.each do |order| %>
+    <% if @waiting_review_orders.present? %>
+        <h3><%= t('views.my_orders.waiting_review') %></h3>
+        <% @waiting_review_orders.each do |order| %>
             <div class="col-md-6 mb-4">
                 <div class="card shadow border-0 rounded-4">
                     <div class="card-body custom-text-size">
                         <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <p class="custom-text-size"><%= I18n.t("activerecord.attributes.order.status.#{order.status}") %></p>
                         <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
                     </div>
                 </div>
             </div>
         <% end %>
     <% else %>
-        <p><%= t('views.my_orders.no_waiting_confirmation_orders') %></p>
+        <p><%= t('views.my_orders.no_review_confirmation_orders') %></p>
+    <% end %>
+</div>
+
+<hr />
+
+<div class="row">
+    <% if @negotiating_orders.present? %>
+        <h3><%= t('views.my_orders.negotiating') %></h3>
+        <% @negotiating_orders.each do |order| %>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-body custom-text-size">
+                        <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
+                        <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <p><%= t('views.my_orders.no_confirmed_orders') %></p>
     <% end %>
 </div>
 
@@ -29,7 +48,6 @@
                 <div class="card shadow border-0 rounded-4">
                     <div class="card-body custom-text-size">
                         <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <p class="custom-text-size"><%= I18n.t("activerecord.attributes.order.status.#{order.status}") %></p>
                         <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
                     </div>
                 </div>
@@ -50,7 +68,6 @@
                 <div class="card shadow border-0 rounded-4">
                     <div class="card-body custom-text-size">
                         <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <p class="custom-text-size"><%= I18n.t("activerecord.attributes.order.status.#{order.status}") %></p>
                         <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  require 'holidays'
+
   WEEKEND = 'weekend'.freeze
   HOLIDAY = 'holiday'.freeze
   WEEKDAY = 'weekday'.freeze
@@ -17,7 +19,7 @@ class Order < ApplicationRecord
 
   before_validation :generate_code, on: :create
 
-  enum status: { waiting_confirmation: 0, order_confirmed: 1, order_cancelled: 2 }
+  enum status: { waiting_review: 0, negotiating: 1, order_confirmed: 2, order_cancelled: 3 }
 
   def calculate_default_price
     event_pricing = select_event_pricing(self.event_type, self.date)
@@ -46,12 +48,13 @@ class Order < ApplicationRecord
   def determine_day_option(date)
     if date.saturday? || date.sunday?
       WEEKEND
-    elsif date.holiday?
+    elsif Holidays.on(date, :br).any?
       HOLIDAY
     else
       WEEKDAY
     end
   end
+
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
   end

@@ -4,9 +4,17 @@
 <p><%= t('views.show.local') %>: <%= @order.local %></p>
 
 <p><%= t('views.approve.total_price') %>: <%= @final_price %></p>
-<p><%= t('views.show.payment_method') %>: <%= @order.payment_method.method %></p>
 
 <%= form_with model: @order, url: approve_order_path(@order), method: :post , class: "row g-3" do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :payment_method_id,
+      t('views.show.select_payment_method_with_current', current_method: @order.payment_method.method || t('views.show.none')) %>
+    <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method,
+      selected: @order.payment_method_id,
+      prompt: t('views.show.select_payment_method_prompt') %>
+  </div>
+
   <div class="col-4">
     <%= form.label :extra_charge, t('views.approve.extra_charge'), class: "form-label" %>:
     <%= form.text_field :extra_charge, class: "form-control"  %>

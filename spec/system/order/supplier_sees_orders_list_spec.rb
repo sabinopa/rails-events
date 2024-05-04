@@ -64,12 +64,15 @@ describe 'Supplier sees order list' do
                                     min_attendees: 10, max_attendees: 40, duration: 180,
                                     menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    order1 = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type1.id, date: 30.days.from_now,
+    order1 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
-                           local: 'Salão de festas XYZ - Rua das Bananeiras, 44', status: 0)
-    order2 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type2.id,
-                           date: 45.days.from_now, attendees_number: 15, details: 'Gostaríamos de ter uma encenação de história de conto de fadas.',
+                           local: 'Salão de festas XYZ - Rua das Bananeiras, 44', status: 2)
+    order2 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type2.id, date: 45.days.from_now,
+                          attendees_number: 15, details: 'Gostaríamos de ter uma encenação de história de conto de fadas.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 1)
+    order3 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 90.days.from_now,
+                           attendees_number: 15, details: 'Preciso de opções veganas no cardápio.',
+                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 0)
 
     login_as(supplier, :scope => :supplier)
     visit my_company_orders_path
@@ -77,8 +80,10 @@ describe 'Supplier sees order list' do
     expect(page).to have_content 'Pedidos'
     expect(page).to have_content order1.code
     expect(page).to have_content order2.code
-    expect(page).to have_content 'Aguardando Confirmação'
-    expect(page).to have_content 'Confirmado'
+    expect(page).to have_content order3.code
+    expect(page).to have_content 'Aguardando Análise'
+    expect(page).to have_content 'Em Negociação'
+    expect(page).to have_content 'Pedidos Confirmados'
     expect(page).to have_content "#{30.days.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "#{45.days.from_now.strftime('%d/%m/%Y')}"
   end

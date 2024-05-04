@@ -7,13 +7,19 @@
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.attendees') %>:</h6>
   <div><%= @order.attendees_number %></div>
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
-  <div><%= @order.local %></div>
   <div>
-  <% if @order.payment_method %>
-    <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
-    <div><%= @order.payment_method.method %></div>
-  <% else %>
-    <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
-  <% end %>
+    <% if @order.local == 'company' %>
+      <%= t('views.show.company_location', address: @order.event_type.company.address) %>
+    <% elsif @order.local.present? %>
+      <%= @order.local %>
+    <% end %>
+  </div>
+  <div>
+    <% if @order.payment_method %>
+      <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
+      <div><%= @order.payment_method.method %></div>
+    <% else %>
+      <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
+    <% end %>
   </div>
 </div>

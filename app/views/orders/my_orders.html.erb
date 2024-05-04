@@ -6,10 +6,10 @@
       <div class="card shadow border-0 rounded-4">
         <div class="card-body custom-text-size text-center">
           <% badge_class = case order.status
-                          when 'waiting_confirmation' then 'bg-warning'
+                          when 'waiting_review' then 'bg-warning'
+                          when 'negotiating' then 'bg-info'
                           when 'order_confirmed' then 'bg-success'
-                          when 'order_cancelled' then 'bg-danger'
-                          else 'bg-secondary'
+                          when 'order_cancelled' then 'bg-secondary'
                           end %>
 
           <div class="badge <%= badge_class %>">

@@ -7,7 +7,8 @@ pt-BR:
     attributes:
       order:
         status:
-          waiting_confirmation: Aguardando Confirmação
+          waiting_review: Aguardando Análise
+          negotiating: Em Negociação
           order_confirmed: Pedido Confirmado
           order_cancelled: Pedido Cancelado
         date: Data
@@ -39,11 +40,20 @@ pt-BR:
       has_conflict: 'Atenção! Existe outro evento agendado para esta data.'
       payment_method: 'Método de pagamento escolhido'
       not_yet_selected: Método de pagamento ainda não definido
+      select_payment_method_with_current: "Deseja alterar método de pagamento? (atual: %{current_method}) Para alterar, selecione:"
+      select_payment_method_prompt: "Selecione um método"
+      none: Nenhum
+      save_changes: Salvar alterações
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.
       order: Pedido
-      no_waiting_confirmation_orders: Não há pedido aguardando confirmação.
+      waiting_review: Aguardando Análise
+      negotiating: Em Negociação
+      confirmed: Pedidos Confirmados
+      cancelled: Pedidos Cancelados
+      no_waiting_review_orders: Não há pedido aguardando análise.
+      no_negotiating_orders: Não há pedido em negociação.
       no_confirmed_orders: Não há pedidos confirmados.
       no_cancelled_orders: Não há pedidos cancelados.
     approve:

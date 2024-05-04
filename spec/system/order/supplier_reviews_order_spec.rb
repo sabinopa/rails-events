@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Supplier evaluates order' do
+describe 'Supplier reviews order' do
   it 'must be authenticated' do
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
@@ -45,7 +45,7 @@ describe 'Supplier evaluates order' do
     visit root_path
     click_on 'Pedidos'
     click_on order.code
-    click_on 'Avaliar Pedido'
+    click_on 'Revisar Pedido'
 
     expect(current_path).to eq approve_order_path(order.id)
   end
@@ -72,7 +72,7 @@ describe 'Supplier evaluates order' do
     visit root_path
     click_on 'Pedidos'
     click_on order.code
-    click_on 'Avaliar Pedido'
+    click_on 'Revisar Pedido'
 
     expect(current_path).to eq approve_order_path(order.id)
     expect(page).to have_content 'blablblabal'

@@ -121,7 +121,7 @@ describe 'Client creates order' do
     expect(page).to have_content "Solicitação #{order.code}: Enviado com sucesso!"
     expect(page).to have_content 'Pedido de buffet para Estrelas Mágicas'
     expect(page).to have_content '58.934.722/0001-01'
-    expect(page).to have_content 'Aguardando Confirmação'
+    expect(page).to have_content 'Aguardando Análise'
     expect(page).to have_content 'Dados da empresa:'
     expect(page).to have_content '(11) 2233-4455'
     expect(page).to have_content 'festas@estrelasmagicas.com.br'
@@ -171,7 +171,7 @@ describe 'Client creates order' do
     expect(page).to have_content "Solicitação #{order.code}: Enviado com sucesso!"
     expect(page).to have_content 'Pedido de buffet para Estrelas Mágicas'
     expect(page).to have_content '58.934.722/0001-01'
-    expect(page).to have_content 'Aguardando Confirmação'
+    expect(page).to have_content 'Aguardando Análise'
     expect(page).to have_content 'Dados da empresa:'
     expect(page).to have_content '(11) 2233-4455'
     expect(page).to have_content 'Método de pagamento escolhido:'
