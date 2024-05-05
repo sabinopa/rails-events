@@ -57,6 +57,7 @@ pt-BR:
       approval: Revisar Pedido
       final_price: Preço final
       validity: "Prazo para resposta desta negociação: %{validity}"
+      charge_description: Descrição da cobrança
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.

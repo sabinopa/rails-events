@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
     conflicting_orders = Order.where(company_id: @order.company_id, date: @order.date).where.not(id: @order.id)
     @has_conflict = conflicting_orders.exists?
 
@@ -29,7 +28,7 @@ class OrdersController < ApplicationController
     if @order_approval
       extra_charge = @order_approval.extra_charge || 0
       discount = @order_approval.discount || 0
-      @final_price = @order.final_price
+      @final_price = @order.final_price(extra_charge, discount)
     else
       @default_price = @order.default_price
     end
@@ -55,9 +54,6 @@ class OrdersController < ApplicationController
   private
 
   def handle_approval_process
-    extra_charge = params.dig(:order, :extra_charge).presence || 0.0
-    discount = params.dig(:order, :discount).presence || 0.0
-
     final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
     @approval = @order.order_approvals.build(approval_params.merge(final_price: final_price))
     if @approval.save && @order.update(status: :negotiating)

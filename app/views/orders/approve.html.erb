@@ -26,12 +26,12 @@
 
   <div class="col-4">
     <%= form.label :extra_charge, t('views.approve.extra_charge'), class: "form-label" %>:
-    <%= form.text_field :extra_charge, class: "form-control"  %>
+    <%= form.number_field :extra_charge, class: "form-control"  %>
   </div>
 
   <div class="col-md-4">
     <%= form.label :discount, t('views.approve.discount'), class: "form-label" %>:
-    <%= form.text_field :discount, class: "form-control" %>
+    <%= form.number_field :discount, class: "form-control" %>
   </div>
 
   <div class="col-md-8">

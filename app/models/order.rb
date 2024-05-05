@@ -21,6 +21,9 @@ class Order < ApplicationRecord
   end
 
   def final_price(extra_charge = 0, discount = 0)
+    latest_approval = order_approvals.last
+    extra_charge = latest_approval&.extra_charge || 0
+    discount = latest_approval&.discount || 0
     calculate_final_price(extra_charge, discount)
   end
 
@@ -38,7 +41,8 @@ class Order < ApplicationRecord
 
   def calculate_final_price(extra_charge, discount)
     default_price = calculate_default_price
-    default_price + extra_charge.to_f - discount.to_f
+    final_price = default_price + extra_charge.to_f - discount.to_f
+    final_price
   end
 
   def select_event_pricing(event_type, day_type)
