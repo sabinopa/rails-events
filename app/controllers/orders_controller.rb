@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
   before_action :authenticate_client!, only: [:new, :create, :my_orders]
   before_action :set_order, only: [:show, :approve]
-  before_action :set_event_type, only: [:new, :create, :show]
-  before_action :set_company, only: [:new, :create, :show]
+  before_action :set_event_type, only: [:new, :create, :show, :approve]
+  before_action :set_company, only: [:new, :create, :show, :approve]
 
   def new
     @order = Order.new
@@ -56,9 +56,16 @@ class OrdersController < ApplicationController
   def handle_approval_process
     final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
     @approval = @order.order_approvals.build(approval_params.merge(final_price: final_price))
-    if @approval.save && @order.update(status: :negotiating)
-      flash[:notice] = t('.success', code: @order.code)
-      redirect_to @order
+    if @approval.save
+      update_order_params = {status: :negotiating}
+      update_order_params[:payment_method_id] = params[:order][:payment_method_id] if params[:order][:payment_method_id].present?
+      if @order.update(update_order_params)
+        flash[:notice] = t('.success', code: @order.code)
+        redirect_to @order
+      else
+        flash.now[:alert] = t('.error')
+        render :approve
+      end
     else
       flash.now[:alert] = t('.error')
       render :approve

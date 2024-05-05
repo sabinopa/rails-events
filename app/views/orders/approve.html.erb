@@ -9,20 +9,19 @@
   </div>
 <% end %>
 
-
 <h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
 
 <%= render partial: 'order_details' %>
 
 <%= form_with model: @order, url: approve_order_path(@order), method: :post, local: true, class: "row g-3" do |form| %>
 
-  <div class="mb-3">
-  <%= form.hidden_field :payment_method_id, value: @order.payment_method_id %>
-<%= t('views.show.select_payment_method',
+<div class="mb-3">
+  <%= t('views.show.select_payment_method',
        current_method: @order.payment_method ? @order.payment_method.method : t('views.show.none')) %>
-    <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method,
-      selected: @order.payment_method_id %>
-  </div>
+  <% if @company.payment_methods.exists? %>
+    <%= form.collection_select :payment_method_id, @company.payment_methods, :id, :method, selected: @order.payment_method_id, id: 'order_payment_method_id'  %>
+  <% end %>
+</div>
 
   <div class="col-4">
     <%= form.label :extra_charge, t('views.approve.extra_charge'), class: "form-label" %>:
