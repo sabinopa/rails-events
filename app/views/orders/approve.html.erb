@@ -1,10 +1,19 @@
+<% if @order.errors.any? %>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
 
 <%= render partial: 'order_details' %>
 
-<%= form_with model: @order, url: approve_order_path(@order), method: :post , class: "row g-3" do |form| %>
+<%= form_with model: @order, url: approve_order_path(@order), method: :post, local: true, class: "row g-3" do |form| %>
 
   <div class="mb-3">
+  <%= form.hidden_field :payment_method_id, value: @order.payment_method_id %>
 <%= t('views.show.select_payment_method',
        current_method: @order.payment_method ? @order.payment_method.method : t('views.show.none')) %>
     <%= form.collection_select :payment_method_id, PaymentMethod.all, :id, :method,
@@ -24,6 +33,11 @@
   <div class="col-md-8">
     <%= form.label :charge_description, t('views.approve.charge_description'), class: "form-label" %>:
     <%= form.text_area :charge_description, class: "form-control", rows: 4, cols: 50 %>
+  </div>
+  <br>
+  <div class="col-md-6">
+    <%= form.label :validity_date, t('views.approve.validity_date'), class: "form-label" %>:
+    <%= form.date_field :validity_date, class: "form-control" %>
   </div>
 
   <div class="col-12">

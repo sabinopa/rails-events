@@ -261,12 +261,12 @@ p "Created #{EventPricing.count} event pricings"
 
 # Pedidos de João
 order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                            date: 30.days.from_now, attendees_number: 150, details: 'Decoração clássica e banda ao vivo.',
+                            date: 30.days.from_now, attendees_number: 50, details: 'Decoração clássica e banda ao vivo.',
                             local: 'Salão de festas Beleza Infinita - Rua das Flores, 123',
                             status: 0, payment_method_id: pix.id)
 
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
-                            date: 60.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentação de projetos.',
+                            date: 60.days.from_now, attendees_number: 25, details: 'Evento corporativo com apresentação de projetos.',
                             local: 'Rua das Flores, 123', status: 2, payment_method_id: debito.id)
 
 order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
@@ -305,7 +305,7 @@ order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                               local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id)
 
 order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                              date: 30.days.from_now, attendees_number: 200, details: 'Casamento dos sonhos com buffet personalizado.',
+                              date: 30.days.from_now, attendees_number: 20, details: 'Casamento dos sonhos com buffet personalizado.',
                               local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id)
 
 order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
@@ -343,7 +343,7 @@ order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, 
                              local: 'Teatro Real - Rua dos Campeões, 707', status: 2, payment_method_id: credito.id)
 
 order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_premiacao.id,
-                             date: 150.days.from_now, attendees_number: 200, details: 'Evento corporativo com apresentações.',
+                             date: 150.days.from_now, attendees_number: 20, details: 'Evento corporativo com apresentações.',
                              local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0, payment_method_id: pix.id)
 
 p "Created #{Order.count} orders"

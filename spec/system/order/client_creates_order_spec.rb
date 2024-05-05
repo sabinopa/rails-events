@@ -109,6 +109,7 @@ describe 'Client creates order' do
     login_as(client, :scope => :client)
     visit new_event_type_order_path(event_type.id)
     fill_in 'Data', with: 10.days.from_now
+    find('#day_type_weekend').click
     fill_in 'Número de convidados', with: '35'
     fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_custom').click
@@ -134,7 +135,7 @@ describe 'Client creates order' do
     expect(page).to have_content 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     expect(page).to have_content 'Data:'
     date = I18n.localize 10.days.from_now.to_date
-    expect(page).to have_content "#{date}"
+    expect(page).to have_content "#{date} - Final de Semana"
     expect(page).to have_content 'Número de convidados:'
     expect(page).to have_content '35'
     expect(page).to have_content 'Localização:'
@@ -160,6 +161,7 @@ describe 'Client creates order' do
     login_as(client, :scope => :client)
     visit new_event_type_order_path(event_type.id)
     fill_in 'Data', with: 10.days.from_now
+    find('#day_type_holiday').click
     fill_in 'Número de convidados', with: '35'
     fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_company').click
@@ -184,7 +186,7 @@ describe 'Client creates order' do
     expect(page).to have_content 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     expect(page).to have_content 'Data:'
     date = I18n.localize 10.days.from_now.to_date
-    expect(page).to have_content "#{date}"
+    expect(page).to have_content "#{date} - Feriado"
     expect(page).to have_content 'Número de convidados:'
     expect(page).to have_content '35'
     expect(page).to have_content 'Localização:'

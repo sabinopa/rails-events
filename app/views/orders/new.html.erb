@@ -21,6 +21,17 @@
             <%= form.date_field :date %>
           </div>
           <div>
+            <h6><%= t('views.new.day_type') %></h6>
+            <%= form.radio_button :day_type, 'weekday' %>
+            <%= form.label :day_type_weekday, t('views.new.week_days'), id: 'day_type_weekday' %>
+            <br>
+            <%= form.radio_button :day_type, 'weekend' %>
+            <%= form.label :day_type_weekend, t('views.new.weekend'), id: 'day_type_weekend' %>
+            <br>
+            <%= form.radio_button :day_type, 'holiday' %>
+            <%= form.label :day_type_holiday, t('views.new.holiday'), id: 'day_type_holiday' %>
+          </div>
+          <div>
             <%= form.label :attendees_number %>:
             <%= form.number_field :attendees_number %>
           </div>

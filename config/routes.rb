@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :event_pricings, only: [:new, :create, :show, :edit, :update]
       resources :orders, only: [:new, :create, :show] do
         get :approve, on: :member
+        post :approve, on: :member
       end
     end
   end

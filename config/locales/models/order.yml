@@ -15,15 +15,24 @@ pt-BR:
         attendees_number: Número de convidados
         details: Conte-nos detalhes do seu evento e como podemos ajudar
         local: Localização
+        day_type: Tipo de dia
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"
       error: Pedido não enviado.
     my_orders:
       error: 'Você não pode acessar essa tela.'
+    approve:
+      success: "Pedido %{code}: Está em negociação."
+      error: Erro ao aprovar o pedido.
   views:
     new:
       new_order: "Criar pedido para %{name}"
+      day_type: O evento ocorrerá em que tipo de dia?
+      day_types:
+        weekend: Final de Semana
+        holiday: Feriado
+        week_days: Dias Útil
     show:
       company_contact: Dados da empresa
       request: "Pedido de buffet para %{brand_name}"
@@ -45,6 +54,7 @@ pt-BR:
       save_changes: Salvar alterações
       approval: Revisar Pedido
       final_price: Preço final
+      validity: "Prazo para resposta desta negociação: %{validity}"
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.
@@ -60,8 +70,11 @@ pt-BR:
     approve:
       evaluate_order: Avaliar pedido
       total_price: Preço total
+      validity_date: Validade da proposta
       extra_charge: Taxa extra
       discount: Desconto
       charge_description: Descrição da cobrança
       approve_order: Enviar para Confirmação
       send_approve: Enviar para Confirmação
+
+

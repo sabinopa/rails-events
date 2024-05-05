@@ -10,14 +10,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = @event_type.orders.new(order_params)
-    @order.client = current_client
-    @order.location_choice = params[:order][:location_choice]
-    @order.local = determine_local(@order.location_choice)
-
+    @order = @event_type.orders.new(order_params.merge(client: current_client, local: determine_local))
     if @order.save
-      flash[:notice] = t('.success', code: @order.code)
-      redirect_to @order
+      redirect_to @order, notice: t('.success', code: @order.code)
     else
       flash.now[:alert] = t('.error')
       render :new
@@ -25,8 +20,19 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
     conflicting_orders = Order.where(company_id: @order.company_id, date: @order.date).where.not(id: @order.id)
     @has_conflict = conflicting_orders.exists?
+
+    @order_approval = @order.order_approvals.last if @order.status == 'negotiating'
+
+    if @order_approval
+      extra_charge = @order_approval.extra_charge || 0
+      discount = @order_approval.discount || 0
+      @final_price = @order.final_price
+    else
+      @default_price = @order.default_price
+    end
   end
 
   def my_orders
@@ -42,47 +48,35 @@ class OrdersController < ApplicationController
   end
 
   def approve
-    if @order.present? && params[:order].present?
-      final_price = calculate_final_price(@order, params[:order][:extra_charge], params[:order][:discount])
-      approval = @order.build_order_approval(order_approval_params)
-
-      if approval.save
-        @order.update(status: 'negotiating')
-        flash[:notice] = "Pedido aprovado com sucesso."
-        redirect_to @order
-      else
-        flash.now[:alert] = "Erro ao aprovar o pedido."
-        render :approve
-      end
-    else
-      @final_price = @order.calculate_default_price
-      render :approve
-    end
+    return unless request.post?
+    handle_approval_process
   end
 
   private
 
-  def order_params
-    params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number,
-                                  :details, :payment_method_id)
-  end
-
-  def order_approval_params
-    params.require(:order).permit(supplier: current_supplier, final_price: final_price,
-                                  validity_date: params[:order][:validity_date],
-                                  extra_charge: params[:order][:extra_charge],
-                                  discount: params[:order][:discount],
-                                  charge_description: params[:order][:charge_description],
-                                  payment_method: params[:order][:payment_method],
-                                  approved_at: Time.current)
-  end
-
-  def determine_local(location_choice)
-    if location_choice == 'company'
-      @event_type.company.address
+  def handle_approval_process
+    final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
+    @approval = @order.order_approvals.build(approval_params.merge(final_price: final_price))
+    if @approval.save && @order.update(status: :negotiating)
+      flash[:notice] = t('.success', code: @order.code)
+      redirect_to @order
     else
-      params[:order][:local]
+      flash.now[:alert] = t('.error')
+      render :approve
     end
+  end
+
+  def order_params
+    params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number, :details, :payment_method_id, :day_type)
+  end
+
+  def approval_params
+    params.require(:order).permit(:validity_date, :extra_charge, :discount, :charge_description, :payment_method_id)
+                          .merge(supplier_id: current_supplier.id)
+  end
+
+  def determine_local
+    params[:order][:location_choice] == 'company' ? @event_type.company.address : params[:order][:local]
   end
 
   def set_order
@@ -94,10 +88,6 @@ class OrdersController < ApplicationController
   end
 
   def set_event_type
-    if params[:event_type_id]
-      @event_type = EventType.find(params[:event_type_id])
-    else
-      @event_type = @order.event_type
-    end
+    @event_type = EventType.find(params[:event_type_id] || @order.event_type_id)
   end
 end

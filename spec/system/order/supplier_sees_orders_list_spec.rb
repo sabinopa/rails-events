@@ -15,7 +15,7 @@ describe 'Supplier sees order list' do
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now, attendees_number: 30,
                           details: 'Por favor, inclua uma sessão de caça ao tesouro interativa.', local: 'Salão de festas XYZ - Rua das Bananeiras, 44',
-                          code: 'ORD-123456', status: 0 )
+                          day_type: :weekend, status: 0 )
 
     visit my_company_orders_path
 
@@ -36,7 +36,7 @@ describe 'Supplier sees order list' do
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now, attendees_number: 30,
                           details: 'Por favor, inclua uma sessão de caça ao tesouro interativa.', local: 'Salão de festas XYZ - Rua das Bananeiras, 44',
-                          code: 'ORD-123456', status: 0 )
+                          day_type: :weekend, status: 0 )
 
     login_as(supplier, :scope => :supplier)
     visit root_path
@@ -65,13 +65,13 @@ describe 'Supplier sees order list' do
                                     menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     order1 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 30.days.from_now,
-                           attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
+                           attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.', day_type: :weekend,
                            local: 'Salão de festas XYZ - Rua das Bananeiras, 44', status: 2)
     order2 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type2.id, date: 45.days.from_now,
-                          attendees_number: 15, details: 'Gostaríamos de ter uma encenação de história de conto de fadas.',
+                          attendees_number: 15, details: 'Gostaríamos de ter uma encenação de história de conto de fadas.', day_type: :week_day,
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 1)
     order3 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 90.days.from_now,
-                           attendees_number: 15, details: 'Preciso de opções veganas no cardápio.',
+                           attendees_number: 15, details: 'Preciso de opções veganas no cardápio.', day_type: :holiday,
                             local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 0)
 
     login_as(supplier, :scope => :supplier)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_190250) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_031234) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -120,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_190250) do
     t.datetime "approved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_method_id"
     t.index ["order_id"], name: "index_order_approvals_on_order_id"
     t.index ["supplier_id"], name: "index_order_approvals_on_supplier_id"
   end
@@ -137,6 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_190250) do
     t.datetime "updated_at", null: false
     t.integer "client_id"
     t.integer "payment_method_id"
+    t.string "day_type"
     t.index ["client_id"], name: "index_orders_on_client_id"
     t.index ["company_id"], name: "index_orders_on_company_id"
     t.index ["event_type_id"], name: "index_orders_on_event_type_id"
