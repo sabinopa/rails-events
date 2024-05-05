@@ -318,7 +318,6 @@ describe 'Supplier approves order' do
     expect(page).to have_content 'Preço final:'
     expect(page).to have_content 'R$ 900,00'
     expect(page).to have_content 'Descrição da cobrança'
-
   end
 
   it 'and approves only writing a charge description' do
