@@ -55,6 +55,9 @@ class OrdersController < ApplicationController
   private
 
   def handle_approval_process
+    extra_charge = params.dig(:order, :extra_charge).presence || 0.0
+    discount = params.dig(:order, :discount).presence || 0.0
+
     final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
     @approval = @order.order_approvals.build(approval_params.merge(final_price: final_price))
     if @approval.save && @order.update(status: :negotiating)
@@ -72,7 +75,7 @@ class OrdersController < ApplicationController
 
   def approval_params
     params.require(:order).permit(:validity_date, :extra_charge, :discount, :charge_description, :payment_method_id)
-                          .merge(supplier_id: current_supplier.id)
+          .merge(supplier_id: current_supplier.id)
   end
 
   def determine_local

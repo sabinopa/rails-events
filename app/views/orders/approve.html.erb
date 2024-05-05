@@ -1,10 +1,14 @@
-<% if @order.errors.any? %>
-  <ul>
-    <% @order.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+<% if @approval&.errors&.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p><%= t('errors.messages.verify_error') %></p>
+    <ul>
+      <% @approval.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
 
 <h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
 

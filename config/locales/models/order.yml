@@ -16,6 +16,8 @@ pt-BR:
         details: Conte-nos detalhes do seu evento e como podemos ajudar
         local: Localização
         day_type: Tipo de dia
+      order_approval:
+        validity_date: Validade da proposta
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"

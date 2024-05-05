@@ -263,88 +263,88 @@ p "Created #{EventPricing.count} event pricings"
 order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
                             date: 30.days.from_now, attendees_number: 50, details: 'Decoração clássica e banda ao vivo.',
                             local: 'Salão de festas Beleza Infinita - Rua das Flores, 123',
-                            status: 0, payment_method_id: pix.id)
+                            status: 0, payment_method_id: pix.id, day_type: :weekend)
 
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
                             date: 60.days.from_now, attendees_number: 25, details: 'Evento corporativo com apresentação de projetos.',
-                            local: 'Rua das Flores, 123', status: 2, payment_method_id: debito.id)
+                            local: 'Rua das Flores, 123', status: 2, payment_method_id: debito.id, day_type: :weekend)
 
 order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
                             date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
-                            local: 'Palácio Real - Rua da Realeza, 456',status: 1, payment_method_id: credito.id)
+                            local: 'Palácio Real - Rua da Realeza, 456',status: 1, payment_method_id: credito.id, day_type: :week_day)
 
 order_joao4 = Order.create!(client_id: joao.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                             date: 120.days.from_now, attendees_number: 100, details: 'Jantar temático com pratos de várias culturas.',
-                            local: 'Rua da Paz, 1313', status: 0, payment_method_id: credito.id)
+                            local: 'Rua da Paz, 1313', status: 0, payment_method_id: credito.id, day_type: :holiday)
 
 # Pedidos de Maria
 order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                              date: 20.days.from_now, attendees_number: 50, details: 'Jantar formal com música instrumental.',
-                             local: 'Restaurante Elegante - Avenida do Luxo, 456', status: 0, payment_method_id: credito.id)
+                             local: 'Restaurante Elegante - Avenida do Luxo, 456', status: 0, payment_method_id: credito.id, day_type: :weekend)
 
 order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                              date: 40.days.from_now, attendees_number: 80, details: 'Jantar de degustação orgânica com amigos.',
-                             local: 'Restaurante Orgânico - Alameda Verde, 789', status: 1, payment_method_id: pix.id)
+                             local: 'Restaurante Orgânico - Alameda Verde, 789', status: 1, payment_method_id: pix.id, day_type: :weekend)
 
 order_maria3 = Order.create!(client_id: maria.id, company_id: sabores_mundo.id, event_type_id: noite_gastronomica.id,
                              date: 70.days.from_now, attendees_number: 120, details: 'Evento temático com pratos internacionais.',
-                             local: 'Rua da Paz, 1313',status: 2, payment_method_id: credito.id)
+                             local: 'Rua da Paz, 1313',status: 2, payment_method_id: credito.id, day_type: :week_day)
 
 order_maria4 = Order.create!(client_id: maria.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 130.days.from_now, attendees_number: 250, details: 'Evento de gala para homenagear parceiros.',
-                             local: 'Centro de Eventos - Rua da Cerimônia, 909', status: 0, payment_method_id: debito.id)
+                             local: 'Centro de Eventos - Rua da Cerimônia, 909', status: 0, payment_method_id: debito.id, day_type: :holiday)
 
 
 # Pedidos de Carlos
 order_carlos1 = Order.create!(client_id: carlos.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                               date: 60.days.from_now, attendees_number: 300, details: 'Evento de premiação para funcionários.',
-                              local: 'Teatro Magnífico - Rua do Esplendor, 789', status: 2, payment_method_id: debito.id)
+                              local: 'Teatro Magnífico - Rua do Esplendor, 789', status: 2, payment_method_id: debito.id, day_type: :weekend)
 
 order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: brunch_network.id,
                               date: 35.days.from_now, attendees_number: 60, details: 'Brunch empresarial para networking.',
-                              local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id)
+                              local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id, day_type: :weekend)
 
 order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
                               date: 30.days.from_now, attendees_number: 20, details: 'Casamento dos sonhos com buffet personalizado.',
-                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id)
+                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id, day_type: :week_day)
 
 order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                               date: 90.days.from_now, attendees_number: 60, details: 'Jantar gourmet com degustação especial.',
-                              local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0, payment_method_id: credito.id)
+                              local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0, payment_method_id: credito.id, day_type: :holiday)
 
 # Pedidos de Ana
 order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                            date: 15.days.from_now, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
-                           local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 1, payment_method_id: pix.id)
+                           local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 1, payment_method_id: pix.id, day_type: :weekend)
 
 order_ana2 = Order.create!(client_id: ana.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                            date: 45.days.from_now, attendees_number: 100, details: 'Festival de food trucks com culinária internacional.',
-                           local: 'Rua da Paz, 1313', status: 0, payment_method_id: credito.id)
+                           local: 'Rua da Paz, 1313', status: 0, payment_method_id: credito.id, day_type: :weekend)
 
 order_ana3 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: piquenique.id,
                            date: 80.days.from_now, attendees_number: 30, details: 'Piquenique sustentável ao ar livre.',
-                           local: 'Parque Natural - Rua do Sol, 505', status: 2, payment_method_id: credito.id)
+                           local: 'Parque Natural - Rua do Sol, 505', status: 2, payment_method_id: credito.id, day_type: :week_day)
 
 order_ana4 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                            date: 75.days.from_now, attendees_number: 35, details: 'Noite de degustação orgânica ao ar livre.',
-                           local: 'Restaurante Ecológico - Alameda Verde, 1111',status: 0, payment_method_id: credito.id)
+                           local: 'Restaurante Ecológico - Alameda Verde, 1111',status: 0, payment_method_id: credito.id, day_type: :holiday)
 
 # Pedidos de Lucas
 order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                              date: 50.days.from_now, attendees_number: 200, details: 'Festival gastronômico com várias cozinhas.',
-                             local: 'Rua da Paz, 1313',status: 0, payment_method_id: credito.id)
+                             local: 'Rua da Paz, 1313',status: 0, payment_method_id: credito.id, day_type: :weekend)
 
 order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                              date: 30.days.from_now, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
-                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 1, payment_method_id: credito.id)
+                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 1, payment_method_id: credito.id, day_type: :weekend)
 
 order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
-                             local: 'Teatro Real - Rua dos Campeões, 707', status: 2, payment_method_id: credito.id)
+                             local: 'Teatro Real - Rua dos Campeões, 707', status: 2, payment_method_id: credito.id, day_type: :week_day)
 
 order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_premiacao.id,
                              date: 150.days.from_now, attendees_number: 20, details: 'Evento corporativo com apresentações.',
-                             local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0, payment_method_id: pix.id)
+                             local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0, payment_method_id: pix.id, day_type: :holiday)
 
 p "Created #{Order.count} orders"
 
