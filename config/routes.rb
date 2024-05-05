@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :orders, only: [:new, :create, :show] do
         get :approve, on: :member
         post :approve, on: :member
+        post :confirm, on: :member
       end
     end
   end

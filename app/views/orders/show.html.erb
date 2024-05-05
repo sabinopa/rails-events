@@ -18,18 +18,23 @@
           <div class="row align-items-center gx-5">
           <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
             <% if client_signed_in? %>
+              <% if @order.status == 'negotiating' %>
+                <%= form_with url: confirm_order_path(@order), method: :post, local: true do |form| %>
+                  <%= form.submit t('views.show.confirm'), class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
               <%= render partial: 'company_contact' %>
             <% end %>
             <%= render partial: 'order_details' %>
           </div>
         </div>
       </div>
+    </section>
       <hr />
       <% if client_signed_in? %>
         <%= link_to t('helpers.buttons.back'), my_orders_path, class: "btn btn-secondary" %>
       <% elsif supplier_signed_in? %>
         <%= link_to t('helpers.buttons.back'), my_company_orders_path, class: "btn btn-secondary" %>
       <% end %>
-    </section>
   </div>
 </div>

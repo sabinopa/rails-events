@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
-  before_action :authenticate_client!, only: [:new, :create, :my_orders]
-  before_action :set_order, only: [:show, :approve]
-  before_action :set_event_type, only: [:new, :create, :show, :approve]
-  before_action :set_company, only: [:new, :create, :show, :approve]
+  before_action :authenticate_client!, only: [:new, :create, :my_orders, :confirm]
+  before_action :set_order, only: [:show, :approve, :confirm]
+  before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm]
+  before_action :set_company, only: [:new, :create, :show, :approve, :confirm]
 
   def new
     @order = Order.new
@@ -51,6 +51,22 @@ class OrdersController < ApplicationController
     handle_approval_process
   end
 
+  def confirm
+    @approval = @order.order_approvals.last
+    if @approval && @approval.validity_date >= Date.today
+      if @order.update(status: 'order_confirmed')
+        flash[:notice] =  t('.success', code: @order.code)
+        redirect_to @order
+      else
+        flash.now[:alert] = t('.error')
+        render :show
+      end
+    else
+      flash.now[:alert] = t('.expired')
+      render :show
+    end
+  end
+
   private
 
   def handle_approval_process
@@ -62,9 +78,6 @@ class OrdersController < ApplicationController
       if @order.update(update_order_params)
         flash[:notice] = t('.success', code: @order.code)
         redirect_to @order
-      else
-        flash.now[:alert] = t('.error')
-        render :approve
       end
     else
       flash.now[:alert] = t('.error')
