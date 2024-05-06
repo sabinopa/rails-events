@@ -20,7 +20,7 @@
   <div><%= @order.attendees_number %></div>
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
   <div><%= @order.local %></div>
-<h6 class="text-primary fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
+  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
 
   <% if @order.status == 'waiting_review' %>
     <div><%= number_to_currency(@order.default_price) %></div>

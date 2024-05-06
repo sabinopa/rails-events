@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :event_type
   belongs_to :client
   belongs_to :payment_method, optional: true
-  has_many :suppliers, through: :order_approvals
+  has_many :suppliers, through: :order_approval
 
   validates :date, :attendees_number, :details, :local, :day_type, presence: true
   validates :attendees_number, numericality: { greater_than: 0 }
@@ -33,7 +33,6 @@ class Order < ApplicationRecord
     discount = order_approval&.discount || 0
     calculate_final_price(extra_charge, discount)
   end
-
 
   private
 

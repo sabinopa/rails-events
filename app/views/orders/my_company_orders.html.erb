@@ -1,82 +1,87 @@
-<h2 class="event-title mb-4"><strong><%= t('views.my_orders.my_orders')%></strong></h2>
+<h2 class="order-title mb-4"><strong><%= t('views.my_orders.my_orders') %></strong></h2>
 
-<div class="row">
+<% if @company.orders.present? %>
+  <div class="row">
     <% if @waiting_review_orders.present? %>
-        <h3><%= t('views.my_orders.waiting_review') %></h3>
-        <% @waiting_review_orders.each do |order| %>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow border-0 rounded-4">
-                    <div class="card-body custom-text-size">
-                        <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
-                    </div>
-                </div>
+      <h3 class="order-title mb-2"><%= t('views.my_orders.waiting_review') %></h3>
+      <% @waiting_review_orders.each do |order| %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow border-0 rounded-4">
+            <div class="card-body custom-text-size text-center">
+              <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
+              <p class="date-title mt-3"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></p>
+              <p class="event-title"><strong><%= order.event_type.name %></strong></p>
+              <p class="event-title"><strong><%= order.client.name %></strong></p>
             </div>
-        <% end %>
+          </div>
+        </div>
+      <% end %>
     <% else %>
-        <p><%= t('views.my_orders.no_review_confirmation_orders') %></p>
+      <p class="small text-muted"><%= t('views.my_orders.no_review_confirmation_orders') %></p>
     <% end %>
-</div>
+  </div>
 
-<hr />
+  <hr />
 
-<div class="row">
-    <% if @negotiating_orders.present? %>
-        <h3><%= t('views.my_orders.negotiating') %></h3>
-        <% @negotiating_orders.each do |order| %>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow border-0 rounded-4">
-                    <div class="card-body custom-text-size">
-                        <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-    <% else %>
-        <p><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% if @negotiating_orders.present? %>
+    <h3 class="order-title mb-2"><%= t('views.my_orders.negotiating') %></h3>
+    <% @negotiating_orders.each do |order| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow border-0 rounded-4">
+          <div class="card-body custom-text-size text-center">
+            <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
+            <p class="date-title mt-3"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></p>
+            <p class="event-title"><strong><%= order.event_type.name %></strong></p>
+            <p class="event-title"><strong><%= order.client.name %></strong></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-</div>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% end %>
 
-<hr />
+  <hr />
 
-<div class="row">
-    <% if @confirmed_orders.present? %>
-        <h3><%= t('views.my_orders.confirmed') %></h3>
-        <% @confirmed_orders.each do |order| %>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow border-0 rounded-4">
-                    <div class="card-body custom-text-size">
-                        <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-    <% else %>
-        <p><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% if @confirmed_orders.present? %>
+    <h3 class="order-title mb-2"><%= t('views.my_orders.confirmed') %></h3>
+    <% @confirmed_orders.each do |order| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow border-0 rounded-4">
+          <div class="card-body custom-text-size text-center">
+            <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
+            <p class="date-title mt-3"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></p>
+            <p class="event-title"><strong><%= order.event_type.name %></strong></p>
+            <p class="event-title"><strong><%= order.client.name %></strong></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-</div>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% end %>
 
-<hr />
+  <hr />
 
-<div class="row">
-    <% if @cancelled_orders.present? %>
-        <h3><%= t('views.my_orders.cancelled') %></h3>
-        <% @cancelled_orders.each do |order| %>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow border-0 rounded-4">
-                    <div class="card-body custom-text-size">
-                        <h4 class="card-title event-title fw-bolder"><%= link_to order.code, order_path(order) %></h4>
-                        <strong><%= order.date.strftime('%d/%m/%Y') %></strong><br>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-    <% else %>
-        <p><%= t('views.my_orders.no_cancelled_orders') %></p>
+  <% if @cancelled_orders.present? %>
+    <h3 class="order-title mb-2"><%= t('views.my_orders.cancelled') %></h3>
+    <% @cancelled_orders.each do |order| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow border-0 rounded-4">
+          <div class="card-body custom-text-size text-center">
+            <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
+            <p class="date-title mt-3"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></p>
+            <p class="event-title"><strong><%= order.event_type.name %></strong></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-</div>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_cancelled_orders') %></p>
+  <% end %>
+<% else %>
+  <p class="small text-muted"><%= t('views.my_orders.no_orders') %></p>
+<% end %>
 
 <hr />
 

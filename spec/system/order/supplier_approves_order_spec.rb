@@ -13,10 +13,9 @@ describe 'Supplier approves order' do
                                     min_attendees: 10, max_attendees: 40, duration: 180,
                                     menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
-                           attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
-                           local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
-
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
+                                    attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
+                                    local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
     visit approve_order_path(order.id)
 
     expect(current_path).to eq new_supplier_session_path
@@ -24,7 +23,7 @@ describe 'Supplier approves order' do
 
   it 'from home page' do
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
-    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'rspecSabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                             registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
@@ -34,9 +33,10 @@ describe 'Supplier approves order' do
                                     min_attendees: 10, max_attendees: 40, duration: 180,
                                     menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
+
     login_as(supplier, :scope => :supplier)
     visit root_path
     click_on 'Pedidos'
@@ -62,7 +62,7 @@ describe 'Supplier approves order' do
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 40, additional_attendee_price: 50.0,
                                     extra_hour_price: 60.0, day_options: :weekend)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
 
@@ -109,7 +109,7 @@ describe 'Supplier approves order' do
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                                     extra_hour_price: 60.0, day_options: :weekend)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
 
@@ -139,7 +139,7 @@ describe 'Supplier approves order' do
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                                     extra_hour_price: 60.0, day_options: :weekend)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
 
@@ -185,7 +185,7 @@ describe 'Supplier approves order' do
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                                     extra_hour_price: 60.0, day_options: :weekend)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
 
@@ -220,7 +220,7 @@ describe 'Supplier approves order' do
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                                     extra_hour_price: 60.0, day_options: :weekend)
-    order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
 

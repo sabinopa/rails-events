@@ -1,72 +1,74 @@
-<% if(@event_type.errors.any?) %>
-  <p><%= t('errors.messages.verify_error') %></p>
-  <ul>
-    <% @event_type.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+<% if @event_type.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p><%= t('errors.messages.verify_error') %></p>
+    <ul>
+      <% @event_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <% form_url = @event_type.persisted? ? event_type_path(@event_type) : company_event_types_path(@company) %>
-<%= form_with model: @event_type, url: form_url do |form| %>
-  <div>
-    <%= form.label :name %>:
-    <%= form.text_field :name %>
+<%= form_with model: @event_type, url: form_url, class: "row g-3" do |form| %>
+  <div class="col-md-6">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
   <br>
-  <div>
-    <%= form.label :description %>:
-    <%= form.text_area :description %>
+  <div class="col-md-12">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
   <br>
-  <div>
-    <%= form.label :min_attendees %>:
-    <%= form.number_field :min_attendees %>
+  <div class="col-md-4">
+    <%= form.label :min_attendees, class: "form-label" %>
+    <%= form.number_field :min_attendees, class: "form-control" %>
   </div>
   <br>
-  <div>
-    <%= form.label :max_attendees %>:
-    <%= form.number_field :max_attendees %>
+  <div class="col-md-4">
+    <%= form.label :max_attendees, class: "form-label" %>
+    <%= form.number_field :max_attendees, class: "form-control" %>
   </div>
   <br>
-    <div>
-    <%= form.label :duration %>:
-    <%= form.number_field :duration %>
+  <div class="col-md-4">
+    <%= form.label :duration, class: "form-label" %>
+    <%= form.number_field :duration, class: "form-control" %>
   </div>
   <br>
-    <div>
-    <%= form.label :menu_description %>:
-    <%= form.text_area :menu_description %>
+  <div class="col-12">
+    <%= form.label :menu_description, class: "form-label" %>
+    <%= form.text_area :menu_description, class: "form-control" %>
   </div>
   <br>
-  <div>
-    <%= form.check_box :alcohol_available %>
+  <div class="col-12">
+    <%= form.check_box :alcohol_available, class: "form-label" %>
     <%= form.label :alcohol_available %>
   </div>
-  <div>
-    <%= form.check_box :decoration_available %>
+  <div class="col-12">
+    <%= form.check_box :decoration_available, class: "form-label" %>
     <%= form.label :decoration_available %>
   </div>
   <br>
-  <div>
-    <%= form.check_box :parking_service_available %>
+  <div class="col-12">
+    <%= form.check_box :parking_service_available, class: "form-label" %>
     <%= form.label :parking_service_available %>
   </div>
   <br>
-  <div>
-    <%= form.label :location_type %>:
-    <%= form.select :location_type, options_for_select(EventType.location_types.map { |key, _| [I18n.t("event_type.#{key}"), key] }, @event_type.location_type), {}, { class: 'select' } %>
+  <div class="col-12">
+    <%= form.label :location_type, class: "form-label" %>
+    <%= form.select :location_type, options_for_select(EventType.location_types.map { |key, _| [I18n.t("event_type.#{key}"), key] }, @event_type.location_type), {}, class: 'select-control' %>
   </div>
   <br>
-  <div>
-  <%= form.label :photos %>:
+  <div class="col-md-6">
+  <%= form.label :photos, class: "form-label" %>
   <% @event_type.photos.each do |photo| %>
     <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
   <% end %>
-  <%= form.file_field :photos, multiple: true %>
+  <%= form.file_field :photos, multiple: true, class: "form-control"  %>
   <div>
   <br>
-  <%= form.submit t('helpers.submit.submit') %>
+  <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
 <% end %>
 <br>
 <% if @event_type.photos.attached? %>
@@ -78,4 +80,4 @@
 <% end %>
 
 <hr />
-<%= link_to t('helpers.buttons.back'), company_path(@company) %>
+<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary"  %>

@@ -1,18 +1,18 @@
+<% if @order.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p><%= t('errors.messages.verify_error') %></p>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container">
   <h2 class="text-primary fw-bolder mb-5">
     <%= t('views.new.new_order', name: @event_type.name) %>
   </h2>
-
-  <% if @order.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <p><%= t('errors.messages.verify_error') %></p>
-      <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <%= form_with model: [@event_type, @order], local: true, class: "row g-3" do |form| %>
     <%= form.hidden_field :company_id, value: @company.id %>
@@ -44,22 +44,22 @@
       <%= form.text_area :details, placeholder: t('views.new.tell_me_details'), class: "form-control" %>
     </div>
 
-    <div class="col-12">
-      <% if @event_type.on_site? %>
-        <%= t('views.show.company_location', address: @company.address) %>
-      <% elsif @event_type.off_site? %>
-        <%= form.label :local, t('views.show.insert_event_address'), class: "form-label" %>
-        <%= form.text_field :local, placeholder: t('views.new.address'), class: "form-control" %>
-      <% else %>
-        <strong><%= t('views.new.choose_location') %>:</strong><br>
-        <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company', class: "form-check-input" %>
-        <%= form.label :location_company, t('views.show.company_address', company: @company.brand_name, address: @company.address), class: "form-check-label" %>
-        <br>
-        <%= form.radio_button :location_choice, 'custom', id: 'location_custom', class: "form-check-input" %>
-        <%= form.label :location_custom, t('views.show.other_address'), class: "form-check-label" %>
-        <%= form.text_field :local, placeholder: t('views.new.insert_address'), class: "form-control" %>
-      <% end %>
-    </div>
+  <div class="col-12">
+    <% if @event_type.on_site? %>
+      <%= t('views.show.company_location', address: @company.address) %>
+    <% elsif @event_type.off_site? %>
+      <%= form.label :local, t('views.show.insert_event_address'), class: "form-label" %>
+      <%= form.text_field :local, placeholder: t('views.new.address'), class: "form-control" %>
+    <% else %>
+      <strong><%= t('views.new.choose_location') %>:</strong><br>
+      <%= form.label :location_company, t('views.show.company_address', company: @company.brand_name, address: @company.address), class: "form-check-label" %>
+      <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company', class: "form-check-input" %>
+      <br>
+      <%= form.label :location_custom, t('views.show.other_address'), class: "form-check-label" %>
+      <%= form.radio_button :location_choice, 'custom', id: 'location_custom', class: "form-check-input" %>
+      <%= form.text_field :local, placeholder: t('views.new.insert_address'), class: "form-control" %>
+    <% end %>
+  </div>
 
     <div class="col-md-6">
       <%= form.label :payment_method_id, t('views.new.payment_by'), class: "form-label" %>
@@ -74,4 +74,3 @@
 
 <hr />
 <%= link_to t('helpers.buttons.back'), event_type_path(@event_type), class: "btn btn-secondary" %>
-

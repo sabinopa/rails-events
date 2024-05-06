@@ -9,7 +9,12 @@
       <% @companies.each do |company| %>
         <div class="col mb-5">
           <div class="card h-100">
-            <img class="card-img-top" src="https://shorturl.at/kGN46" alt="<%= company.brand_name %>" />
+            <% if company.event_types.any? %>
+              <% first_photo = company.event_types.first.photos.first %>
+              <% if first_photo %>
+                <%= image_tag first_photo, class: 'event-image' %>
+              <% end %>
+            <% end %>
             <div class="card-body p-4">
               <div class="text-center">
                 <p class="text-primary fw-bolder mb-0">

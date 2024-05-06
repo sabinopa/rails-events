@@ -73,19 +73,28 @@ describe 'Supplier sees order list' do
     order3 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 90.days.from_now,
                            attendees_number: 15, details: 'Preciso de opções veganas no cardápio.', day_type: :holiday,
                             local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 0)
+    order_approval1 = OrderApproval.create!(order_id: order1.id, supplier_id: company.supplier_id,
+                            validity_date: 2.days.from_now, extra_charge: 0, discount: 100.0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order1.default_price + 0 - 100.0)
+    order_approval2 = OrderApproval.create!(order_id: order2.id, supplier_id: company.supplier_id,
+                            validity_date: 2.days.from_now, extra_charge: 0, discount: 100.0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order2.default_price + 0 - 100.0)
 
     login_as(supplier, :scope => :supplier)
     visit my_company_orders_path
 
     expect(page).to have_content 'Pedidos'
-    expect(page).to have_content order1.code
-    expect(page).to have_content order2.code
-    expect(page).to have_content order3.code
+    expect(page).to have_link order1.code
+    expect(page).to have_link order2.code
+    expect(page).to have_link order3.code
     expect(page).to have_content 'Aguardando Análise'
     expect(page).to have_content 'Em Negociação'
     expect(page).to have_content 'Pedidos Confirmados'
     expect(page).to have_content "#{30.days.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "#{45.days.from_now.strftime('%d/%m/%Y')}"
+    expect(page).to have_content "#{90.days.from_now.strftime('%d/%m/%Y')}"
   end
 
   it 'and return to home page' do

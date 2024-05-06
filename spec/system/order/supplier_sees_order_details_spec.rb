@@ -17,6 +17,7 @@ describe 'Supplier sees orders details' do
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
 
+
     login_as(supplier, :scope => :supplier)
     visit root_path
     within 'nav' do

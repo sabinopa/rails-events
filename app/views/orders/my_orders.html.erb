@@ -1,4 +1,5 @@
 <h2 class="order-title mb-4"><strong><%= t('views.my_orders.my_orders') %></strong></h2>
+
 <div class="row">
 <% if current_client.orders.present? %>
   <% @orders.each do |order| %>
