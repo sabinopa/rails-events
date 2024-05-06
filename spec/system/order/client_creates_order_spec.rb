@@ -59,9 +59,9 @@ describe 'Client creates order' do
     expect(page).to have_content 'Criar pedido para Festa Temática de Piratas'
     expect(page).to have_field 'Data'
     expect(page).to have_field 'Número de convidados'
-    expect(page).to have_field 'Conte-nos detalhes do seu evento e como podemos ajudar'
+    expect(page).to have_field 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir'
     expect(page).to have_content 'Local: Salão de festa da empresa - Alameda dos Sonhos, 404'
-    expect(page).to have_button 'Verificar disponibilidade com fornecedor'
+    expect(page).to have_button 'Solicitar Orçamento'
   end
 
   it 'with incomplete data' do
@@ -81,14 +81,14 @@ describe 'Client creates order' do
     visit new_event_type_order_path(event_type.id)
     fill_in 'Data', with: ''
     fill_in 'Número de convidados', with: ''
-    fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: ''
-    click_on 'Verificar disponibilidade com fornecedor'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: ''
+    click_on 'Solicitar Orçamento'
 
     expect(page).to have_content 'Pedido não enviado.'
-    expect(page).to have_content 'Data não pode ficar em branco'
+    expect(page).to have_content 'Data do Evento não pode ficar em branco'
     expect(page).to have_content 'Número de convidados não pode ficar em branco'
     expect(page).to have_content 'Localização não pode ficar em branco'
-    expect(page).to have_content 'Conte-nos detalhes do seu evento e como podemos ajudar não pode ficar em branco'
+    expect(page).to have_content 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir'
   end
 
   it 'successfully with custom location' do
@@ -111,11 +111,11 @@ describe 'Client creates order' do
     fill_in 'Data', with: 10.days.from_now
     find('#day_type_weekend').click
     fill_in 'Número de convidados', with: '35'
-    fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_custom').click
     fill_in 'order_local', with: 'Rua das Palmeiras, 10'
     select 'PIX', from: 'Pagamento por'
-    click_on 'Verificar disponibilidade com fornecedor'
+    click_on 'Solicitar Orçamento'
 
     order = Order.last
     expect(current_path).to eq order_path(order)
@@ -163,10 +163,10 @@ describe 'Client creates order' do
     fill_in 'Data', with: 10.days.from_now
     find('#day_type_holiday').click
     fill_in 'Número de convidados', with: '35'
-    fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Quero comemorar o aniversário de 5 anos do meu filho com amigos e familia.'
     find('#location_company').click
     select 'Cartão de Crédito', from: 'Pagamento por'
-    click_on 'Verificar disponibilidade com fornecedor'
+    click_on 'Solicitar Orçamento'
 
     order = Order.last
     expect(current_path).to eq order_path(order)
@@ -216,10 +216,10 @@ describe 'Client creates order' do
     fill_in 'Data', with: 10.days.from_now
     find('#day_type_holiday').click
     fill_in 'Número de convidados', with: '350'
-    fill_in 'Conte-nos detalhes do seu evento e como podemos ajudar', with: 'Tenho muitos amigos.'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Tenho muitos amigos.'
     find('#location_company').click
     select 'Cartão de Crédito', from: 'Pagamento por'
-    click_on 'Verificar disponibilidade com fornecedor'
+    click_on 'Solicitar Orçamento'
 
     order = Order.last
     expect(current_path).to eq order_path(order)

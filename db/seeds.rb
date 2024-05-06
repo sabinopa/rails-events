@@ -71,8 +71,8 @@ casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento
                             min_attendees: 50, max_attendees: 300, duration: 480,
                             menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
-                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_1.jpg')), filename: 'casamento_1.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_2.jpg')), filename: 'casamento_2.jpg')
+                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_1.jpg')), filename: 'casamento_1.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_3.jpg')), filename: 'casamento_3.jpg')
 
 corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
@@ -85,17 +85,24 @@ corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Co
                             corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_3.jpg')), filename: 'corporativo_3.jpg')
 
 # Para a empresa Festim dos Sonhos
+
+brunch_network = EventType.create!(company_id: festim_sonhos.id, name: 'Brunch Empresarial de Networking',
+                                description: 'Nosso Brunch Empresarial oferece uma atmosfera descontraída e elegante para networking e reuniões de negócios. Com uma variedade de opções gastronômicas que agradam todos os paladares, este evento promove a interação em um ambiente propício ao desenvolvimento de relações profissionais.',
+                                min_attendees: 50, max_attendees: 100, duration: 180,
+                                menu_description: 'Uma seleção diversificada de itens de brunch, incluindo estações de omeletes, variedades de pães artesanais, frutas frescas, queijos finos, carnes frias, e uma ampla escolha de bebidas, desde cafés especiais até sucos naturais e mimosas.',
+                                alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 2)
+                                brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_2.jpg')), filename: 'brunch_network_2.jpg')
+                                brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_1.jpg')), filename: 'brunch_network_1.jpg')
+                                brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_3.jpg')), filename: 'brunch_network_3.jpg')
+
 jantar_gourmet = EventType.create!(company_id: festim_sonhos.id, name: 'Jantar de Gala Gourmet',
                             description: 'O Jantar de Gala Gourmet do Festim dos Sonhos é uma experiência culinária de alto nível, perfeito para ocasiões especiais. Com um menu exclusivo criado por nossos chefs renomados, cada prato é uma obra de arte, acompanhado de uma seleção impecável de vinhos e ambientação sofisticada.',
                             min_attendees: 20, max_attendees: 80, duration: 240,
                             menu_description: 'Menu de cinco pratos, incluindo amuse-bouche, entrada, prato principal, sobremesa e mignardises. Ingredientes frescos e da estação, com opções para necessidades dietéticas específicas.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
-
-brunch_network = EventType.create!(company_id: festim_sonhos.id, name: 'Brunch Empresarial de Networking',
-                            description: 'Nosso Brunch Empresarial oferece uma atmosfera descontraída e elegante para networking e reuniões de negócios. Com uma variedade de opções gastronômicas que agradam todos os paladares, este evento promove a interação em um ambiente propício ao desenvolvimento de relações profissionais.',
-                            min_attendees: 50, max_attendees: 100, duration: 180,
-                            menu_description: 'Uma seleção diversificada de itens de brunch, incluindo estações de omeletes, variedades de pães artesanais, frutas frescas, queijos finos, carnes frias, e uma ampla escolha de bebidas, desde cafés especiais até sucos naturais e mimosas.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 2)
+                            jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_1.jpg')), filename: 'jantar_gourmet_1.jpg')
+                            jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_2.jpg')), filename: 'jantar_gourmet_2.jpg')
+                            jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_3.jpg')), filename: 'jantar_gourmet_3.jpg')
 
 # Para a empresa Gastronomia Estelar
 noite_organica = EventType.create!(company_id: gastronomia_estelar.id, name: 'Noite de Degustação Orgânica',
@@ -103,6 +110,9 @@ noite_organica = EventType.create!(company_id: gastronomia_estelar.id, name: 'No
                             min_attendees: 20, max_attendees: 100, duration: 180,
                             menu_description: 'Cardápio degustação em cinco etapas, com pratos que destacam os ingredientes da estação. Inclui aperitivos, entradas, prato principal, sobremesa e uma seleção especial de queijos artesanais locais.',
                             alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 1)
+                            noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_1.jpg')), filename: 'noite_organica_1.jpg')
+                            noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')
+                            noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_3.jpg')), filename: 'noite_organica_3.jpg')
 
 piquenique = EventType.create!(company_id: gastronomia_estelar.id, name: 'Piquenique Gourmet Sustentável',
                             description: 'Um evento ao ar livre que combina o prazer de comer ao fresco com a consciência ecológica. Ideal para grupos que buscam uma experiência gastronômica diferente, nosso piquenique gourmet inclui cestas repletas de delícias orgânicas, cobertores e jogos de campo, tudo com o menor impacto ambiental possível.',
