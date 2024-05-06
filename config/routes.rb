@@ -33,4 +33,10 @@ Rails.application.routes.draw do
   scope :supplier do
     get :my_company_orders, to: 'orders#my_company_orders'
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :companies, only: [:show, :index]
+    end
+  end
 end
