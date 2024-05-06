@@ -55,13 +55,9 @@ class OrdersController < ApplicationController
   def confirm
     @approval = @order.order_approval
     if @approval && @approval.validity_date >= Date.today
-      if @order.update(status: 'order_confirmed')
-        flash[:notice] =  t('.success', code: @order.code)
-        redirect_to @order
-      else
-        flash.now[:alert] = t('.error')
-        render :show
-      end
+      @order.update(status: 'order_confirmed')
+      flash[:notice] =  t('.success', code: @order.code)
+      redirect_to @order
     else
       flash.now[:alert] = t('.expired')
       render :show

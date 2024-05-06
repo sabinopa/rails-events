@@ -37,6 +37,7 @@ pt-BR:
     new:
       register: Cadastre sua empresa
       payment_method_acceptance: Métodos de pagamentos aceitos
+      address: Rua, 123
     edit:
       title: Edite os dados da sua empresa
       edit_company: Editar Empresa

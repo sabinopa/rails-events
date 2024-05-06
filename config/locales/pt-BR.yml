@@ -164,7 +164,7 @@ pt-BR:
       delete: Remover
       edit_company: Editar empresa
       edit_event_type: Editar evento
-      check_with_supplier: Verificar disponibilidade com fornecedor
+      check_with_supplier: Solicitar Orçamento
   number:
     currency:
       format:

@@ -1,68 +1,77 @@
-<div class="row gx-5 justify-content-center">
-  <div class="col-lg-11 col-xl-9 col-xxl-8">
-    <section>
-      <div class="mb-4">
-        <h2 class="text-primary fw-bolder mb-0">
-          <%= t('views.new.new_order', name: @event_type.name) %>
-        </h2>
-        <% if @order.errors.any? %>
-          <p><%= t('errors.messages.verify_error') %></p>
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        <% end %>
+<div class="container">
+  <h2 class="text-primary fw-bolder mb-5">
+    <%= t('views.new.new_order', name: @event_type.name) %>
+  </h2>
 
-        <%= form_with model: [@event_type, @order], local: true do |form| %>
-          <%= form.hidden_field :company_id, value: @company.id %>
-          <div>
-            <%= form.label :date %>:
-            <%= form.date_field :date %>
-          </div>
-          <div>
-            <h6><%= t('views.new.day_type') %></h6>
-            <%= form.radio_button :day_type, 'weekday' %>
-            <%= form.label :day_type_weekday, t('views.new.week_days'), id: 'day_type_weekday' %>
-            <br>
-            <%= form.radio_button :day_type, 'weekend' %>
-            <%= form.label :day_type_weekend, t('views.new.weekend'), id: 'day_type_weekend' %>
-            <br>
-            <%= form.radio_button :day_type, 'holiday' %>
-            <%= form.label :day_type_holiday, t('views.new.holiday'), id: 'day_type_holiday' %>
-          </div>
-          <div>
-            <%= form.label :attendees_number %>:
-            <%= form.number_field :attendees_number %>
-          </div>
-          <div>
-            <%= form.label :details %>:
-            <%= form.text_area :details %>
-          </div>
-          <div>
-            <% if @event_type.on_site? %>
-              <%= t('views.show.company_location', address: @company.address) %>
-            <% elsif @event_type.off_site? %>
-              <%= form.label :local, t('views.show.insert_event_address') %>:
-              <%= form.text_field :local %>
-            <% else %>
-              <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company' %>
-              <%= form.label :location_company, t('views.show.company_address', company: @company.brand_name, address: @company.address) %>
-              <br>
-              <%= form.radio_button :location_choice, 'custom', id: 'location_custom' %>
-              <%= form.label :location_custom, t('views.show.other_address') %>
-
-              <%= form.text_field :local %>
-            <% end %>
-          </div>
-          <div>
-            <%= form.label :payment_method_id, t('views.new.payment_by') %>:
-            <%= form.collection_select :payment_method_id, @company.payment_methods, :id, :method, include_blank: true  %>
-          </div>
-          <br>
-          <%= form.submit t('helpers.submit.check_with_supplier') %>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p><%= t('errors.messages.verify_error') %></p>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-      </div>
-    </section>
-  </div>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: [@event_type, @order], local: true, class: "row g-3" do |form| %>
+    <%= form.hidden_field :company_id, value: @company.id %>
+
+    <div class="col-md-2">
+      <%= form.label :date, class: "form-label" %>
+      <%= form.date_field :date, class: "form-control" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= form.label :attendees_number, class: "form-label" %>
+      <%= form.number_field :attendees_number, placeholder: '01', class: "form-control" %>
+    </div>
+
+    <div class="col-12">
+      <h6><%= t('views.new.day_type') %></h6>
+      <%= form.radio_button :day_type, 'weekday', class: "form-check-input" %>
+      <%= form.label :day_type_weekday, t('views.new.week_days'), id: 'day_type_weekday', class: "form-check-label" %>
+      <br>
+      <%= form.radio_button :day_type, 'weekend', class: "form-check-input" %>
+      <%= form.label :day_type_weekend, t('views.new.weekend'), id: 'day_type_weekend', class: "form-check-label" %>
+      <br>
+      <%= form.radio_button :day_type, 'holiday', class: "form-check-input" %>
+      <%= form.label :day_type_holiday, t('views.new.holiday'), id: 'day_type_holiday', class: "form-check-label" %>
+    </div>
+
+    <div class="col-12">
+      <%= form.label :details, class: "form-label" %>
+      <%= form.text_area :details, placeholder: t('views.new.tell_me_details'), class: "form-control" %>
+    </div>
+
+    <div class="col-12">
+      <% if @event_type.on_site? %>
+        <%= t('views.show.company_location', address: @company.address) %>
+      <% elsif @event_type.off_site? %>
+        <%= form.label :local, t('views.show.insert_event_address'), class: "form-label" %>
+        <%= form.text_field :local, placeholder: t('views.new.address'), class: "form-control" %>
+      <% else %>
+        <strong><%= t('views.new.choose_location') %>:</strong><br>
+        <%= form.radio_button :location_choice, 'company', checked: true, id: 'location_company', class: "form-check-input" %>
+        <%= form.label :location_company, t('views.show.company_address', company: @company.brand_name, address: @company.address), class: "form-check-label" %>
+        <br>
+        <%= form.radio_button :location_choice, 'custom', id: 'location_custom', class: "form-check-input" %>
+        <%= form.label :location_custom, t('views.show.other_address'), class: "form-check-label" %>
+        <%= form.text_field :local, placeholder: t('views.new.insert_address'), class: "form-control" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :payment_method_id, t('views.new.payment_by'), class: "form-label" %>
+      <%= form.collection_select :payment_method_id, @company.payment_methods, :id, :method, include_blank: true, class: "form-select"  %>
+    </div>
+
+    <div>
+      <%= form.submit t('helpers.submit.check_with_supplier'), class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
+
+<hr />
+<%= link_to t('helpers.buttons.back'), event_type_path(@event_type), class: "btn btn-secondary" %>
+
