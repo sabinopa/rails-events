@@ -267,9 +267,9 @@ order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
 
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
                             date: 60.days.from_now, attendees_number: 25, details: 'Evento corporativo com apresentação de projetos.',
-                            local: 'Rua das Flores, 123', status: 2, payment_method_id: debito.id, day_type: :weekend)
+                            local: 'Rua das Flores, 123', status: 1, payment_method_id: debito.id, day_type: :weekend)
                             OrderApproval.create!(order_id: order_joao2.id, supplier_id: celebracao_alegre.supplier_id,
-                                                  validity_date: 90.days.from_now, extra_charge: 500.0, discount: 50.0,
+                                                  validity_date: 5.days.ago, extra_charge: 500.0, discount: 50.0,
                                                   charge_description: 'Custos adicionais por serviços extras',
                                                   final_price: order_joao2.default_price + 500.0 - 50.0)
 

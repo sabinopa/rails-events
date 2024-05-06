@@ -16,7 +16,6 @@
       <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-5">
           <div class="row align-items-center gx-5">
-          <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
             <% if client_signed_in? %>
               <% if @order.status == 'negotiating' %>
                 <%= form_with url: confirm_order_path(@order), method: :post, local: true do |form| %>
@@ -25,6 +24,7 @@
               <% end %>
               <%= render partial: 'company_contact' %>
             <% end %>
+            <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
             <%= render partial: 'order_details' %>
           </div>
         </div>

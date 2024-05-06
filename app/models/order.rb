@@ -1,11 +1,11 @@
 class Order < ApplicationRecord
   attr_accessor :location_choice
 
+  has_one :order_approval
   belongs_to :company
   belongs_to :event_type
   belongs_to :client
   belongs_to :payment_method, optional: true
-  has_many :order_approvals
   has_many :suppliers, through: :order_approvals
 
   validates :date, :attendees_number, :details, :local, :day_type, presence: true
@@ -16,16 +16,24 @@ class Order < ApplicationRecord
 
   enum status: { waiting_review: 0, negotiating: 1, order_confirmed: 2, order_cancelled: 3 }
 
+  def self.check_date_and_update_status
+    where(status: 'negotiating').each do |order|
+      if order.order_approval&.validity_date && order.order_approval.validity_date < Date.today
+        order.update(status: 'order_cancelled')
+      end
+    end
+  end
+
   def default_price
     calculate_default_price
   end
 
   def final_price(extra_charge = 0, discount = 0)
-    latest_approval = order_approvals.last
-    extra_charge = latest_approval&.extra_charge || 0
-    discount = latest_approval&.discount || 0
+    extra_charge = order_approval&.extra_charge || 0
+    discount = order_approval&.discount || 0
     calculate_final_price(extra_charge, discount)
   end
+
 
   private
 

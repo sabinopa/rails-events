@@ -1,12 +1,17 @@
 <div class="col-lg-6">
-  <div><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></div>
-
-  <% if @order.status == 'negotiating' && @order_approval %>
-    <div class="small text-muted">
-      <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
+  <% if @order.status == 'order_cancelled' && @order.order_approval.validity_date < Date.today %>
+    <div class="alert alert-warning">
+      <%= t('views.show.validity_expired') %>
     </div>
+  <% else %>
+    <% if @order_approval.present? %>
+      <div class="small text-muted">
+        <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
+      </div>
+    <% end %>
   <% end %>
 
+  <h4><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></h4>
   <h6 class="text-primary fw-bolder mb-0"><%= @order.code %></h6>
   <div><%= @order.details %></div>
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.choosen_date') %>:</h6>
@@ -15,12 +20,12 @@
   <div><%= @order.attendees_number %></div>
   <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
   <div><%= @order.local %></div>
-  <h6 class="text-primary fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
+<h6 class="text-primary fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
 
   <% if @order.status == 'waiting_review' %>
-    <div><%= format_currency(@order.default_price) %></div>
+    <div><%= number_to_currency(@order.default_price) %></div>
   <% else %>
-    <div><%= format_currency(@order.final_price) %></div>
+    <div><%= number_to_currency(@order.final_price) %></div>
   <% end %>
 
   <% if @order_approval.present? && @order_approval.charge_description.present? %>
@@ -34,3 +39,4 @@
   <% else %>
     <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
   <% end %>
+</div>

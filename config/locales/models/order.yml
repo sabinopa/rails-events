@@ -63,6 +63,7 @@ pt-BR:
       validity: "Prazo para resposta desta negociação: %{validity}"
       charge_description: Descrição da cobrança
       confirm: Confirmar Pedido
+      validity_expired: O prazo para confirmação deste pedido expirou e ele foi automaticamente cancelado.
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.

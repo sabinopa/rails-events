@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :approve, :confirm]
   before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm]
   before_action :set_company, only: [:new, :create, :show, :approve, :confirm]
+  before_action :update_order_status, only: [:show, :my_company_orders, :my_orders]
 
   def new
     @order = Order.new
@@ -23,7 +24,7 @@ class OrdersController < ApplicationController
     conflicting_orders = Order.where(company_id: @order.company_id, date: @order.date).where.not(id: @order.id)
     @has_conflict = conflicting_orders.exists?
 
-    @order_approval = @order.order_approvals.last if @order.status == 'negotiating'
+    @order_approval = @order.order_approval if @order.status == 'negotiating'
 
     if @order_approval
       extra_charge = @order_approval.extra_charge || 0
@@ -52,7 +53,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @approval = @order.order_approvals.last
+    @approval = @order.order_approval
     if @approval && @approval.validity_date >= Date.today
       if @order.update(status: 'order_confirmed')
         flash[:notice] =  t('.success', code: @order.code)
@@ -71,19 +72,25 @@ class OrdersController < ApplicationController
 
   def handle_approval_process
     final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
-    @approval = @order.order_approvals.build(approval_params.merge(final_price: final_price))
+    @approval = @order.build_order_approval(approval_params.merge(final_price: final_price))
+
     if @approval.save
       update_order_params = {status: :negotiating}
       update_order_params[:payment_method_id] = params[:order][:payment_method_id] if params[:order][:payment_method_id].present?
+
       if @order.update(update_order_params)
         flash[:notice] = t('.success', code: @order.code)
         redirect_to @order
+      else
+        flash.now[:alert] = t('.error')
+        render :approve
       end
     else
       flash.now[:alert] = t('.error')
       render :approve
     end
   end
+
 
   def order_params
     params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number, :details, :payment_method_id, :day_type)
@@ -108,5 +115,9 @@ class OrdersController < ApplicationController
 
   def set_event_type
     @event_type = EventType.find(params[:event_type_id] || @order.event_type_id)
+  end
+
+  def update_order_status
+    Order.check_date_and_update_status
   end
 end
