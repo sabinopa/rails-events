@@ -54,6 +54,9 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [Devise](https://github.com/heartcombo/devise)
 - [Rspec](https://github.com/rspec/rspec-rails)
 - [Capybara](https://github.com/teamcapybara/capybara)
+- [CPF/CNPJ](https://github.com/fnando/cpf_cnpj)
+- [Validators](https://github.com/fnando/validators)
+- [Simplecov](https://github.com/simplecov-ruby/simplecov)
 
 ### APIS
 
