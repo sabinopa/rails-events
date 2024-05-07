@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
   before_action :set_company_and_event_type, only: [:create, :index]
 
   def index
+    @message = Message.new
     if @order
       @messages = @order.messages.order(created_at: :asc)
     else
@@ -13,6 +14,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @message = Message.new
     @message = @order.messages.build(message_params)
     @message.sender = @current_participant
     @message.receiver = @other_participant
@@ -21,6 +23,7 @@ class MessagesController < ApplicationController
       flash[:notice] = t('.success')
       redirect_to order_messages_path(@order)
     else
+      flash.now[:alert] = t('.error')
       render :index
     end
   end

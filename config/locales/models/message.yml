@@ -6,22 +6,16 @@ pt-BR:
         other: Mensagens
     attributes:
       message:
-        body: Corpo da Mensagem
+        body: A mensagem
   messages:
-    new:
-      error: Apenas o proprietário precificar esse evento.
     create:
       success: Mensagem enviada com sucesso!
-      error: Preço não cadastrado.
-    edit:
-      error: Apenas o proprietário pode editar as precificações.
-    update:
-      success: "%{name}: Atualizado com sucesso!"
-      error: Não foi possível atualizar as precificações do evento.
+      error: Mensagem não enviada.
   views:
     index:
       see_messages: Abrir conversa
       message_client: "Conversa com %{name}"
+      message_company: "Conversa com %{brand_name}"
       no_messages: Ainda não há mensagens.
       write_message: 'Escreva uma nova mensagem:'
       write_here: Escreva sua mensagem aqui...

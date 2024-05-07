@@ -1,4 +1,19 @@
-<h2 class="text-primary fw-bolder mb-0"><%= t('views.index.message_client', name: @order.client.name) %></h2>
+<% if @message.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p><%= t('errors.messages.verify_error') %></p>
+    <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if supplier_signed_in? && @order.supplier.present? %>
+  <h2 class="text-primary fw-bolder mb-0"><%= t('views.index.message_client', name: @order.client.name) %></h2>
+<% else %>
+  <h2 class="text-primary fw-bolder mb-0"><%= t('views.index.message_company', brand_name: @order.company.brand_name) %></h2>
+<% end %>
 
 <% if @messages.present? %>
   <% @messages.each do |message| %>
@@ -17,7 +32,7 @@
 <%= form_with model: [@order, Message.new], local: true do |form| %>
   <%= form.hidden_field :order_id, value: @order.id %>
   <div>
-    <%= form.text_area :body, required: true, placeholder: t('views.index.write_here') %>
+    <%= form.text_area :body, placeholder: t('views.index.write_here') %>
   </div>
   <div>
     <%= form.submit t('helpers.submit.send') %>
