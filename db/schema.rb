@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_05_031234) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_161444) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,6 +109,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_031234) do
     t.index ["company_id"], name: "index_event_types_on_company_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "order_id", null: false
+    t.integer "supplier_id", null: false
+    t.integer "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_messages_on_client_id"
+    t.index ["order_id"], name: "index_messages_on_order_id"
+    t.index ["supplier_id"], name: "index_messages_on_supplier_id"
+  end
+
   create_table "order_approvals", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "supplier_id", null: false
@@ -170,6 +182,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_031234) do
   add_foreign_key "companies", "suppliers"
   add_foreign_key "event_pricings", "event_types"
   add_foreign_key "event_types", "companies"
+  add_foreign_key "messages", "clients"
+  add_foreign_key "messages", "orders"
+  add_foreign_key "messages", "suppliers"
   add_foreign_key "order_approvals", "orders"
   add_foreign_key "order_approvals", "suppliers"
   add_foreign_key "orders", "companies"

@@ -8,7 +8,6 @@ class Api::V1::EventTypesController < Api::V1::ApiController
   end
 
   def check_availability
-    @event_type = EventType.find(params[:id])
 
   end
 end

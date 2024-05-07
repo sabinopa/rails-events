@@ -3,7 +3,7 @@ class EventPricingsController < ApplicationController
   before_action :set_event_pricing, only: [:edit, :update]
   before_action :set_event_type, only: [:new, :create, :edit, :update]
   before_action :set_company, only: [:new, :create, :edit, :update]
-  before_action :check_owner, only: [:new, :create, :edit, :update]
+  before_action :check_supplier, only: [:new, :create, :edit, :update]
 
   def new
     @event_pricing = EventPricing.new
@@ -59,7 +59,7 @@ class EventPricingsController < ApplicationController
                                           :additional_attendee_price, :extra_hour_price, :day_options)
   end
 
-  def check_owner
+  def check_supplier
     if current_supplier != @event_type.company.supplier
       flash[:alert] = t('.error')
       redirect_to root_path

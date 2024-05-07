@@ -1,0 +1,24 @@
+pt-BR:
+  activerecord:
+    models:
+      messages:
+        one: Mensagem
+        other: Mensagens
+    attributes:
+      message:
+        body: Corpo da Mensagem
+    event_pricings:
+    new:
+      error: Apenas o proprietário precificar esse evento.
+    create:
+      duplicate_day_option: Já existe um preço cadastrado para este tipo de dia.
+      success: Novo preço criado com sucesso!
+      error: Preço não cadastrado.
+    edit:
+      error: Apenas o proprietário pode editar as precificações.
+    update:
+      success: "%{name}: Atualizado com sucesso!"
+      error: Não foi possível atualizar as precificações do evento.
+  views:
+    index:
+      see_messages: Abrir conversa
