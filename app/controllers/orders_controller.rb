@@ -55,13 +55,9 @@ class OrdersController < ApplicationController
   def confirm
     @approval = @order.order_approval
     if @approval && @approval.validity_date >= Date.today
-      if @order.update(status: 'order_confirmed')
+      @order.update(status: 'order_confirmed')
         flash[:notice] =  t('.success', code: @order.code)
         redirect_to @order
-      else
-        flash.now[:alert] = t('.error')
-        render :show
-      end
     else
       flash.now[:alert] = t('.expired')
       render :show
@@ -78,13 +74,9 @@ class OrdersController < ApplicationController
       update_order_params = {status: :negotiating}
       update_order_params[:payment_method_id] = params[:order][:payment_method_id] if params[:order][:payment_method_id].present?
 
-      if @order.update(update_order_params)
-        flash[:notice] = t('.success', code: @order.code)
-        redirect_to @order
-      else
-        flash.now[:alert] = t('.error')
-        render :approve
-      end
+      @order.update(update_order_params)
+      flash[:notice] = t('.success', code: @order.code)
+      redirect_to @order
     else
       flash.now[:alert] = t('.error')
       render :approve
