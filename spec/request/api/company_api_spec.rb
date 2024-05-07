@@ -23,16 +23,30 @@ describe 'Company API', type: :request do
       expect(json_response.keys).not_to include 'registration_number'
     end
 
-    it 'search params' do
+    it 'list all active companies filtered by name if parameter is given' do
       supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
       company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                               registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                               description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+      supplier2 = Supplier.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
+      company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
+                            registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
+                            address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
+                            description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
 
-      get "/api/v1/companies/#{company.id}", params: { search: 'Estrelas'}
+      search_params = { name: 'Estrelas' }
+      get "/api/v1/companies/", params: search_params
 
       expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response.length).to eq 1
+      expect(json_response.first['brand_name']).to eq 'Estrelas Mágicas'
+      expect(json_response.first['phone_number']).to eq '(11) 2233-4455'
+      expect(json_response.first['city']).to eq 'São Paulo'
+      expect(json_response.first['registration_number']).not_to eq '58.934.722/0001-01'
+      expect(json_response.first['corporate_name']).not_to eq 'Estrelas Mágicas Buffet Infantil Ltda'
     end
 
     it 'fails if company was not found' do
