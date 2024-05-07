@@ -11,6 +11,8 @@
 
 <h2 class="event-title mb-4"><strong><%= t('views.approve.evaluate_order')%></strong></h2>
 
+<%= link_to t('views.index.see_messages'), order_messages_path(@order), class: "btn btn-primary" %>
+
 <%= render partial: 'order_details' %>
 
 <%= form_with model: @order, url: approve_order_path(@order), method: :post, local: true, class: "row g-3" do |form| %>

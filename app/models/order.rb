@@ -2,11 +2,12 @@ class Order < ApplicationRecord
   attr_accessor :location_choice
 
   has_one :order_approval
+  has_one :supplier, through: :company
   belongs_to :company
   belongs_to :event_type
   belongs_to :client
   belongs_to :payment_method, optional: true
-  has_many :suppliers, through: :order_approval
+  has_many :messages
 
   validates :date, :attendees_number, :details, :local, :day_type, presence: true
   validates :attendees_number, numericality: { greater_than: 0 }

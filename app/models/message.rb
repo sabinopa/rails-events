@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
   belongs_to :order
-  belongs_to :supplier
-  belongs_to :client
+  belongs_to :sender, polymorphic: true
+  belongs_to :receiver, polymorphic: true
 end

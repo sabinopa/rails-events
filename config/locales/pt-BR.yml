@@ -1,5 +1,8 @@
 pt-BR:
   activerecord:
+    class_names:
+      Supplier: Fornecedor
+      Client: Cliente
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
@@ -160,6 +163,7 @@ pt-BR:
       log_out: Sair
       create: Criar
       submit: Salvar
+      send: Enviar
       update: Atualizar
       delete: Remover
       edit_company: Editar empresa
@@ -235,6 +239,7 @@ pt-BR:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
+      custom: "Enviado às %Hh%M em %d/%m/%Y"
     pm: pm
   actions:
     force_company_creation_for_suppliers:

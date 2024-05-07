@@ -7,12 +7,11 @@ pt-BR:
     attributes:
       message:
         body: Corpo da Mensagem
-    event_pricings:
+  messages:
     new:
       error: Apenas o proprietário precificar esse evento.
     create:
-      duplicate_day_option: Já existe um preço cadastrado para este tipo de dia.
-      success: Novo preço criado com sucesso!
+      success: Mensagem enviada com sucesso!
       error: Preço não cadastrado.
     edit:
       error: Apenas o proprietário pode editar as precificações.
@@ -22,3 +21,7 @@ pt-BR:
   views:
     index:
       see_messages: Abrir conversa
+      message_client: "Conversa com %{name}"
+      no_messages: Ainda não há mensagens.
+      write_message: 'Escreva uma nova mensagem:'
+      write_here: Escreva sua mensagem aqui...
