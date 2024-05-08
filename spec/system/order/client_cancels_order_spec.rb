@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Supplier cancels order' do
+describe 'Client cancels order' do
   it 'must be authenticated' do
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
     supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
@@ -38,9 +38,9 @@ describe 'Supplier cancels order' do
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
 
-    login_as(supplier, :scope => :supplier)
+    login_as(client, :scope => :client)
     visit root_path
-    click_on 'Pedidos'
+    click_on 'Meus Pedidos'
     click_on order.code
 
     expect(page).to have_button 'Cancelar Pedido'
@@ -62,7 +62,7 @@ describe 'Supplier cancels order' do
                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0)
 
-    login_as(supplier, :scope => :supplier)
+    login_as(client, :scope => :client)
     visit order_path(order.id)
     click_on 'Cancelar Pedido'
 
@@ -94,7 +94,7 @@ describe 'Supplier cancels order' do
                            charge_description: 'Taxas adicionais por serviços especiais',
                            final_price: order.default_price + 0 - 100.0)
 
-    login_as(supplier, :scope => :supplier)
+    login_as(client, :scope => :client)
     visit order_path(order.id)
     click_on 'Cancelar Pedido'
 
@@ -126,7 +126,7 @@ describe 'Supplier cancels order' do
                            charge_description: 'Taxas adicionais por serviços especiais',
                            final_price: order.default_price + 0 - 100.0)
 
-    login_as(supplier, :scope => :supplier)
+    login_as(client, :scope => :client)
     visit order_path(order.id)
     click_on 'Cancelar Pedido'
 
@@ -158,7 +158,7 @@ describe 'Supplier cancels order' do
                            charge_description: 'Taxas adicionais por serviços especiais',
                            final_price: order.default_price + 0 - 100.0)
 
-    login_as(supplier, :scope => :supplier)
+    login_as(client, :scope => :client)
     visit order_path(order.id)
     click_on 'Cancelar Pedido'
 

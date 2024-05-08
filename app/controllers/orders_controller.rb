@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_supplier!, only: [:my_company_orders, :approve, :cancel]
+  before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
   before_action :authenticate_client!, only: [:new, :create, :my_orders, :confirm]
   before_action :set_order, only: [:show, :approve, :confirm, :cancel]
   before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm, :cancel]
