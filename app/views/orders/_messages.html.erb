@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <% if supplier_signed_in? && @order.supplier.present? %>
+    <h2 class="text-primary fw-bolder mb-0">
+      <%= t('views.index.message_client', name: @order.client.name) %>
+    </h2>
+  <% else %>
+    <h2 class="text-primary fw-bolder mb-0">
+      <%= t('views.index.message_company', brand_name: @order.company.brand_name) %>
+    </h2>
+  <% end %>
+
+  <% if @message && @message.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p><%= t('errors.messages.verify_error') %></p>
+      <ul>
+        <% @message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="messages-list mt-4">
+    <% if @messages.present? %>
+      <% @messages.each do |message| %>
+        <div class="card mb-2">
+          <div class="card-body">
+            <strong><%= message.sender.name %> (<%= t("activerecord.class_names.#{message.sender.class.name}") %>):</strong>
+            <p><%= message.body %></p>
+            <div class="text-muted small"><%= l(message.created_at, format: :custom) %></div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= t('views.index.no_messages') %></p>
+    <% end %>
+  </div>
+
+  <div class="message-form mt-4">
+    <h5><%= t('views.index.write_message') %></h5>
+    <%= form_with model: [@order, Message.new], local: true, class: "row g-3" do |form| %>
+      <%= form.hidden_field :order_id, value: @order.id %>
+      <div class="form-group">
+        <%= form.text_area :body, placeholder: t('views.index.write_here'), class: 'form-control custom-margin' %>
+      </div>
+      <div class="form-group">
+        <%= form.submit t('helpers.submit.send'), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

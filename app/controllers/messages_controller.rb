@@ -1,15 +1,16 @@
 class MessagesController < ApplicationController
   before_action :set_order
-  before_action :authenticate_participant
   before_action :set_participants, only: [:create, :index]
   before_action :set_company_and_event_type, only: [:create, :index]
+  before_action :authenticate_participant
 
   def index
     @message = Message.new
     if @order
       @messages = @order.messages.order(created_at: :asc)
     else
-      redirect_to some_error_path, alert: "Order not found."
+      flash.now[:alert] = t('.error')
+      redirect_to @order
     end
   end
 
@@ -21,10 +22,10 @@ class MessagesController < ApplicationController
 
     if @message.save
       flash[:notice] = t('.success')
-      redirect_to order_messages_path(@order)
+      redirect_to @order
     else
       flash.now[:alert] = t('.error')
-      render :index
+      render 'orders/show'
     end
   end
 

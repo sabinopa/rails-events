@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm]
   before_action :set_company, only: [:new, :create, :show, :approve, :confirm]
   before_action :update_order_status, only: [:show, :my_company_orders, :my_orders]
+  before_action :set_messages, only: [:show]
 
   def new
     @order = Order.new
@@ -83,7 +84,6 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def order_params
     params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number, :details, :payment_method_id, :day_type)
   end
@@ -95,6 +95,11 @@ class OrdersController < ApplicationController
 
   def determine_local
     params[:order][:location_choice] == 'company' ? @event_type.company.address : params[:order][:local]
+  end
+
+  def set_messages
+    @message = params[:id] ? Message.find_by(id: params[:id]) : Message.new
+    @messages = @order.messages.order(created_at: :asc) if @order.present?
   end
 
   def set_order

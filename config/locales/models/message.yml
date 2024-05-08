@@ -11,6 +11,8 @@ pt-BR:
     create:
       success: Mensagem enviada com sucesso!
       error: Mensagem não enviada.
+    index:
+      error: Pedido não encontrado.
   views:
     index:
       see_messages: Abrir conversa

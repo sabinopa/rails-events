@@ -40,6 +40,10 @@
   font-size: 0.85rem;
 }
 
+.custom-margin {
+  margin-bottom: 15px;
+}
+
 .description-text {
   font-size: 0.9rem;
 }

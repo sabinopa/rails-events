@@ -12,7 +12,6 @@
             <%= link_to t('views.show.approval'), approve_order_path(@order), class: "btn btn-primary" %>
           <% end %>
         <% end %>
-        <%= link_to t('views.index.see_messages'), order_messages_path(@order), class: "btn btn-primary" %>
       </div>
       <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-5">
@@ -23,14 +22,15 @@
                   <%= form.submit t('views.show.confirm'), class: "btn btn-primary" %>
                 <% end %>
               <% end %>
-              <%= render partial: 'company_contact' %>
+              <%= render partial: 'orders/company_contact' %>
             <% end %>
             <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
-            <%= render partial: 'order_details' %>
+            <%= render partial: 'orders/order_details' %>
           </div>
         </div>
       </div>
     </section>
+    <%= render partial: 'orders/messages' %>
       <hr />
       <% if client_signed_in? %>
         <%= link_to t('helpers.buttons.back'), my_orders_path, class: "btn btn-secondary" %>
