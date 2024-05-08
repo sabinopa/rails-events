@@ -46,9 +46,9 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [x]  **Acompanhamento de Pedidos:** Os clientes podem acompanhar todos os pedidos realizados através da tela "Meus Pedidos", onde podem ver detalhes dos pedidos e confirmar sua execução.
 
 ### Comunicação entre Dono de Buffet e Cliente:
-- [ ]  **Troca de Mensagens:** O fornecedor pode enviar mensagens para o cliente para tirar dúvidas em relação ao evento, e o cliente pode responder a essas mensagens.
-- [ ]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o fornecedor e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
-- [ ]  **Exibição de Data e Hora:** As mensagens exibem a data e hora em que foram enviadas.
+- [x]  **Troca de Mensagens:** O fornecedor pode enviar mensagens para o cliente para tirar dúvidas em relação ao evento, e o cliente pode responder a essas mensagens.
+- [x]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o fornecedor e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
+- [x]  **Exibição de Data e Hora:** As mensagens exibem a data e hora em que foram enviadas.
 
 ### Gems utilizadas
 - [Devise](https://github.com/heartcombo/devise)
