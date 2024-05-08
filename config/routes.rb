@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         get :approve, on: :member
         post :approve, on: :member
         post :confirm, on: :member
+        post :cancel, on: :member
         resources :messages, only: [:index, :create]
       end
     end

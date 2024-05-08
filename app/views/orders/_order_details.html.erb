@@ -1,15 +1,17 @@
 <div class="col-lg-6">
-  <% if @order.status == 'order_cancelled' && @order.order_approval.validity_date < Date.today %>
+<% if @order.status == 'negotiating' %>
+  <div class="small text-muted">
+    <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
+  </div>
+<% end %>
+
+<% if @order.status == 'order_cancelled' %>
+  <% if @order.order_approval && @order.order_approval.validity_date < Date.today %>
     <div class="alert alert-warning">
       <%= t('views.show.validity_expired') %>
     </div>
-  <% else %>
-    <% if @order_approval.present? %>
-      <div class="small text-muted">
-        <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
-      </div>
-    <% end %>
   <% end %>
+<% end %>
 
   <h4><%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %></h4>
   <h6 class="text-primary fw-bolder mb-0"><%= @order.code %></h6>

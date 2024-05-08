@@ -40,6 +40,8 @@ pt-BR:
       expired: O prazo para confirmação deste pedido expirou.
     show:
       error: 'Você não pode acessar essa tela.'
+    cancel:
+      cancelled: "Pedido %{code}: Está cancelado!"
   views:
     new:
       new_order: "Criar pedido para %{name}"
@@ -75,6 +77,7 @@ pt-BR:
       validity: "Prazo para resposta desta negociação: %{validity}"
       charge_description: Descrição da cobrança
       confirm: Confirmar Pedido
+      cancel: Cancelar Pedido
       validity_expired: O prazo para confirmação deste pedido expirou e ele foi automaticamente cancelado.
     my_orders:
       my_orders: Meus Pedidos

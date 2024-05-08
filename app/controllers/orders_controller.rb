@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
+  before_action :authenticate_supplier!, only: [:my_company_orders, :approve, :cancel]
   before_action :authenticate_client!, only: [:new, :create, :my_orders, :confirm]
-  before_action :set_order, only: [:show, :approve, :confirm]
-  before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm]
-  before_action :set_company, only: [:new, :create, :show, :approve, :confirm]
-  before_action :check_user, only: [:show]
+  before_action :set_order, only: [:show, :approve, :confirm, :cancel]
+  before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm, :cancel]
+  before_action :set_company, only: [:new, :create, :show, :approve, :confirm, :cancel]
+  before_action :check_user, only: [:show, :cancel]
   before_action :update_order_status, only: [:show, :my_company_orders, :my_orders]
   before_action :set_messages, only: [:show]
 
@@ -65,6 +65,12 @@ class OrdersController < ApplicationController
       flash.now[:alert] = t('.expired')
       render :show
     end
+  end
+
+  def cancel
+    @order.update(status: 'order_cancelled')
+    flash[:notice] = t('.cancelled', code: @order.code)
+    redirect_to @order
   end
 
   private
