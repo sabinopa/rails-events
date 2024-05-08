@@ -9,9 +9,9 @@ class Company < ApplicationRecord
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, :address, :neighborhood, :city, :state, :zipcode, :description,
             presence: true
+  validates :supplier_id, :registration_number, uniqueness: true
 
   validates_cnpj_format_of :registration_number
-
 
   def self.search(query_params)
     query = "%#{query_params}%"

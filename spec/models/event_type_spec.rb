@@ -99,5 +99,13 @@ RSpec.describe EventType, type: :model do
         expect(result).to eq false
       end
     end
+
+    describe '#has_many_attached' do
+      it 'photos' do
+        event_type = EventType.new
+
+        expect(event_type.photos).to be_an_instance_of(ActiveStorage::Attached::Many)
+      end
+    end
   end
 end
