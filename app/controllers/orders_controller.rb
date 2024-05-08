@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :approve, :confirm]
   before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm]
   before_action :set_company, only: [:new, :create, :show, :approve, :confirm]
+  before_action :check_user, only: [:show]
   before_action :update_order_status, only: [:show, :my_company_orders, :my_orders]
   before_action :set_messages, only: [:show]
 
@@ -116,5 +117,12 @@ class OrdersController < ApplicationController
 
   def update_order_status
     Order.check_date_and_update_status
+  end
+
+  def check_user
+    unless current_supplier == @order.company.supplier || current_client == @order.client
+      flash[:notice] = t('.error')
+      redirect_to root_path
+    end
   end
 end

@@ -31,6 +31,8 @@ pt-BR:
       success: "Pedido %{code}: Está confirmado!"
       error: Não foi possível confirmar o pedido.
       expired: O prazo para confirmação deste pedido expirou.
+    show:
+      error: 'Você não pode acessar essa tela.'
   views:
     new:
       new_order: "Criar pedido para %{name}"
