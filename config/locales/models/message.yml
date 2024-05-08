@@ -13,6 +13,8 @@ pt-BR:
       error: Mensagem não enviada.
     index:
       error: Pedido não encontrado.
+    authenticate_participant:
+      error: Você não tem permissão de acessar essa tela.
   views:
     index:
       see_messages: Abrir conversa

@@ -162,7 +162,7 @@ describe 'Supplier edits event type' do
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
-    event_type.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
+                            event_type.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
 
     login_as(supplier, :scope => :supplier)
     visit edit_event_type_path(event_type.id)
@@ -170,7 +170,7 @@ describe 'Supplier edits event type' do
     attach_file('Adicionar fotos', Rails.root.join('spec', 'files', 'festa_aniversario_detalhe.jpg'))
     click_button 'Salvar'
 
-    expect(current_path).to eq event_type_path(event_type)
+    expect(current_path).to eq event_type_path(supplier.reload.company.id)
     expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
     expect(page).to have_css('img[src*="festa_aniversario_decoracao.jpg"]')
   end

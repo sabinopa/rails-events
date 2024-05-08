@@ -56,8 +56,8 @@ class MessagesController < ApplicationController
 
   def authenticate_participant
     unless current_supplier == @order.company.supplier || current_client == @order.client
-      redirect_to root_path, alert: "You do not have permission to access this section."
+      flash[:notice] = t('.error')
+      redirect_to root_path
     end
   end
-
 end
