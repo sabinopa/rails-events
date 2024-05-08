@@ -18,7 +18,7 @@ RSpec.describe OrderApproval, type: :model do
         order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
                                 attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                                 local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
-        order_approval = OrderApproval.new(order_id: order.id, supplier_id: company.supplier_id,
+        order_approval = OrderApproval.new(order_id: order.id, supplier_id: supplier.id,
                                 validity_date: '', extra_charge: 0, discount: 0.0,
                                 charge_description: '',
                                 final_price: order.default_price + 0.0 - 0.0)

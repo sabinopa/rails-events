@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   validates :attendees_number, numericality: { greater_than: 0 }
   validates :code, uniqueness: true
   validate :date_is_future?, on: :create
+  validate :attendees_number_within_limits
 
   before_validation :generate_code, on: :create
 
@@ -43,8 +44,8 @@ class Order < ApplicationRecord
     return 0 unless event_pricing
 
     base_price = event_pricing.base_price
-    additional_attendees = self.attendees_number - event_pricing.base_attendees
-    additional_cost = additional_attendees.positive? ? additional_attendees * event_pricing.additional_attendee_price : 0
+    additional_attendees = [self.attendees_number - event_pricing.base_attendees, 0].max
+    additional_cost = additional_attendees * event_pricing.additional_attendee_price
     base_price + additional_cost
   end
 
@@ -61,6 +62,12 @@ class Order < ApplicationRecord
   def date_is_future?
     if date.present? && date <= Date.today
       errors.add(:date, :future_date)
+    end
+  end
+
+  def attendees_number_within_limits
+    if attendees_number.present? && (attendees_number < event_type.min_attendees || attendees_number > event_type.max_attendees)
+      errors.add(:attendees_number, :within_limits, min: event_type.min_attendees, max: event_type.max_attendees)
     end
   end
 

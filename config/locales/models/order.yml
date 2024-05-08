@@ -24,6 +24,8 @@ pt-BR:
           attributes:
             date:
               future_date: deve ser futura.
+            attendees_number:
+              within_limits: "deve estar entre %{min} e %{max}"
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"

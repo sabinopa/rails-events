@@ -259,14 +259,14 @@ describe 'Client creates order' do
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
                             alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
-    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 
     login_as(client, :scope => :client)
     visit new_event_type_order_path(event_type.id)
     fill_in 'Data', with: 10.days.from_now
     find('#day_type_holiday').click
-    fill_in 'Número de convidados', with: '350'
+    fill_in 'Número de convidados', with: '22'
     fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Tenho muitos amigos.'
     find('#location_company').click
     select 'Cartão de Crédito', from: 'Pagamento por'
@@ -279,6 +279,68 @@ describe 'Client creates order' do
     expect(page).to have_content '58.934.722/0001-01'
     expect(page).to have_content 'Aguardando Análise'
     expect(page).to have_content 'Preço final:'
-    expect(page).to have_content 'R$ 15.900,00'
+    expect(page).to have_content 'R$ 1.000,00'
+  end
+
+  it 'and attendees number is below the minimum limit' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            company.payment_methods << [pix, credito]
+    event_type = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
+                            extra_hour_price: 60.0, day_options: :weekend)
+
+    login_as(client, :scope => :client)
+    visit new_event_type_order_path(event_type.id)
+    fill_in 'Data', with: 10.days.from_now
+    find('#day_type_holiday').click
+    fill_in 'Número de convidados', with: '5'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Tenho muitos amigos.'
+    find('#location_company').click
+    select 'Cartão de Crédito', from: 'Pagamento por'
+    click_on 'Solicitar Orçamento'
+
+    expect(page).to have_content "Número de convidados deve estar entre #{event_type.min_attendees} e #{event_type.max_attendees}"
+  end
+
+  it 'and attendees number is above the maximum limit' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            company.payment_methods << [pix, credito]
+    event_type = EventType.create!(company_id: supplier.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
+                            extra_hour_price: 60.0, day_options: :weekend)
+
+    login_as(client, :scope => :client)
+    visit new_event_type_order_path(event_type.id)
+    fill_in 'Data', with: 10.days.from_now
+    find('#day_type_holiday').click
+    fill_in 'Número de convidados', with: '5'
+    fill_in 'Compartilhe conosco os detalhes do seu evento e como podemos contribuir', with: 'Tenho muitos amigos.'
+    find('#location_company').click
+    select 'Cartão de Crédito', from: 'Pagamento por'
+    click_on 'Solicitar Orçamento'
+
+    expect(page).to have_content "Número de convidados deve estar entre #{event_type.min_attendees} e #{event_type.max_attendees}"
   end
 end

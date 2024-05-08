@@ -71,7 +71,7 @@ describe 'Supplier sees order list' do
                           attendees_number: 15, details: 'Gostaríamos de ter uma encenação de história de conto de fadas.', day_type: :week_day,
                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 1)
     order3 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type1.id, date: 90.days.from_now,
-                           attendees_number: 15, details: 'Preciso de opções veganas no cardápio.', day_type: :holiday,
+                           attendees_number: 20, details: 'Preciso de opções veganas no cardápio.', day_type: :holiday,
                             local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', status: 0)
     order_approval1 = OrderApproval.create!(order_id: order1.id, supplier_id: company.supplier_id,
                             validity_date: 2.days.from_now, extra_charge: 0, discount: 100.0,
