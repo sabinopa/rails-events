@@ -12,6 +12,7 @@ class Order < ApplicationRecord
   validates :date, :attendees_number, :details, :local, :day_type, presence: true
   validates :attendees_number, numericality: { greater_than: 0 }
   validates :code, uniqueness: true
+  validate :date_is_future?, on: :create
 
   before_validation :generate_code, on: :create
 
@@ -55,6 +56,12 @@ class Order < ApplicationRecord
 
   def select_event_pricing(event_type, day_type)
     event_type.event_pricings.find_by(day_options: day_type) || event_type.event_pricings.first
+  end
+
+  def date_is_future?
+    if date.present? && date <= Date.today
+      errors.add(:date, :future_date)
+    end
   end
 
   def generate_code

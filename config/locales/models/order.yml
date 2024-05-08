@@ -18,10 +18,17 @@ pt-BR:
         day_type: Tipo de dia
       order_approval:
         validity_date: Validade da proposta
+    errors:
+      models:
+        order:
+          attributes:
+            date:
+              future_date: deve ser futura.
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"
       error: Pedido não enviado.
+      future_date: 'deve ser no futuro'
     my_orders:
       error: 'Você não pode acessar essa tela.'
     approve:

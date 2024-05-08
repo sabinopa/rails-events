@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @order.local = @company.address if @event_type.on_site?
   end
 
   def create

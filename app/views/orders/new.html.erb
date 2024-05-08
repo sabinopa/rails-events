@@ -46,6 +46,7 @@
 
   <div class="col-12">
     <% if @event_type.on_site? %>
+      <%= form.hidden_field :local, value: @company.address %>
       <%= t('views.show.company_location', address: @company.address) %>
     <% elsif @event_type.off_site? %>
       <%= form.label :local, t('views.show.insert_event_address'), class: "form-label" %>
