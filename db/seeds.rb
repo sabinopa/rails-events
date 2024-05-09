@@ -276,7 +276,7 @@ order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
                             status: 0, payment_method_id: pix.id, day_type: :weekend)
 
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
-                            date: 60.days.from_now, attendees_number: 25, details: 'Evento corporativo com apresentação de projetos.',
+                            date: 60.days.from_now, attendees_number: 120, details: 'Evento corporativo com apresentação de projetos.',
                             local: 'Rua das Flores, 123', status: 1, payment_method_id: debito.id, day_type: :weekend)
                             OrderApproval.create!(order_id: order_joao2.id, supplier_id: celebracao_alegre.supplier_id,
                                                   validity_date: 5.days.ago, extra_charge: 500.0, discount: 50.0,
@@ -335,7 +335,7 @@ order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                               local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id, day_type: :weekend)
 
 order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                              date: 30.days.from_now, attendees_number: 20, details: 'Casamento dos sonhos com buffet personalizado.',
+                              date: 30.days.from_now, attendees_number: 60, details: 'Casamento dos sonhos com buffet personalizado.',
                               local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id, day_type: :week_day)
                               OrderApproval.create!(order_id: order_carlos3.id, supplier_id: celebracao_alegre.supplier_id,
                               validity_date: 10.days.from_now, extra_charge: 90.0, discount: 200.0,
@@ -393,7 +393,7 @@ order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, 
                              final_price: order_lucas3.default_price + 0 - 100.0)
 
 order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_premiacao.id,
-                             date: 150.days.from_now, attendees_number: 20, details: 'Evento corporativo com apresentações.',
+                             date: 150.days.from_now, attendees_number: 230, details: 'Evento corporativo com apresentações.',
                              local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0, payment_method_id: pix.id, day_type: :holiday)
 
 p "Created #{Order.count} orders"
