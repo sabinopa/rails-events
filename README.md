@@ -60,7 +60,7 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 
 ### APIS
 
-(...)
+Acesse a documentação de APIS presentes no projeto [aqui](https://github.com/sabinopa/rails-events/blob/main/docs/routes.md).
 
 ### Pré-requisitos
 

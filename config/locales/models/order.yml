@@ -1,3 +1,4 @@
+pt-BR:
 # config/locales/pt-BR.yml
 pt-BR:
   activerecord:
@@ -27,12 +28,15 @@ pt-BR:
               future_date: deve ser futura.
             attendees_number:
               within_limits: "deve estar entre %{min} e %{max}"
-      messages:
-        missing_date_attendees_day_type: Data, número de participantes e tipo de dia são obrigatórios.
-        invalid_date_format: Formato de data inválido.
-        attendees_out_of_range: Número de convidados fora do intervalo permitido.
-        no_availability_for_date: Não há disponibilidade para a data selecionada.
-        not_found: O id informado não foi encontrado.
+  errors:
+    messages:
+      missing_date_attendees_day_type: "Data, número de participantes e tipo de dia são obrigatórios."
+      invalid_date_format: "Formato de data inválido."
+      attendees_out_of_range: "Número de convidados fora do intervalo permitido."
+      no_availability_for_date: "Não há disponibilidade para a data selecionada."
+      internal_server_error: "Erro interno do servidor."
+      not_found: "O id informado não foi encontrado."
+
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"
