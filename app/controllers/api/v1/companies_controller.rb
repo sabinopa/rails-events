@@ -7,8 +7,25 @@ class Api::V1::CompaniesController < Api::V1::ApiController
     render status: 200, json: @companies.as_json({ except: [:created_at, :updated_at, :registration_number, :corporate_name] })
   end
 
+  def search
+    query = params[:query]
+    if query.present?
+      @companies = Company.left_joins(:event_types)
+                          .where("companies.brand_name LIKE :query OR companies.city LIKE :query OR event_types.name LIKE :query", query: "%#{query}%")
+                          .distinct.order(:brand_name)
+    else
+      @companies = Company.all.order(:brand_name)
+    end
+
+    render status: 200, json: @companies.as_json({ except: [:created_at, :updated_at, :registration_number, :corporate_name] })
+  end
+
   def show
-    @company = Company.find(params[:id])
-    render status: 200, json: @company.as_json({ except: [:created_at, :updated_at, :registration_number, :corporate_name] })
+    @company = Company.find_by(id: params[:id])
+    if @company
+      render status: 200, json: @company.as_json({ except: [:created_at, :updated_at, :registration_number, :corporate_name] })
+    else
+      render status: 404, json: { errors: I18n.t('errors.messages.not_found') }
+    end
   end
 end

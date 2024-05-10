@@ -26,16 +26,16 @@
 :arrow_forward: [Navegação](#navegação)
 
 ## Descrição do Projeto
-Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e contratação de empresa especializadas em buffets para eventos diversos, como festas, casamentos e eventos corporativos. A aplicação oferece uma série de funcionalidades para fornecedores e clientes, visando proporcionar uma experiência completa e eficiente na organização de eventos.
+Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e contratação de empresa especializadas em buffets para eventos diversos, como festas, casamentos e eventos corporativos. A aplicação oferece uma série de funcionalidades para donos de empresas e clientes, visando proporcionar uma experiência completa e eficiente na organização de eventos.
 
 ## Funcionalidades
 
-### Para Fornecedores (donos de empresas):
-- [x]  **Cadastro de Conta:** Os fornecedores podem criar uma conta informando seu e-mail e senha.
-- [x]  **Cadastro de Empresa:** Após criar uma conta, o fornecedor deve cadastrar sua empresa com informações detalhadas, incluindo nome fantasia, razão social, CNPJ, telefone para contato, e-mail para contato, endereço completo, descrição e meios de pagamento aceitos.
-- [x]  **Cadastro de Tipos de Eventos:** Os fornecedores podem cadastrar os tipos de eventos que realizam, incluindo nome, descrição, quantidade mínima e máxima de pessoas, duração padrão do evento, cardápio, disponibilidade de bebidas alcoólicas, decoração e serviço de estacionamento. Também podem indicar se o evento deve ser realizado exclusivamente no endereço do buffet ou em um endereço indicado pelo contratante.
-- [x]  **Definição de Preços por Tipo de Evento:** Para cada tipo de evento, o fornecedor pode definir os preços-base, incluindo valor mínimo e valor adicional por pessoa. Também pode cadastrar valores de hora extra do evento e diferenciar os preços para dias da semana e fins de semana.
-- [x]  **Avaliação de Pedidos:** Os fornecedores podem visualizar e avaliar os pedidos recebidos, decidindo se aceitam ou não a execução do evento.
+### Para Donos de Empresas:
+- [x]  **Cadastro de Conta:** Os donos podem criar uma conta informando seu e-mail e senha.
+- [x]  **Cadastro de Empresa:** Após criar uma conta, o dono deve cadastrar sua empresa com informações detalhadas, incluindo nome fantasia, razão social, CNPJ, telefone para contato, e-mail para contato, endereço completo, descrição e meios de pagamento aceitos.
+- [x]  **Cadastro de Tipos de Eventos:** Os donos podem cadastrar os tipos de eventos que realizam, incluindo nome, descrição, quantidade mínima e máxima de pessoas, duração padrão do evento, cardápio, disponibilidade de bebidas alcoólicas, decoração e serviço de estacionamento. Também podem indicar se o evento deve ser realizado exclusivamente no endereço do buffet ou em um endereço indicado pelo contratante.
+- [x]  **Definição de Preços por Tipo de Evento:** Para cada tipo de evento, o dono pode definir os preços-base, incluindo valor mínimo e valor adicional por pessoa. Também pode cadastrar valores de hora extra do evento e diferenciar os preços para dias da semana e fins de semana.
+- [x]  **Avaliação de Pedidos:** Os dono podem visualizar e avaliar os pedidos recebidos, decidindo se aceitam ou não a execução do evento.
 
 ### Para Clientes:
 - [x]  **Cadastro de Conta:** Os clientes podem criar uma conta informando nome, CPF, e-mail e senha.
@@ -46,8 +46,8 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [x]  **Acompanhamento de Pedidos:** Os clientes podem acompanhar todos os pedidos realizados através da tela "Meus Pedidos", onde podem ver detalhes dos pedidos e confirmar sua execução.
 
 ### Comunicação entre Dono de Buffet e Cliente:
-- [x]  **Troca de Mensagens:** O fornecedor pode enviar mensagens para o cliente para tirar dúvidas em relação ao evento, e o cliente pode responder a essas mensagens.
-- [x]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o fornecedor e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
+- [x]  **Troca de Mensagens:** O dono de empresa pode enviar mensagens para o cliente para tirar dúvidas em relação ao evento, e o cliente pode responder a essas mensagens.
+- [x]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o dono de emoresa e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
 - [x]  **Exibição de Data e Hora:** As mensagens exibem a data e hora em que foram enviadas.
 
 ### Gems utilizadas
@@ -106,10 +106,10 @@ rspec
 ### Navegação
 Para acessar páginas que requerem autenticação, utilize as contas abaixo:
 
-|   Usuário   |          E-mail         |    Senha    |
-|-------------|-------------------------|-------------|
-|  Fornecedor |   priscila@email.com    |   12345678  |
-|   Cliente   |      joao@email.com     |   senha123  |
+|     Usuário      |          E-mail         |    Senha    |
+|------------------|-------------------------|-------------|
+|  Dono de Empresa |   priscila@email.com    |   12345678  |
+|     Cliente      |      joao@email.com     |   senha123  |
 
 
 

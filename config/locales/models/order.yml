@@ -32,8 +32,7 @@ pt-BR:
         invalid_date_format: Formato de data inválido.
         attendees_out_of_range: Número de convidados fora do intervalo permitido.
         no_availability_for_date: Não há disponibilidade para a data selecionada.
-        internal_server_error: Erro interno do servidor.
-
+        not_found: O id informado não foi encontrado.
   orders:
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"

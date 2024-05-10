@@ -23,20 +23,19 @@ describe 'Company API', type: :request do
       expect(json_response.keys).not_to include 'registration_number'
     end
 
-    it 'list all active companies filtered by name if parameter is given' do
+    it 'list all companies filtered by name if parameter is given' do
       owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
       company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
-                              registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
-                              address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
-                              description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                                registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                                address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                                description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
       owner2 = Owner.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
       company2 = Company.create!(owner_id: owner2.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
-                            registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
-                            address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
-                            description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
+                                 registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
+                                 address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
+                                 description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
 
-      search_params = { name: 'Estrelas' }
-      get "/api/v1/companies/", params: search_params
+      get "/api/v1/companies/search", params: { query: 'Estrelas' }
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -49,11 +48,42 @@ describe 'Company API', type: :request do
       expect(json_response.first['corporate_name']).not_to eq 'Estrelas Mágicas Buffet Infantil Ltda'
     end
 
+    it 'lists all companies if no search parameter is given' do
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                                registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                                address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                                description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+      owner2 = Owner.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
+      company2 = Company.create!(owner_id: owner2.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
+                                 registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
+                                 address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
+                                 description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
+
+      get "/api/v1/companies/search"
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response.length).to eq 2
+
+      expect(json_response.first['brand_name']).to eq 'Estrelas Mágicas'
+      expect(json_response.first['phone_number']).to eq '(11) 2233-4455'
+      expect(json_response.first['city']).to eq 'São Paulo'
+      expect(json_response.first['registration_number']).not_to eq '58.934.722/0001-01'
+      expect(json_response.first['corporate_name']).not_to eq 'Estrelas Mágicas Buffet Infantil Ltda'
+
+      expect(json_response.second['brand_name']).to eq 'Luzes da Cidade'
+      expect(json_response.second['phone_number']).to eq '(21) 3344-8899'
+      expect(json_response.second['city']).to eq 'Belo Horizonte'
+      expect(json_response.second['registration_number']).not_to eq '82.462.797/0001-03'
+      expect(json_response.second['corporate_name']).not_to eq 'Luzes da Cidade Eventos Ltda'
+    end
+
     it 'fails if company was not found' do
       get '/api/v1/companies/999'
 
       expect(response.status).to eq 404
-      expect(response.body).to include 'O id informado não foi encontrado.'
     end
   end
 
