@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :companies, only: [:show, :index] do
-        resources :event_types, shallow: true, only: [:index]
+        resources :event_types, only: [:index, :show] do
+          get 'availability', on: :member
+        end
       end
     end
   end
