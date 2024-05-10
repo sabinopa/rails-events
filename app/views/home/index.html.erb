@@ -1,4 +1,4 @@
-<% if supplier_signed_in? && @company.supplier == current_supplier %>
+<% if owner_signed_in? && @company.owner == current_owner %>
   <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
     <%= link_to t('views.show.my_company'), company_path(@company), class: "btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" %>
   </div>

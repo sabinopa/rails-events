@@ -5,8 +5,8 @@ describe 'Visitor sees company details' do
     pix = PaymentMethod.create!(method: 'PIX')
     credito = PaymentMethod.create!(method: 'Cartão de Crédito')
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
-    supplier = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company = Company.create!(supplier_id: supplier.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company = Company.create!(owner_id: owner.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
@@ -28,8 +28,8 @@ describe 'Visitor sees company details' do
     pix = PaymentMethod.create!(method: 'PIX')
     credito = PaymentMethod.create!(method: 'Cartão de Crédito')
     debito = PaymentMethod.create!(method: 'Cartão de Débito')
-    supplier = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company = Company.create!(supplier_id: supplier.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company = Company.create!(owner_id: owner.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')

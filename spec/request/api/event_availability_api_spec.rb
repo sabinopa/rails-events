@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Event Type Availability API', type: :request do
   context 'GET /api/v1/companies/:company_id/event_types/:id/availability' do
     it 'successfully when number of attendees, date, and day type are valid' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -25,8 +25,8 @@ describe 'Event Type Availability API', type: :request do
     end
 
     it 'returns error when attendees number below the minimum limit' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -47,8 +47,8 @@ describe 'Event Type Availability API', type: :request do
     end
 
     it 'returns error when attendees number above the maximum limit' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -69,8 +69,8 @@ describe 'Event Type Availability API', type: :request do
     end
 
     it 'returns error when date is in past' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -91,8 +91,8 @@ describe 'Event Type Availability API', type: :request do
     end
 
     it 'returns error when date is in invalid format' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -113,8 +113,8 @@ describe 'Event Type Availability API', type: :request do
     end
 
     it 'returns error when date, number of attendees, or day type is missing' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -136,8 +136,8 @@ describe 'Event Type Availability API', type: :request do
 
     it 'returns error when event type is already negotiating for the date' do
       client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -148,7 +148,7 @@ describe 'Event Type Availability API', type: :request do
                                      alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: "on_site")
       event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 10, additional_attendee_price: 50.0,
                                            extra_hour_price: 60.0, day_options: :weekend)
-      order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+      order = Order.create!(client_id: client.id, company_id: owner.id, event_type_id: event_type.id, date: 30.days.from_now,
                                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 1)
 
@@ -162,8 +162,8 @@ describe 'Event Type Availability API', type: :request do
 
     it 'returns error when event type is already confirmed for the date' do
       client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01', phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -174,7 +174,7 @@ describe 'Event Type Availability API', type: :request do
                                      alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: "on_site")
       event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 10, additional_attendee_price: 50.0,
                                            extra_hour_price: 60.0, day_options: :weekend)
-      order = Order.create!(client_id: client.id, company_id: supplier.id, event_type_id: event_type.id, date: 30.days.from_now,
+      order = Order.create!(client_id: client.id, company_id: owner.id, event_type_id: event_type.id, date: 30.days.from_now,
                                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 1)
 

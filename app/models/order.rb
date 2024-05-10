@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :client
   belongs_to :payment_method, optional: true
   has_one :order_approval
-  has_one :supplier, through: :company
+  has_one :owner, through: :company
   has_many :messages
 
   validates :date, :attendees_number, :details, :local, :day_type, presence: true

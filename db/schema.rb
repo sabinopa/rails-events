@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_152347) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,10 +67,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
     t.string "state"
     t.string "zipcode"
     t.string "description"
-    t.integer "supplier_id", null: false
+    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["supplier_id"], name: "index_companies_on_supplier_id"
+    t.index ["owner_id"], name: "index_companies_on_owner_id"
   end
 
   create_table "companies_payment_methods", id: false, force: :cascade do |t|
@@ -125,7 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
 
   create_table "order_approvals", force: :cascade do |t|
     t.integer "order_id", null: false
-    t.integer "supplier_id", null: false
+    t.integer "owner_id", null: false
     t.decimal "final_price"
     t.date "validity_date"
     t.decimal "extra_charge"
@@ -136,7 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
     t.datetime "updated_at", null: false
     t.integer "payment_method_id"
     t.index ["order_id"], name: "index_order_approvals_on_order_id"
-    t.index ["supplier_id"], name: "index_order_approvals_on_supplier_id"
+    t.index ["owner_id"], name: "index_order_approvals_on_owner_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -159,13 +159,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
   end
 
-  create_table "payment_methods", force: :cascade do |t|
-    t.string "method"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "suppliers", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -175,18 +169,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_185545) do
     t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_suppliers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_suppliers_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "companies", "suppliers"
+  add_foreign_key "companies", "owners"
   add_foreign_key "event_pricings", "event_types"
   add_foreign_key "event_types", "companies"
   add_foreign_key "messages", "orders"
   add_foreign_key "order_approvals", "orders"
-  add_foreign_key "order_approvals", "suppliers"
+  add_foreign_key "order_approvals", "owners"
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "event_types"
   add_foreign_key "orders", "payment_methods"

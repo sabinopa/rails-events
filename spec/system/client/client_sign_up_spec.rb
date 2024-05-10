@@ -16,7 +16,7 @@ describe 'Client creates an account' do
 
     within 'nav' do
       expect(page).not_to have_link 'Entrar como Cliente'
-      expect(page).not_to have_link 'Entrar como Fornecedor'
+      expect(page).not_to have_link 'Cadastre sua empresa'
       expect(page).to have_button 'Sair'
       expect(page).to have_content 'Priscila Sabino - priscila@email.com'
     end

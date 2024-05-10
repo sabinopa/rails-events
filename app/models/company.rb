@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  belongs_to :supplier
+  belongs_to :owner
   has_many :event_types
   has_many :orders
   has_and_belongs_to_many :payment_methods
@@ -9,7 +9,7 @@ class Company < ApplicationRecord
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, :address, :neighborhood, :city, :state, :zipcode, :description,
             presence: true
-  validates :supplier_id, :registration_number, uniqueness: true
+  validates :owner_id, :registration_number, uniqueness: true
 
   validates_cnpj_format_of :registration_number
 

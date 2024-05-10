@@ -1,6 +1,6 @@
 <h2 class="event-title fw-bolder"><%= @event_type.name %></h2>
 <div class="container-fluid">
-  <% if supplier_signed_in? && current_supplier == @company.supplier %>
+  <% if owner_signed_in? && current_owner == @company.owner %>
     <%= link_to t('views.edit.edit_event'), edit_event_type_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
     <% if @event_type.event_pricings.count < 3 %>
       <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(@event_type), class: 'btn btn-outline-rosa mt-3' %>
@@ -55,7 +55,7 @@
               <h6 class="price-title fw-bolder">
                 <strong><%= t("views.show.day_options.#{pricing.day_options}") %></strong>
               </h6>
-              <% if supplier_signed_in? && current_supplier == @company.supplier %>
+              <% if owner_signed_in? && current_owner == @company.owner %>
                 <%= link_to t('views.show.edit_prices'), edit_event_pricing_path(pricing), class: 'btn btn-outline-rosa mt-3 btn-sm' %>
               <% end %>
               <strong><%= t('views.show.base_price') %>:</strong>

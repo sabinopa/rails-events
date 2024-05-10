@@ -4,8 +4,8 @@
       <div class="mb-4">
         <h2 class="text-primary fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
         <h3 class="small text-muted"><%= @company.registration_number %></h4>
-        <% if supplier_signed_in? %>
-          <% if @has_conflict && supplier_signed_in? %>
+        <% if owner_signed_in? %>
+          <% if @has_conflict && owner_signed_in? %>
             <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
           <% end %>
           <% if @order.status == 'waiting_review' %>
@@ -37,7 +37,7 @@
       <hr />
       <% if client_signed_in? %>
         <%= link_to t('helpers.buttons.back'), my_orders_path, class: "btn btn-secondary" %>
-      <% elsif supplier_signed_in? %>
+      <% elsif owner_signed_in? %>
         <%= link_to t('helpers.buttons.back'), my_company_orders_path, class: "btn btn-secondary" %>
       <% end %>
   </div>

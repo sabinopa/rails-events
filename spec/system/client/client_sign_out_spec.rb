@@ -13,7 +13,7 @@ describe 'Client sign out' do
 
     within 'nav' do
       expect(page).to have_link 'Entrar como Cliente'
-      expect(page).to have_link 'Entrar como Fornecedor'
+      expect(page).to have_link 'Entrar como Proprietário'
       expect(page).not_to have_button 'Sair'
       expect(page).not_to have_content 'Priscila Sabino - priscila@email.com'
     end

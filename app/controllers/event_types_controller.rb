@@ -1,8 +1,8 @@
 class EventTypesController < ApplicationController
-  before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
   before_action :set_event_type, only: [:edit, :update, :show, :remove_photo]
   before_action :set_company, only: [:new, :create, :edit, :update, :remove_photo]
-  before_action :check_supplier, only: [:new, :create, :edit, :update, :remove_photo]
+  before_action :check_owner, only: [:new, :create, :edit, :update, :remove_photo]
 
   def show
     @company = @event_type.company
@@ -65,8 +65,8 @@ class EventTypesController < ApplicationController
                                       :location_type, photos: [])
   end
 
-  def check_supplier
-    if current_supplier != @company.supplier
+  def check_owner
+    if current_owner != @company.owner
       flash[:alert] = t('.error')
       redirect_to root_path
     end

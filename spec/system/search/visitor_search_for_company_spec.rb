@@ -11,32 +11,32 @@ describe 'User searches for a company' do
   end
 
   it 'and finds several companies by brand name' do
-    supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-    company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner1 = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company1 = Company.create!(owner_id: owner1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier2 = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet do Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner2 = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company2 = Company.create!(owner_id: owner2.id, brand_name: 'Buffet do Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '14.429.522/0001-18', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier3 = Supplier.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
-    company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
+    owner3 = Owner.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
+    company3 = Company.create!(owner_id: owner3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
                               registration_number: '07.746.011/0001-64', phone_number: '(11) 4455-6677', email: 'alegrias@festas.com.br',
                               address: 'Avenida da Alegria, 750', neighborhood: 'Cidade Feliz', city: 'Curitiba', state: 'PR', zipcode: '07070-070',
                               description: 'Especializados em eventos corporativos e sociais, Alegrias e Festas oferece experiências gastronômicas únicas.')
 
-    supplier4 = Supplier.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
-    company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
+    owner4 = Owner.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
+    company4 = Company.create!(owner_id: owner4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
                               registration_number: '81.145.049/0001-34', phone_number: '(11) 5566-7788', email: 'contato@gourmetcelebration.com',
                               address: 'Praça dos Eventos, 300', neighborhood: 'Gourmet Ville', city: 'Salvador', state: 'BA', zipcode: '08080-080',
                               description: 'Gourmet Celebration é sinônimo de elegância e sofisticação em buffets para casamentos e eventos corporativos.')
 
-    supplier5 = Supplier.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
-    company5 = Company.create!(supplier_id: supplier5.id, brand_name: 'Buffet Casamento Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
+    owner5 = Owner.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
+    company5 = Company.create!(owner_id: owner5.id, brand_name: 'Buffet Casamento Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
                               registration_number: '97.159.752/0001-31', phone_number: '(11) 6677-8899', email: 'contato@buffetencantado.com.br',
                               address: 'Alameda dos Eventos, 200', neighborhood: 'Festa no Parque', city: 'Belo Horizonte', state: 'MG', zipcode: '09090-090',
                               description: 'Buffet Encantado oferece um serviço completo de buffet para festas infantis, com temas personalizados e muita diversão.')
@@ -57,32 +57,32 @@ describe 'User searches for a company' do
   end
 
   it 'and finds several companies by city' do
-    supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-    company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner1 = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company1 = Company.create!(owner_id: owner1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier2 = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet dos Casamentos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner2 = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company2 = Company.create!(owner_id: owner2.id, brand_name: 'Buffet dos Casamentos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '14.429.522/0001-18', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier3 = Supplier.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
-    company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
+    owner3 = Owner.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
+    company3 = Company.create!(owner_id: owner3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
                               registration_number: '07.746.011/0001-64', phone_number: '(11) 4455-6677', email: 'alegrias@festas.com.br',
                               address: 'Avenida da Alegria, 750', neighborhood: 'Cidade Feliz', city: 'Curitiba', state: 'PR', zipcode: '07070-070',
                               description: 'Especializados em eventos corporativos e sociais, Alegrias e Festas oferece experiências gastronômicas únicas.')
 
-    supplier4 = Supplier.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
-    company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
+    owner4 = Owner.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
+    company4 = Company.create!(owner_id: owner4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
                               registration_number: '81.145.049/0001-34', phone_number: '(11) 5566-7788', email: 'contato@gourmetcelebration.com',
                               address: 'Praça dos Eventos, 300', neighborhood: 'Gourmet Ville', city: 'Salvador', state: 'BA', zipcode: '08080-080',
                               description: 'Gourmet Celebration é sinônimo de elegância e sofisticação em buffets para casamentos e eventos corporativos.')
 
-    supplier5 = Supplier.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
-    company5 = Company.create!(supplier_id: supplier5.id, brand_name: 'Buffet Casamento Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
+    owner5 = Owner.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
+    company5 = Company.create!(owner_id: owner5.id, brand_name: 'Buffet Casamento Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
                               registration_number: '97.159.752/0001-31', phone_number: '(11) 6677-8899', email: 'contato@buffetencantado.com.br',
                               address: 'Alameda dos Eventos, 200', neighborhood: 'Festa no Parque', city: 'Belo Horizonte', state: 'MG', zipcode: '09090-090',
                               description: 'Buffet Encantado oferece um serviço completo de buffet para festas infantis, com temas personalizados e muita diversão.')
@@ -101,8 +101,8 @@ describe 'User searches for a company' do
   end
 
   it 'and finds several companies by event type name' do
-    supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-    company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner1 = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company1 = Company.create!(owner_id: owner1.id, brand_name: 'Buffet dos Sonhos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
@@ -112,8 +112,8 @@ describe 'User searches for a company' do
                                     menu_description: 'Buffet inclui mini-pizzas, cupcakes temáticos, sucos energéticos e bolo espetacular em forma de capa de herói. Opções sem glúten disponíveis.',
                                     alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1)
 
-    supplier2 = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet dos Casamentos', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner2 = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company2 = Company.create!(owner_id: owner2.id, brand_name: 'Buffet dos Casamentos', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '14.429.522/0001-18', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
@@ -124,8 +124,8 @@ describe 'User searches for a company' do
                                     alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
 
 
-    supplier3 = Supplier.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
-    company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
+    owner3 = Owner.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
+    company3 = Company.create!(owner_id: owner3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
                               registration_number: '07.746.011/0001-64', phone_number: '(11) 4455-6677', email: 'alegrias@festas.com.br',
                               address: 'Avenida da Alegria, 750', neighborhood: 'Cidade Feliz', city: 'Curitiba', state: 'PR', zipcode: '07070-070',
                               description: 'Especializados em eventos corporativos e sociais, Alegrias e Festas oferece experiências gastronômicas únicas.')
@@ -136,8 +136,8 @@ describe 'User searches for a company' do
                                     alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
 
 
-    supplier4 = Supplier.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
-    company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
+    owner4 = Owner.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
+    company4 = Company.create!(owner_id: owner4.id, brand_name: 'Gourmet Celebration', corporate_name: 'Gourmet Celebration Buffet Ltda',
                               registration_number: '81.145.049/0001-34', phone_number: '(11) 5566-7788', email: 'contato@gourmetcelebration.com',
                               address: 'Praça dos Eventos, 300', neighborhood: 'Gourmet Ville', city: 'Salvador', state: 'BA', zipcode: '08080-080',
                               description: 'Gourmet Celebration é sinônimo de elegância e sofisticação em buffets para casamentos e eventos corporativos.')
@@ -148,8 +148,8 @@ describe 'User searches for a company' do
                                     alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1)
 
 
-    supplier5 = Supplier.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
-    company5 = Company.create!(supplier_id: supplier5.id, brand_name: 'Buffet Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
+    owner5 = Owner.create!(name: 'Fernanda', lastname: 'Gomes', email: 'fernanda@email.com', password: 'abcd1234')
+    company5 = Company.create!(owner_id: owner5.id, brand_name: 'Buffet Encantado', corporate_name: 'Buffet Encantado Eventos Ltda',
                               registration_number: '97.159.752/0001-31', phone_number: '(11) 6677-8899', email: 'contato@buffetencantado.com.br',
                               address: 'Alameda dos Eventos, 200', neighborhood: 'Festa no Parque', city: 'Belo Horizonte', state: 'MG', zipcode: '09090-090',
                               description: 'Buffet Encantado oferece um serviço completo de buffet para festas infantis, com temas personalizados e muita diversão.')
@@ -174,26 +174,26 @@ describe 'User searches for a company' do
   end
 
   it 'returns companies in alphabetical order by brand_name' do
-    supplier1 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-    company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Sonhos de Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner1 = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company1 = Company.create!(owner_id: owner1.id, brand_name: 'Sonhos de Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '58.934.722/0001-01', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier2 = Supplier.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
-    company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet do Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
+    owner2 = Owner.create!(name: 'Roberto', lastname: 'Carvalho', email: 'roberto@email.com', password: '87654321')
+    company2 = Company.create!(owner_id: owner2.id, brand_name: 'Buffet do Casamento', corporate_name: 'Buffet dos Sonhos Ltda',
                               registration_number: '14.429.522/0001-18', phone_number: '(11) 3344-5566', email: 'contato@buffetdossonhos.com',
                               address: 'Rua das Festas, 500', neighborhood: 'Jardim das Flores', city: 'Rio de Janeiro', state: 'RJ', zipcode: '06060-060',
                               description: 'Buffet dos Sonhos transforma sua festa em um evento inesquecível, com cardápios personalizados para todas as idades.')
 
-    supplier3 = Supplier.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
-    company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
+    owner3 = Owner.create!(name: 'Luciana', lastname: 'Melo', email: 'luciana@email.com', password: 'password123')
+    company3 = Company.create!(owner_id: owner3.id, brand_name: 'Casamento e Festa', corporate_name: 'Alegrias e Festas Eventos Ltda',
                               registration_number: '07.746.011/0001-64', phone_number: '(11) 4455-6677', email: 'alegrias@festas.com.br',
                               address: 'Avenida da Alegria, 750', neighborhood: 'Cidade Feliz', city: 'Curitiba', state: 'PR', zipcode: '07070-070',
                               description: 'Especializados em eventos corporativos e sociais, Alegrias e Festas oferece experiências gastronômicas únicas.')
 
-    supplier4 = Supplier.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
-    company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Gourmet Celebration e Casamentos', corporate_name: 'Gourmet Celebration Buffet Ltda',
+    owner4 = Owner.create!(name: 'Carlos', lastname: 'Pereira', email: 'carlos@email.com', password: '1234abcd')
+    company4 = Company.create!(owner_id: owner4.id, brand_name: 'Gourmet Celebration e Casamentos', corporate_name: 'Gourmet Celebration Buffet Ltda',
                               registration_number: '81.145.049/0001-34', phone_number: '(11) 5566-7788', email: 'contato@gourmetcelebration.com',
                               address: 'Praça dos Eventos, 300', neighborhood: 'Gourmet Ville', city: 'Salvador', state: 'BA', zipcode: '08080-080',
                               description: 'Gourmet Celebration é sinônimo de elegância e sofisticação em buffets para casamentos e eventos corporativos.')

@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <% if supplier_signed_in? && @order.supplier.present? %>
+  <% if owner_signed_in? && @order.owner.present? %>
     <h2 class="text-primary fw-bolder mb-0">
       <%= t('views.index.message_client', name: @order.client.name) %>
     </h2>

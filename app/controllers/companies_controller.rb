@@ -1,16 +1,16 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_supplier!, only: [:new, :create, :edit, :update]
-  before_action :force_company_creation_for_suppliers, only: [:show, :search, :edit, :update]
-  before_action :check_supplier, only: [:edit, :update]
+  before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
+  before_action :force_company_creation_for_owners, only: [:show, :search, :edit, :update]
+  before_action :check_owner, only: [:edit, :update]
 
   def show
     @company = Company.find(params[:id])
     @event_types = @company.event_types
-    @supplier = current_supplier
+    @owner = current_owner
   end
 
   def new
-    if current_supplier.company.present?
+    if current_owner.company.present?
       flash[:alert] = t('.error')
       redirect_to root_path
     end
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = current_supplier.build_company(company_params)
+    @company = current_owner.build_company(company_params)
     if @company.save
       flash[:notice] = t('.success', brand_name: @company.brand_name)
       redirect_to company_path(@company)
@@ -51,14 +51,14 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:supplier_id,:brand_name, :corporate_name, :registration_number,
+    params.require(:company).permit(:owner_id,:brand_name, :corporate_name, :registration_number,
                                     :phone_number, :email, :address, :neighborhood, :city,
                                     :state, :zipcode, :description, payment_method_ids: [])
   end
 
-  def check_supplier
+  def check_owner
     @company = Company.find(params[:id])
-    if current_supplier != @company.supplier
+    if current_owner != @company.owner
       flash[:alert] = t('.error')
       redirect_to root_path
     end

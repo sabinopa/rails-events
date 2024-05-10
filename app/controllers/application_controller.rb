@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :lastname, :email, :document_number, :password, :password_confirmation, :current_password])
   end
 
-  def force_company_creation_for_suppliers
-    if supplier_signed_in? && current_supplier.company.nil?
-      flash[:alert] = I18n.t('actions.force_company_creation_for_suppliers.redirect')
+  def force_company_creation_for_owners
+    if owner_signed_in? && current_owner.company.nil?
+      flash[:alert] = I18n.t('actions.force_company_creation_for_owners.redirect')
       redirect_to new_company_path
     end
   end

@@ -4,7 +4,7 @@
       <div class="mb-4">
         <h2 class="text-primary fw-bolder mb-0"><%= @company.brand_name %></h2>
         <h3 class="small text-muted"><%= @company.registration_number %></h4>
-        <% if supplier_signed_in? && current_supplier.company.present? && current_supplier == @company.supplier %>
+        <% if owner_signed_in? && current_owner.company.present? && current_owner == @company.owner %>
           <h4 class="small text-muted"><%= @company.corporate_name %></h3>
           <div>
             <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>

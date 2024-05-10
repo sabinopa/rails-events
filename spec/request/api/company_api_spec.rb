@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Company API', type: :request do
   context 'GET /api/v1/companies/1' do
     it 'success' do
-        supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-        company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+        owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+        company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                                 registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                                 address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                                 description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
@@ -24,13 +24,13 @@ describe 'Company API', type: :request do
     end
 
     it 'list all active companies filtered by name if parameter is given' do
-      supplier = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company = Company.create!(supplier_id: supplier.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                               registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                               description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
-      supplier2 = Supplier.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
-      company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
+      owner2 = Owner.create!(name: 'Pedro', lastname: 'Souza', email: 'pedro@email.com', password: 'password')
+      company2 = Company.create!(owner_id: owner2.id, brand_name: 'Luzes da Cidade', corporate_name: 'Luzes da Cidade Eventos Ltda',
                             registration_number: '82.462.797/0001-03',  phone_number: '(21) 3344-8899', email: 'eventos@luzesdacidade.com.br',
                             address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
                             description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.')
@@ -59,27 +59,27 @@ describe 'Company API', type: :request do
 
   context 'GET /api/v1/companies' do
     it 'list all companies' do
-      supplier1 = Supplier.create!(name: 'Lucas', lastname: 'Ferreira', email: 'lucas@empresa.com', password: 'senha123')
-      company1 = Company.create!(supplier_id: supplier1.id, brand_name: 'Buffet Alegria', corporate_name: 'Buffet Alegria Eventos Ltda',
+      owner1 = Owner.create!(name: 'Lucas', lastname: 'Ferreira', email: 'lucas@empresa.com', password: 'senha123')
+      company1 = Company.create!(owner_id: owner1.id, brand_name: 'Buffet Alegria', corporate_name: 'Buffet Alegria Eventos Ltda',
                            registration_number: CNPJ.generate, phone_number: '(11) 5567-8901', email: 'contato@buffetalegria.com.br',
                            address: 'Rua das Festas, 321', neighborhood: 'Vila Festa', city: 'Rio de Janeiro', state: 'RJ', zipcode: '20031-007',
                            description: 'Buffet Alegria é especializado em eventos corporativos e festas temáticas.')
 
 
-      supplier2 = Supplier.create!(name: 'Mariana', lastname: 'Costa', email: 'mariana@doces.com', password: 'docepass123')
-      company2 = Company.create!(supplier_id: supplier2.id, brand_name: 'Buffet Estrela', corporate_name: 'Buffet Estrela Ltda',
+      owner2 = Owner.create!(name: 'Mariana', lastname: 'Costa', email: 'mariana@doces.com', password: 'docepass123')
+      company2 = Company.create!(owner_id: owner2.id, brand_name: 'Buffet Estrela', corporate_name: 'Buffet Estrela Ltda',
                                 registration_number: CNPJ.generate, phone_number: '(21) 3344-5566', email: 'vendas@buffetestrela.com.br',
                                 address: 'Avenida dos Eventos, 123', neighborhood: 'Bairro Estrela', city: 'Belo Horizonte', state: 'MG', zipcode: '30120-110',
                                 description: 'Buffet Estrela oferece uma experiência única com serviços completos para casamentos e eventos empresariais.')
 
-      supplier3 = Supplier.create!(name: 'Carlos', lastname: 'Silva', email: 'carlos@tech.com', password: 'tech7890')
-      company3 = Company.create!(supplier_id: supplier3.id, brand_name: 'Buffet Horizonte', corporate_name: 'Buffet Horizonte Festas Ltda',
+      owner3 = Owner.create!(name: 'Carlos', lastname: 'Silva', email: 'carlos@tech.com', password: 'tech7890')
+      company3 = Company.create!(owner_id: owner3.id, brand_name: 'Buffet Horizonte', corporate_name: 'Buffet Horizonte Festas Ltda',
                                 registration_number: CNPJ.generate, phone_number: '(31) 99876-5432', email: 'suporte@buffethorizonte.com.br',
                                 address: 'Praça dos Convidados, 100', neighborhood: 'Centro Eventos', city: 'Curitiba', state: 'PR', zipcode: '80020-300',
                                 description: 'Buffet Horizonte especializado em grandes eventos sociais e festividades de grande porte.')
 
-      supplier4 = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-      company4 = Company.create!(supplier_id: supplier4.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+      owner4 = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company4 = Company.create!(owner_id: owner4.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                               registration_number: CNPJ.generate,  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                               address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                               description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')

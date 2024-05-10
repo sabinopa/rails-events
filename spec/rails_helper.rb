@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
-  add_filter 'app/controllers/suppliers/'
+  add_filter 'app/controllers/owners/'
   add_filter 'app/controllers/clients/'
 end
 # This file is copied to spec/ when you run 'rails generate rspec:install'

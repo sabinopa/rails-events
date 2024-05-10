@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     sessions: 'clients/sessions',
     registrations: 'clients/registrations'
   }
-  devise_for :suppliers, controllers: {
-    sessions: 'suppliers/sessions',
-    registrations: 'suppliers/registrations'
+  devise_for :owners, controllers: {
+    sessions: 'owners/sessions',
+    registrations: 'owners/registrations'
   }
 
   root 'home#index'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get :my_orders, to: 'orders#my_orders'
   end
 
-  scope :supplier do
+  scope :owner do
     get :my_company_orders, to: 'orders#my_company_orders'
   end
 

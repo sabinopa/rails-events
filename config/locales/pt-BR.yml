@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     class_names:
-      Supplier: Fornecedor
+      Owner: Proprietário(a)
       Client: Cliente
     errors:
       messages:
@@ -155,10 +155,10 @@ pt-BR:
       back: Voltar
     submit:
       sign_in: Criar conta
-      supplier_sign_in: Seja um Fornecedor
+      owner_sign_in: Cadastre sua empresa
       client_sign_in: Seja um Cliente
       log_in: Entrar
-      supplier_log_in: Entrar como Fornecedor
+      owner_log_in: Entrar como Proprietário
       client_log_in: Entrar como Cliente
       log_out: Sair
       create: Criar
@@ -168,7 +168,7 @@ pt-BR:
       delete: Remover
       edit_company: Editar empresa
       edit_event_type: Editar evento
-      check_with_supplier: Solicitar Orçamento
+      check_with_owner: Solicitar Orçamento
   number:
     currency:
       format:
@@ -242,7 +242,7 @@ pt-BR:
       custom: "Enviado às %Hh%M em %d/%m/%Y"
     pm: pm
   actions:
-    force_company_creation_for_suppliers:
+    force_company_creation_for_owners:
       redirect: "Você deve criar uma empresa antes de acessar outras páginas."
   views:
     home:

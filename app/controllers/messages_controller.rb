@@ -29,12 +29,12 @@ class MessagesController < ApplicationController
   end
 
   def set_users
-    if current_supplier
-      @current_user = current_supplier
+    if current_owner
+      @current_user = current_owner
       @other_user = @order.client
     elsif current_client
       @current_user = current_client
-      @other_user = @order.supplier
+      @other_user = @order.owner
     end
   end
 

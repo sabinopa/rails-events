@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_supplier!, only: [:my_company_orders, :approve]
+  before_action :authenticate_owner!, only: [:my_company_orders, :approve]
   before_action :authenticate_client!, only: [:new, :create, :my_orders, :confirm]
   before_action :set_order, only: [:show, :approve, :confirm, :cancel]
   before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm, :cancel]
@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
   end
 
   def my_company_orders
-    @company = current_supplier.company
+    @company = current_owner.company
     @waiting_review_orders = @company.orders.where(status: 'waiting_review').order(:created_at)
     @negotiating_orders = @company.orders.where(status: 'negotiating').order(:created_at)
     @confirmed_orders = @company.orders.where(status: 'order_confirmed').order(:updated_at)
@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
 
   def approval_params
     params.require(:order).permit(:validity_date, :extra_charge, :discount, :charge_description, :payment_method_id)
-          .merge(supplier_id: current_supplier.id)
+          .merge(owner_id: current_owner.id)
   end
 
   def determine_local
@@ -127,7 +127,7 @@ class OrdersController < ApplicationController
   end
 
   def check_user
-    unless current_supplier == @order.company.supplier || current_client == @order.client
+    unless current_owner == @order.company.owner || current_client == @order.client
       flash[:notice] = t('.error')
       redirect_to root_path
     end

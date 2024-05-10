@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
-  before_action :force_company_creation_for_suppliers, only: [:index]
+  before_action :force_company_creation_for_owners, only: [:index]
 
   def index
-    if supplier_signed_in?
-      @company = current_supplier.company
+    if owner_signed_in?
+      @company = current_owner.company
     else
       @companies = Company.all
     end

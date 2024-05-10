@@ -8,9 +8,9 @@
       <% end %>
     </div>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-      <% if supplier_signed_in? %>
+      <% if owner_signed_in? %>
         <li class="nav-item">
-          <%= render 'layouts/supplier_authenticated' %>
+          <%= render 'layouts/owner_authenticated' %>
         </li>
       <% elsif client_signed_in? %>
         <li class="nav-item">
@@ -21,13 +21,13 @@
           <%= link_to t('helpers.submit.client_sign_in'), new_client_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to t('helpers.submit.supplier_sign_in'), new_supplier_registration_path, class: "nav-link" %>
+          <%= link_to t('helpers.submit.owner_sign_in'), new_owner_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to t('helpers.submit.client_log_in'), new_client_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to t('helpers.submit.supplier_log_in'), new_supplier_session_path, class: "nav-link" %>
+          <%= link_to t('helpers.submit.owner_log_in'), new_owner_session_path, class: "nav-link" %>
         </li>
       <% end %>
     </ul>

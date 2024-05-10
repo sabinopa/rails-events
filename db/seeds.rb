@@ -2,7 +2,7 @@ Order.destroy_all
 EventPricing.destroy_all
 EventType.destroy_all
 Company.destroy_all
-Supplier.destroy_all
+Owner.destroy_all
 PaymentMethod.destroy_all
 Client.destroy_all
 
@@ -14,14 +14,14 @@ dinheiro = PaymentMethod.create!(method: 'Dinheiro')
 
 p "Created #{PaymentMethod.count} payment methods"
 
-# Fornecedores
-priscila = Supplier.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
-pedro = Supplier.create!(name: 'Pedro', lastname: 'Araujo', email: 'pedro@email.com', password: 'senhasenha')
-guilherme = Supplier.create!(name: 'Guilherme', lastname: 'Alvares', email: 'guilherme@email.com', password: 'password')
-isabel = Supplier.create!(name: 'Isabel', lastname: 'Maria', email: 'isabel@lagoaserena.com', password: 'secret123')
-livia = Supplier.create!(name: 'Livia', lastname: 'Alves', email: 'livia@email.com', password: '09876543')
+# Proprietários
+priscila = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+pedro = Owner.create!(name: 'Pedro', lastname: 'Araujo', email: 'pedro@email.com', password: 'senhasenha')
+guilherme = Owner.create!(name: 'Guilherme', lastname: 'Alvares', email: 'guilherme@email.com', password: 'password')
+isabel = Owner.create!(name: 'Isabel', lastname: 'Maria', email: 'isabel@lagoaserena.com', password: 'secret123')
+livia = Owner.create!(name: 'Livia', lastname: 'Alves', email: 'livia@email.com', password: '09876543')
 
-p "Created #{Supplier.count} suppliers"
+p "Created #{Owner.count} owners"
 
 # Clientes
 joao = Client.create!(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '926.020.550-69', password: 'senha123')
@@ -33,31 +33,31 @@ lucas = Client.create!(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com
 p "Created #{Client.count} clients"
 
 # Empresas
-celebracao_alegre = Company.create!(supplier_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
+celebracao_alegre = Company.create!(owner_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
                                   registration_number: '58.934.722/0001-01',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
                                   address: 'Rua das Flores, 123', neighborhood: 'Jardim Primavera', city: 'São Paulo', state: 'SP', zipcode: '01234-567',
                                   description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.')
                                   celebracao_alegre.payment_methods << [pix, debito]
 
-festim_sonhos = Company.create!(supplier_id: pedro.id, brand_name: 'Festim dos Sonhos', corporate_name: 'Festim dos Sonhos Eventos S.A.',
+festim_sonhos = Company.create!(owner_id: pedro.id, brand_name: 'Festim dos Sonhos', corporate_name: 'Festim dos Sonhos Eventos S.A.',
                               registration_number: '63.112.924/0001-08',  phone_number: '(21) 4444-5555', email: 'sonhos@festim.com.br',
                               address: 'Avenida Central, 456', neighborhood: 'Centro', city: 'Rio de Janeiro', state: 'RJ', zipcode: '21000-000',
                               description: 'Com uma equipe de chefs renomados, proporcionamos uma experiência culinária inesquecível para seu evento.')
                               festim_sonhos.payment_methods << [credito, debito]
 
-gastronomia_estelar = Company.create!(supplier_id: guilherme.id, brand_name: 'Gastronomia Estelar', corporate_name: 'Gastronomia Estelar Ltda',
+gastronomia_estelar = Company.create!(owner_id: guilherme.id, brand_name: 'Gastronomia Estelar', corporate_name: 'Gastronomia Estelar Ltda',
                               registration_number: '54.457.025/0001-48',  phone_number: '(31) 6666-7777', email: 'contato@gastronomiaestelar.com.br',
                               address: 'Praça da Liberdade, 789', neighborhood: 'Savassi', city: 'Belo Horizonte', state: 'MG', zipcode: '30140-010',
                               description: 'Oferecemos um serviço exclusivo de buffet e catering com foco em ingredientes orgânicos e sustentáveis.')
                               gastronomia_estelar.payment_methods << [pix, credito, debito]
 
-banquete_real = Company.create!(supplier_id: isabel.id, brand_name: 'Banquete Real', corporate_name: 'Banquete Real Buffet S.A.',
+banquete_real = Company.create!(owner_id: isabel.id, brand_name: 'Banquete Real', corporate_name: 'Banquete Real Buffet S.A.',
                               registration_number: '26.876.789/0001-32',  phone_number: '(41) 8888-9999', email: 'real@banquetebuffet.com.br',
                               address: 'Rua Majestosa, 1010', neighborhood: 'Batel', city: 'Curitiba', state: 'PR', zipcode: '80420-000',
                               description: 'Transformamos seu evento em um verdadeiro banquete real, com serviços de buffet e decoração de alto padrão')
                               banquete_real.payment_methods << [credito, debito]
 
-sabores_mundo = Company.create!(supplier_id: livia.id, brand_name: 'Sabores do Mundo', corporate_name: 'Sabores do Mundo Buffet Internacional Eireli',
+sabores_mundo = Company.create!(owner_id: livia.id, brand_name: 'Sabores do Mundo', corporate_name: 'Sabores do Mundo Buffet Internacional Eireli',
                               registration_number: '24.282.155/0001-26',  phone_number: '(51) 1010-2020', email: 'contato@saboresdomundo.com.br',
                               address: 'Rua da Paz, 1313', neighborhood: 'Moinhos de Vento', city: 'Porto Alegre', state: 'RS', zipcode: '90500-000',
                               description: 'Especializados em culinária internacional, nosso buffet traz sabores únicos de diferentes partes do mundo para seu evento.')
@@ -278,7 +278,7 @@ order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
 order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
                             date: 60.days.from_now, attendees_number: 120, details: 'Evento corporativo com apresentação de projetos.',
                             local: 'Rua das Flores, 123', status: 1, payment_method_id: debito.id, day_type: :weekend)
-                            OrderApproval.create!(order_id: order_joao2.id, supplier_id: celebracao_alegre.supplier_id,
+                            OrderApproval.create!(order_id: order_joao2.id, owner_id: celebracao_alegre.owner_id,
                                                   validity_date: 5.days.ago, extra_charge: 500.0, discount: 50.0,
                                                   charge_description: 'Custos adicionais por serviços extras',
                                                   final_price: order_joao2.default_price + 500.0 - 50.0)
@@ -286,7 +286,7 @@ order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
 order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
                             date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
                             local: 'Palácio Real - Rua da Realeza, 456', status: 1, payment_method_id: credito.id, day_type: :week_day)
-                            OrderApproval.create!(order_id: order_joao3.id, supplier_id: banquete_real.supplier_id,
+                            OrderApproval.create!(order_id: order_joao3.id, owner_id: banquete_real.owner_id,
                             validity_date: 10.days.from_now, extra_charge: 100.0, discount: 0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_joao3.default_price + 100.0 - 0)
@@ -303,7 +303,7 @@ order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, 
 order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                              date: 40.days.from_now, attendees_number: 80, details: 'Jantar de degustação orgânica com amigos.',
                              local: 'Restaurante Orgânico - Alameda Verde, 789', status: 1, payment_method_id: pix.id, day_type: :weekend)
-                             OrderApproval.create!(order_id: order_maria2.id, supplier_id: gastronomia_estelar.supplier_id,
+                             OrderApproval.create!(order_id: order_maria2.id, owner_id: gastronomia_estelar.owner_id,
                              validity_date: 7.days.from_now, extra_charge: 1000.0, discount: 550.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_maria2.default_price + 1000.0 - 550.0)
@@ -311,7 +311,7 @@ order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estela
 order_maria3 = Order.create!(client_id: maria.id, company_id: sabores_mundo.id, event_type_id: noite_gastronomica.id,
                              date: 70.days.from_now, attendees_number: 120, details: 'Evento temático com pratos internacionais.',
                              local: 'Rua da Paz, 1313',status: 2, payment_method_id: credito.id, day_type: :week_day)
-                             OrderApproval.create!(order_id: order_maria3.id, supplier_id: sabores_mundo.supplier_id,
+                             OrderApproval.create!(order_id: order_maria3.id, owner_id: sabores_mundo.owner_id,
                              validity_date: 7.days.from_now, extra_charge: 600.0, discount: 200.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_maria3.default_price + 600.0 - 200.0)
@@ -325,7 +325,7 @@ order_maria4 = Order.create!(client_id: maria.id, company_id: banquete_real.id, 
 order_carlos1 = Order.create!(client_id: carlos.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                               date: 60.days.from_now, attendees_number: 300, details: 'Evento de premiação para funcionários.',
                               local: 'Teatro Magnífico - Rua do Esplendor, 789', status: 2, payment_method_id: debito.id, day_type: :weekend)
-                              OrderApproval.create!(order_id: order_carlos1.id, supplier_id: banquete_real.supplier_id,
+                              OrderApproval.create!(order_id: order_carlos1.id, owner_id: banquete_real.owner_id,
                               validity_date: 3.days.from_now, extra_charge: 0, discount: 0,
                               charge_description: 'Taxas adicionais por serviços especiais',
                               final_price: order_carlos1.default_price + 0 - 0)
@@ -337,7 +337,7 @@ order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
 order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
                               date: 30.days.from_now, attendees_number: 60, details: 'Casamento dos sonhos com buffet personalizado.',
                               local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id, day_type: :week_day)
-                              OrderApproval.create!(order_id: order_carlos3.id, supplier_id: celebracao_alegre.supplier_id,
+                              OrderApproval.create!(order_id: order_carlos3.id, owner_id: celebracao_alegre.owner_id,
                               validity_date: 10.days.from_now, extra_charge: 90.0, discount: 200.0,
                               charge_description: 'Taxas adicionais por serviços especiais',
                               final_price: order_carlos3.default_price + 90.0 - 200.0)
@@ -350,7 +350,7 @@ order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
 order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                            date: 15.days.from_now, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
                            local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 1, payment_method_id: pix.id, day_type: :weekend)
-                            OrderApproval.create!(order_id: order_ana1.id, supplier_id: gastronomia_estelar.supplier_id,
+                            OrderApproval.create!(order_id: order_ana1.id, owner_id: gastronomia_estelar.owner_id,
                             validity_date: 10.days.from_now, extra_charge: 95.0, discount: 115.0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_ana1.default_price + 95.0 - 115.0)
@@ -362,7 +362,7 @@ order_ana2 = Order.create!(client_id: ana.id, company_id: sabores_mundo.id, even
 order_ana3 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: piquenique.id,
                            date: 80.days.from_now, attendees_number: 30, details: 'Piquenique sustentável ao ar livre.',
                            local: 'Parque Natural - Rua do Sol, 505', status: 2, payment_method_id: credito.id, day_type: :week_day)
-                            OrderApproval.create!(order_id: order_ana3.id, supplier_id: gastronomia_estelar.supplier_id,
+                            OrderApproval.create!(order_id: order_ana3.id, owner_id: gastronomia_estelar.owner_id,
                             validity_date: 10.days.from_now, extra_charge: 0, discount: 0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_ana3.default_price + 0 - 0)
@@ -379,7 +379,7 @@ order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, 
 order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                              date: 30.days.from_now, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
                              local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 1, payment_method_id: credito.id, day_type: :weekend)
-                             OrderApproval.create!(order_id: order_lucas2.id, supplier_id: festim_sonhos.supplier_id,
+                             OrderApproval.create!(order_id: order_lucas2.id, owner_id: festim_sonhos.owner_id,
                              validity_date: 20.days.from_now, extra_charge: 200.0, discount: 0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_lucas2.default_price + 0 - 0)
@@ -387,7 +387,7 @@ order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, 
 order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
                              local: 'Teatro Real - Rua dos Campeões, 707', status: 2, payment_method_id: credito.id, day_type: :week_day)
-                             OrderApproval.create!(order_id: order_lucas3.id, supplier_id: banquete_real.supplier_id,
+                             OrderApproval.create!(order_id: order_lucas3.id, owner_id: banquete_real.owner_id,
                              validity_date: 12.days.from_now, extra_charge: 0, discount: 100.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_lucas3.default_price + 0 - 100.0)
