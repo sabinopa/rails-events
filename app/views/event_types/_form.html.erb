@@ -61,12 +61,12 @@
   </div>
   <br>
   <div class="col-md-6">
-  <%= form.label :photos, class: "form-label" %>
-  <% @event_type.photos.each do |photo| %>
-    <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
-  <% end %>
-  <%= form.file_field :photos, multiple: true, class: "form-control"  %>
-  <div>
+    <%= form.label :photos, class: "form-label" %>
+    <% @event_type.photos.each do |photo| %>
+      <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
+    <% end %>
+    <%= form.file_field :photos, multiple: true, class: "form-control" %>
+  </div>
   <br>
   <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
 <% end %>
@@ -75,9 +75,9 @@
   <h2 class="text-primary fw-bolder mb-0"><%= t('views.edit.event_photos') %></h2>
   <% @event_type.photos.each do |photo| %>
     <%= image_tag(photo, class: 'event-image') %>
-    <%= button_to t('helpers.submit.delete'), remove_photo_event_type_path(@event_type, photo_id: photo.id), method: :delete %>
+    <%= button_to t('helpers.submit.delete'), remove_photo_event_type_path(id: @event_type.id, photo_id: photo.id), method: :delete %>
   <% end %>
 <% end %>
 
 <hr />
-<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary"  %>
+<%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>
