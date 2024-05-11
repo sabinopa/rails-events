@@ -20,7 +20,7 @@ describe 'Client sees messages' do
     order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 30.days.from_now,
                           attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
                           local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 0, payment_method_id: debito.id)
-    message1 = Message.create!(body: 'Olá, quando convidados são crianças?', sender_id: 1, sender_type: 'Owner', receiver_id: 1, receiver_type: 'Client', order_id: order.id)
+    message1 = Message.create!(body: 'Olá, quantos convidados são crianças?', sender_id: 1, sender_type: 'Owner', receiver_id: 1, receiver_type: 'Client', order_id: order.id)
     message2 = Message.create!(body: 'Serão cerca de 15 crianças.', sender_id: 1, sender_type: 'Client', receiver_id: 1, receiver_type: 'Owner', order_id: order.id)
     message3 = Message.create!(body: 'Ok. Eles tomam refrigerante?', sender_id: 1, sender_type: 'Owner', receiver_id: 1, receiver_type: 'Client', order_id: order.id)
     message4 = Message.create!(body: 'Apenas 3 tomam, mas no geral preferimos suco.', sender_id: 1, sender_type: 'Client', receiver_id: 1, receiver_type: 'Owner', order_id: order.id)
@@ -29,7 +29,7 @@ describe 'Client sees messages' do
     visit order_path(order.id)
 
     expect(page).to have_content 'Priscila (Proprietário(a)):', count: 2
-    expect(page).to have_content 'Olá, quando convidados são crianças?'
+    expect(page).to have_content 'Olá, quantos convidados são crianças?'
     expect(page).to have_content 'Juliana (Cliente):', count: 2
     expect(page).to have_content 'Serão cerca de 15 crianças.'
     expect(page).to have_content 'Ok. Eles tomam refrigerante?'

@@ -1,4 +1,4 @@
-<% if(@event_pricing.errors.any?) %>
+<% if @event_pricing.errors.any? %>
   <p><%= t('errors.messages.verify_error') %></p>
   <ul>
     <% @event_pricing.errors.full_messages.each do |msg| %>
@@ -8,7 +8,7 @@
 <% end %>
 
 <% form_url = @event_pricing.persisted? ? event_pricing_path(@event_pricing) : event_type_event_pricings_path(@event_type) %>
-<%= form_with model: @event_pricing, url: form_url  do |form| %>
+<%= form_with model: @event_pricing, url: form_url do |form| %>
   <div class="row g-3">
     <div class="col-12">
       <%= form.label :day_options, t('views.new.pricing_for'), class: "form-label d-block" %>

@@ -1,7 +1,7 @@
 <h4 class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.results', query: @query_params) %></h4>
 
 <% if @companies.empty? %>
-    <p class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.none_found') %></p>
+  <p class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.none_found') %></p>
 <% else %>
   <div class="container px-2 px-lg-5 mt-5">
     <p class="text-primary fw-bolder mb-4 text-center"><%= t('views.search.count_companies', count_companies: @companies.count) %></p>
@@ -29,6 +29,5 @@
     </div>
   </div>
 <% end %>
-  <hr>
-  <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
-</div>
+<hr>
+<%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
