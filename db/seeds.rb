@@ -398,6 +398,89 @@ order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.
 
 p "Created #{Order.count} orders"
 
+# Seed de mensagens ajustadas
+
+# Pedido de Joao - order_joao1
+message1 = Message.create!(body: 'Olá João, qual será a faixa etária das crianças no evento?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao1.id)
+message2 = Message.create!(body: 'Olá, a maioria das crianças terá entre 4 e 10 anos.', sender_id: joao.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_joao1.id)
+
+# Pedido de Joao - order_joao2
+message3 = Message.create!(body: 'João, você precisará de algum equipamento audiovisual para a apresentação de projetos?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao2.id)
+message4 = Message.create!(body: 'Sim, por favor. Precisamos de um projetor e microfones.', sender_id: joao.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_joao2.id)
+
+# Pedido de Joao - order_joao3
+message5 = Message.create!(body: 'João, você gostaria de uma degustação do menu de casamento?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao3.id)
+message6 = Message.create!(body: 'Sim, seria ótimo. Podemos agendar para a próxima semana?', sender_id: joao.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_joao3.id)
+
+# Pedido de Joao - order_joao4
+message7 = Message.create!(body: 'João, você tem alguma preferência de culinária para o jantar temático?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao4.id)
+message8 = Message.create!(body: 'Gostaríamos de pratos mexicanos e italianos.', sender_id: joao.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_joao4.id)
+
+# Pedido de Maria - order_maria1
+message9 = Message.create!(body: 'Maria, você prefere música instrumental ao vivo ou uma playlist selecionada?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria1.id)
+message10 = Message.create!(body: 'Preferimos música instrumental ao vivo.', sender_id: maria.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_maria1.id)
+
+# Pedido de Maria - order_maria2
+message11 = Message.create!(body: 'Maria, há alguma restrição alimentar entre seus convidados?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria2.id)
+message12 = Message.create!(body: 'Sim, alguns convidados são alérgicos a nozes.', sender_id: maria.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_maria2.id)
+
+# Pedido de Maria - order_maria3
+message13 = Message.create!(body: 'Maria, você gostaria de adicionar um serviço de fotografia ao evento?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria3.id)
+message14 = Message.create!(body: 'Sim, adoraria ter um fotógrafo para capturar os momentos.', sender_id: maria.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_maria3.id)
+
+# Pedido de Maria - order_maria4
+message15 = Message.create!(body: 'Maria, podemos oferecer um brinde especial aos homenageados?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria4.id)
+message16 = Message.create!(body: 'Sim, isso seria perfeito.', sender_id: maria.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_maria4.id)
+
+# Pedido de Carlos - order_carlos1
+message17 = Message.create!(body: 'Carlos, precisamos de mais alguma infraestrutura para o evento de premiação?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos1.id)
+message18 = Message.create!(body: 'Sim, precisamos de um palco com iluminação especial.', sender_id: carlos.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_carlos1.id)
+
+# Pedido de Carlos - order_carlos2
+message19 = Message.create!(body: 'Carlos, você gostaria de incluir uma sessão de networking?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos2.id)
+message20 = Message.create!(body: 'Sim, isso seria ótimo para os participantes.', sender_id: carlos.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_carlos2.id)
+
+# Pedido de Carlos - order_carlos3
+message21 = Message.create!(body: 'Carlos, podemos decorar o salão com flores naturais?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos3.id)
+message22 = Message.create!(body: 'Sim, flores naturais seriam perfeitas.', sender_id: carlos.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_carlos3.id)
+
+# Pedido de Carlos - order_carlos4
+message23 = Message.create!(body: 'Carlos, há alguma preferência de bebidas para o jantar gourmet?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos4.id)
+message24 = Message.create!(body: 'Gostaríamos de uma seleção de vinhos e coquetéis.', sender_id: carlos.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_carlos4.id)
+
+# Pedido de Ana - order_ana1
+message25 = Message.create!(body: 'Ana, você tem alguma preferência de decoração para o evento?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana1.id)
+message26 = Message.create!(body: 'Gostaríamos de uma decoração temática verde.', sender_id: ana.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_ana1.id)
+
+# Pedido de Ana - order_ana2
+message27 = Message.create!(body: 'Ana, você gostaria de incluir música ao vivo no evento de food truck?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana2.id)
+message28 = Message.create!(body: 'Sim, música ao vivo seria ótimo.', sender_id: ana.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_ana2.id)
+
+# Pedido de Ana - order_ana3
+message29 = Message.create!(body: 'Ana, você prefere um brunch ou almoço para o piquenique?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana3.id)
+message30 = Message.create!(body: 'Prefiro um brunch ao ar livre.', sender_id: ana.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_ana3.id)
+
+# Pedido de Ana - order_ana4
+message31 = Message.create!(body: 'Ana, podemos oferecer degustações de bebidas orgânicas?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana4.id)
+message32 = Message.create!(body: 'Sim, adoraria incluir degustações de bebidas orgânicas.', sender_id: ana.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_ana4.id)
+
+# Pedido de Lucas - order_lucas1
+message33 = Message.create!(body: 'Lucas, qual é o horário de início do evento?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas1.id)
+message34 = Message.create!(body: 'O evento começará às 18h.', sender_id: lucas.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_lucas1.id)
+
+# Pedido de Lucas - order_lucas2
+message35 = Message.create!(body: 'Lucas, há estacionamento disponível no local?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas2.id)
+message36 = Message.create!(body: 'Sim, o local possui um amplo estacionamento.', sender_id: lucas.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_lucas2.id)
+
+# Pedido de Lucas - order_lucas3
+message37 = Message.create!(body: 'Lucas, qual é o menu para o evento de gala?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas3.id)
+message38 = Message.create!(body: 'Incluímos pratos sofisticados e uma estação de sobremesas.', sender_id: lucas.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_lucas3.id)
+
+# Pedido de Lucas - order_lucas4
+message39 = Message.create!(body: 'Lucas, podemos agendar uma reunião para discutir detalhes?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas4.id)
+message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.', sender_id: lucas.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_lucas4.id)
+
+p "Created #{Message.count} messages"
 
 p "All done! :)"
 
