@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_152347) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_181854) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_152347) do
     t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["owner_id"], name: "index_companies_on_owner_id"
   end
 
@@ -106,6 +107,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_152347) do
     t.integer "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["company_id"], name: "index_event_types_on_company_id"
   end
 
