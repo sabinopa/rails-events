@@ -10,11 +10,11 @@
   2. [Availability]</br>
     * 2.1 [GET ```/api/v1/companies/:company_id/event_types/:id/availability```]</br>
 
-##  🏡 1. Companies
+##  🏢 1. Companies
 
 Retorna listas e/ou detalhes de empresas cadastradas.
 </br>
-### 🏡🏡 1.1 GET ```/api/v1/companies```
+### 🏢🏢 1.1 GET ```/api/v1/companies```
 
 Retorna um hash de empresas cadastradas.
 
@@ -63,7 +63,7 @@ Retorna um hash de empresas cadastradas.
 
 </br>
 
-### 🏡⬅️  1.2 GET ```/api/v1/companies/:id```
+### 🏢 ⬅️  1.2 GET ```/api/v1/companies/:id```
 
 Retorna um hash com todos os detalhes da empresa [:id], exceto CNPJ e Razão Social.
 
@@ -84,7 +84,7 @@ Retorna um hash com todos os detalhes da empresa [:id], exceto CNPJ e Razão Soc
 ```
 </br>
 
-#### 🏡⬅️  Possíveis Erros:
+#### 🏢 ⬅️  Possíveis Erros:
 
 404 Not Found: Se o ID da empresa não for encontrado
 
@@ -94,7 +94,7 @@ Retorna um hash com todos os detalhes da empresa [:id], exceto CNPJ e Razão Soc
 }
 ```
 
-### 🏡🔍 1.3 - GET ```/api/v1/companies/:id/event_types```
+### 🎉🔍 1.3 - GET ```/api/v1/companies/:id/event_types```
 
 Retorna um hash com todos os tipos de eventos cadastrados pela empresa especificada pelo ID.
 
@@ -131,7 +131,7 @@ Retorna um hash com todos os tipos de eventos cadastrados pela empresa especific
 ]
 ```
 
-### 🏡🔍 1.4 - GET ```/api/v1/companies/search?query=palavra_da_busca```
+### 🏢🔍 1.4 - GET ```/api/v1/companies/search?query=palavra_da_busca```
 
 Query Params: search - Realiza busca por empresas com base em seus nomes, cidades e tipos de eventos.
 O resultado da busca é um hash contendo as empresas encontradas.
@@ -154,7 +154,7 @@ Exemplo: Buscar por "Alegre"
 }
 ```
 
-#### 🏡⬅️  Possíveis Erros:
+#### 🏢 ⬅️  Possíveis Erros:
 
 404 Not Found: Se a busca não encontrar nenhuma empresa correspondente.
 
@@ -164,7 +164,7 @@ Exemplo: Buscar por "Alegre"
 }
 ```
 
-##  🛏️ 2. Availability
+##  🎉🆓 2. Availability
 
 Retorna resposta sobre a disponibilidade do tipo evento de uma empresa para a data requisitada, o tipo de dia e a quantidade específica de convidados.
 
@@ -188,13 +188,6 @@ Exemplos:
 ```
 #### 🏡⬅️  Possíveis Erros:
 
-_400 Bad Request_: Se a data estiver em um formato inválido.
-
-```json
-{
-  "errors": "Formato de data inválido."
-}
-```
 
 _406 Not Acceptable_: Se o número de convidados estiver fora do intervalo permitido.
 
@@ -208,12 +201,5 @@ _406 Not Acceptable_: Se não houver disponibilidade para a data selecionada.
 ```json
 {
   "errors": "Não há disponibilidade para a data selecionada."
-}
-```
-
-_500 Internal Server Error_: Para outros erros inesperados.
-```json
-{
-   "errors": "Erro interno do servidor."
 }
 ```
