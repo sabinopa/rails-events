@@ -36,31 +36,36 @@ p "Created #{Client.count} clients"
 celebracao_alegre = Company.create!(owner_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
                                   registration_number: '58.934.722/0001-01',  phone_number: '(11) 98765-4321', email: 'contato@celebracaoalegre.com.br',
                                   address: 'Rua das Flores, 123', neighborhood: 'Jardim Primavera', city: 'São Paulo', state: 'SP', zipcode: '01234-567',
-                                  description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.')
+                                  description: 'Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.',
+                                  status: :active)
                                   celebracao_alegre.payment_methods << [pix, debito]
 
 festim_sonhos = Company.create!(owner_id: pedro.id, brand_name: 'Festim dos Sonhos', corporate_name: 'Festim dos Sonhos Eventos S.A.',
                               registration_number: '63.112.924/0001-08',  phone_number: '(21) 4444-5555', email: 'sonhos@festim.com.br',
                               address: 'Avenida Central, 456', neighborhood: 'Centro', city: 'Rio de Janeiro', state: 'RJ', zipcode: '21000-000',
-                              description: 'Com uma equipe de chefs renomados, proporcionamos uma experiência culinária inesquecível para seu evento.')
+                              description: 'Com uma equipe de chefs renomados, proporcionamos uma experiência culinária inesquecível para seu evento.',
+                              status: :active)
                               festim_sonhos.payment_methods << [credito, debito]
 
 gastronomia_estelar = Company.create!(owner_id: guilherme.id, brand_name: 'Gastronomia Estelar', corporate_name: 'Gastronomia Estelar Ltda',
                               registration_number: '54.457.025/0001-48',  phone_number: '(31) 6666-7777', email: 'contato@gastronomiaestelar.com.br',
                               address: 'Praça da Liberdade, 789', neighborhood: 'Savassi', city: 'Belo Horizonte', state: 'MG', zipcode: '30140-010',
-                              description: 'Oferecemos um serviço exclusivo de buffet e catering com foco em ingredientes orgânicos e sustentáveis.')
+                              description: 'Oferecemos um serviço exclusivo de buffet e catering com foco em ingredientes orgânicos e sustentáveis.',
+                              status: :active)
                               gastronomia_estelar.payment_methods << [pix, credito, debito]
 
 banquete_real = Company.create!(owner_id: isabel.id, brand_name: 'Banquete Real', corporate_name: 'Banquete Real Buffet S.A.',
                               registration_number: '26.876.789/0001-32',  phone_number: '(41) 8888-9999', email: 'real@banquetebuffet.com.br',
                               address: 'Rua Majestosa, 1010', neighborhood: 'Batel', city: 'Curitiba', state: 'PR', zipcode: '80420-000',
-                              description: 'Transformamos seu evento em um verdadeiro banquete real, com serviços de buffet e decoração de alto padrão')
+                              description: 'Transformamos seu evento em um verdadeiro banquete real, com serviços de buffet e decoração de alto padrão',
+                              status: :active)
                               banquete_real.payment_methods << [credito, debito]
 
 sabores_mundo = Company.create!(owner_id: livia.id, brand_name: 'Sabores do Mundo', corporate_name: 'Sabores do Mundo Buffet Internacional Eireli',
                               registration_number: '24.282.155/0001-26',  phone_number: '(51) 1010-2020', email: 'contato@saboresdomundo.com.br',
                               address: 'Rua da Paz, 1313', neighborhood: 'Moinhos de Vento', city: 'Porto Alegre', state: 'RS', zipcode: '90500-000',
-                              description: 'Especializados em culinária internacional, nosso buffet traz sabores únicos de diferentes partes do mundo para seu evento.')
+                              description: 'Especializados em culinária internacional, nosso buffet traz sabores únicos de diferentes partes do mundo para seu evento.',
+                              status: :active)
                               sabores_mundo.payment_methods << [credito, debito]
 
 p "Created #{Company.count} companies"

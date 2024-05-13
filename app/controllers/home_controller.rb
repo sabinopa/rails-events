@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     if owner_signed_in?
       @company = current_owner.company
     else
-      @companies = Company.all
+      @companies = Company.active
     end
   end
 end

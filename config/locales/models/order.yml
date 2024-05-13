@@ -38,10 +38,14 @@ pt-BR:
       not_found: "O id informado não foi encontrado."
 
   orders:
+    new:
+      inactive_company: Esta empresa está temporariamente inativa, portanto não é possível realizar pedidos no momento.
+      inactive_event_type: Este tipo de evento está temporariamente inativo, portanto não é possível realizar pedidos no momento.
     create:
       success: "Solicitação %{code}: Enviado com sucesso!"
       error: Pedido não enviado.
       future_date: 'deve ser no futuro'
+      inactive: 'Esta empresa ou tipo de evento está temporariamente desativado, portanto não é possível realizar pedidos no momento.'
     my_orders:
       error: 'Você não pode acessar essa tela.'
     approve:

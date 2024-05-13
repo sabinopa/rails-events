@@ -9,17 +9,30 @@ class OrdersController < ApplicationController
   before_action :set_messages, only: [:show]
 
   def new
-    @order = Order.new
-    @order.local = @company.address if @event_type.on_site?
+    if @company.inactive?
+      flash[:alert] = t('.inactive_company')
+      redirect_to root_path
+    # elsif @event_type.inactive?
+    #   flash[:alert] = t('.inactive_event_type')
+    #   redirect_to root_path
+    else
+      @order = Order.new
+      @order.local = @company.address if @event_type.on_site?
+    end
   end
 
   def create
     @order = @event_type.orders.new(order_params.merge(client: current_client, local: determine_local))
-    if @order.save
-      redirect_to @order, notice: t('.success', code: @order.code)
+    if @company.active? #&& @event_type.active?
+      if @order.save
+        redirect_to @order, notice: t('.success', code: @order.code)
+      else
+        flash.now[:alert] = t('.error')
+        render :new
+      end
     else
-      flash.now[:alert] = t('.error')
-      render :new
+      flash[:alert] = t('.inactive')
+      redirect_to root_path
     end
   end
 
