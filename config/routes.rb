@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     post 'inactive', on: :member
 
     resources :event_types, only: [:new, :create, :show, :edit, :update] do
+      post 'active', on: :member
+      post 'inactive', on: :member
       member do
         delete 'remove_photo'
       end

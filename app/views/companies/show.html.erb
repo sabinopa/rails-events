@@ -17,9 +17,9 @@
           <h4 class="small text-muted"><%= @company.corporate_name %></h4>
           <div>
             <% if @company.active? %>
-              <%= button_to t('views.show.inactive'), inactive_company_path(@company), method: :post, class: "btn btn-info" %>
+              <%= button_to t('views.show.company_inactive'), inactive_company_path(@company), method: :post, class: "btn btn-info" %>
             <% else %>
-              <%= button_to t('views.show.active'), active_company_path(@company), method: :post, class: "btn btn-success" %>
+              <%= button_to t('views.show.company_active'), active_company_path(@company), method: :post, class: "btn btn-success" %>
             <% end %>
             <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>
             <%= link_to t('views.edit.edit_company'), edit_company_path(@company), class: "btn btn-secondary" %>

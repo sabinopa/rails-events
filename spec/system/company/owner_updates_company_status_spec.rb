@@ -20,7 +20,7 @@ describe 'Owner updates the status of his company' do
                         address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
                         description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
 
-    post active_company_path(company)
+    post inactive_company_path(company)
 
     expect(response).to redirect_to new_owner_session_path
   end

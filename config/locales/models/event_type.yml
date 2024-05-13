@@ -17,6 +17,9 @@ pt-BR:
         parking_service_available: Estacionamento
         location_type: Local da festa
         photos: Adicionar fotos
+        status:
+          active: 'Status: Ativo'
+          inactive: 'Status: Desativado'
   event_type:
     on_site: 'Salão de festas da empresa'
     any_site: 'Salão de festas da empresa ou salão de terceiros'
@@ -38,6 +41,10 @@ pt-BR:
     update:
       success: "%{name}: Atualizado com sucesso!"
       error: Não foi possível atualizar os dados do evento.
+    active:
+      success: Seu evento foi ativado!
+    inactive:
+      success: Seu evento foi desativado!
   views:
     new:
       new_event_type: "Criar novo tipo de evento para %{brand_name}"
@@ -50,3 +57,5 @@ pt-BR:
       people: pessoas
       edit_prices: Editar valores
       make_order: Fazer reserva
+      active: Ativar Evento
+      inactive: Desativar Evento

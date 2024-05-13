@@ -68,8 +68,8 @@ pt-BR:
       see_more: Ver mais
       details: Ver detalhes
       new_price: Novo Preço
-      active: Ativar Empresa
-      inactive: Desativar Empresa
+      company_active: Ativar Empresa
+      company_inactive: Desativar Empresa
     search:
       search: Buscar
       search_here: 'Busque aqui...'

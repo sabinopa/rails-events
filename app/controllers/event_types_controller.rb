@@ -1,6 +1,6 @@
 class EventTypesController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
-  before_action :set_event_type, only: [:edit, :update, :show, :remove_photo]
+  before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
+  before_action :set_event_type, only: [:edit, :update, :show, :remove_photo, :active, :inactive]
   before_action :set_company, only: [:new, :create, :edit, :update, :remove_photo]
   before_action :check_owner, only: [:new, :create, :edit, :update, :remove_photo]
 
@@ -40,6 +40,18 @@ class EventTypesController < ApplicationController
     @photo = ActiveStorage::Attachment.find(params[:photo_id])
     @photo.purge
     redirect_to edit_event_type_path(@event_type)
+  end
+
+  def active
+    @event_type.active!
+    flash[:notice] = t('.success')
+    redirect_to @event_type
+  end
+
+  def inactive
+    @event_type.inactive!
+    flash[:alert] = t('.success')
+    redirect_to @event_type
   end
 
   private

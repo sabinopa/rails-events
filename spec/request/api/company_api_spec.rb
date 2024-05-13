@@ -35,6 +35,11 @@ describe 'Company API', type: :request do
                                  address: 'Rua dos Iluminados, 212', neighborhood: 'Alto Brilho', city: 'Belo Horizonte', state: 'MG', zipcode: '31000-000',
                                  description: 'Oferecemos serviços completos para casamentos, formaturas e eventos corporativos, incluindo buffets personalizados e decoração temática.',
                                  status: :inactive)
+      owner3 = Owner.create!(name: 'Carlos', lastname: 'Silva', email: 'carlos@tech.com', password: 'tech7890')
+      company3 = Company.create!(owner_id: owner3.id, brand_name: 'Buffet Horizonte', corporate_name: 'Buffet Horizonte Festas Ltda',
+                                registration_number: CNPJ.generate, phone_number: '(31) 99876-5432', email: 'suporte@buffethorizonte.com.br',
+                                address: 'Praça dos Convidados, 100', neighborhood: 'Centro Eventos', city: 'Curitiba', state: 'PR', zipcode: '80020-300',
+                                description: 'Buffet Horizonte especializado em grandes eventos sociais e festividades de grande porte.', status: :inactive)
 
       get "/api/v1/companies/search", params: { query: 'Estrelas' }
 
