@@ -85,7 +85,6 @@ corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Co
                             corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_3.jpg')), filename: 'corporativo_3.jpg')
 
 # Para a empresa Festim dos Sonhos
-
 brunch_network = EventType.create!(company_id: festim_sonhos.id, name: 'Brunch Empresarial de Networking',
                                 description: 'Nosso Brunch Empresarial oferece uma atmosfera descontraída e elegante para networking e reuniões de negócios. Com uma variedade de opções gastronômicas que agradam todos os paladares, este evento promove a interação em um ambiente propício ao desenvolvimento de relações profissionais.',
                                 min_attendees: 50, max_attendees: 100, duration: 180,
@@ -119,19 +118,26 @@ piquenique = EventType.create!(company_id: gastronomia_estelar.id, name: 'Piquen
                             min_attendees: 10, max_attendees: 50, duration: 240,
                             menu_description: 'Cestas de piquenique individuais com sanduíches gourmet, saladas frescas, frutas da estação, sucos prensados a frio e sobremesas naturais. Todos os itens são preparados com ingredientes orgânicos e embalados de forma ecológica.',
                             alcohol_available: false, decoration_available: true, parking_service_available: false, location_type: 1)
+                            piquenique.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'pic_nic_1.jpg')), filename: 'pic_nic_1.jpg')
+                            piquenique.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'pic_nic_2.jpg')), filename: 'pic_nic_2.jpg')
 
 # Para a empresa Banquete Real
-casamento_luxo = EventType.create!(company_id: banquete_real.id, name: 'Cerimônia de Casamento Luxuosa',
-                            description: 'Nossa Cerimônia de Casamento Luxuosa é o epítome da elegância e sofisticação. Com um serviço de buffet exclusivo, decoração opulenta e atenção meticulosa a todos os detalhes, garantimos que seu casamento seja uma ocasião verdadeiramente real e inesquecível.',
+debutante_luxo = EventType.create!(company_id: banquete_real.id, name: 'Cerimônia de Debutante Luxuosa',
+                            description: 'Nossa Cerimônia de Debutante Luxuosa é o epítome da elegância e sofisticação. Com um serviço de buffet exclusivo, decoração opulenta e atenção meticulosa a todos os detalhes, garantimos que sua comemoração seja uma ocasião verdadeiramente real e inesquecível.',
                             min_attendees: 100, max_attendees: 500, duration: 480,
                             menu_description: 'Um banquete digno da realeza, incluindo uma vasta seleção de canapés finos, pratos principais gourmet, uma deslumbrante torre de sobremesas e um bar completo com as melhores bebidas.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_1.jpg')), filename: 'debutante_luxo_1.jpg')
+                            debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_2.jpg')), filename: 'debutante_luxo_2.jpg')
+                            debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_3.jpg')), filename: 'debutante_luxo_3.jpg')
 
 gala_premiacao = EventType.create!(company_id: banquete_real.id, name: 'Gala de Premiação Estelar',
                             description: 'Ideal para eventos de premiação e celebrações corporativas, a Gala de Premiação Estelar oferece um ambiente sofisticado e serviços de primeira linha. Nosso buffet de gala é acompanhado de uma decoração impecável, criando um cenário perfeito para homenagear os conquistadores da noite.',
                             min_attendees: 150, max_attendees: 1000, duration: 360,
                             menu_description: 'Um esplêndido buffet composto por estações de comida internacional, pratos assinados por chefs renomados, e uma extensa carta de vinhos e coquetéis holiday.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            gala_premiacao.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'gala_premiacao_1.jpg')), filename: 'gala_premiacao_1.jpg')
+                            gala_premiacao.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'gala_premiacao_2.jpg')), filename: 'gala_premiacao_2.jpg')
 
 # Para a empresa Sabores do Mundo
 noite_gastronomica = EventType.create!(company_id: sabores_mundo.id, name: 'Volta ao Mundo em 80 Pratos',
@@ -139,12 +145,16 @@ noite_gastronomica = EventType.create!(company_id: sabores_mundo.id, name: 'Volt
                             min_attendees: 50, max_attendees: 200, duration: 400,
                             menu_description: 'Uma seleção diversificada que inclui desde tapas espanholas, sushi japonês, até pratos tradicionais brasileiros e sobremesas francesas. Acompanha uma seleção de bebidas internacionais.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 0)
+                            noite_gastronomica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_gastronomica_1.jpg')), filename: 'noite_gastronomica_1.jpg')
+                            noite_gastronomica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_gastronomica_2.jpg')), filename: 'noite_gastronomica_2.jpg')
 
 food_truck = EventType.create!(company_id: sabores_mundo.id, name: 'Festival Internacional de Food Trucks',
                             description: 'Levamos a diversidade culinária das ruas do mundo para o seu evento. Este festival apresenta uma série de food trucks, cada um oferecendo uma especialidade internacional diferente, criando uma atmosfera casual e interativa para os convidados explorarem.',
                             min_attendees: 100, max_attendees: 500, duration: 240,
                             menu_description: 'Food trucks especializados em uma variedade de cozinhas, incluindo italiana, mexicana, indiana, e tailandesa. Opções para todos os gostos, desde pratos picantes até sobremesas geladas e refrescantes.',
                             alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1)
+                            food_truck.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'food_truck_1.jpg')), filename: 'food_truck_1.jpg')
+                            food_truck.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'food_truck_2.jpg')), filename: 'food_truck_2.jpg')
 
 p "Created #{EventType.count} event types"
 
@@ -221,15 +231,15 @@ holiday_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base
                                               additional_attendee_price: 100.0,extra_hour_price: 100.0, day_options: :holiday)
 
 # Pricing para Cerimônia de Casamento Luxuosa durante a Semana
-weekday_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 5000.0, base_attendees: 100,
+weekday_luxury_wedding_pricing = EventPricing.create!(event_type_id: debutante_luxo.id, base_price: 5000.0, base_attendees: 100,
                                                       additional_attendee_price: 150.0,extra_hour_price: 200.0, day_options: :weekday)
 
 # Pricing para Cerimônia de Casamento Luxuosa no Fim de Semana
-weekend_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 7000.0, base_attendees: 100,
+weekend_luxury_wedding_pricing = EventPricing.create!(event_type_id: debutante_luxo.id, base_price: 7000.0, base_attendees: 100,
                                                       additional_attendee_price: 200.0,extra_hour_price: 250.0, day_options: :weekend)
 
 # Pricing Premium para Cerimônia de Casamento Luxuosa em Feriados
-holiday_luxury_wedding_pricing = EventPricing.create!(event_type_id: casamento_luxo.id, base_price: 9000.0, base_attendees: 100,
+holiday_luxury_wedding_pricing = EventPricing.create!(event_type_id: debutante_luxo.id, base_price: 9000.0, base_attendees: 100,
                                                       additional_attendee_price: 250.0,extra_hour_price: 300.0, day_options: :holiday)
 
 # Pricing para Gala de Premiação durante a Semana
@@ -283,8 +293,8 @@ order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
                                                   charge_description: 'Custos adicionais por serviços extras',
                                                   final_price: order_joao2.default_price + 500.0 - 50.0)
 
-order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: casamento_luxo.id,
-                            date: 90.days.from_now, attendees_number: 300, details: 'Casamento luxuoso com decoração extravagante.',
+order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: debutante_luxo.id,
+                            date: 90.days.from_now, attendees_number: 300, details: 'Aniversário luxuoso com decoração extravagante.',
                             local: 'Palácio Real - Rua da Realeza, 456', status: 1, payment_method_id: credito.id, day_type: :week_day)
                             OrderApproval.create!(order_id: order_joao3.id, owner_id: banquete_real.owner_id,
                             validity_date: 10.days.from_now, extra_charge: 100.0, discount: 0,
