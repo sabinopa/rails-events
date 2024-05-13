@@ -13,6 +13,8 @@ class Company < ApplicationRecord
 
   validates_cnpj_format_of :registration_number
 
+  enum status: { inactive: 0, active: 1 }
+
   def self.search(query_params)
     query = "%#{query_params}%"
     Company.left_joins(:event_types)

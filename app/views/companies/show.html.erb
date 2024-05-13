@@ -2,11 +2,25 @@
   <div class="col-lg-11 col-xl-9 col-xxl-8">
     <section>
       <div class="mb-4">
-        <h2 class="text-primary fw-bolder mb-0"><%= @company.brand_name %></h2>
+        <div class="d-flex align-items-baseline">
+          <h2 class="text-primary fw-bolder mb-0 me-3"><%= @company.brand_name %></h2>
+          <% badge_class = case @company.status
+                              when 'active' then 'bg-success'
+                              when 'inactive' then 'bg-secondary'
+                              end %>
+          <div class="badge <%= badge_class %>">
+            <%= I18n.t("activerecord.attributes.company.status.#{@company.status}") %>
+          </div>
+        </div>
         <h3 class="small text-muted"><%= @company.registration_number %></h3>
         <% if owner_signed_in? && current_owner.company.present? && current_owner == @company.owner %>
           <h4 class="small text-muted"><%= @company.corporate_name %></h4>
           <div>
+            <% if @company.active? %>
+              <%= button_to t('views.show.inactive'), inactive_company_path(@company), method: :post, class: "btn btn-info" %>
+            <% else %>
+              <%= button_to t('views.show.active'), active_company_path(@company), method: :post, class: "btn btn-success" %>
+            <% end %>
             <%= link_to t('views.show.create_event'), new_company_event_type_path(@company), class: "btn btn-primary" %>
             <%= link_to t('views.edit.edit_company'), edit_company_path(@company), class: "btn btn-secondary" %>
           </div>

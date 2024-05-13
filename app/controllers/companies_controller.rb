@@ -1,10 +1,10 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
   before_action :force_company_creation_for_owners, only: [:show, :search, :edit, :update]
+  before_action :set_company, only: [:show, :edit, :update, :active, :inactive]
   before_action :check_owner, only: [:edit, :update]
 
   def show
-    @company = Company.find(params[:id])
     @event_types = @company.event_types
     @owner = current_owner
   end
@@ -29,11 +29,9 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:id])
     if @company.update(company_params)
       flash[:notice] = t('.success', brand_name: @company.brand_name)
       redirect_to @company
@@ -48,12 +46,28 @@ class CompaniesController < ApplicationController
     @companies = Company.search(@query_params)
   end
 
+  def active
+    @company.active!
+    flash[:notice] = t('.success')
+    redirect_to @company
+  end
+
+  def inactive
+    @company.inactive!
+    flash[:alert] = t('.success')
+    redirect_to @company
+  end
+
   private
 
   def company_params
     params.require(:company).permit(:owner_id,:brand_name, :corporate_name, :registration_number,
                                     :phone_number, :email, :address, :neighborhood, :city,
                                     :state, :zipcode, :description, payment_method_ids: [])
+  end
+
+  def set_company
+    @company = Company.find(params[:id])
   end
 
   def check_owner

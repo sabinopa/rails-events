@@ -19,6 +19,9 @@ pt-BR:
         state: Estado
         zipcode: CEP
         description: Descrição
+        status:
+          active: 'Status: Ativa'
+          inactive: 'Status: Desativada'
   companies:
     new:
       redirect: Você deve criar uma empresa antes de acessar outras páginas.
@@ -33,6 +36,10 @@ pt-BR:
       error: Não foi possível atualizar os dados da empresa.
     search:
       error: Nenhuma empresa encontrada, tente novamente.
+    active:
+      success: Sua empresa foi ativada!
+    inactive:
+      success: Sua empresa foi desativada!
   views:
     new:
       register: Cadastre sua empresa
@@ -61,6 +68,8 @@ pt-BR:
       see_more: Ver mais
       details: Ver detalhes
       new_price: Novo Preço
+      active: Ativar Empresa
+      inactive: Desativar Empresa
     search:
       search: Buscar
       search_here: 'Busque aqui...'

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
     get 'search', on: :collection
+    post 'active', on: :member
+    post 'inactive', on: :member
 
     resources :event_types, only: [:new, :create, :show, :edit, :update] do
       member do
