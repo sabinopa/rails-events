@@ -17,7 +17,7 @@ class Company < ApplicationRecord
 
   def self.search(query_params)
     query = "%#{query_params}%"
-    Company.left_joins(:event_types)
+    Company.active.left_joins(:event_types)
            .where("companies.brand_name LIKE :query OR companies.city LIKE :query OR event_types.name LIKE :query", query: query)
            .distinct.order(:brand_name)
   end
