@@ -9,23 +9,23 @@
 
 ## 📑 Tópicos
 
-▶️ [Descrição do projeto](#descrição-do-projeto)
+▶️ [Descrição do projeto](#-descrição-do-projeto)
 
-▶️ [Funcionalidades](#funcionalidades)
+▶️ [Funcionalidades](#-funcionalidades)
 
-▶️ [Gems utilizadas](#gems-utilizadas)
+▶️ [Gems utilizadas](#-gems-utilizadas)
 
-▶️ [APIs](#apis)
+▶️ [APIs](#-apis)
 
-▶️ [Pré-requisitos](#pré-requisitos)
+▶️ [Pré-requisitos](#-pré-requisitos)
 
-▶️ [Como executar a aplicação](#como-executar-a-aplicação)
+▶️ [Como executar a aplicação](#-como-executar-a-aplicação)
 
-▶️ [Como executar os testes](#como-executar-os-testes)
+▶️ [Como executar os testes](#-como-executar-os-testes)
 
-▶️ [Navegação](#navegação)
+▶️ [Navegação](#-navegação)
 
-▶️ [Criação de Contas Fictícias](#criação-de-contas-fictpicias)
+▶️ [Criação de Contas Fictícias](#-criação-de-contas-ficticias)
 
 
 ## 📍 Descrição do Projeto
@@ -60,9 +60,9 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [Devise](https://github.com/heartcombo/devise)
 - [Rspec](https://github.com/rspec/rspec-rails)
 - [Capybara](https://github.com/teamcapybara/capybara)
+- [Simplecov](https://github.com/simplecov-ruby/simplecov)
 - [CPF/CNPJ](https://github.com/fnando/cpf_cnpj)
 - [Validators](https://github.com/fnando/validators)
-- [Simplecov](https://github.com/simplecov-ruby/simplecov)
 
 ### 🔐 APIS
 
