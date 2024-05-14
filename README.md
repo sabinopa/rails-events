@@ -25,7 +25,7 @@
 
 ▶️ [Navegação](#navegação)
 
-▶️ [Criação de Contas Fictícias](#criação-de-contas-ficticias)
+▶️ [Criação de Contas Fictícias](#criação-de-contas-fictícias)
 
 
 ## Descrição do Projeto
@@ -122,7 +122,8 @@ rspec
 
 ### Criação de Contas Fictícias
 
-🧑‍💻 **Testando a Plataforma:*
+🧑‍💻 **Testando a Plataforma:**
+
 Para testar a plataforma Cadê Buffet? como dono de empresa ou cliente, é necessário criar contas com CPFs ou CNPJs válidos. Recomendamos a utilização de serviços de geração de números de CPF e CNPJ válidos para garantir que a experiência de teste reflita com precisão o comportamento esperado em um cenário de uso real.
 
 #### Recomendação de Ferramentas para Geração de CPF/CNPJ:
