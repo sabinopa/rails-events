@@ -5,8 +5,15 @@ class CompaniesController < ApplicationController
   before_action :check_owner, only: [:edit, :update]
 
   def show
-    @event_types = @company.event_types.active if !owner_signed_in?
-    @all_event_types = @company.event_types if owner_signed_in? && current_owner == @company.owner
+    unless @company.active? || (owner_signed_in? && current_owner == @company.owner)
+      flash[:alert] = t('.not_available')
+      redirect_to root_path and return
+    end
+
+    @event_types = @company.event_types
+    unless owner_signed_in? && current_owner == @company.owner
+      @event_types = @event_types.active
+    end
   end
 
   def new

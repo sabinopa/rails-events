@@ -23,6 +23,8 @@ pt-BR:
           active: 'Status: Ativa'
           inactive: 'Status: Desativada'
   companies:
+    show:
+      not_available: Esta empresa não está disponível.
     new:
       redirect: Você deve criar uma empresa antes de acessar outras páginas.
       error: Você já possui uma empresa cadastrada.

@@ -1,11 +1,14 @@
 class EventTypesController < ApplicationController
   before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
-  before_action :set_event_type, only: [:edit, :update, :show, :remove_photo, :active, :inactive]
-  before_action :set_company, only: [:new, :create, :edit, :update, :remove_photo]
+  before_action :set_event_type, only: [:show, :edit, :update, :show, :remove_photo, :active, :inactive]
+  before_action :set_company, only: [:show, :new, :create, :edit, :update, :remove_photo]
   before_action :check_owner, only: [:new, :create, :edit, :update, :remove_photo]
 
   def show
-    @company = @event_type.company
+    if !@event_type.active? && !(owner_signed_in? && current_owner == @company.owner)
+      flash[:alert] = "This event type is currently not available."
+      redirect_to company_path(@company) and return
+    end
   end
 
   def new

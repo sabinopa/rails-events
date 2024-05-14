@@ -50,18 +50,10 @@
           </div>
         </div>
       </div>
-     <% if owner_signed_in? && current_owner == @company.owner %>
-        <% if @all_event_types.any? %>
-          <%= render partial: 'event_types', locals: { event_types: @all_event_types } %>
-        <% else %>
-          <%= t('views.show.no_events') %>
-        <% end %>
+      <% if @event_types.any? %>
+        <%= render partial: 'event_types', locals: { event_types: @event_types } %>
       <% else %>
-        <% if @event_types.any? %>
-          <%= render partial: 'event_types', locals: { event_types: @event_types } %>
-        <% else %>
-          <%= t('views.show.no_events') %>
-        <% end %>
+        <%= t('views.show.no_events') %>
       <% end %>
       <hr />
       <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>

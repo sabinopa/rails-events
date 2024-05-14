@@ -29,7 +29,7 @@ describe 'Visitor sees event pricing details' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     pricing_weekend = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
     pricing_weekday = EventPricing.create!(event_type_id: event_type.id, base_price: 1000.0, base_attendees: 60, additional_attendee_price: 70.0,
@@ -62,13 +62,12 @@ describe 'Visitor sees event pricing details' do
     company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                             registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
-                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
     event_type = EventType.create!(company_id: company.id, name: 'Festa Temática de Piratas',
                                   description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                                   min_attendees: 20, max_attendees: 50, duration: 240,
                                   menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                                  alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1)
-
+                                  alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1, status: :active)
     visit event_type_path(event_type)
 
     expect(page).to have_content 'Ainda não há preços cadastrados para esse evento.'
@@ -79,12 +78,12 @@ describe 'Visitor sees event pricing details' do
     company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                             registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
-                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
     event_type = EventType.create!(company_id: owner.id, name: 'Festa Temática de Piratas',
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     visit event_type_path(event_type)
     click_on 'Voltar'
 

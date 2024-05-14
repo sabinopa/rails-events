@@ -3,6 +3,9 @@
     <section>
       <%= render 'event_types/event_type_details', event_type: @event_type, company: @company %>
       <%= render 'event_types/event_pricing_details', event_type: @event_type, company: @company %>
+      <% @event_type.photos.each do |photo| %>
+        <%= image_tag(photo, class: 'event-image') %>
+      <% end %>
       <hr>
       <%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>
     </section>

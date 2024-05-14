@@ -99,6 +99,23 @@ describe 'Visitor sees event type details' do
     expect(page).to have_content 'Desperte seu herói interior e junte-se à nossa Festa de Super-Heróis! Inclui atividades emocionantes, fantasias e diversão heroica para todos.'
   end
 
+  it 'and tries to access inactive event type page' do
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+    event_type = EventType.create!(company_id: owner.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :inactive)
+    visit event_type_path(event_type.id)
+
+    expect(current_path).to eq company_path(company.id)
+    expect(page).not_to have_content 'Festa Temática de Piratas'
+  end
+
   it 'and company has no events' do
     owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
     company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
@@ -145,12 +162,12 @@ describe 'Visitor sees event type details' do
     company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
                             registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
                             address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
-                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
     event_type = EventType.create!(company_id: owner.id, name: 'Festa Temática de Piratas',
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     visit event_type_path(event_type)
     click_on 'Voltar'
 
