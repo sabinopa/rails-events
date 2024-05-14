@@ -41,7 +41,7 @@ describe 'owner sees company details' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :inactive)
                             event_type.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')), filename: 'festa_aniversario_decoracao.jpg')
     login_as(owner, :scope => :owner)
     visit root_path

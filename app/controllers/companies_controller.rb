@@ -5,8 +5,8 @@ class CompaniesController < ApplicationController
   before_action :check_owner, only: [:edit, :update]
 
   def show
-    @event_types = @company.event_types
-    @owner = current_owner
+    @event_types = @company.event_types.active if !owner_signed_in?
+    @all_event_types = @company.event_types if owner_signed_in? && current_owner == @company.owner
   end
 
   def new

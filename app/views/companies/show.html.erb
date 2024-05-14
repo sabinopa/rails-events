@@ -13,7 +13,7 @@
           </div>
         </div>
         <h3 class="small text-muted"><%= @company.registration_number %></h3>
-        <% if owner_signed_in? && current_owner.company.present? && current_owner == @company.owner %>
+        <% if owner_signed_in? && current_owner == @company.owner %>
           <h4 class="small text-muted"><%= @company.corporate_name %></h4>
           <div>
             <% if @company.active? %>
@@ -50,10 +50,18 @@
           </div>
         </div>
       </div>
-      <% if @company.event_types.any? %>
-        <%= render partial: 'event_types', locals: { event_types: @event_types } %>
+      <% if owner_signed_in? && current_owner == @company.owner %>
+        <% if @all_event_types.any? %>
+          <%= render partial: 'event_types', locals: { event_types: @all_event_types } %>
+        <% else %>
+          <%= t('views.show.no_events') %>
+        <% end %>
       <% else %>
-        <%= t('views.show.no_events') %>
+        <% if @event_types.any? %>
+          <%= render partial: 'event_types', locals: { event_types: @event_types } %>
+        <% else %>
+          <%= t('views.show.no_events') %>
+        <% end %>
       <% end %>
       <hr />
       <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>

@@ -11,7 +11,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
 
     visit new_event_type_order_path(event_type.id)
 
@@ -28,7 +28,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -50,7 +50,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -74,7 +74,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -102,7 +102,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -127,7 +127,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -154,7 +154,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -206,7 +206,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
 
     login_as(client, :scope => :client)
@@ -258,7 +258,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 
@@ -296,7 +296,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 
@@ -327,7 +327,7 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 
@@ -358,14 +358,40 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 
     login_as(client, :scope => :client)
     visit new_event_type_order_path(event_type.id)
 
+    expect(current_path).to eq root_path
     expect(page).to have_content 'Esta empresa está temporariamente inativa, portanto não é possível realizar pedidos no momento.'
+  end
+
+  it 'and event type is inactive' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+                            company.payment_methods << [pix, credito]
+    event_type = EventType.create!(company_id: owner.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :inactive)
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
+                            extra_hour_price: 60.0, day_options: :weekend)
+
+    login_as(client, :scope => :client)
+    visit new_event_type_order_path(event_type.id)
+
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Este tipo de evento está temporariamente inativo, portanto não é possível realizar pedidos no momento.'
   end
 
   it 'and company is inactive, client tries to create order via direct post' do
@@ -382,7 +408,33 @@ describe 'Client creates order' do
                             description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
                             min_attendees: 20, max_attendees: 50, duration: 240,
                             menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
+    event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
+                            extra_hour_price: 60.0, day_options: :weekend)
+
+    login_as(client, :scope => :client)
+    page.driver.submit :post, event_type_orders_path(event_type), { order: { client_id: client.id, company_id: owner.id, event_type_id: event_type.id, date: 30.days.from_now, attendees_number: 30,
+                                                      details: 'Por favor, inclua uma sessão de caça ao tesouro interativa.', local: 'Salão de festas XYZ - Rua das Bananeiras, 44',
+                                                      day_type: :weekend, status: 0 } }
+
+    expect(page).to have_content 'Esta empresa ou tipo de evento está temporariamente desativado, portanto não é possível realizar pedidos no momento.'
+  end
+
+  it 'and event type is inactive, client tries to create order via direct post' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+                            company.payment_methods << [pix, credito]
+    event_type = EventType.create!(company_id: owner.id, name: 'Festa Temática de Piratas',
+                            description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                            min_attendees: 20, max_attendees: 50, duration: 240,
+                            menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                            alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 2, status: :inactive)
     event_pricing = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 20, additional_attendee_price: 50.0,
                             extra_hour_price: 60.0, day_options: :weekend)
 

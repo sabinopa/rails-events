@@ -75,7 +75,7 @@ casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento
                             description: 'O nosso pacote "Casamento dos Sonhos" é o ápice da sofisticação e do romance. Com um serviço de buffet personalizado, decoração floral deslumbrante e uma equipe dedicada a tornar cada detalhe perfeito, garantimos que seu dia especial seja inesquecível.',
                             min_attendees: 50, max_attendees: 300, duration: 480,
                             menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1, status: :active)
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_2.jpg')), filename: 'casamento_2.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_1.jpg')), filename: 'casamento_1.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_3.jpg')), filename: 'casamento_3.jpg')
@@ -84,7 +84,7 @@ corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Co
                             description: 'Nossa Gala Corporativa Elegante é a escolha perfeita para empresas que desejam impressionar. Oferecemos um ambiente sofisticado, com serviço de buffet de alto padrão, apresentações audiovisuais de última geração e uma equipe pronta para atender todas as necessidades empresariais.',
                             min_attendees: 100, max_attendees: 500, duration: 300,
                             menu_description: 'Um buffet exclusivo que inclui canapés gourmet, estações de comida ao vivo, pratos internacionais elaborados e uma ampla seleção de bebidas holiday, incluindo coquetéis personalizados e vinhos selecionados.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
                             corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_1.jpg')), filename: 'corporativo_1.jpg')
                             corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_2.jpg')), filename: 'corporativo_2.jpg')
                             corporativo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'corporativo_3.jpg')), filename: 'corporativo_3.jpg')
@@ -94,7 +94,7 @@ brunch_network = EventType.create!(company_id: festim_sonhos.id, name: 'Brunch E
                                 description: 'Nosso Brunch Empresarial oferece uma atmosfera descontraída e elegante para networking e reuniões de negócios. Com uma variedade de opções gastronômicas que agradam todos os paladares, este evento promove a interação em um ambiente propício ao desenvolvimento de relações profissionais.',
                                 min_attendees: 50, max_attendees: 100, duration: 180,
                                 menu_description: 'Uma seleção diversificada de itens de brunch, incluindo estações de omeletes, variedades de pães artesanais, frutas frescas, queijos finos, carnes frias, e uma ampla escolha de bebidas, desde cafés especiais até sucos naturais e mimosas.',
-                                alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 2)
+                                alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 2, status: :active)
                                 brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_2.jpg')), filename: 'brunch_network_2.jpg')
                                 brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_1.jpg')), filename: 'brunch_network_1.jpg')
                                 brunch_network.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'brunch_network_3.jpg')), filename: 'brunch_network_3.jpg')
@@ -103,7 +103,7 @@ jantar_gourmet = EventType.create!(company_id: festim_sonhos.id, name: 'Jantar d
                             description: 'O Jantar de Gala Gourmet do Festim dos Sonhos é uma experiência culinária de alto nível, perfeito para ocasiões especiais. Com um menu exclusivo criado por nossos chefs renomados, cada prato é uma obra de arte, acompanhado de uma seleção impecável de vinhos e ambientação sofisticada.',
                             min_attendees: 20, max_attendees: 80, duration: 240,
                             menu_description: 'Menu de cinco pratos, incluindo amuse-bouche, entrada, prato principal, sobremesa e mignardises. Ingredientes frescos e da estação, com opções para necessidades dietéticas específicas.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1, status: :active)
                             jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_1.jpg')), filename: 'jantar_gourmet_1.jpg')
                             jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_2.jpg')), filename: 'jantar_gourmet_2.jpg')
                             jantar_gourmet.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_3.jpg')), filename: 'jantar_gourmet_3.jpg')
@@ -113,7 +113,7 @@ noite_organica = EventType.create!(company_id: gastronomia_estelar.id, name: 'No
                             description: ' Uma experiência culinária única onde os convidados têm a oportunidade de degustar uma variedade de pratos feitos exclusivamente com ingredientes orgânicos e sustentáveis. Acompanhado de uma seleção de vinhos naturais e orgânicos, este evento é uma celebração dos sabores autênticos e da culinária consciente.',
                             min_attendees: 20, max_attendees: 100, duration: 180,
                             menu_description: 'Cardápio degustação em cinco etapas, com pratos que destacam os ingredientes da estação. Inclui aperitivos, entradas, prato principal, sobremesa e uma seleção especial de queijos artesanais locais.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 1)
+                            alcohol_available: true, decoration_available: true, parking_service_available: false, location_type: 1, status: :active)
                             noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_1.jpg')), filename: 'noite_organica_1.jpg')
                             noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')
                             noite_organica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_3.jpg')), filename: 'noite_organica_3.jpg')
@@ -122,7 +122,7 @@ piquenique = EventType.create!(company_id: gastronomia_estelar.id, name: 'Piquen
                             description: 'Um evento ao ar livre que combina o prazer de comer ao fresco com a consciência ecológica. Ideal para grupos que buscam uma experiência gastronômica diferente, nosso piquenique gourmet inclui cestas repletas de delícias orgânicas, cobertores e jogos de campo, tudo com o menor impacto ambiental possível.',
                             min_attendees: 10, max_attendees: 50, duration: 240,
                             menu_description: 'Cestas de piquenique individuais com sanduíches gourmet, saladas frescas, frutas da estação, sucos prensados a frio e sobremesas naturais. Todos os itens são preparados com ingredientes orgânicos e embalados de forma ecológica.',
-                            alcohol_available: false, decoration_available: true, parking_service_available: false, location_type: 1)
+                            alcohol_available: false, decoration_available: true, parking_service_available: false, location_type: 1, status: :active)
                             piquenique.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'pic_nic_1.jpg')), filename: 'pic_nic_1.jpg')
                             piquenique.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'pic_nic_2.jpg')), filename: 'pic_nic_2.jpg')
 
@@ -131,7 +131,7 @@ debutante_luxo = EventType.create!(company_id: banquete_real.id, name: 'Cerimôn
                             description: 'Nossa Cerimônia de Debutante Luxuosa é o epítome da elegância e sofisticação. Com um serviço de buffet exclusivo, decoração opulenta e atenção meticulosa a todos os detalhes, garantimos que sua comemoração seja uma ocasião verdadeiramente real e inesquecível.',
                             min_attendees: 100, max_attendees: 500, duration: 480,
                             menu_description: 'Um banquete digno da realeza, incluindo uma vasta seleção de canapés finos, pratos principais gourmet, uma deslumbrante torre de sobremesas e um bar completo com as melhores bebidas.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
                             debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_1.jpg')), filename: 'debutante_luxo_1.jpg')
                             debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_2.jpg')), filename: 'debutante_luxo_2.jpg')
                             debutante_luxo.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'debutante_luxo_3.jpg')), filename: 'debutante_luxo_3.jpg')
@@ -140,7 +140,7 @@ gala_premiacao = EventType.create!(company_id: banquete_real.id, name: 'Gala de 
                             description: 'Ideal para eventos de premiação e celebrações corporativas, a Gala de Premiação Estelar oferece um ambiente sofisticado e serviços de primeira linha. Nosso buffet de gala é acompanhado de uma decoração impecável, criando um cenário perfeito para homenagear os conquistadores da noite.',
                             min_attendees: 150, max_attendees: 1000, duration: 360,
                             menu_description: 'Um esplêndido buffet composto por estações de comida internacional, pratos assinados por chefs renomados, e uma extensa carta de vinhos e coquetéis holiday.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 2, status: :active)
                             gala_premiacao.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'gala_premiacao_1.jpg')), filename: 'gala_premiacao_1.jpg')
                             gala_premiacao.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'gala_premiacao_2.jpg')), filename: 'gala_premiacao_2.jpg')
 
@@ -149,7 +149,7 @@ noite_gastronomica = EventType.create!(company_id: sabores_mundo.id, name: 'Volt
                             description: 'Uma experiência gastronômica inesquecível que leva seus convidados a uma jornada culinária ao redor do globo. Este evento oferece uma degustação de pratos típicos de diversos países, cada um cuidadosamente preparado para representar sua região de origem.',
                             min_attendees: 50, max_attendees: 200, duration: 400,
                             menu_description: 'Uma seleção diversificada que inclui desde tapas espanholas, sushi japonês, até pratos tradicionais brasileiros e sobremesas francesas. Acompanha uma seleção de bebidas internacionais.',
-                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 0)
+                            alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
                             noite_gastronomica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_gastronomica_1.jpg')), filename: 'noite_gastronomica_1.jpg')
                             noite_gastronomica.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_gastronomica_2.jpg')), filename: 'noite_gastronomica_2.jpg')
 
@@ -157,7 +157,7 @@ food_truck = EventType.create!(company_id: sabores_mundo.id, name: 'Festival Int
                             description: 'Levamos a diversidade culinária das ruas do mundo para o seu evento. Este festival apresenta uma série de food trucks, cada um oferecendo uma especialidade internacional diferente, criando uma atmosfera casual e interativa para os convidados explorarem.',
                             min_attendees: 100, max_attendees: 500, duration: 240,
                             menu_description: 'Food trucks especializados em uma variedade de cozinhas, incluindo italiana, mexicana, indiana, e tailandesa. Opções para todos os gostos, desde pratos picantes até sobremesas geladas e refrescantes.',
-                            alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1)
+                            alcohol_available: true, decoration_available: false, parking_service_available: false, location_type: 1, status: :active)
                             food_truck.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'food_truck_1.jpg')), filename: 'food_truck_1.jpg')
                             food_truck.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'food_truck_2.jpg')), filename: 'food_truck_2.jpg')
 

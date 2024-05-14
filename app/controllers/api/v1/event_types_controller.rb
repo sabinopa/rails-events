@@ -2,7 +2,7 @@ class Api::V1::EventTypesController < Api::V1::ApiController
 
   def index
     @company = Company.find(params[:company_id])
-    @event_types = @company.event_types.includes(:event_pricings)
+    @event_types = @company.event_types.active.includes(:event_pricings)
 
     render status: 200, json: @event_types.as_json(include: :event_pricings, except: [:created_at, :updated_at])
   end

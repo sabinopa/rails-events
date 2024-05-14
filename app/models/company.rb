@@ -16,9 +16,9 @@ class Company < ApplicationRecord
   enum status: { inactive: 0, active: 1 }
 
   def self.search(query_params)
-    query = "%#{query_params}%"
-    Company.active.left_joins(:event_types)
-           .where("companies.brand_name LIKE :query OR companies.city LIKE :query OR event_types.name LIKE :query", query: query)
-           .distinct.order(:brand_name)
+    query = "%" + Company.sanitize_sql_like(query_params) + "%"
+    Company.active.left_joins(:event_types).merge(EventType.active)
+          .where("brand_name LIKE :q OR city LIKE :q OR event_types.name LIKE :q", q: query)
+          .distinct.order(:brand_name)
   end
 end
