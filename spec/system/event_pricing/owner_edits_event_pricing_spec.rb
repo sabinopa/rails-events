@@ -181,6 +181,39 @@ describe 'Owner edits event pricing' do
     expect(page).to have_content 'Preço por Hora Extra não pode ficar em branco'
   end
 
+  it 'tries to create two prices for weekend' do
+    pix = PaymentMethod.create!(method: 'PIX')
+    credito = PaymentMethod.create!(method: 'Cartão de Crédito')
+    debito = PaymentMethod.create!(method: 'Cartão de Débito')
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+                            company.payment_methods << [pix, credito, debito]
+    event_type = EventType.create!(company_id: company.id, name: 'Festa Temática de Piratas',
+                                  description: 'Uma aventura inesquecível pelos Sete Mares! Nossa Festa Temática de Piratas inclui caça ao tesouro, decoração temática completa, e muita diversão para os pequenos aventureiros.',
+                                  min_attendees: 20, max_attendees: 50, duration: 240,
+                                  menu_description: 'Cardápio temático com mini-hambúrgueres, batatas em forma de joias, sucos naturais e bolo do tesouro. Opções vegetarianas disponíveis.',
+                                  alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 1)
+    event_pricing_weekend = EventPricing.create!(event_type_id: event_type.id, base_price: 900.0, base_attendees: 50, additional_attendee_price: 50.0,
+                                        extra_hour_price: 60.0, day_options: :weekend)
+    event_pricing_holiday = EventPricing.create!(event_type_id: event_type.id, base_price: 1000.0, base_attendees: 50, additional_attendee_price: 80.0,
+                                        extra_hour_price: 100.0, day_options: :holiday)
+
+    login_as(owner, :scope => :owner)
+    visit edit_event_pricing_path(event_pricing_weekend.id)
+
+    choose 'Feriado'
+    fill_in 'Preço Base', with: 900.00
+    fill_in 'Preço por Convidado Adicional', with: 30.00
+    fill_in 'Número Base de Convidados', with: 50
+    fill_in 'Preço por Hora Extra', with: 75.00
+    click_on 'Salvar'
+
+    expect(page).to have_content 'Já existe um preço cadastrado para este tipo de dia.'
+  end
+
   it 'has to be the owner' do
     pix = PaymentMethod.create!(method: 'PIX')
     credito = PaymentMethod.create!(method: 'Cartão de Crédito')
