@@ -6,7 +6,7 @@ class EventTypesController < ApplicationController
 
   def show
     if !@event_type.active? && !(owner_signed_in? && current_owner == @company.owner)
-      flash[:alert] = "This event type is currently not available."
+      flash[:alert] = t('.error')
       redirect_to company_path(@company) and return
     end
   end

@@ -31,6 +31,8 @@ pt-BR:
     parking: Possui estacionamento para convidados
     no_parking: Não possui estacionamento
   event_types:
+    show:
+      error: Este tipo evento não está disponível no momento.
     new:
       error: Apenas o proprietário pode criar tipos de evento para essa empresa.
     create:
