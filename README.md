@@ -25,6 +25,9 @@
 
 ▶️ [Navegação](#navegação)
 
+▶️ [Criação de Contas Fictícias](#criação-de-contas-fictpicias)
+
+
 ## 📍 Descrição do Projeto
 Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e contratação de empresas especializadas em buffets para eventos diversos, como festas, casamentos e eventos corporativos. A aplicação oferece uma série de funcionalidades para donos de empresas e clientes, visando proporcionar uma experiência completa e eficiente na organização de eventos.
 
@@ -113,6 +116,16 @@ Para acessar páginas que requerem autenticação, utilize as contas abaixo:
 |------------------|-------------------------|-------------|
 |  Dono de Empresa |   priscila@email.com    |   12345678  |
 |     Cliente      |      joao@email.com     |   senha123  |
+
+### 🧑‍💻 Criação de Contas Fictícias
+
+Para testar a plataforma Cadê Buffet? como dono de empresa ou cliente, é necessário criar contas com CPFs ou CNPJs válidos. Recomendamos a utilização de serviços de geração de números de CPF e CNPJ válidos para garantir que a experiência de teste reflita com precisão o comportamento esperado em um cenário de uso real.
+
+#### Recomendação de Ferramentas para Geração de CPF/CNPJ:
+
+**Gerador de CPF/CNPJ:** Você pode usar sites como [4Devs](https://www.4devs.com.br/) para gerar números válidos que podem ser usados para cadastro na plataforma.
+
+
 
 
 
