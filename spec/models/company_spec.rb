@@ -164,5 +164,29 @@ RSpec.describe Company, type: :model do
         expect(false_company).not_to be_valid
       end
     end
+
+    describe '#status' do
+      it  'can be activated' do
+        owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+        company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                                registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                                address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                                description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+
+      company.active!
+      expect(company.active?).to be true
+      end
+
+      it  'can be inactivated' do
+        owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+        company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                                registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                                address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                                description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.')
+
+      company.inactive!
+      expect(company.inactive?).to be true
+      end
+    end
   end
 end
