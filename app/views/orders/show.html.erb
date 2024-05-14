@@ -4,7 +4,9 @@
       <div class="mb-4">
         <h2 class="order-title fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
          <h3 class="small text-muted"><%= @company.registration_number %></h3>
+
         <small><%= render partial: 'orders/company_contact' %></small>
+
         <% if owner_signed_in? && @has_conflict %>
           <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
         <% end %>
@@ -26,12 +28,16 @@
         <div class="card-body p-5">
           <div class="row align-items-center gx-5">
             <h4 class="date-title fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
+
             <%= render partial: 'orders/order_details' %>
+
           </div>
         </div>
       </div>
     </section>
+
     <%= render partial: 'orders/messages' %>
+
     <hr />
     <%= link_to t('helpers.buttons.back'), client_signed_in? ? my_orders_path : my_company_orders_path, class: "btn btn-secondary" %>
   </div>

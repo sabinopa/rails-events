@@ -57,7 +57,10 @@ class OrdersController < ApplicationController
 
   def my_company_orders
     @company = current_owner.company
-    @orders = @company.orders.sorted_by_status
+    @waiting_review_orders = @company.orders.where(status: 'waiting_review').order(:created_at)
+    @negotiating_orders = @company.orders.where(status: 'negotiating').order(:created_at)
+    @confirmed_orders = @company.orders.where(status: 'order_confirmed').order(:updated_at)
+    @cancelled_orders = @company.orders.where(status: 'order_cancelled').order(:updated_at)
   end
 
   def approve
@@ -86,6 +89,11 @@ class OrdersController < ApplicationController
   private
 
   def handle_approval_process
+    if @order.order_approval.present?
+      flash[:alert] = t('views.approve.already_exists')
+      redirect_to order_path @order and return
+    end
+
     final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
     @approval = @order.build_order_approval(approval_params.merge(final_price: final_price))
 

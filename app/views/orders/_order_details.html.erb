@@ -1,6 +1,7 @@
 <div class="col-lg-6">
   <h6 class="order-title fw-bolder mb-0"><%= @order.code %></h6>
-  <% if @order.status == 'negotiating' %>
+  <h6 class="order-title fw-bolder mb-0"><%= @event_type.name %></h6>
+  <% if @order_approval %>
     <div class="small text-muted">
       <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
     </div>

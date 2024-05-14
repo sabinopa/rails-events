@@ -1,31 +1,53 @@
+<h2 class="order-title mb-4"><strong><%= t('views.my_orders.my_orders') %></strong></h2>
+
 <% if @company.orders.present? %>
   <div class="row">
-    <% @orders.each do |order| %>
-      <div class="col-md-4 mb-4">
-        <div class="card shadow border-0 rounded-4">
-           <div class="card-body custom-text-size text-center">
-            <% badge_class = case order.status
-                            when 'waiting_review' then 'bg-warning'
-                            when 'negotiating' then 'bg-info'
-                            when 'order_confirmed' then 'bg-success'
-                            when 'order_cancelled' then 'bg-secondary'
-                            end %>
-
-            <div class="badge <%= badge_class %>">
-              <%= I18n.t("activerecord.attributes.order.status.#{order.status}") %>
-            </div>
-            <h5 class="date-title"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></h5>
-            <p class="event-title"><strong><%= order.event_type.name %></strong></p>
-            <p class="event-title"><strong><%= order.client.name %></strong></p>
-            <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
-          </div>
-        </div>
-      </div>
+    <% if @waiting_review_orders.present? %>
+      <h5 class="order-title mb-2"><%= t('views.my_orders.waiting_review') %></h5>
+      <% @waiting_review_orders.each do |order| %>
+        <%= render 'order_card', order: order %>
+      <% end %>
+    <% else %>
+      <p class="small text-muted"><%= t('views.my_orders.no_review_confirmation_orders') %></p>
     <% end %>
   </div>
+
+  <hr />
+
+  <% if @negotiating_orders.present? %>
+    <h5 class="order-title mb-2"><%= t('views.my_orders.negotiating') %></h5>
+    <% @negotiating_orders.each do |order| %>
+      <%= render 'order_card', order: order %>
+    <% end %>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% end %>
+
+  <hr />
+
+  <% if @confirmed_orders.present? %>
+    <h5 class="order-title mb-2"><%= t('views.my_orders.confirmed') %></h5>
+    <% @confirmed_orders.each do |order| %>
+      <%= render 'order_card', order: order %>
+    <% end %>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_confirmed_orders') %></p>
+  <% end %>
+
+  <hr />
+
+  <% if @cancelled_orders.present? %>
+    <h5 class="order-title mb-2"><%= t('views.my_orders.cancelled') %></h5>
+    <% @cancelled_orders.each do |order| %>
+      <%= render 'order_card', order: order %>
+    <% end %>
+  <% else %>
+    <p class="small text-muted"><%= t('views.my_orders.no_cancelled_orders') %></p>
+  <% end %>
 <% else %>
   <p class="small text-muted"><%= t('views.my_orders.no_orders') %></p>
 <% end %>
 
 <hr />
+
 <%= link_to t('helpers.buttons.back'), root_path, class: "btn btn-secondary" %>
