@@ -68,7 +68,7 @@
 
 ### APIS
 
-🔐 Acesse a documentação de APIS presentes no projeto [aqui](https://github.com/sabinopa/rails-events/blob/main/docs/routes.md).
+🔐 Acesse a documentação de APIS presentes no projeto [aqui](https://github.com/sabinopa/rails-events/blob/main/docs/api_routes.md).
 
 ### Pré-requisitos
 
