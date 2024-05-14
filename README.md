@@ -9,31 +9,33 @@
 
 ## 📑 Tópicos
 
-▶️ [Descrição do projeto](#-descrição-do-projeto)
+▶️ [Descrição do projeto](#descrição-do-projeto)
 
-▶️ [Funcionalidades](#-funcionalidades)
+▶️ [Funcionalidades](#funcionalidades)
 
-▶️ [Gems utilizadas](#-gems-utilizadas)
+▶️ [Gems utilizadas](#gems-utilizadas)
 
-▶️ [APIs](#-apis)
+▶️ [APIs](#apis)
 
-▶️ [Pré-requisitos](#-pré-requisitos)
+▶️ [Pré-requisitos](#pré-requisitos)
 
-▶️ [Como executar a aplicação](#-como-executar-a-aplicação)
+▶️ [Como executar a aplicação](#como-executar-a-aplicação)
 
-▶️ [Como executar os testes](#-como-executar-os-testes)
+▶️ [Como executar os testes](#como-executar-os-testes)
 
-▶️ [Navegação](#-navegação)
+▶️ [Navegação](#navegação)
 
-▶️ [Criação de Contas Fictícias](#-criação-de-contas-ficticias)
+▶️ [Criação de Contas Fictícias](#criação-de-contas-ficticias)
 
 
-## 📍 Descrição do Projeto
+## Descrição do Projeto 📍
 Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e contratação de empresas especializadas em buffets para eventos diversos, como festas, casamentos e eventos corporativos. A aplicação oferece uma série de funcionalidades para donos de empresas e clientes, visando proporcionar uma experiência completa e eficiente na organização de eventos.
 
-## ⚙️ Funcionalidades
+⚙️
+## Funcionalidades
 
-### 🏢 Para Donos de Empresas:
+🏢
+### Para Donos de Empresas:
 - [x]  **Cadastro de Conta:** Os donos de empresas podem criar uma conta informando seu e-mail e senha.
 - [x]  **Cadastro de Empresa:** Após criar uma conta, o dono de empresa deve cadastrar sua empresa com informações detalhadas, incluindo nome fantasia, razão social, CNPJ, telefone para contato, e-mail para contato, endereço completo, descrição e meios de pagamento aceitos.
 - [x]  **Cadastro de Tipos de Eventos:** Os donos de empresas podem cadastrar os tipos de eventos que realizam, incluindo nome, descrição, quantidade mínima e máxima de pessoas, duração padrão do evento, cardápio, disponibilidade de bebidas alcoólicas, decoração e serviço de estacionamento. Também podem indicar se o evento deve ser realizado exclusivamente no endereço da empreesa ou em um endereço indicado pelo contratante.
@@ -43,7 +45,8 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [x] **Gerenciamento de Status da Empresa:** Os donos de empresas podem alterar o status de suas empresas para ativo ou inativo. Empresas inativas não são listadas nas buscas e não podem receber novos pedidos.
 - [x] **Gerenciamento de Status dos Tipos de Eventos:** Donos de empresas podem alterar o status dos tipos de eventos para ativo ou inativo. Tipos de eventos inativos não são exibidos para os clientes e não podem receber novos pedidos.
 
-### 🚶‍♂️🚶‍♀️🚶 Para Clientes:
+🚶‍♂️🚶‍♀️🚶
+### Para Clientes:
 - [x]  **Cadastro de Conta:** Os clientes podem criar uma conta informando nome, CPF, e-mail e senha.
 - [x]  **Busca de Buffets:** Os visitantes podem buscar buffets pelo nome fantasia da empresa, cidade ou tipos de festas realizadas.
 - [x]  **Visualização de Detalhes das empresas:** Os visitantes podem visualizar detalhes das empresas, incluindo todas as informações cadastradas, exceto a razão social.
@@ -51,20 +54,23 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [x]  **Realização de Pedidos:** Os clientes podem fazer pedidos para uma empresa, incluindo informações como tipo de evento, data desejada, quantidade estimada de convidados e detalhes adicionais sobre o evento.
 - [x]  **Acompanhamento de Pedidos:** Os clientes podem acompanhar todos os pedidos realizados através da tela "Meus Pedidos", onde podem ver detalhes dos pedidos e confirmar sua execução.
 
-### 📬 Comunicação entre Dono de Buffet e Cliente:
+📬
+### Comunicação entre Dono de Buffet e Cliente:
 - [x]  **Troca de Mensagens:** O dono de empresa pode enviar mensagens para o cliente para tirar dúvidas em relação ao evento, e o cliente pode responder a essas mensagens.
 - [x]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o dono de emoresa e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
 - [x]  **Exibição de Data e Hora:** As mensagens exibem a data e hora em que foram enviadas.
 
-### 📦 Gems utilizadas
+📦
+### Gems utilizadas
 - [Devise](https://github.com/heartcombo/devise)
 - [Rspec](https://github.com/rspec/rspec-rails)
-- [Capybara](https://github.com/teamcapybara/capybara)
 - [Simplecov](https://github.com/simplecov-ruby/simplecov)
+- [Capybara](https://github.com/teamcapybara/capybara)
 - [CPF/CNPJ](https://github.com/fnando/cpf_cnpj)
 - [Validators](https://github.com/fnando/validators)
 
-### 🔐 APIS
+🔐
+### APIS
 
 Acesse a documentação de APIS presentes no projeto [aqui](https://github.com/sabinopa/rails-events/blob/main/docs/routes.md).
 
