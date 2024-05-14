@@ -2,32 +2,30 @@
   <div class="col-lg-11 col-xl-9 col-xxl-8">
     <section>
       <div class="mb-4">
-        <h2 class="text-primary fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
-        <h3 class="small text-muted"><%= @company.registration_number %></h3>
-        <% if owner_signed_in? %>
-          <% if @has_conflict && owner_signed_in? %>
-            <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
-          <% end %>
-          <% if @order.status == 'waiting_review' %>
-            <%= link_to t('views.show.approval'), approve_order_path(@order), class: "btn btn-primary" %>
-          <% end %>
+        <h2 class="order-title fw-bolder mb-0"><%= t('views.show.request', brand_name: @company.brand_name) %></h2>
+         <h3 class="small text-muted"><%= @company.registration_number %></h3>
+        <small><%= render partial: 'orders/company_contact' %></small>
+        <% if owner_signed_in? && @has_conflict %>
+          <p class="alert alert-warning"><%= t('views.show.has_conflict') %></p>
         <% end %>
-        <% if @order.status != 'order_cancelled' %>
-          <%= button_to t('views.show.cancel'), cancel_order_path(@order), method: :post, class: "btn btn-secondary" %>
-        <% end %>
+        <div class="btn-group">
+          <% if owner_signed_in? && @order.status == 'waiting_review' %>
+            <%= link_to t('views.show.approval'), approve_order_path(@order), class: "btn btn-success me-2" %>
+          <% end %>
+          <% if @order.status != 'order_cancelled' %>
+            <%= button_to t('views.show.cancel'), cancel_order_path(@order), method: :post, class: "btn btn-secondary me-2" %>
+          <% end %>
+          <% if client_signed_in? && @order.status == 'negotiating' %>
+            <%= form_with url: confirm_order_path(@order), method: :post, local: true, class: "d-inline" do |form| %>
+              <%= form.submit t('views.show.confirm'), class: "btn btn-success me-2" %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
       <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-5">
           <div class="row align-items-center gx-5">
-            <% if client_signed_in? %>
-              <% if @order.status == 'negotiating' %>
-                <%= form_with url: confirm_order_path(@order), method: :post, local: true do |form| %>
-                  <%= form.submit t('views.show.confirm'), class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-              <%= render partial: 'orders/company_contact' %>
-            <% end %>
-            <h4 class="text-primary fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
+            <h4 class="date-title fw-bolder mb-0"><%= t('views.show.order_details') %>:</h4>
             <%= render partial: 'orders/order_details' %>
           </div>
         </div>
@@ -35,10 +33,6 @@
     </section>
     <%= render partial: 'orders/messages' %>
     <hr />
-    <% if client_signed_in? %>
-      <%= link_to t('helpers.buttons.back'), my_orders_path, class: "btn btn-secondary" %>
-    <% elsif owner_signed_in? %>
-      <%= link_to t('helpers.buttons.back'), my_company_orders_path, class: "btn btn-secondary" %>
-    <% end %>
+    <%= link_to t('helpers.buttons.back'), client_signed_in? ? my_orders_path : my_company_orders_path, class: "btn btn-secondary" %>
   </div>
 </div>

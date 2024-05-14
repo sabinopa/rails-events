@@ -1,6 +1,4 @@
 pt-BR:
-# config/locales/pt-BR.yml
-pt-BR:
   activerecord:
     models:
       order:
@@ -66,7 +64,7 @@ pt-BR:
       day_types:
         weekend: Final de Semana
         holiday: Feriado
-        weekday: Dia Útil
+        week_day: Dia Útil
       choose_location: 'Para este evento, você pode escolher entre o salão da empresa ou um local de sua escolha'
       insert_address: Insira aqui o endereço onde o evento ocorrerá
       tell_me_details: Como você imagina o seu evento? Quais são os detalhes que precisamos conhecer para tornar este dia memorável?

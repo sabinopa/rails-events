@@ -11,16 +11,6 @@ pt-BR:
         additional_attendee_price: Preço por Convidado Adicional
         extra_hour_price: Preço por Hora Extra
         days_options: Para os dias
-  event_pricing:
-    # on_site: 'Exclusivamente no próprio local'
-    # any_site: 'No próprio local ou em local externo'
-    # off_site: 'Exclusivamente em local externo'
-    # alcohol: Inclui bebidas alcoólicas
-    # no_alcohol: Não inclui bebidas alcoólicas
-    # decoration: Fornece decoração
-    # no_decoration: Não fornece decoração
-    # parking: Possui estacionamento para convidados
-    # no_parking: Não possui estacionamento
   event_pricings:
     new:
       error: Apenas o proprietário precificar esse evento.
@@ -31,6 +21,7 @@ pt-BR:
     edit:
       error: Apenas o proprietário pode editar as precificações.
     update:
+      duplicate_day_option: Já existe um preço cadastrado para este tipo de dia.
       success: "%{name}: Atualizado com sucesso!"
       error: Não foi possível atualizar as precificações do evento.
   views:

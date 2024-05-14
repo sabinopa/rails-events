@@ -91,7 +91,7 @@ describe 'Owner sees order list' do
     expect(page).to have_link order3.code
     expect(page).to have_content 'Aguardando Análise'
     expect(page).to have_content 'Em Negociação'
-    expect(page).to have_content 'Pedidos Confirmados'
+    expect(page).to have_content 'Pedido Confirmado'
     expect(page).to have_content "#{30.days.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "#{45.days.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "#{90.days.from_now.strftime('%d/%m/%Y')}"

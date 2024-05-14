@@ -172,8 +172,8 @@ weekday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 
                                       additional_attendee_price: 75.0,extra_hour_price: 80.0, day_options: :weekday)
 
 # Pricing Premium para Casamentos em Feriados
-holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
-                                      additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
+# holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
+#                                       additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
 
 # Pricing para Galas Corporativas durante a Semana
 weekday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, base_price: 2000.0, base_attendees: 100,

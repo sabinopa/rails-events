@@ -52,15 +52,12 @@ class OrdersController < ApplicationController
   end
 
   def my_orders
-    @orders = current_client.orders
+    @orders = current_client.orders.sorted_by_status
   end
 
   def my_company_orders
     @company = current_owner.company
-    @waiting_review_orders = @company.orders.where(status: 'waiting_review').order(:created_at)
-    @negotiating_orders = @company.orders.where(status: 'negotiating').order(:created_at)
-    @confirmed_orders = @company.orders.where(status: 'order_confirmed').order(:updated_at)
-    @cancelled_orders = @company.orders.where(status: 'order_cancelled').order(:updated_at)
+    @orders = @company.orders.sorted_by_status
   end
 
   def approve

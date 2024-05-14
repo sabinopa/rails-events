@@ -11,7 +11,7 @@ class EventPricingsController < ApplicationController
 
   def create
     @event_pricing = @event_type.event_pricings.new(event_pricing_params)
-    if @event_type.event_pricings.exists?(day_options: event_pricing_params[:day_options])
+    if pricing_exists?
       flash.now[:alert] = t('.duplicate_day_option')
       render :new
     elsif @event_pricing.save
@@ -27,7 +27,10 @@ class EventPricingsController < ApplicationController
   end
 
   def update
-    if @event_pricing.update(event_pricing_params)
+    if pricing_exists? && !same_day_option?
+      flash.now[:alert] = t('.duplicate_day_option')
+      render :edit
+    elsif @event_pricing.update(event_pricing_params)
       flash[:notice] = t('.success', name: @event_type.name)
       redirect_to @event_type
     else
@@ -37,6 +40,15 @@ class EventPricingsController < ApplicationController
   end
 
   private
+
+  def pricing_exists?
+    @event_type.event_pricings.exists?(day_options: event_pricing_params[:day_options])
+  end
+
+  def same_day_option?
+    existing = @event_type.event_pricings.find_by(day_options: event_pricing_params[:day_options])
+    existing && existing.id == @event_pricing.id
+  end
 
   def set_company
     @company = @event_type.company

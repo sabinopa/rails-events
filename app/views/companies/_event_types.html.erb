@@ -5,6 +5,15 @@
       <div class="card shadow border-0 rounded-4">
         <div class="card-header description-text">
           <h5 class="card-title event-title fw-bolder"><%= event.name %></h5>
+          <% if owner_signed_in? && current_owner == @company.owner %>
+            <% badge_class = case event.status
+                                when 'active' then 'bg-primary'
+                                when 'inactive' then 'bg-secondary'
+                             end %>
+            <div class="badge <%= badge_class %> gap-2 mt-2">
+              <%= I18n.t("activerecord.attributes.event_type.status.#{event.status}") %>
+            </div>
+          <% end %>
           <p class="custom-text-size"><%= event.description %></p>
         </div>
         <div class="card-body custom-text-size text-center">
@@ -53,3 +62,4 @@
     </div>
   <% end %>
 </div>
+

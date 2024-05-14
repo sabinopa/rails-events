@@ -19,6 +19,8 @@ class Order < ApplicationRecord
 
   enum status: { waiting_review: 0, negotiating: 1, order_confirmed: 2, order_cancelled: 3 }
 
+  scope :sorted_by_status, -> { order(status: :asc) }
+
   def self.check_date_and_update_status
     where(status: 'negotiating').each do |order|
       if order.order_approval&.validity_date && order.order_approval.validity_date < Date.today

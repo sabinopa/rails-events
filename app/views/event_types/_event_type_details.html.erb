@@ -1,0 +1,30 @@
+<div class="mb-4">
+  <div class="d-flex align-items-baseline gap-2">
+    <h2 class="event-title fw-bolder"><%= @event_type.name %></h2>
+    <% if owner_signed_in? && current_owner == @company.owner %>
+      <% badge_class = case @event_type.status
+                          when 'active' then 'bg-primary'
+                          when 'inactive' then 'bg-secondary'
+                        end %>
+      <div class="badge <%= badge_class %>">
+        <%= I18n.t("activerecord.attributes.event_type.status.#{@event_type.status}") %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if owner_signed_in? && current_owner == @company.owner %>
+    <div class="d-flex flex-wrap gap-2 mt-2">
+      <% if @event_type.active? %>
+        <%= button_to t('views.show.inactive'), inactive_event_type_path(@event_type), method: :post, class: "btn btn-outline-secondary" %>
+      <% else %>
+        <%= button_to t('views.show.active'), active_event_type_path(@event_type), method: :post, class: "btn btn-outline-primary" %>
+      <% end %>
+      <%= link_to t('views.edit.edit_event'), edit_event_type_path(@event_type), class: 'btn btn-outline-rosa' %>
+      <% if @event_type.event_pricings.count < 3 %>
+        <%= link_to t('views.show.new_price'), new_event_type_event_pricing_path(@event_type), class: 'btn btn-outline-rosa' %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= link_to t('views.show.make_order'), new_event_type_order_path(@event_type), class: 'btn btn-outline-rosa mt-2' %>
+  <% end %>
+</div>
