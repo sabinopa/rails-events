@@ -114,6 +114,7 @@ describe 'Visitor sees event type details' do
 
     expect(current_path).to eq company_path(company.id)
     expect(page).not_to have_content 'Festa Temática de Piratas'
+    expect(page).to have_content 'Este tipo evento não está disponível no momento.'
   end
 
   it 'and company has no events' do

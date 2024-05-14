@@ -14,6 +14,14 @@ class CompaniesController < ApplicationController
     unless owner_signed_in? && current_owner == @company.owner
       @event_types = @event_types.active
     end
+
+    if @company.reviews.present?
+      @reviews = @company.reviews.last(3)
+      @average_score = @company.reviews.average(:score).to_f.round(2)
+    else
+      @reviews = []
+      @average_score = 0
+    end
   end
 
   def new

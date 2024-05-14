@@ -23,6 +23,9 @@
               <strong><%= order.event_type.name %></strong>
             </p>
             <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3' %>
+            <% if order.status == 'order_confirmed' && order.date < Date.today %>
+              <%= link_to t('views.new.review'), new_order_review_path(order_id: order.id), class: 'btn btn-outline-green mt-3' %>
+            <% end %>
           </div>
         </div>
       </div>

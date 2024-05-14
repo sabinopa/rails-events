@@ -69,3 +69,12 @@
   margin-top: 3px
 }
 
+.text-tight {
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.text-tight-top {
+  margin-top: 0.5rem;
+}
+

@@ -1,0 +1,35 @@
+pt-BR:
+  activerecord:
+    models:
+      review:
+        one: 'Avaliação'
+        other: 'Avaliações'
+    attributes:
+      review:
+        score: 'Nota'
+        text: 'Comentário'
+        answer: 'Resposta'
+  errors:
+    messages:
+      one_review: 'Você já criou uma avaliação para esse pedido.'
+  reviews:
+    new:
+      already_reviewed: 'Você já criou uma avaliação para esse pedido.'
+      error: 'Você não tem permissão para realizar essa ação.'
+    create:
+      success: 'Avaliação criada com sucesso!'
+      already_reviewed: 'Você não tem permissão para realizar essa ação.'
+      error: 'Avaliação não enviada.'
+    create_answer:
+      success: 'Resposta salva com sucesso!'
+      error: 'Você não tem permissão para realizar essa ação.'
+    host_reviews:
+      error: 'Para seguir com essa ação, primeiro crie sua pousada.'
+  views:
+    new:
+      experience: 'Como foi sua experiência com %{brand_name} durante seu evento?'
+      score: 'Por favor, classifique de 1(ruim) a 5(excelente).'
+    host_reviews:
+      all: 'Veja todas as suas avaliações:'
+      visit: 'Visitou a pousada em:'
+      none: 'Ainda não existem avaliações.'

@@ -18,7 +18,7 @@ p "Created #{PaymentMethod.count} payment methods"
 priscila = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
 pedro = Owner.create!(name: 'Pedro', lastname: 'Araujo', email: 'pedro@email.com', password: 'senhasenha')
 guilherme = Owner.create!(name: 'Guilherme', lastname: 'Alvares', email: 'guilherme@email.com', password: 'password')
-isabel = Owner.create!(name: 'Isabel', lastname: 'Maria', email: 'isabel@lagoaserena.com', password: 'secret123')
+isabel = Owner.create!(name: 'Isabel', lastname: 'Maria', email: 'isabel@email.com', password: 'secret123')
 livia = Owner.create!(name: 'Livia', lastname: 'Alves', email: 'livia@email.com', password: '09876543')
 
 p "Created #{Owner.count} owners"
@@ -172,8 +172,8 @@ weekday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 
                                       additional_attendee_price: 75.0,extra_hour_price: 80.0, day_options: :weekday)
 
 # Pricing Premium para Casamentos em Feriados
-# holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
-#                                       additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
+holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
+                                      additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
 
 # Pricing para Galas Corporativas durante a Semana
 weekday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, base_price: 2000.0, base_attendees: 100,
@@ -294,15 +294,17 @@ order_joao2 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id
                             date: 60.days.from_now, attendees_number: 120, details: 'Evento corporativo com apresentação de projetos.',
                             local: 'Rua das Flores, 123', status: 1, payment_method_id: debito.id, day_type: :weekend)
                             OrderApproval.create!(order_id: order_joao2.id, owner_id: celebracao_alegre.owner_id,
-                                                  validity_date: 5.days.ago, extra_charge: 500.0, discount: 50.0,
+                                                  validity_date: 5.days.from_now, extra_charge: 500.0, discount: 50.0,
                                                   charge_description: 'Custos adicionais por serviços extras',
                                                   final_price: order_joao2.default_price + 500.0 - 50.0)
 
-order_joao3 = Order.create!(client_id: joao.id, company_id: banquete_real.id, event_type_id: debutante_luxo.id,
-                            date: 90.days.from_now, attendees_number: 300, details: 'Aniversário luxuoso com decoração extravagante.',
-                            local: 'Palácio Real - Rua da Realeza, 456', status: 1, payment_method_id: credito.id, day_type: :week_day)
-                            OrderApproval.create!(order_id: order_joao3.id, owner_id: banquete_real.owner_id,
-                            validity_date: 10.days.from_now, extra_charge: 100.0, discount: 0,
+order_joao3 = Order.new(client_id: joao.id, company_id: banquete_real.id, event_type_id: debutante_luxo.id,
+                            date: 20.days.ago, attendees_number: 300, details: 'Aniversário luxuoso com decoração extravagante.',
+                            local: 'Palácio Real - Rua da Realeza, 456', status: 2, payment_method_id: credito.id, day_type: :week_day,
+                            code: 'ABCD1234')
+                            order_joao3.save(validate: false)
+                            OrderApproval.create(order_id: order_joao3.id, owner_id: banquete_real.owner_id,
+                            validity_date: 30.days.ago, extra_charge: 100.0, discount: 0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_joao3.default_price + 100.0 - 0)
 
@@ -315,11 +317,13 @@ order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, 
                              date: 20.days.from_now, attendees_number: 50, details: 'Jantar formal com música instrumental.',
                              local: 'Restaurante Elegante - Avenida do Luxo, 456', status: 0, payment_method_id: credito.id, day_type: :weekend)
 
-order_maria2 = Order.create!(client_id: maria.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
-                             date: 40.days.from_now, attendees_number: 80, details: 'Jantar de degustação orgânica com amigos.',
-                             local: 'Restaurante Orgânico - Alameda Verde, 789', status: 1, payment_method_id: pix.id, day_type: :weekend)
+order_maria2 = Order.new(client_id: maria.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                             date: 10.days.ago, attendees_number: 80, details: 'Jantar de degustação orgânica com amigos.',
+                             local: 'Restaurante Orgânico - Alameda Verde, 789', status: 2, payment_method_id: pix.id, day_type: :weekend,
+                             code: 'QWER1234')
+                             order_maria2.save(validate: false)
                              OrderApproval.create!(order_id: order_maria2.id, owner_id: gastronomia_estelar.owner_id,
-                             validity_date: 7.days.from_now, extra_charge: 1000.0, discount: 550.0,
+                             validity_date: 15.days.ago, extra_charge: 1000.0, discount: 550.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_maria2.default_price + 1000.0 - 550.0)
 
@@ -349,11 +353,13 @@ order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                               date: 35.days.from_now, attendees_number: 60, details: 'Brunch empresarial para networking.',
                               local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id, day_type: :weekend)
 
-order_carlos3 = Order.create!(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                              date: 30.days.from_now, attendees_number: 60, details: 'Casamento dos sonhos com buffet personalizado.',
-                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 1, payment_method_id: debito.id, day_type: :week_day)
+order_carlos3 = Order.new(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
+                              date: 30.days.ago, attendees_number: 60, details: 'Casamento dos sonhos com buffet personalizado.',
+                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 2, payment_method_id: debito.id, day_type: :week_day,
+                              code: 'POIU0987')
+                              order_carlos3.save(validate: false)
                               OrderApproval.create!(order_id: order_carlos3.id, owner_id: celebracao_alegre.owner_id,
-                              validity_date: 10.days.from_now, extra_charge: 90.0, discount: 200.0,
+                              validity_date: 35.days.ago, extra_charge: 90.0, discount: 200.0,
                               charge_description: 'Taxas adicionais por serviços especiais',
                               final_price: order_carlos3.default_price + 90.0 - 200.0)
 
@@ -362,11 +368,13 @@ order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                               local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0, payment_method_id: credito.id, day_type: :holiday)
 
 # Pedidos de Ana
-order_ana1 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
-                           date: 15.days.from_now, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
-                           local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 1, payment_method_id: pix.id, day_type: :weekend)
+order_ana1 = Order.new(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                           date: 15.days.ago, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
+                           local: 'Restaurante Verde Vida - Alameda do Bem-Estar, 101',status: 2, payment_method_id: pix.id, day_type: :weekend,
+                            code: 'ASDF1234')
+                            order_ana1.save(validate: false)
                             OrderApproval.create!(order_id: order_ana1.id, owner_id: gastronomia_estelar.owner_id,
-                            validity_date: 10.days.from_now, extra_charge: 95.0, discount: 115.0,
+                            validity_date: 20.days.ago, extra_charge: 95.0, discount: 115.0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_ana1.default_price + 95.0 - 115.0)
 
@@ -391,17 +399,19 @@ order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, 
                              date: 50.days.from_now, attendees_number: 200, details: 'Festival gastronômico com várias cozinhas.',
                              local: 'Rua da Paz, 1313',status: 0, payment_method_id: credito.id, day_type: :weekend)
 
-order_lucas2 = Order.create!(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
-                             date: 30.days.from_now, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
-                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 1, payment_method_id: credito.id, day_type: :weekend)
+order_lucas2 = Order.new(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
+                             date: 20.days.ago, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
+                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 2, payment_method_id: credito.id, day_type: :weekend,
+                             code: 'A1B2C3D4')
+                             order_lucas2.save(validate: false)
                              OrderApproval.create!(order_id: order_lucas2.id, owner_id: festim_sonhos.owner_id,
-                             validity_date: 20.days.from_now, extra_charge: 200.0, discount: 0,
+                             validity_date: 30.days.ago, extra_charge: 200.0, discount: 0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_lucas2.default_price + 0 - 0)
 
 order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
-                             local: 'Teatro Real - Rua dos Campeões, 707', status: 2, payment_method_id: credito.id, day_type: :week_day)
+                             local: 'Teatro Real - Rua dos Campeões, 707', status: 1, payment_method_id: credito.id, day_type: :week_day)
                              OrderApproval.create!(order_id: order_lucas3.id, owner_id: banquete_real.owner_id,
                              validity_date: 12.days.from_now, extra_charge: 0, discount: 100.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
@@ -496,6 +506,18 @@ message39 = Message.create!(body: 'Lucas, podemos agendar uma reunião para disc
 message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.', sender_id: lucas.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_lucas4.id)
 
 p "Created #{Message.count} messages"
+
+review_joao3 = Review.create!(order: order_joao3, company_id: banquete_real.id, score: 5, text: 'Experiência inesquecível! A decoração estava esplêndida e o serviço impecável. Recomendo muito!')
+
+review_maria2 = Review.create!(order: order_maria2, company_id: gastronomia_estelar.id, score: 5, text: "A experiência foi maravilhosa! Os sabores orgânicos foram destacados de maneira elegante e deliciosa.")
+
+review_carlos3 = Review.create!(order: order_carlos3, company_id: celebracao_alegre.id, score: 5, text: "Um dia verdadeiramente mágico! O serviço foi impecável e cada detalhe estava perfeito. Todos os convidados ficaram encantados.")
+
+review_ana1 = Review.create!(order: order_ana1, company_id: gastronomia_estelar.id, score: 4, text: "A experiência foi muito agradável. A comida estava deliciosa e perfeitamente preparada. Ótima escolha para quem aprecia uma refeição saudável e saborosa.")
+
+review_lucas2 = Review.create!(order: order_lucas2, company_id: festim_sonhos.id, score: 5, text: "A noite foi excepcional! A combinação da excelente gastronomia com a música ao vivo criou uma atmosfera inesquecível. Tudo estava perfeito!")
+
+p "Created #{Review.count} reviews"
 
 p "All done! :)"
 

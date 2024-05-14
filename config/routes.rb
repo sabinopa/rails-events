@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
     get 'search', on: :collection
+    get 'company_reviews', on: :member
     post 'active', on: :member
     post 'inactive', on: :member
 
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
         post :approve, on: :member
         post :confirm, on: :member
         post :cancel, on: :member
+        resources :reviews, only: [:new, :create]
         resources :messages, only: [:index, :create]
       end
     end

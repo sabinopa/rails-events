@@ -169,6 +169,7 @@ pt-BR:
       edit_company: Editar empresa
       edit_event_type: Editar evento
       check_with_owner: Solicitar Orçamento
+      send_review: Criar Avaliação
   number:
     currency:
       format:

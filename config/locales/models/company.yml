@@ -72,6 +72,10 @@ pt-BR:
       new_price: Novo Preço
       company_active: Ativar Empresa
       company_inactive: Desativar Empresa
+      reviews: Avaliações
+      rating_score: Nota Geral
+      client_review: 'Avaliação de %{client}'
+      average_score: 'Nota geral: %{average}'
     search:
       search: Buscar
       search_here: 'Busque aqui...'
