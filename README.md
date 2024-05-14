@@ -37,6 +37,8 @@ Cadê Buffet? é uma plataforma desenvolvida em Rails que facilita a busca e con
 - [x]  **Definição de Preços por Tipo de Evento:** Para cada tipo de evento, o dono de empresa pode definir os preços-base, incluindo valor mínimo e valor adicional por pessoa. Também pode cadastrar valores de hora extra do evento e diferenciar os preços para dias da semana, fins de semana e feriados.
 - [x]  **Avaliação de Pedidos:** Os dono podem visualizar e avaliar os pedidos recebidos, decidindo se aceitam ou não a execução do evento, podendo aplicar taxas extras ou desconto.
 - [x]  **Acompanhamento de Pedidos:** Os donos de empresas podem acompanhar todos os pedidos realizados através da tela "Pedidos", onde podem ver detalhes dos pedidos e aprovar sua execução.
+- [x] **Gerenciamento de Status da Empresa:** Os donos de empresas podem alterar o status de suas empresas para ativo ou inativo. Empresas inativas não são listadas nas buscas e não podem receber novos pedidos.
+- [x] **Gerenciamento de Status dos Tipos de Eventos:** Donos de empresas podem alterar o status dos tipos de eventos para ativo ou inativo. Tipos de eventos inativos não são exibidos para os clientes e não podem receber novos pedidos.
 
 ### 🚶‍♂️🚶‍♀️🚶 Para Clientes:
 - [x]  **Cadastro de Conta:** Os clientes podem criar uma conta informando nome, CPF, e-mail e senha.
