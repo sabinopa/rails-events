@@ -62,6 +62,80 @@ describe 'Client creates review' do
     end
   end
 
+  it 'and add photo' do
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+    event_type = EventType.create!(company_id: company.id, name: 'Festa de Contos de Fadas',
+                                    description: 'Uma festa mágica inspirada em contos de fadas! Inclui encenação de histórias, decoração temática e muita diversão para os pequenos.',
+                                    min_attendees: 10, max_attendees: 40, duration: 180,
+                                    menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
+                                    alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 10.days.from_now,
+                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
+                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+
+    travel_to 20.days.from_now do
+      login_as(client, :scope => :client)
+      visit new_order_review_path(order_id: order.id)
+      select 5, from: 'Nota'
+      fill_in 'Comentário', with: 'O atendimento da equipe é excepcional!'
+      attach_file 'Adicionar fotos', Rails.root.join('spec', 'files', 'festa_aniversario_tematica.jpg')
+      click_on 'Criar Avaliação'
+
+      expect(current_path).to eq company_path(company.id)
+      expect(page).to have_content 'Avaliação criada com sucesso!'
+      expect(page).to have_content 'Avaliações'
+      expect(page).to have_content "Avaliação de #{order.client.name}"
+      expect(page).to have_content 'O atendimento da equipe é excepcional!'
+      expect(page).to have_content "#{event_type.name}"
+      expect(page).to have_css('img[src*="festa_aniversario_tematica.jpg"]')
+    end
+  end
+
+  it 'and add several photos' do
+    client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+    owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+    company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                            registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                            address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                            description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+    event_type = EventType.create!(company_id: company.id, name: 'Festa de Contos de Fadas',
+                                    description: 'Uma festa mágica inspirada em contos de fadas! Inclui encenação de histórias, decoração temática e muita diversão para os pequenos.',
+                                    min_attendees: 10, max_attendees: 40, duration: 180,
+                                    menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
+                                    alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0)
+    order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 10.days.from_now,
+                            attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
+                            local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+
+    travel_to 20.days.from_now do
+      login_as(client, :scope => :client)
+      visit new_order_review_path(order_id: order.id)
+      select 5, from: 'Nota'
+      fill_in 'Comentário', with: 'O atendimento da equipe é excepcional!'
+      attach_file 'Adicionar fotos', [
+        Rails.root.join('spec', 'files', 'festa_aniversario_tematica.jpg'),
+        Rails.root.join('spec', 'files', 'festa_aniversario_detalhe.jpg'),
+        Rails.root.join('spec', 'files', 'festa_aniversario_decoracao.jpg')
+      ]
+      click_on 'Criar Avaliação'
+
+      expect(current_path).to eq company_path(company.id)
+      expect(page).to have_content 'Avaliação criada com sucesso!'
+      expect(page).to have_content 'Avaliações'
+      expect(page).to have_content "Avaliação de #{order.client.name}"
+      expect(page).to have_content 'O atendimento da equipe é excepcional!'
+      expect(page).to have_content "#{event_type.name}"
+      expect(page).to have_css('img[src*="festa_aniversario_tematica.jpg"]')
+      expect(page).to have_css('img[src*="festa_aniversario_detalhe.jpg"]')
+      expect(page).to have_css('img[src*="festa_aniversario_decoracao.jpg"]')
+    end
+  end
+
   it 'with empty fields' do
     client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
     owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')

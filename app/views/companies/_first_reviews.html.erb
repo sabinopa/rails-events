@@ -10,6 +10,13 @@
             <p><%= t('views.company_reviews.score') %> <%= review.score %></p>
           </div>
           <p class="text-tight-top"><%= review.text %></p>
+          <% if review.photos.any? %>
+            <div>
+              <% review.photos.each do |photo| %>
+                <%= image_tag(photo, class: 'review-image') %>
+              <% end %>
+            </div>
+          <% end %>
           <div class="small text-muted text-tight">
             <sup><%= l(review.created_at, format: :custom) %></sup></div>
         </div>

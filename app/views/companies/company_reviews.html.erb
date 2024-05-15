@@ -1,21 +1,35 @@
-<h2 class="text-primary fw-bolder mb-0 me-3"><%= t('views.show.reviews') %> - <small><%= t('views.show.average_score', average: @average_score) %></small></h2>
+<h2 class="text-primary fw-bolder mb-0 me-3">
+  <%= t('views.show.reviews') %> -
+  <small>
+    <%= t('views.show.average_score', average: @average_score.round(2)) %>
+  </small>
+</h2>
 <div class="container mt-5">
-  <% @reviews.each do |review| %>
-    <div class="card mb-2">
-      <div class="card-body">
-        <div class="small text-muted text-tight">
-          <p><strong><%= t('views.show.client_review', client: review.order.client&.name) %></strong></p>
-          <p><sup><%= review.order&.date&.strftime('%d/%m/%Y') %> - <%= review.order&.event_type.name %></sup></p>
-          <p><%= t('views.company_reviews.score') %> <%= review.score %></p>
+  <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+      <div class="card mb-2">
+        <div class="card-body">
+          <div class="small text-muted text-tight">
+            <p><strong><%= t('views.show.client_review', client: review.order.client.name) %></strong></p>
+            <p><sup><%= review.order.date.strftime('%d/%m/%Y') %> - <%= review.order.event_type.name %></sup></p>
+            <p><%= t('views.show.score') %> <%= review.score %></p>
+          </div>
+            <p class="text-tight-top"><%= review.text %></p>
+          <% if review.photos.any? %>
+            <div>
+              <% review.photos.each do |photo| %>
+                <%= image_tag(photo, class: 'review-image') %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="small text-muted text-tight">
+            <sup><%= l(review.created_at, format: :custom) %></sup>
+          </div>
         </div>
-        <p class="text-tight-top"><%= review.text %></p>
-        <% review.photos.each do |photo| %>
-          <%= image_tag(photo, class: "your-custom-class") %>
-        <% end %>
-        <div class="small text-muted text-tight">
-          <sup><%= l(review.created_at, format: :custom) %></sup></div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p><%= t('views.company_reviews.no_reviews') %></p>
   <% end %>
   <hr />
   <%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>

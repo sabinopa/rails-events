@@ -78,6 +78,7 @@ pt-BR:
       average_score: 'Nota geral: %{average}'
       see_reviews: Ver todas as avaliações
       no_reviews: Essa empresa ainda não possui avaliações
+      score: Nota
     search:
       search: Buscar
       search_here: 'Busque aqui...'

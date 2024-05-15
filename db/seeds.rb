@@ -508,12 +508,15 @@ message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.
 p "Created #{Message.count} messages"
 
 review_maria2 = Review.create!(order: order_maria2, company_id: gastronomia_estelar.id, score: 5, text: "A experiência foi maravilhosa! Os sabores orgânicos foram destacados de maneira elegante e deliciosa.")
+                review_maria2.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_3.jpg')), filename: 'noite_organica_3.jpg')
 
 review_carlos3 = Review.create!(order: order_carlos3, company_id: celebracao_alegre.id, score: 5, text: "Um dia verdadeiramente mágico! O serviço foi impecável e cada detalhe estava perfeito. Todos os convidados ficaram encantados.")
 
 review_ana1 = Review.create!(order: order_ana1, company_id: gastronomia_estelar.id, score: 4, text: "A experiência foi muito agradável. A comida estava deliciosa e perfeitamente preparada. Ótima escolha para quem aprecia uma refeição saudável e saborosa.")
+                review_ana1.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')
 
 review_lucas2 = Review.create!(order: order_lucas2, company_id: festim_sonhos.id, score: 5, text: "A noite foi excepcional! A combinação da excelente gastronomia com a música ao vivo criou uma atmosfera inesquecível. Tudo estava perfeito!")
+                review_lucas2.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_3.jpg')), filename: 'jantar_gourmet_3.jpg')
 
 p "Created #{Review.count} reviews"
 

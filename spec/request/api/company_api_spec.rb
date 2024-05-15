@@ -96,6 +96,7 @@ describe 'Company API', type: :request do
       get '/api/v1/companies/999'
 
       expect(response.status).to eq 404
+      expect(response.body).to include 'O id informado não foi encontrado.'
     end
   end
 
