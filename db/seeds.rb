@@ -13,6 +13,7 @@ debito = PaymentMethod.create!(method: 'Cartão de Débito')
 dinheiro = PaymentMethod.create!(method: 'Dinheiro')
 
 p "Created #{PaymentMethod.count} payment methods"
+sleep(4)
 
 # Proprietários
 priscila = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
@@ -22,6 +23,7 @@ isabel = Owner.create!(name: 'Isabel', lastname: 'Maria', email: 'isabel@email.c
 livia = Owner.create!(name: 'Livia', lastname: 'Alves', email: 'livia@email.com', password: '09876543')
 
 p "Created #{Owner.count} owners"
+sleep(4)
 
 # Clientes
 joao = Client.create!(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '926.020.550-69', password: 'senha123')
@@ -31,6 +33,7 @@ ana = Client.create!(name: 'Ana', lastname: 'Pereira', email: 'ana@email.com', d
 lucas = Client.create!(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com', document_number: '194.917.200-74', password: 'senha234')
 
 p "Created #{Client.count} clients"
+sleep(4)
 
 # Empresas
 celebracao_alegre = Company.create!(owner_id: priscila.id, brand_name: 'Celebração Alegre', corporate_name: 'Celebração Alegre Buffet Ltda',
@@ -69,6 +72,7 @@ sabores_mundo = Company.create!(owner_id: livia.id, brand_name: 'Sabores do Mund
                               sabores_mundo.payment_methods << [credito, debito]
 
 p "Created #{Company.count} companies"
+sleep(4)
 
 # Para a empresa Celebração Alegre
 casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento dos Sonhos',
@@ -162,6 +166,7 @@ food_truck = EventType.create!(company_id: sabores_mundo.id, name: 'Festival Int
                             food_truck.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'food_truck_2.jpg')), filename: 'food_truck_2.jpg')
 
 p "Created #{EventType.count} event types"
+sleep(4)
 
 # Pricing para Casamentos no Fim de Semana
 weekend_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1200.0, base_attendees: 50,
@@ -283,6 +288,7 @@ weekend_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_t
 holiday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3500.0, base_attendees: 100,
                                                           additional_attendee_price: 30.0,extra_hour_price: 250.0, day_options: :holiday)
 p "Created #{EventPricing.count} event pricings"
+sleep(4)
 
 # Pedidos de João
 order_joao1 = Order.create!(client_id: joao.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
@@ -473,6 +479,7 @@ order_lucas5 = Order.create!(client_id: lucas.id, company_id: gastronomia_estela
                             final_price: order_lucas5.default_price + 0 - 0)
 
 p "Created #{Order.count} orders"
+sleep(4)
 
 # Seed de mensagens ajustadas
 
@@ -557,6 +564,7 @@ message39 = Message.create!(body: 'Lucas, podemos agendar uma reunião para disc
 message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.', sender_id: lucas.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_lucas4.id)
 
 p "Created #{Message.count} messages"
+sleep(4)
 
 #Avaliações
 
