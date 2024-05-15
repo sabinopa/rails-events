@@ -31,7 +31,8 @@ Retorna um hash de empresas cadastradas.
     "state": "SP",
     "zipcode": "01234-567",
     "description": "Especializados em casamentos e eventos corporativos, oferecemos um serviço completo de buffet com uma vasta opção de cardápios personalizados.",
-    "owner_id": 1
+    "owner_id": 1,
+    "average_score": 5
   },
   {
     "id": 2,
@@ -44,7 +45,8 @@ Retorna um hash de empresas cadastradas.
     "state": "RJ",
     "zipcode": "21000-000",
     "description": "Com uma equipe de chefs renomados, proporcionamos uma experiência culinária inesquecível para seu evento.",
-    "owner_id": 2
+    "owner_id": 2,
+    "average_score": 4
   },
   {
     "id": 3,
@@ -57,7 +59,8 @@ Retorna um hash de empresas cadastradas.
     "state": "MG",
     "zipcode": "30140-010",
     "description": "Oferecemos um serviço exclusivo de buffet e catering com foco em ingredientes orgânicos e sustentáveis.",
-    "owner_id": 3
+    "owner_id": 3,
+    "average_score": 4
   }]
 ```
 
@@ -203,3 +206,5 @@ _406 Not Acceptable_: Se não houver disponibilidade para a data selecionada.
   "errors": "Não há disponibilidade para a data selecionada."
 }
 ```
+
+

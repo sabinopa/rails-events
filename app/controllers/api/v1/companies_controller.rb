@@ -21,7 +21,7 @@ class Api::V1::CompaniesController < Api::V1::ApiController
   end
 
   def show
-    @company = Company.active.find(params[:id])
+    @company = Company.active.find_by(id: params[:id])
     if @company
       response_json = @company.as_json(
         except: [:created_at, :updated_at, :registration_number, :corporate_name],

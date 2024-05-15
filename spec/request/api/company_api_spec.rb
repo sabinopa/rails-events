@@ -96,7 +96,7 @@ describe 'Company API', type: :request do
       get '/api/v1/companies/999'
 
       expect(response.status).to eq 404
-      expect(response.body).to include 'O id informado não foi encontrado.'
+      expect(response.body).to include 'não encontrado'
     end
   end
 
@@ -197,7 +197,7 @@ describe 'Company API', type: :request do
       get "/api/v1/companies/#{company.id}"
 
       expect(response).to have_http_status(404)
-      expect(response.body).to include 'O id informado não foi encontrado.'
+      expect(response.body).to include 'não encontrado'
     end
 
     it 'and raise internal error' do

@@ -57,6 +57,11 @@
 - [x]  **Exibição de Mensagens:** Todas as mensagens trocadas entre o dono de emoresa e o cliente são exibidas nas respectivas telas de visualização de detalhes de um pedido.
 - [x]  **Exibição de Data e Hora:** As mensagens exibem a data e hora em que foram enviadas.
 
+## Avaliações e Feedbacks: 🌟
+- [x] **Avaliações de Eventos:** Clientes que tiveram pedidos confirmados podem avaliar a empresa após a data de realização do evento. A avaliação deve conter uma nota de 0 a 5, um texto e, opcionalmente, pode conter fotos.
+- [x] **Nota Média de Avaliação:** A partir das notas obtidas, deve ser exibida a nota média de avaliação da empresa em sua página.
+- [x] **Visualização de Avaliações:** Visitantes e clientes podem ver as últimas 3 avaliações cadastradas por outros usuários. Existem a opção de acessar uma página com todas as avaliações daquela empresa.
+
 ### Gems utilizadas
 
 - [Devise](https://github.com/heartcombo/devise)
