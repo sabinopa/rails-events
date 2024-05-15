@@ -166,4 +166,4 @@ describe 'Client creates review' do
       expect(current_path).to eq my_orders_path
     end
   end
- end
+end

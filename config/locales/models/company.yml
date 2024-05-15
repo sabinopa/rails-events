@@ -76,6 +76,8 @@ pt-BR:
       rating_score: Nota Geral
       client_review: 'Avaliação de %{client}'
       average_score: 'Nota geral: %{average}'
+      see_reviews: Ver todas as avaliações
+      no_reviews: Essa empresa ainda não possui avaliações
     search:
       search: Buscar
       search_here: 'Busque aqui...'

@@ -1,0 +1,17 @@
+<h2 class="text-primary fw-bolder mb-0 me-3"><%= t('views.show.reviews') %> - <small><%= t('views.show.average_score', average: @average_score) %></small></h2>
+<div class="container mt-5">
+  <% @reviews.each do |review| %>
+    <div class="card mb-2">
+      <div class="card-body">
+        <div class="small text-muted text-tight">
+          <p><strong><%= t('views.show.client_review', client: review.order.client&.name) %></strong></p>
+          <p><sup><%= review.order&.date&.strftime('%d/%m/%Y') %> - <%= review.order&.event_type.name %></sup></p>
+          <p><%= t('views.company_reviews.score') %> <%= review.score %></p>
+        </div>
+        <p class="text-tight-top"><%= review.text %></p>
+        <div class="small text-muted text-tight">
+          <sup><%= l(review.created_at, format: :custom) %></sup></div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
   before_action :force_company_creation_for_owners, only: [:show, :search, :edit, :update]
-  before_action :set_company, only: [:show, :edit, :update, :active, :inactive]
+  before_action :set_company, only: [:show, :edit, :update, :active, :inactive, :company_reviews]
   before_action :check_owner, only: [:edit, :update]
 
   def show
@@ -9,19 +9,8 @@ class CompaniesController < ApplicationController
       flash[:alert] = t('.not_available')
       redirect_to root_path and return
     end
-
-    @event_types = @company.event_types
-    unless owner_signed_in? && current_owner == @company.owner
-      @event_types = @event_types.active
-    end
-
-    if @company.reviews.present?
-      @reviews = @company.reviews.last(3)
-      @average_score = @company.reviews.average(:score).to_f.round(2)
-    else
-      @reviews = []
-      @average_score = 0
-    end
+    set_event_types
+    set_reviews
   end
 
   def new
@@ -73,6 +62,11 @@ class CompaniesController < ApplicationController
     redirect_to @company
   end
 
+  def company_reviews
+    @reviews = @company.reviews.presence || []
+    @average_score = @reviews.any? ? @company.reviews.pluck(:score).sum.to_f / @company.reviews.count : 0
+  end
+
   private
 
   def company_params
@@ -83,6 +77,18 @@ class CompaniesController < ApplicationController
 
   def set_company
     @company = Company.find(params[:id])
+  end
+
+  def set_event_types
+    @event_types = @company.event_types
+    unless owner_signed_in? && current_owner == @company.owner
+      @event_types = @event_types.active
+    end
+  end
+
+  def set_reviews
+    @reviews = @company.reviews.last(3)
+    @average_score = @company.reviews.pluck(:score).sum.to_f / @company.reviews.count if @reviews.present?
   end
 
   def check_owner

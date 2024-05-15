@@ -14,12 +14,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    if @order.review.present?
-      flash[:alert] = t('.already_reviewed')
-      redirect_to my_orders_path
-      return
-    end
-
     @review = @order.build_review(review_params)
     @review.company = @order.company
     if @review.save
