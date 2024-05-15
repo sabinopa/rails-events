@@ -67,15 +67,23 @@
     <% end %>
     <%= form.file_field :photos, multiple: true, class: "form-control" %>
   </div>
+
+  <div>
+    <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
+  </div>
   <br>
-  <%= form.submit t('helpers.submit.submit'), class: "btn btn-primary" %>
 <% end %>
 <br>
 <% if @event_type.photos.attached? %>
   <h2 class="text-primary fw-bolder mb-0"><%= t('views.edit.event_photos') %></h2>
   <% @event_type.photos.each do |photo| %>
-    <%= image_tag(photo, class: 'event-image') %>
-    <%= button_to t('helpers.submit.delete'), remove_photo_event_type_path(id: @event_type.id, photo_id: photo.id), method: :delete %>
+    <div class="inline-photo-item">
+      <%= image_tag(photo, class: 'event-form-image') %>
+      <%= button_to t('helpers.submit.delete'),
+                    remove_photo_event_type_path(id: @event_type.id, photo_id: photo.id),
+                    method: :delete,
+                    class: "btn btn-secondary" %>
+    </div>
   <% end %>
 <% end %>
 

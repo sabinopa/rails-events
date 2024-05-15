@@ -22,6 +22,9 @@
             <p class="date-title">
               <strong><%= order.event_type.name %></strong>
             </p>
+            <% if order.status == 'order_confirmed' && order.date < Date.today %>
+              <p class="small text-muted"><%= t('views.show.done') %></p>
+            <% end %>
             <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3' %>
             <% if order.status == 'order_confirmed' && order.date < Date.today && order.review.nil? %>
               <%= link_to t('views.new.review'), new_order_review_path(order_id: order.id), class: 'btn btn-outline-green mt-3' %>

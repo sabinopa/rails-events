@@ -76,8 +76,8 @@ casamento = EventType.create!(company_id: celebracao_alegre.id, name: 'Casamento
                             min_attendees: 50, max_attendees: 300, duration: 480,
                             menu_description: 'Uma seleção gourmet que inclui entradas frias e quentes, pratos principais sofisticados com opções vegetarianas, veganas e sem glúten, além de uma estação de sobremesas com doces finos e um bolo de casamento personalizado.',
                             alcohol_available: true, decoration_available: true, parking_service_available: true, location_type: 1, status: :active)
-                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_2.jpg')), filename: 'casamento_2.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_1.jpg')), filename: 'casamento_1.jpg')
+                            casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_2.jpg')), filename: 'casamento_2.jpg')
                             casamento.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'casamento_3.jpg')), filename: 'casamento_3.jpg')
 
 corporativo = EventType.create!(company_id: celebracao_alegre.id, name: 'Gala Corporativa Elegante',
@@ -312,6 +312,10 @@ order_joao4 = Order.create!(client_id: joao.id, company_id: sabores_mundo.id, ev
                             date: 120.days.from_now, attendees_number: 100, details: 'Jantar temático com pratos de várias culturas.',
                             local: 'Rua da Paz, 1313', status: 0, payment_method_id: credito.id, day_type: :holiday)
 
+order_joao5 = Order.create!(client_id: joao.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
+                            date: 45.days.from_now, attendees_number: 40, details: 'Jantar privado com ênfase em pratos veganos.',
+                            local: 'Salão Verde - Rua da Harmonia, 987', status: 3, payment_method_id: pix.id, day_type: :week_day)
+
 # Pedidos de Maria
 order_maria1 = Order.create!(client_id: maria.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                              date: 20.days.from_now, attendees_number: 50, details: 'Jantar formal com música instrumental.',
@@ -338,6 +342,16 @@ order_maria3 = Order.create!(client_id: maria.id, company_id: sabores_mundo.id, 
 order_maria4 = Order.create!(client_id: maria.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 130.days.from_now, attendees_number: 250, details: 'Evento de gala para homenagear parceiros.',
                              local: 'Centro de Eventos - Rua da Cerimônia, 909', status: 0, payment_method_id: debito.id, day_type: :holiday)
+
+order_maria5 = Order.new(client_id: maria.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
+                            date: 180.days.ago, attendees_number: 150, details: 'Casamento ao ar livre com estilo boho-chic.',
+                            local: 'Fazenda Sol Nascente - Estrada do Campo, 456', status: 2, payment_method_id: dinheiro.id, day_type: :weekend,
+                            code: 'MNBVLKJH')
+                            order_maria5.save(validate: false)
+                            OrderApproval.create!(order_id: order_maria5.id, owner_id: celebracao_alegre.owner_id,
+                            validity_date: 15.days.ago, extra_charge: 1000.0, discount: 550.0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order_maria5.default_price + 1000.0 - 550.0)
 
 
 # Pedidos de Carlos
@@ -367,6 +381,10 @@ order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id
                               date: 90.days.from_now, attendees_number: 60, details: 'Jantar gourmet com degustação especial.',
                               local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0, payment_method_id: credito.id, day_type: :holiday)
 
+order_carlos5 = Order.create!(client_id: carlos.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
+                            date: 30.days.from_now, attendees_number: 300, details: 'Festival culinário com food trucks internacionais.',
+                            local: 'Parque das Nações - Av. Internacional, 123', status: 3, payment_method_id: credito.id, day_type: :holiday)
+
 # Pedidos de Ana
 order_ana1 = Order.new(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
                            date: 15.days.ago, attendees_number: 25, details: 'Evento familiar com menu vegetariano.',
@@ -394,6 +412,24 @@ order_ana4 = Order.create!(client_id: ana.id, company_id: gastronomia_estelar.id
                            date: 75.days.from_now, attendees_number: 35, details: 'Noite de degustação orgânica ao ar livre.',
                            local: 'Restaurante Ecológico - Alameda Verde, 1111',status: 0, payment_method_id: credito.id, day_type: :holiday)
 
+order_ana5 = Order.create!(client_id: ana.id, company_id: banquete_real.id, event_type_id: debutante_luxo.id,
+                            date: 210.days.from_now, attendees_number: 200, details: 'Baile de debutante com tema princesa moderna.',
+                            local: 'Castelo Encantado - Rua da Fantasia, 789', status: 1, payment_method_id: debito.id, day_type: :weekend)
+                            OrderApproval.create!(order_id: order_ana5.id, owner_id: banquete_real.owner_id,
+                            validity_date: 10.days.from_now, extra_charge: 0, discount: 0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order_ana5.default_price + 0 - 0)
+
+order_ana6 = Order.new(client_id: ana.id,  company_id: celebracao_alegre.id,  event_type_id: corporativo.id,
+                            date: 100.days.ago, attendees_number: 60, details: 'Festa de final de ano da empresa Código de Campos',
+                            local: 'Parque da Cidade - Avenida das Árvores, 100', status: 0, payment_method_id: pix.id, day_type: :weekend,
+                            code: 'LOKIJUHY')
+                            order_ana6.save(validate: false)
+                            OrderApproval.create!(order_id: order_ana6.id, owner_id: celebracao_alegre.owner_id,
+                            validity_date: 120.days.ago, extra_charge: 95.0, discount: 115.0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order_ana6.default_price + 95.0 - 115.0)
+
 # Pedidos de Lucas
 order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
                              date: 50.days.from_now, attendees_number: 200, details: 'Festival gastronômico com várias cozinhas.',
@@ -401,7 +437,7 @@ order_lucas1 = Order.create!(client_id: lucas.id, company_id: sabores_mundo.id, 
 
 order_lucas2 = Order.new(client_id: lucas.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
                              date: 20.days.ago, attendees_number: 70, details: 'Jantar gourmet com música ao vivo.',
-                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606',status: 2, payment_method_id: credito.id, day_type: :weekend,
+                             local: 'Restaurante Luxuoso - Avenida da Elegância, 606', status: 2, payment_method_id: credito.id, day_type: :weekend,
                              code: 'A1B2C3D4')
                              order_lucas2.save(validate: false)
                              OrderApproval.create!(order_id: order_lucas2.id, owner_id: festim_sonhos.owner_id,
@@ -411,15 +447,30 @@ order_lucas2 = Order.new(client_id: lucas.id, company_id: festim_sonhos.id, even
 
 order_lucas3 = Order.create!(client_id: lucas.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
                              date: 110.days.from_now, attendees_number: 500, details: 'Evento de gala para premiação anual.',
-                             local: 'Teatro Real - Rua dos Campeões, 707', status: 1, payment_method_id: credito.id, day_type: :week_day)
+                             local: 'Teatro Real - Rua dos Campeões, 707', status: 1, payment_method_id: credito.id, day_type: :week_day,
+                             code: 'FGHJERTY')
                              OrderApproval.create!(order_id: order_lucas3.id, owner_id: banquete_real.owner_id,
                              validity_date: 12.days.from_now, extra_charge: 0, discount: 100.0,
                              charge_description: 'Taxas adicionais por serviços especiais',
                              final_price: order_lucas3.default_price + 0 - 100.0)
 
-order_lucas4 = Order.create!(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: gala_premiacao.id,
-                             date: 150.days.from_now, attendees_number: 230, details: 'Evento corporativo com apresentações.',
-                             local: 'Centro de Convenções - Rua da Negócios, 1212',status: 0, payment_method_id: pix.id, day_type: :holiday)
+order_lucas4 = Order.new(client_id: lucas.id, company_id: celebracao_alegre.id, event_type_id: corporativo.id,
+                             date: 150.days.ago, attendees_number: 230, details: 'Evento corporativo com apresentações.',
+                             local: 'Centro de Convenções - Rua da Negócios, 1212', status: 2, payment_method_id: pix.id, day_type: :holiday,
+                             code: 'LO32KIJ9')
+                             order_lucas4.save(validate: false)
+                             OrderApproval.create!(order_id: order_lucas4.id, owner_id: celebracao_alegre.owner_id,
+                             validity_date: 100.days.ago, extra_charge: 200.0, discount: 0,
+                             charge_description: 'Taxas adicionais por serviços especiais',
+                             final_price: order_lucas4.default_price + 0 - 0)
+
+order_lucas5 = Order.create!(client_id: lucas.id, company_id: gastronomia_estelar.id, event_type_id: piquenique.id,
+                           date: 45.days.from_now, attendees_number: 30, details: 'Piquenique sustentável ao ar livre.',
+                           local: 'Parque Natural - Rua do Sol, 505', status: 2, payment_method_id: credito.id, day_type: :week_day)
+                            OrderApproval.create!(order_id: order_ana3.id, owner_id: gastronomia_estelar.owner_id,
+                            validity_date: 6.days.from_now, extra_charge: 0, discount: 0,
+                            charge_description: 'Taxas adicionais por serviços especiais',
+                            final_price: order_lucas5.default_price + 0 - 0)
 
 p "Created #{Order.count} orders"
 
@@ -507,16 +558,24 @@ message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.
 
 p "Created #{Message.count} messages"
 
+#Avaliações
+
 review_maria2 = Review.create!(order: order_maria2, company_id: gastronomia_estelar.id, score: 5, text: "A experiência foi maravilhosa! Os sabores orgânicos foram destacados de maneira elegante e deliciosa.")
                 review_maria2.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_3.jpg')), filename: 'noite_organica_3.jpg')
+
+review_maria5 = Review.create!(order: order_maria5, company_id: celebracao_alegre.id, score: 4, text: "Inesquecível! Recomendo!")
 
 review_carlos3 = Review.create!(order: order_carlos3, company_id: celebracao_alegre.id, score: 5, text: "Um dia verdadeiramente mágico! O serviço foi impecável e cada detalhe estava perfeito. Todos os convidados ficaram encantados.")
 
 review_ana1 = Review.create!(order: order_ana1, company_id: gastronomia_estelar.id, score: 4, text: "A experiência foi muito agradável. A comida estava deliciosa e perfeitamente preparada. Ótima escolha para quem aprecia uma refeição saudável e saborosa.")
-                review_ana1.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')
+              review_ana1.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')
+
+review_ana6 = Review.create!(order: order_ana6, company_id: celebracao_alegre.id, score: 3, text: "Infelizmente o evento atrasou uma horas por falta de copos, tirando isso foi ótimo.")
 
 review_lucas2 = Review.create!(order: order_lucas2, company_id: festim_sonhos.id, score: 5, text: "A noite foi excepcional! A combinação da excelente gastronomia com a música ao vivo criou uma atmosfera inesquecível. Tudo estava perfeito!")
                 review_lucas2.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'jantar_gourmet_3.jpg')), filename: 'jantar_gourmet_3.jpg')
+
+review_lucas4 = Review.create!(order: order_lucas4, company_id: celebracao_alegre.id, score: 5, text: "Foi um evento realizado para a minha empresa e todos adoraram. Está aprovado!")
 
 p "Created #{Review.count} reviews"
 

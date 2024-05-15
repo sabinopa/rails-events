@@ -96,6 +96,7 @@ pt-BR:
       confirm: Confirmar Pedido
       cancel: Cancelar Pedido
       validity_expired: O prazo para confirmação deste pedido expirou e ele foi automaticamente cancelado.
+      done: Este evento já foi realizado!
     my_orders:
       my_orders: Meus Pedidos
       no_orders: Você ainda não tem pedidos.

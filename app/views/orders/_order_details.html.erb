@@ -1,6 +1,7 @@
 <div class="col-lg-6">
   <h6 class="order-title fw-bolder mb-0"><%= @order.code %></h6>
   <h6 class="order-title fw-bolder mb-0"><%= @event_type.name %></h6>
+
   <% if @order_approval %>
     <div class="small text-muted">
       <%= t('views.show.validity', validity: @order_approval.validity_date.strftime("%d/%m/%Y")) %>
@@ -14,43 +15,48 @@
       </div>
     <% end %>
   <% end %>
-    <% badge_class = case @order.status
-                    when 'waiting_review' then 'bg-warning'
-                    when 'negotiating' then 'bg-info'
-                    when 'order_confirmed' then 'bg-success'
-                    when 'order_cancelled' then 'bg-secondary'
-                    end %>
 
+  <% badge_class = case @order.status
+                   when 'waiting_review' then 'bg-warning'
+                   when 'negotiating' then 'bg-info'
+                   when 'order_confirmed' then 'bg-success'
+                   when 'order_cancelled' then 'bg-secondary'
+                   end %>
   <div class="badge <%= badge_class %>">
     <%= I18n.t("activerecord.attributes.order.status.#{@order.status}") %>
   </div>
 
+  <% if @order.status == 'order_confirmed' && @order.date < Date.today %>
+    <p class="small text-muted"><%= t('views.show.done') %></p>
+  <% end %>
+
   <div class="card-body">
-  <div><%= @order.details %></div>
-  <h6 class="date-title fw-bolder mb-0"><%= t('views.show.choosen_date') %>:</h6>
-  <div><%= @order.date.strftime('%d/%m/%Y') %> - <%= t("views.new.day_types.#{@order.day_type}") %></div>
-  <h6 class="date-title fw-bolder mb-0"><%= t('views.show.attendees') %>:</h6>
-  <div><%= @order.attendees_number %></div>
-  <h6 class="date-title fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
-  <div><%= @order.local %></div>
-  <h6 class="date-title fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
+    <div><%= @order.details %></div>
+    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.choosen_date') %>:</h6>
+    <div><%= @order.date.strftime('%d/%m/%Y') %> - <%= t("views.new.day_types.#{@order.day_type}") %></div>
+    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.attendees') %>:</h6>
+    <div><%= @order.attendees_number %></div>
+    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.local') %>:</h6>
+    <div><%= @order.local %></div>
+    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.final_price') %>:</h6>
 
-  <% if @order.status == 'waiting_review' %>
-    <div><%= number_to_currency(@order.default_price) %></div>
-  <% else %>
-    <div><%= number_to_currency(@order.final_price) %></div>
-  <% end %>
+    <% if @order.status == 'waiting_review' %>
+      <div><%= number_to_currency(@order.default_price) %></div>
+    <% else %>
+      <div><%= number_to_currency(@order.final_price) %></div>
+    <% end %>
 
-  <% if @order_approval.present? && @order_approval.charge_description.present? %>
-    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.charge_description') %>:</h6>
-    <div><%= @order_approval.charge_description %></div>
-  <% end %>
+    <% if @order_approval.present? && @order_approval.charge_description.present? %>
+      <h6 class="date-title fw-bolder mb-0"><%= t('views.show.charge_description') %>:</h6>
+      <div><%= @order_approval.charge_description %></div>
+    <% end %>
 
-  <% if @order.payment_method %>
-    <h6 class="date-title fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
-    <div><%= @order.payment_method.method %></div>
-  <% else %>
-    <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
-  <% end %>
+    <% if @order.payment_method %>
+      <h6 class="date-title fw-bolder mb-0"><%= t('views.show.payment_method') %>:</h6>
+      <div><%= @order.payment_method.method %></div>
+    <% else %>
+      <div class="text-muted"><%= t('views.show.not_yet_selected') %></div>
+    <% end %>
+  </div>
 </div>
 

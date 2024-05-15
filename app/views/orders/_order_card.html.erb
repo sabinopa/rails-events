@@ -13,6 +13,9 @@
       <h5 class="date-title"><strong><%= order.date.strftime('%d/%m/%Y') %></strong></h5>
       <p class="date-title"><strong><%= order.event_type.name %></strong></p>
       <p class="date-title"><strong><%= order.client.name %></strong></p>
+      <% if order.status == 'order_confirmed' && order.date < Date.today %>
+        <p class="small text-muted"><%= t('views.show.done') %></p>
+       <% end %>
       <%= link_to order.code, order_path(order), class: 'btn btn-outline-green mt-3 mx-auto d-block' %>
     </div>
   </div>
