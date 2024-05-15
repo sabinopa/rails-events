@@ -110,7 +110,7 @@ Se você encontrar algum erro ao executar o rails db:seed, siga estes passos par
 rails console
 ```
 
-- Dentro do console, simplesmente digite exit para sair.
+- Dentro do console, simplesmente digite `exit` para sair.
 
 - Tente executar o rails db:seed novamente
 ```
