@@ -112,7 +112,7 @@ rails server
 
 ### Como executar os testes
 
-Executar os testes de forma eficiente requer um ambiente estável. Se o servidor Rails estiver rodando, será necessário pará-lo para evitar interferências durante a execução dos testes. Siga os passos detalhados abaixo:
+Se o servidor Rails estiver rodando, será necessário pará-lo para evitar interferências durante a execução dos testes. Siga os passos detalhados abaixo:
 
 - Interrompa o servidor Rails:
 
@@ -143,8 +143,6 @@ Após a execução dos testes, você pode verificar a cobertura de testes do pro
 open coverage/index.html
 ```
 Este comando abrirá o relatório de cobertura no seu navegador padrão, permitindo visualizar quais linhas de código foram cobertas pelos testes.
-
-Essas instruções garantem que você pode executar os testes sem interrupções e verificar a integridade e qualidade do código de maneira eficiente. Após concluir os testes, você pode reiniciar o servidor Rails com o comando rails server, se necessário.
 
 ### Navegação
 
