@@ -1,3 +1,5 @@
+Review.destroy_all
+Message.destroy_all
 Order.destroy_all
 EventPricing.destroy_all
 EventType.destroy_all
@@ -28,7 +30,6 @@ sleep(4)
 # Clientes
 joao = Client.create!(name: 'João', lastname: 'Silva', email: 'joao@email.com', document_number: '926.020.550-69', password: 'senha123')
 maria = Client.create!(name: 'Maria', lastname: 'Fernandes', email: 'maria@email.com', document_number: '607.560.260-75', password: 'senha321')
-carlos = Client.create!(name: 'Carlos', lastname: 'Machado', email: 'carlos@email.com', document_number: '954.511.300-60', password: 'senha456')
 ana = Client.create!(name: 'Ana', lastname: 'Pereira', email: 'ana@email.com', document_number: '496.830.670-93', password: 'senha654')
 lucas = Client.create!(name: 'Lucas', lastname: 'Costa', email: 'lucas@email.com', document_number: '194.917.200-74', password: 'senha234')
 
@@ -176,10 +177,6 @@ weekend_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 
 weekday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 800.0, base_attendees: 50,
                                       additional_attendee_price: 75.0,extra_hour_price: 80.0, day_options: :weekday)
 
-# Pricing Premium para Casamentos em Feriados
-holiday_pricing = EventPricing.create!(event_type_id: casamento.id, base_price: 1500.0, base_attendees: 50,
-                                      additional_attendee_price: 150.0, extra_hour_price: 120.0, day_options: :holiday)
-
 # Pricing para Galas Corporativas durante a Semana
 weekday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, base_price: 2000.0, base_attendees: 100,
                                                 additional_attendee_price: 80.0,extra_hour_price: 150.0, day_options: :weekday)
@@ -191,10 +188,6 @@ weekend_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id, 
 # Pricing Premium para Galas Corporativas em Feriados
 holiday_corporate_pricing = EventPricing.create!(event_type_id: corporativo.id,base_price: 3000.0, base_attendees: 100,
                                                 additional_attendee_price: 120.0, extra_hour_price: 250.0,day_options: :holiday)
-
-# Pricing para Jantares Gourmet durante a Semana
-weekday_gourmet_pricing = EventPricing.create!(event_type_id: jantar_gourmet.id, base_price: 1800.0, base_attendees: 20,
-                                              additional_attendee_price: 90.0, extra_hour_price: 100.0, day_options: :weekday)
 
 # Pricing para Jantares Gourmet no Fim de Semana
 weekend_gourmet_pricing = EventPricing.create!(event_type_id: jantar_gourmet.id, base_price: 2200.0, base_attendees: 20,
@@ -212,10 +205,6 @@ weekday_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_n
 weekend_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_network.id, base_price: 1800.0, base_attendees: 50,
                                                         additional_attendee_price: 40.0,extra_hour_price: 90.0, day_options: :weekend)
 
-# Pricing Premium para Brunch Empresarial em Feriados
-holiday_brunch_networking_pricing = EventPricing.create!(event_type_id: brunch_network.id, base_price: 2000.0, base_attendees: 50,
-                                                        additional_attendee_price: 50.0, extra_hour_price: 100.0, day_options: :holiday)
-
 # Pricing para Noite de Degustação Orgânica durante a Semana
 weekday_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_organica.id, base_price: 1600.0, base_attendees: 20,
                                                       additional_attendee_price: 80.0, extra_hour_price: 100.0, day_options: :weekday)
@@ -227,10 +216,6 @@ weekend_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_orga
 # Pricing Premium para Noite de Degustação Orgânica em Feriados
 holiday_organic_tasting_pricing = EventPricing.create!(event_type_id: noite_organica.id,base_price: 2400.0,base_attendees: 20,
                                                       additional_attendee_price: 120.0, extra_hour_price: 150.0,day_options: :holiday)
-
-# Pricing para Piquenique Gourmet durante a Semana
-weekday_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base_price: 1200.0, base_attendees: 10,
-                                              additional_attendee_price: 50.0,extra_hour_price: 50.0, day_options: :weekday)
 
 # Pricing para Piquenique Gourmet no Fim de Semana
 weekend_picnic_pricing = EventPricing.create!(event_type_id: piquenique.id, base_price: 1500.0, base_attendees: 10,
@@ -260,10 +245,6 @@ weekday_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.
 weekend_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.id, base_price: 10000.0, base_attendees: 150,
                                                   additional_attendee_price: 150.0,extra_hour_price: 600.0, day_options: :weekend)
 
-# Pricing Premium para Gala de Premiação em Feriados
-holiday_award_gala_pricing = EventPricing.create!(event_type_id: gala_premiacao.id, base_price: 12000.0, base_attendees: 150,
-                                                  additional_attendee_price: 200.0,extra_hour_price: 700.0, day_options: :holiday)
-
 # Pricing para Noite Gastronômica durante a Semana
 weekday_global_dining_pricing = EventPricing.create!(event_type_id: noite_gastronomica.id, base_price: 3000.0, base_attendees: 50,
                                                     additional_attendee_price: 80.0,extra_hour_price: 200.0, day_options: :weekday)
@@ -284,9 +265,6 @@ weekday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_t
 weekend_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3000.0, base_attendees: 100,
                                                           additional_attendee_price: 25.0,extra_hour_price: 200.0, day_options: :weekend)
 
-# Pricing Premium para Festival de Food Trucks em Feriados
-holiday_food_truck_festival_pricing = EventPricing.create!(event_type_id: food_truck.id, base_price: 3500.0, base_attendees: 100,
-                                                          additional_attendee_price: 30.0,extra_hour_price: 250.0, day_options: :holiday)
 p "Created #{EventPricing.count} event pricings"
 sleep(4)
 
@@ -358,38 +336,6 @@ order_maria5 = Order.new(client_id: maria.id, company_id: celebracao_alegre.id, 
                             validity_date: 15.days.ago, extra_charge: 1000.0, discount: 550.0,
                             charge_description: 'Taxas adicionais por serviços especiais',
                             final_price: order_maria5.default_price + 1000.0 - 550.0)
-
-
-# Pedidos de Carlos
-order_carlos1 = Order.create!(client_id: carlos.id, company_id: banquete_real.id, event_type_id: gala_premiacao.id,
-                              date: 60.days.from_now, attendees_number: 300, details: 'Evento de premiação para funcionários.',
-                              local: 'Teatro Magnífico - Rua do Esplendor, 789', status: 2, payment_method_id: debito.id, day_type: :weekend)
-                              OrderApproval.create!(order_id: order_carlos1.id, owner_id: banquete_real.owner_id,
-                              validity_date: 3.days.from_now, extra_charge: 0, discount: 0,
-                              charge_description: 'Taxas adicionais por serviços especiais',
-                              final_price: order_carlos1.default_price + 0 - 0)
-
-order_carlos2 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: brunch_network.id,
-                              date: 35.days.from_now, attendees_number: 60, details: 'Brunch empresarial para networking.',
-                              local: 'Salão Empresarial - Avenida dos Negócios, 202',status: 0, payment_method_id: credito.id, day_type: :weekend)
-
-order_carlos3 = Order.new(client_id: carlos.id, company_id: celebracao_alegre.id, event_type_id: casamento.id,
-                              date: 30.days.ago, attendees_number: 60, details: 'Casamento dos sonhos com buffet personalizado.',
-                              local: 'Salão de festas Alegria - Rua da Felicidade, 303',status: 2, payment_method_id: debito.id, day_type: :week_day,
-                              code: 'POIU0987')
-                              order_carlos3.save(validate: false)
-                              OrderApproval.create!(order_id: order_carlos3.id, owner_id: celebracao_alegre.owner_id,
-                              validity_date: 35.days.ago, extra_charge: 90.0, discount: 200.0,
-                              charge_description: 'Taxas adicionais por serviços especiais',
-                              final_price: order_carlos3.default_price + 90.0 - 200.0)
-
-order_carlos4 = Order.create!(client_id: carlos.id, company_id: festim_sonhos.id, event_type_id: jantar_gourmet.id,
-                              date: 90.days.from_now, attendees_number: 60, details: 'Jantar gourmet com degustação especial.',
-                              local: 'Restaurante de Luxo - Avenida Gourmet, 1010', status: 0, payment_method_id: credito.id, day_type: :holiday)
-
-order_carlos5 = Order.create!(client_id: carlos.id, company_id: sabores_mundo.id, event_type_id: food_truck.id,
-                            date: 30.days.from_now, attendees_number: 300, details: 'Festival culinário com food trucks internacionais.',
-                            local: 'Parque das Nações - Av. Internacional, 123', status: 3, payment_method_id: credito.id, day_type: :holiday)
 
 # Pedidos de Ana
 order_ana1 = Order.new(client_id: ana.id, company_id: gastronomia_estelar.id, event_type_id: noite_organica.id,
@@ -487,10 +433,6 @@ sleep(4)
 message1 = Message.create!(body: 'Olá João, qual será a faixa etária das crianças no evento?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao1.id)
 message2 = Message.create!(body: 'Olá, a maioria das crianças terá entre 4 e 10 anos.', sender_id: joao.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_joao1.id)
 
-# Pedido de Joao - order_joao2
-message3 = Message.create!(body: 'João, você precisará de algum equipamento audiovisual para a apresentação de projetos?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao2.id)
-message4 = Message.create!(body: 'Sim, por favor. Precisamos de um projetor e microfones.', sender_id: joao.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_joao2.id)
-
 # Pedido de Joao - order_joao3
 message5 = Message.create!(body: 'João, você gostaria de uma degustação do menu de casamento?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: joao.id, receiver_type: 'Client', order_id: order_joao3.id)
 message6 = Message.create!(body: 'Sim, seria ótimo. Podemos agendar para a próxima semana?', sender_id: joao.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_joao3.id)
@@ -503,10 +445,6 @@ message8 = Message.create!(body: 'Gostaríamos de pratos mexicanos e italianos.'
 message9 = Message.create!(body: 'Maria, você prefere música instrumental ao vivo ou uma playlist selecionada?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria1.id)
 message10 = Message.create!(body: 'Preferimos música instrumental ao vivo.', sender_id: maria.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_maria1.id)
 
-# Pedido de Maria - order_maria2
-message11 = Message.create!(body: 'Maria, há alguma restrição alimentar entre seus convidados?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria2.id)
-message12 = Message.create!(body: 'Sim, alguns convidados são alérgicos a nozes.', sender_id: maria.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_maria2.id)
-
 # Pedido de Maria - order_maria3
 message13 = Message.create!(body: 'Maria, você gostaria de adicionar um serviço de fotografia ao evento?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria3.id)
 message14 = Message.create!(body: 'Sim, adoraria ter um fotógrafo para capturar os momentos.', sender_id: maria.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_maria3.id)
@@ -514,22 +452,6 @@ message14 = Message.create!(body: 'Sim, adoraria ter um fotógrafo para capturar
 # Pedido de Maria - order_maria4
 message15 = Message.create!(body: 'Maria, podemos oferecer um brinde especial aos homenageados?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: maria.id, receiver_type: 'Client', order_id: order_maria4.id)
 message16 = Message.create!(body: 'Sim, isso seria perfeito.', sender_id: maria.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_maria4.id)
-
-# Pedido de Carlos - order_carlos1
-message17 = Message.create!(body: 'Carlos, precisamos de mais alguma infraestrutura para o evento de premiação?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos1.id)
-message18 = Message.create!(body: 'Sim, precisamos de um palco com iluminação especial.', sender_id: carlos.id, sender_type: 'Client', receiver_id: banquete_real.owner_id, receiver_type: 'Owner', order_id: order_carlos1.id)
-
-# Pedido de Carlos - order_carlos2
-message19 = Message.create!(body: 'Carlos, você gostaria de incluir uma sessão de networking?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos2.id)
-message20 = Message.create!(body: 'Sim, isso seria ótimo para os participantes.', sender_id: carlos.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_carlos2.id)
-
-# Pedido de Carlos - order_carlos3
-message21 = Message.create!(body: 'Carlos, podemos decorar o salão com flores naturais?', sender_id: celebracao_alegre.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos3.id)
-message22 = Message.create!(body: 'Sim, flores naturais seriam perfeitas.', sender_id: carlos.id, sender_type: 'Client', receiver_id: celebracao_alegre.owner_id, receiver_type: 'Owner', order_id: order_carlos3.id)
-
-# Pedido de Carlos - order_carlos4
-message23 = Message.create!(body: 'Carlos, há alguma preferência de bebidas para o jantar gourmet?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: carlos.id, receiver_type: 'Client', order_id: order_carlos4.id)
-message24 = Message.create!(body: 'Gostaríamos de uma seleção de vinhos e coquetéis.', sender_id: carlos.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_carlos4.id)
 
 # Pedido de Ana - order_ana1
 message25 = Message.create!(body: 'Ana, você tem alguma preferência de decoração para o evento?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana1.id)
@@ -539,10 +461,6 @@ message26 = Message.create!(body: 'Gostaríamos de uma decoração temática ver
 message27 = Message.create!(body: 'Ana, você gostaria de incluir música ao vivo no evento de food truck?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana2.id)
 message28 = Message.create!(body: 'Sim, música ao vivo seria ótimo.', sender_id: ana.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_ana2.id)
 
-# Pedido de Ana - order_ana3
-message29 = Message.create!(body: 'Ana, você prefere um brunch ou almoço para o piquenique?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana3.id)
-message30 = Message.create!(body: 'Prefiro um brunch ao ar livre.', sender_id: ana.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_ana3.id)
-
 # Pedido de Ana - order_ana4
 message31 = Message.create!(body: 'Ana, podemos oferecer degustações de bebidas orgânicas?', sender_id: gastronomia_estelar.owner_id, sender_type: 'Owner', receiver_id: ana.id, receiver_type: 'Client', order_id: order_ana4.id)
 message32 = Message.create!(body: 'Sim, adoraria incluir degustações de bebidas orgânicas.', sender_id: ana.id, sender_type: 'Client', receiver_id: gastronomia_estelar.owner_id, receiver_type: 'Owner', order_id: order_ana4.id)
@@ -550,10 +468,6 @@ message32 = Message.create!(body: 'Sim, adoraria incluir degustações de bebida
 # Pedido de Lucas - order_lucas1
 message33 = Message.create!(body: 'Lucas, qual é o horário de início do evento?', sender_id: sabores_mundo.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas1.id)
 message34 = Message.create!(body: 'O evento começará às 18h.', sender_id: lucas.id, sender_type: 'Client', receiver_id: sabores_mundo.owner_id, receiver_type: 'Owner', order_id: order_lucas1.id)
-
-# Pedido de Lucas - order_lucas2
-message35 = Message.create!(body: 'Lucas, há estacionamento disponível no local?', sender_id: festim_sonhos.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas2.id)
-message36 = Message.create!(body: 'Sim, o local possui um amplo estacionamento.', sender_id: lucas.id, sender_type: 'Client', receiver_id: festim_sonhos.owner_id, receiver_type: 'Owner', order_id: order_lucas2.id)
 
 # Pedido de Lucas - order_lucas3
 message37 = Message.create!(body: 'Lucas, qual é o menu para o evento de gala?', sender_id: banquete_real.owner_id, sender_type: 'Owner', receiver_id: lucas.id, receiver_type: 'Client', order_id: order_lucas3.id)
@@ -572,8 +486,6 @@ review_maria2 = Review.create!(order: order_maria2, company_id: gastronomia_este
                 review_maria2.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_3.jpg')), filename: 'noite_organica_3.jpg')
 
 review_maria5 = Review.create!(order: order_maria5, company_id: celebracao_alegre.id, score: 4, text: "Inesquecível! Recomendo!")
-
-review_carlos3 = Review.create!(order: order_carlos3, company_id: celebracao_alegre.id, score: 5, text: "Um dia verdadeiramente mágico! O serviço foi impecável e cada detalhe estava perfeito. Todos os convidados ficaram encantados.")
 
 review_ana1 = Review.create!(order: order_ana1, company_id: gastronomia_estelar.id, score: 4, text: "A experiência foi muito agradável. A comida estava deliciosa e perfeitamente preparada. Ótima escolha para quem aprecia uma refeição saudável e saborosa.")
               review_ana1.photos.attach(io: File.open(Rails.root.join('spec', 'files', 'noite_organica_2.jpg')), filename: 'noite_organica_2.jpg')

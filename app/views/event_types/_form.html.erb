@@ -32,7 +32,7 @@
   </div>
   <br>
   <div class="col-md-4">
-    <%= form.label :duration, class: "form-label" %>
+    <%= form.label :duration, class: "form-label" %> (<%= t('views.show.minutes') %>)
     <%= form.number_field :duration, class: "form-control" %>
   </div>
   <br>
@@ -65,7 +65,7 @@
     <% @event_type.photos.each do |photo| %>
       <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
     <% end %>
-    <%= form.file_field :photos, multiple: true, class: "form-control" %>
+    <%= form.file_field :photos, multiple: true, accept:'image/*', class: "form-control" %>
   </div>
 
   <div>
