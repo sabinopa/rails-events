@@ -36,7 +36,7 @@
 
 ### Para Donos de Empresas: 🏢
 - [x]  **Cadastro de Conta:** Os donos de empresas podem criar uma conta informando seu e-mail e senha.
-- [x]  **Cadastro de Empresa:** Após criar uma conta, o dono de empresa deve cadastrar sua empresa com informações detalhadas, incluindo nome fantasia, razão social, CNPJ, telefone para contato, e-mail para contato, endereço completo, descrição e meios de pagamento aceitos.
+- [x]  **Cadastro de Empresa:** Após criar uma conna partta, o dono de empresa deve cadastrar sua empresa com informações detalhadas, incluindo nome fantasia, razão social, CNPJ, telefone para contato, e-mail para contato, endereço completo, descrição e meios de pagamento aceitos.
 - [x]  **Cadastro de Tipos de Eventos:** Os donos de empresas podem cadastrar os tipos de eventos que realizam, incluindo nome, descrição, quantidade mínima e máxima de pessoas, duração padrão do evento, cardápio, disponibilidade de bebidas alcoólicas, decoração e serviço de estacionamento. Também podem indicar se o evento deve ser realizado exclusivamente no endereço da empresa ou em um endereço indicado pelo contratante.
 - [x]  **Definição de Preços por Tipo de Evento:** Para cada tipo de evento, o dono de empresa pode definir os preços-base, incluindo valor mínimo e valor adicional por pessoa. Também pode cadastrar valores de hora extra do evento e diferenciar os preços para dias da semana, fins de semana e feriados.
 - [x]  **Avaliação de Pedidos:** Os dono podem visualizar e avaliar os pedidos recebidos, decidindo se aceitam ou não a execução do evento, podendo aplicar taxas extras ou desconto.
@@ -103,21 +103,22 @@ rails db:migrate
 rails db:seed
 ```
 
-Se você encontrar algum erro ao executar o rails db:seed, siga estes passos para resolver:
-
-- Abra o Rails console para verificar se há problemas específicos com o ambiente ou as dependências:
-```
-rails console
-```
-
-- Dentro do console, simplesmente digite `exit` para sair.
-
-- Tente executar o rails db:seed novamente
-```
-rails db:seed
-```
-
-- Este processo pode ajudar a resolver questões de inicialização ou cache que possam estar interferindo com a população inicial do banco de dados.
+>Se você encontrar algum erro ao executar o `rails db:seed`, siga estes passos para resolver:
+>
+>- Abra o Rails console para verificar se há problemas específicos com o ambiente ou as dependências:
+>```
+>rails console
+>```
+>
+>- Dentro do console, simplesmente digite `exit` para sair.
+>
+>- Tente executar o `rails db:seed` novamente
+>```
+>rails db:seed
+>```
+>
+>- Este processo pode ajudar a resolver questões de inicialização ou cache que possam >estar interferindo com a população inicial do banco de dados.
+>
 
 - Execute a aplicação
 ```
