@@ -103,6 +103,22 @@ rails db:migrate
 rails db:seed
 ```
 
+Se você encontrar algum erro ao executar o rails db:seed, siga estes passos para resolver:
+
+- Abra o Rails console para verificar se há problemas específicos com o ambiente ou as dependências:
+```
+rails console
+```
+
+- Dentro do console, simplesmente digite exit para sair.
+
+- Tente executar o rails db:seed novamente
+```
+rails db:seed
+```
+
+- Este processo pode ajudar a resolver questões de inicialização ou cache que possam estar interferindo com a população inicial do banco de dados.
+
 - Execute a aplicação
 ```
 rails server
