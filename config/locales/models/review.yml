@@ -9,6 +9,7 @@ pt-BR:
         score: 'Nota'
         text: 'Comentário'
         answer: 'Resposta'
+        photos: 'Adicionar fotos'
   errors:
     messages:
       one_review: 'Você já criou uma avaliação para esse pedido.'

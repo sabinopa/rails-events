@@ -21,11 +21,15 @@ class Api::V1::CompaniesController < Api::V1::ApiController
   end
 
   def show
-    @company = Company.active.find_by(id: params[:id])
+    @company = Company.active.find(params[:id])
     if @company
-      render status: 200, json: @company.as_json({ except: [:created_at, :updated_at, :registration_number, :corporate_name] })
+      response_json = @company.as_json(
+        except: [:created_at, :updated_at, :registration_number, :corporate_name],
+        methods: [:average_score]
+      )
+      render json: response_json, status: 200
     else
-      render status: 404, json: { errors: I18n.t('errors.messages.not_found') }
+      render json: { errors: I18n.t('errors.messages.not_found') }, status: 404
     end
   end
 end

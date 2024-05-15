@@ -25,4 +25,8 @@ class Company < ApplicationRecord
            .distinct
            .order(:brand_name)
   end
+
+  def average_score
+    reviews.any? ? reviews.pluck(:score).sum.to_f / reviews.count : 0
+  end
 end

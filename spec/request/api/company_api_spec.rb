@@ -196,7 +196,7 @@ describe 'Company API', type: :request do
       get "/api/v1/companies/#{company.id}"
 
       expect(response).to have_http_status(404)
-      expect(response.body).to include 'não encontrado'
+      expect(response.body).to include 'O id informado não foi encontrado.'
     end
 
     it 'and raise internal error' do
@@ -206,6 +206,49 @@ describe 'Company API', type: :request do
 
       expect(response).to have_http_status(500)
       expect(response.body).to include 'Ocorreu um erro no servidor.'
+    end
+
+    it 'returns company details with average review score' do
+      client = Client.create!(name: 'Juliana', lastname: 'Dias', document_number: CPF.generate, email: 'ju@dias.com', password: 'senhasenha')
+      owner = Owner.create!(name: 'Priscila', lastname: 'Sabino', email: 'priscila@email.com', password: '12345678')
+      company = Company.create!(owner_id: owner.id, brand_name: 'Estrelas Mágicas', corporate_name: 'Estrelas Mágicas Buffet Infantil Ltda',
+                              registration_number: '58.934.722/0001-01',  phone_number: '(11) 2233-4455', email: 'festas@estrelasmagicas.com.br',
+                              address: 'Alameda dos Sonhos, 404', neighborhood: 'Vila Feliz', city: 'São Paulo', state: 'SP', zipcode: '05050-050',
+                              description: 'O Estrelas Mágicas é especializado em trazer alegria e diversão para festas infantis.', status: :active)
+      event_type = EventType.create!(company_id: company.id, name: 'Festa de Contos de Fadas',
+                                      description: 'Uma festa mágica inspirada em contos de fadas! Inclui encenação de histórias, decoração temática e muita diversão para os pequenos.',
+                                      min_attendees: 10, max_attendees: 40, duration: 180,
+                                      menu_description: 'Cardápio encantado com mini-sanduíches, frutas frescas, sucos naturais e bolo de princesa. Opções vegetarianas disponíveis.',
+                                      alcohol_available: false, decoration_available: true, parking_service_available: true, location_type: 0, status: :active)
+      order = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 5.days.from_now,
+                              attendees_number: 25, details: 'Por favor, inclua uma sessão de caça ao tesouro.',
+                              local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+      order2 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 10.days.from_now,
+                              attendees_number: 25, details: 'Por favor, inclua comidas veganas',
+                              local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+      order3 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 15.days.from_now,
+                              attendees_number: 25, details: 'Por favor, inclua comidas goiabas!',
+                              local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+      order4 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 20.days.from_now,
+                              attendees_number: 25, details: 'Será o aniversário do meu filho de 05 anos, teremos muitas crianças.',
+                              local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+      order5 = Order.create!(client_id: client.id, company_id: company.id, event_type_id: event_type.id, date: 22.days.from_now,
+                              attendees_number: 25, details: 'Quais tipos de guardanapo você disponibiliza?',
+                              local: 'Salão de festas Estrelas Mágicas - Alameda dos Sonhos, 404', day_type: :weekend, status: 2)
+
+      travel_to 50.days.from_now do
+        review1 = Review.create!(company_id: company.id, order: order, score: 5, text: 'Os melhores sanduíches, recomendo!')
+        review2 = Review.create!(company_id: company.id, order: order2, score: 4, text: 'Foi lindo!')
+        review3 = Review.create!(company_id: company.id, order: order3, score: 4, text: 'A decoração me impressionou, estava tudo perfeito!')
+        review4 = Review.create!(company_id: company.id, order: order4, score: 3, text: 'As crianças se divertiram, porém faltou refrigerante!')
+        review5 = Review.create!(company_id: company.id, order: order5, score: 3, text: 'Infelizmente a festa atrasou 2 horas.')
+
+        get "/api/v1/companies/#{company.id}"
+
+        expect(response).to have_http_status(200)
+        json_response = JSON.parse(response.body)
+        expect(json_response['average_score']).to eq(3.8)
+      end
     end
   end
 end

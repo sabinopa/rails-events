@@ -9,9 +9,14 @@
           <p><%= t('views.company_reviews.score') %> <%= review.score %></p>
         </div>
         <p class="text-tight-top"><%= review.text %></p>
+        <% review.photos.each do |photo| %>
+          <%= image_tag(photo, class: "your-custom-class") %>
+        <% end %>
         <div class="small text-muted text-tight">
           <sup><%= l(review.created_at, format: :custom) %></sup></div>
       </div>
     </div>
   <% end %>
+  <hr />
+  <%= link_to t('helpers.buttons.back'), company_path(@company), class: "btn btn-secondary" %>
 </div>

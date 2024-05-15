@@ -1,5 +1,5 @@
-<h5><%= t('views.new.experience', brand_name: @order.company.brand_name) %></h5>
-<p><%= t('views.new.score') %></p>
+<h2 class="text-primary fw-bolder mb-5"><%= t('views.new.experience', brand_name: @order.company.brand_name) %></h2>
+<h5 class="text-primary mb-2"><%= t('views.new.score') %></h5>
 
 <% if @review.errors.any? %>
   <div class="alert alert-danger">
@@ -12,17 +12,27 @@
   </div>
 <% end %>
 
-<%= form_with model: [@order, @review], local: true do |form| %>
-    <%= form.hidden_field :company_id, value: @company.id %>
-    <div>
-      <%= form.label :score %>
-      <%= form.select :score, (1..5).to_a %>
-    </div>
-    <div>
-      <%= form.label :text %>
-      <%= form.text_area :text %>
-    </div>
-    <div>
-      <%= form.submit t('helpers.submit.send_review'), class: "btn btn-primary" %>
-    </div>
+<%= form_with model: [@order, @review], local: true, class: "row g-3" do |form| %>
+  <%= form.hidden_field :company_id, value: @company.id %>
+
+  <div class="col-md-2">
+    <%= form.label :score %>:
+    <%= form.select :score, (1..5).to_a %>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label :text %>:<br>
+    <%= form.text_area :text %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :photos, class: "form-label" %>:
+    <%= form.file_field :photos, multiple: true, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit t('helpers.submit.send_review'), class: "btn btn-primary" %>
+  </div>
 <% end %>
+<hr />
+<%= link_to t('helpers.buttons.back'), order_path(@order), class: "btn btn-secondary" %>

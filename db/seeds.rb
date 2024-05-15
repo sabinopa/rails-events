@@ -507,8 +507,6 @@ message40 = Message.create!(body: 'Claro, podemos marcar para a próxima semana.
 
 p "Created #{Message.count} messages"
 
-review_joao3 = Review.create!(order: order_joao3, company_id: banquete_real.id, score: 5, text: 'Experiência inesquecível! A decoração estava esplêndida e o serviço impecável. Recomendo muito!')
-
 review_maria2 = Review.create!(order: order_maria2, company_id: gastronomia_estelar.id, score: 5, text: "A experiência foi maravilhosa! Os sabores orgânicos foram destacados de maneira elegante e deliciosa.")
 
 review_carlos3 = Review.create!(order: order_carlos3, company_id: celebracao_alegre.id, score: 5, text: "Um dia verdadeiramente mágico! O serviço foi impecável e cada detalhe estava perfeito. Todos os convidados ficaram encantados.")
