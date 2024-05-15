@@ -112,9 +112,39 @@ rails server
 
 ### Como executar os testes
 
+Executar os testes de forma eficiente requer um ambiente estável. Se o servidor Rails estiver rodando, será necessário pará-lo para evitar interferências durante a execução dos testes. Siga os passos detalhados abaixo:
+
+- Interrompa o servidor Rails:
+
+Se o servidor estiver em execução, você pode interrompê-lo pressionando `Ctrl + C` no terminal onde o servidor está ativo. Isso irá parar o processo do servidor, liberando o terminal para outras tarefas.
+
+- Instale as dependências:
+
+Certifique-se de que todas as dependências necessárias estão instaladas antes de iniciar os testes. Caso ainda não tenha feito isso, execute o comando:
+```
+bundle install
+```
+
+Este comando irá instalar todas as gems listadas no Gemfile, garantindo que nada falte para a execução dos testes.
+
+- Execute os testes:
+
+Com as dependências instaladas e o servidor interrompido, execute o comando abaixo para iniciar os testes:
 ```
 rspec
 ```
+
+Este comando irá rodar todos os testes definidos nos seus arquivos de teste RSpec.
+
+- Verifique a cobertura de testes:
+
+Após a execução dos testes, você pode verificar a cobertura de testes do projeto. A plataforma Cadê Buffet? mantém uma cobertura de 100%, e o relatório detalhado pode ser visualizado executando:
+```
+open coverage/index.html
+```
+Este comando abrirá o relatório de cobertura no seu navegador padrão, permitindo visualizar quais linhas de código foram cobertas pelos testes.
+
+Essas instruções garantem que você pode executar os testes sem interrupções e verificar a integridade e qualidade do código de maneira eficiente. Após concluir os testes, você pode reiniciar o servidor Rails com o comando rails server, se necessário.
 
 ### Navegação
 
