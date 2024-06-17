@@ -35,27 +35,25 @@ class Order < ApplicationRecord
   end
 
   def final_price(extra_charge = 0, discount = 0)
-    extra_charge = order_approval&.extra_charge || 0
-    discount = order_approval&.discount || 0
+    order_approval&.extra_charge || 0
+    order_approval&.discount || 0
     calculate_final_price(extra_charge, discount)
   end
 
   private
 
   def calculate_default_price
-    event_pricing = select_event_pricing(self.event_type, self.date)
+    event_pricing = select_event_pricing(event_type, date)
     return 0 unless event_pricing
 
     base_price = event_pricing.base_price
-    additional_attendees = [self.attendees_number - event_pricing.base_attendees, 0].max
+    additional_attendees = [attendees_number - event_pricing.base_attendees, 0].max
     additional_cost = additional_attendees * event_pricing.additional_attendee_price
     base_price + additional_cost
   end
 
   def calculate_final_price(extra_charge, discount)
-    default_price = calculate_default_price
-    final_price = default_price + extra_charge.to_f - discount.to_f
-    final_price
+    calculate_default_price + extra_charge.to_f - discount.to_f
   end
 
   def select_event_pricing(event_type, day_type)
@@ -63,14 +61,14 @@ class Order < ApplicationRecord
   end
 
   def date_is_future?
-    if date.present? && date <= Date.today
-      errors.add(:date, :future_date)
-    end
+    errors.add(:date, :future_date) if date.present? && date <= Date.today
   end
 
   def attendees_number_within_limits
-    if attendees_number.present? && (attendees_number < event_type.min_attendees || attendees_number > event_type.max_attendees)
-      errors.add(:attendees_number, :within_limits, min: event_type.min_attendees, max: event_type.max_attendees)
+    if attendees_number.present? && (attendees_number < event_type.min_attendees ||
+                                    attendees_number > event_type.max_attendees)
+      errors.add(:attendees_number, :within_limits,
+                 min: event_type.min_attendees, max: event_type.max_attendees)
     end
   end
 
