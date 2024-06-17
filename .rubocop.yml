@@ -1,0 +1,20 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'db/migrate/**/*'
+    - 'log/**/*'
+    - 'public/assets/**/*'
+    - 'script/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'config/initializers/**/*'
+    - 'config/puma.rb'
+    - 'config/environments/*'
+    - 'config/environment.rb'
+    - 'config/boot.rb'
+
+
