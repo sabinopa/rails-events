@@ -34,10 +34,10 @@ class Order < ApplicationRecord
     calculate_default_price
   end
 
-  def final_price(extra_charge = 0, discount = 0)
-    order_approval&.extra_charge || 0
-    order_approval&.discount || 0
-    calculate_final_price(extra_charge, discount)
+  def final_price(_extra_charge = 0, _discount = 0)
+    final_extra_charge = order_approval&.extra_charge || 0
+    final_discount = order_approval&.discount || 0
+    calculate_final_price(final_extra_charge, final_discount)
   end
 
   private
