@@ -10,26 +10,26 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :companies, shallow: true, only: [:new, :create, :edit, :update, :show] do
+  resources :companies, shallow: true, only: %i[new create edit update show] do
     get 'search', on: :collection
     get 'company_reviews', on: :member
     post 'active', on: :member
     post 'inactive', on: :member
 
-    resources :event_types, only: [:new, :create, :show, :edit, :update] do
+    resources :event_types, only: %i[new create show edit update] do
       post 'active', on: :member
       post 'inactive', on: :member
       member do
         delete 'remove_photo'
       end
-      resources :event_pricings, only: [:new, :create, :show, :edit, :update]
-      resources :orders, only: [:new, :create, :show] do
+      resources :event_pricings, only: %i[new create show edit update]
+      resources :orders, only: %i[new create show] do
         get :approve, on: :member
         post :approve, on: :member
         post :confirm, on: :member
         post :cancel, on: :member
-        resources :reviews, only: [:new, :create]
-        resources :messages, only: [:index, :create]
+        resources :reviews, only: %i[new create]
+        resources :messages, only: %i[index create]
       end
     end
   end
@@ -44,9 +44,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :companies, only: [:show, :index] do
+      resources :companies, only: %i[show index create] do
         get 'search', on: :collection
-        resources :event_types, only: [:index, :show] do
+        resources :event_types, only: %i[index show] do
           get 'availability', on: :member
         end
       end

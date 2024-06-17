@@ -11,10 +11,19 @@ AllCops:
     - 'test/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
+    - 'config.ru'
     - 'config/initializers/**/*'
     - 'config/puma.rb'
     - 'config/environments/*'
     - 'config/environment.rb'
+    - 'config/application.rb'
     - 'config/boot.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
 
 
