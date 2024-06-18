@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   include ApprovalProcess
-  include OrderManagement
+  include OrderCreation
+  include OrderShow
 
   before_action :authenticate_owner!, only: %i[my_company_orders approve]
   before_action :authenticate_client!, only: %i[new create my_orders confirm]
