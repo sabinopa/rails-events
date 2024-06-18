@@ -1,8 +1,8 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
-  before_action :force_company_creation_for_owners, only: [:show, :search, :edit, :update]
-  before_action :set_company, only: [:show, :edit, :update, :active, :inactive, :company_reviews]
-  before_action :check_owner, only: [:edit, :update]
+  before_action :authenticate_owner!, only: %i[new create edit update active inactive]
+  before_action :force_company_creation_for_owners, only: %i[show search edit update]
+  before_action :set_company, only: %i[show edit update active inactive company_reviews]
+  before_action :check_owner, only: %i[edit update]
 
   def show
     unless @company.active? || (owner_signed_in? && current_owner == @company.owner)
@@ -32,8 +32,7 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @company.update(company_params)
@@ -46,7 +45,7 @@ class CompaniesController < ApplicationController
   end
 
   def search
-    @query_params = params["query"]
+    @query_params = params['query']
     @companies = Company.search(@query_params)
   end
 
@@ -70,7 +69,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:owner_id,:brand_name, :corporate_name, :registration_number,
+    params.require(:company).permit(:owner_id, :brand_name, :corporate_name, :registration_number,
                                     :phone_number, :email, :address, :neighborhood, :city,
                                     :state, :zipcode, :description, payment_method_ids: [])
   end
@@ -81,9 +80,7 @@ class CompaniesController < ApplicationController
 
   def set_event_types
     @event_types = @company.event_types
-    unless owner_signed_in? && current_owner == @company.owner
-      @event_types = @event_types.active
-    end
+    @event_types = @event_types.active unless owner_signed_in? && current_owner == @company.owner
   end
 
   def set_reviews
@@ -93,9 +90,9 @@ class CompaniesController < ApplicationController
 
   def check_owner
     @company = Company.find(params[:id])
-    if current_owner != @company.owner
-      flash[:alert] = t('.error')
-      redirect_to root_path
-    end
+    return unless current_owner != @company.owner
+
+    flash[:alert] = t('.error')
+    redirect_to root_path
   end
 end
