@@ -1,14 +1,14 @@
 class EventTypesController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :active, :inactive]
-  before_action :set_event_type, only: [:show, :edit, :update, :show, :remove_photo, :active, :inactive]
-  before_action :set_company, only: [:show, :new, :create, :edit, :update, :remove_photo]
-  before_action :check_owner, only: [:new, :create, :edit, :update, :remove_photo]
+  before_action :authenticate_owner!, only: %i[new create edit update active inactive]
+  before_action :set_event_type, only: %i[show edit update show remove_photo active inactive]
+  before_action :set_company, only: %i[show new create edit update remove_photo]
+  before_action :check_owner, only: %i[new create edit update remove_photo]
 
   def show
-    if !@event_type.active? && !(owner_signed_in? && current_owner == @company.owner)
-      flash[:alert] = t('.error')
-      redirect_to company_path(@company) and return
-    end
+    return if @event_type.active? || (owner_signed_in? && current_owner == @company.owner)
+
+    flash[:alert] = t('.error')
+    redirect_to company_path(@company) and return
   end
 
   def new
@@ -26,8 +26,7 @@ class EventTypesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @event_type.update(event_type_params)
@@ -60,17 +59,16 @@ class EventTypesController < ApplicationController
   private
 
   def set_company
-    if params[:company_id]
-      @company = Company.find(params[:company_id])
-    else
-      @company = @event_type.company
-    end
+    @company = if params[:company_id]
+                 Company.find(params[:company_id])
+               else
+                 @event_type.company
+               end
   end
 
   def set_event_type
     @event_type = EventType.find(params[:id])
   end
-
 
   def event_type_params
     params.require(:event_type).permit(:company_id, :name, :description, :min_attendees,
@@ -81,9 +79,9 @@ class EventTypesController < ApplicationController
   end
 
   def check_owner
-    if current_owner != @company.owner
-      flash[:alert] = t('.error')
-      redirect_to root_path
-    end
+    return unless current_owner != @company.owner
+
+    flash[:alert] = t('.error')
+    redirect_to root_path
   end
 end
