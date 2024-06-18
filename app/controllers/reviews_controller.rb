@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_order
   before_action :set_company
-  before_action :check_client, only: [:new, :create]
+  before_action :check_client, only: %i[new create]
 
   def new
     if @order.review.present?
@@ -40,9 +40,9 @@ class ReviewsController < ApplicationController
   end
 
   def check_client
-    if @order.client != current_client
-      flash[:alert] = t('.error')
-      redirect_to my_orders_path
-    end
+    return if @order.client == current_client
+
+    flash[:alert] = t('.error')
+    redirect_to my_orders_path
   end
 end

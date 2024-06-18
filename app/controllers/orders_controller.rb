@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_owner!, only: [:my_company_orders, :approve]
-  before_action :authenticate_client!, only: [:new, :create, :my_orders, :confirm]
-  before_action :set_order, only: [:show, :approve, :confirm, :cancel]
-  before_action :set_event_type, only: [:new, :create, :show, :approve, :confirm, :cancel]
-  before_action :set_company, only: [:new, :create, :show, :approve, :confirm, :cancel]
-  before_action :check_user, only: [:show, :cancel]
-  before_action :update_order_status, only: [:show, :my_company_orders, :my_orders]
-  before_action :set_messages, only: [:show]
+  before_action :authenticate_owner!, only: %i[my_company_orders approve]
+  before_action :authenticate_client!, only: %i[new create my_orders confirm]
+  before_action :set_order, only: %i[show approve confirm cancel]
+  before_action :set_event_type, only: %i[new create show approve confirm cancel]
+  before_action :set_company, only: %i[new create show approve confirm cancel]
+  before_action :check_user, only: %i[show cancel]
+  before_action :update_order_status, only: %i[show my_company_orders my_orders]
+  before_action :set_messages, only: %i[show]
 
   def new
     if @company.inactive?
@@ -22,14 +22,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = @event_type.orders.new(order_params.merge(client: current_client, local: determine_local))
+    define_order
     if @company.active? && @event_type.active?
-      if @order.save
-        redirect_to @order, notice: t('.success', code: @order.code)
-      else
-        flash.now[:alert] = t('.error')
-        render :new
-      end
+      successfull_order_creation
     else
       flash[:alert] = t('.inactive')
       redirect_to root_path
@@ -65,6 +60,7 @@ class OrdersController < ApplicationController
 
   def approve
     return unless request.post?
+
     handle_approval_process
   end
 
@@ -72,8 +68,8 @@ class OrdersController < ApplicationController
     @approval = @order.order_approval
     if @approval && @approval.validity_date >= Date.today
       @order.update(status: 'order_confirmed')
-        flash[:notice] =  t('.success', code: @order.code)
-        redirect_to @order
+      flash[:notice] = t('.success', code: @order.code)
+      redirect_to @order
     else
       flash.now[:alert] = t('.expired')
       render :show
@@ -88,20 +84,42 @@ class OrdersController < ApplicationController
 
   private
 
-  def handle_approval_process
-    if @order.order_approval.present?
-      flash[:alert] = t('views.approve.already_exists')
-      redirect_to order_path @order and return
+  def successfull_order_creation
+    if @order.save
+      redirect_to @order, notice: t('.success', code: @order.code)
+    else
+      flash.now[:alert] = t('.error')
+      render :new
     end
+  end
 
-    final_price = @order.final_price(params[:order][:extra_charge], params[:order][:discount])
-    @approval = @order.build_order_approval(approval_params.merge(final_price: final_price))
+  def define_order
+    @order = @event_type.orders.new(order_params.merge(client: current_client, local: determine_local))
+  end
+
+  def handle_approval_process
+    if order_approval_exists?
+      handle_existing_approval
+    else
+      create_and_save_approval
+    end
+  end
+
+  def order_approval_exists?
+    @order.order_approval.present?
+  end
+
+  def handle_existing_approval
+    flash[:alert] = t('views.approve.already_exists')
+    redirect_to order_path(@order)
+  end
+
+  def create_and_save_approval
+    calculate_final_price
+    build_approval
 
     if @approval.save
-      update_order_params = {status: :negotiating}
-      update_order_params[:payment_method_id] = params[:order][:payment_method_id] if params[:order][:payment_method_id].present?
-
-      @order.update(update_order_params)
+      update_order_with_params
       flash[:notice] = t('.success', code: @order.code)
       redirect_to @order
     else
@@ -110,12 +128,29 @@ class OrdersController < ApplicationController
     end
   end
 
+  def calculate_final_price
+    @order.final_price(params[:order][:extra_charge], params[:order][:discount])
+  end
+
+  def build_approval
+    @approval = @order.build_order_approval(approval_params.merge(final_price: @order.final_price))
+  end
+
+  def update_order_with_params
+    update_order_params = { status: :negotiating }
+    update_order_params[:payment_method_id] = params[:order][:payment_method_id]
+    @order.update(update_order_params)
+  end
+
   def order_params
-    params.require(:order).permit(:company_id, :event_type_id, :date, :attendees_number, :details, :payment_method_id, :day_type)
+    params.require(:order).permit(:company_id, :event_type_id, :date,
+                                  :attendees_number, :details,
+                                  :payment_method_id, :day_type)
   end
 
   def approval_params
-    params.require(:order).permit(:validity_date, :extra_charge, :discount, :charge_description, :payment_method_id)
+    params.require(:order).permit(:validity_date, :extra_charge, :discount,
+                                  :charge_description, :payment_method_id)
           .merge(owner_id: current_owner.id)
   end
 
@@ -145,9 +180,9 @@ class OrdersController < ApplicationController
   end
 
   def check_user
-    unless current_owner == @order.company.owner || current_client == @order.client
-      flash[:notice] = t('.error')
-      redirect_to root_path
-    end
+    return if current_owner == @order.company.owner || current_client == @order.client
+
+    flash[:notice] = t('.error')
+    redirect_to root_path
   end
 end
