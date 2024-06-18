@@ -1,9 +1,9 @@
 class EventPricingsController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
-  before_action :set_event_pricing, only: [:edit, :update]
-  before_action :set_event_type, only: [:new, :create, :edit, :update]
-  before_action :set_company, only: [:new, :create, :edit, :update]
-  before_action :check_owner, only: [:new, :create, :edit, :update]
+  before_action :authenticate_owner!, only: %i[new create edit update]
+  before_action :set_event_pricing, only: %i[edit update]
+  before_action :set_event_type, only: %i[new create edit update]
+  before_action :set_company, only: %i[new create edit update]
+  before_action :check_owner, only: %i[new create edit update]
 
   def new
     @event_pricing = EventPricing.new
@@ -12,8 +12,7 @@ class EventPricingsController < ApplicationController
   def create
     @event_pricing = @event_type.event_pricings.new(event_pricing_params)
     if pricing_exists?
-      flash.now[:alert] = t('.duplicate_day_option')
-      render :new
+      handle_duplicate_day_option
     elsif @event_pricing.save
       flash[:notice] = t('.success', name: @event_type.name)
       redirect_to @event_type
@@ -23,23 +22,42 @@ class EventPricingsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if pricing_exists? && !same_day_option?
-      flash.now[:alert] = t('.duplicate_day_option')
-      render :edit
-    elsif @event_pricing.update(event_pricing_params)
-      flash[:notice] = t('.success', name: @event_type.name)
-      redirect_to @event_type
+    if duplicate_day_option?
+      handle_duplicate_day_option
+    elsif update_event_pricing
+      handle_successful_update
     else
-      flash.now[:alert] = t('.error')
-      render :edit
+      handle_failed_update
     end
   end
 
   private
+
+  def duplicate_day_option?
+    pricing_exists? && !same_day_option?
+  end
+
+  def handle_duplicate_day_option
+    flash.now[:alert] = t('.duplicate_day_option')
+    render :edit
+  end
+
+  def update_event_pricing
+    @event_pricing.update(event_pricing_params)
+  end
+
+  def handle_successful_update
+    flash[:notice] = t('.success', name: @event_type.name)
+    redirect_to @event_type
+  end
+
+  def handle_failed_update
+    flash.now[:alert] = t('.error')
+    render :edit
+  end
 
   def pricing_exists?
     @event_type.event_pricings.exists?(day_options: event_pricing_params[:day_options])
@@ -55,11 +73,11 @@ class EventPricingsController < ApplicationController
   end
 
   def set_event_type
-    if params[:event_type_id]
-      @event_type = EventType.find(params[:event_type_id])
-    else
-      @event_type = @event_pricing.event_type
-    end
+    @event_type = if params[:event_type_id]
+                    EventType.find(params[:event_type_id])
+                  else
+                    @event_pricing.event_type
+                  end
   end
 
   def set_event_pricing
@@ -72,9 +90,9 @@ class EventPricingsController < ApplicationController
   end
 
   def check_owner
-    if current_owner != @event_type.company.owner
-      flash[:alert] = t('.error')
-      redirect_to root_path
-    end
+    return unless current_owner != @event_type.company.owner
+
+    flash[:alert] = t('.error')
+    redirect_to root_path
   end
 end
